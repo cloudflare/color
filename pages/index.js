@@ -180,24 +180,25 @@ export default class Index extends React.Component {
     }
 
     return (
-      <Div bg={data.parentBg} textAlign="center" height='100vh' borderBottom='1px solid black' pt={4}>
-          <Form onSubmit={this.handleSubmit} display='flex' width={1} mx='auto' maxWidth='80rem' borderRadius={2}style={{overflow: 'hidden'}}>
+      <Div bg='white' textAlign="center" height='100vh' borderBottom='1px solid black' pt={3} position='relative'>
+          <Form onSubmit={this.handleSubmit} display='flex' width={1} mx='auto' maxWidth='64rem' px={[3,0,0]} borderRadius={2}style={{overflow: 'hidden'}}>
           <Input
             fontSize={2}
             fontWeight={700}
             py={3}
             px={3}
-            width={7/8}
+            width={[3/4, 7/8]}
             type="url"
             border='none'
+            bg='#eeeeee'
             borderRadius={0}
             value={this.state.url}
             onChange={this.handleChange}
           />
-          <Button width={1/8} py={3} fontSize={2} bg='black' color='white' fontWeight={700} border='none'>Import Palette</Button>
+          <Button width={[1/4, 1/8]} py={3} fontSize={2} bg='black' color='white' fontWeight={700} border='none'>Go</Button>
         </Form>
         <Div maxWidth="40em" mx="auto" py={5}>
-          <Text py={4} px={5} color={data.color} bg={data.bg} textAlign="left">
+          <Text py={4} px={[3,4]} color={data.color} bg={data.bg} textAlign="left">
             <Span fontWeight={700} fontSize={4}>
               ABCDEFGHIJKLMNOPQRSTUVWXYZ
             </Span>
@@ -207,7 +208,7 @@ export default class Index extends React.Component {
             1234567890!@#$%^&*()
             <br />
           </Text>
-          <Flex mt={2}>
+          <Flex mt={2} px={[3,4]}>
             <TextInput
               py={3}
               px={4}
@@ -230,11 +231,12 @@ export default class Index extends React.Component {
               children="Click Here"
             />
           </Flex>
-          <Div mt={4} textAlign="left">
+          <Div mt={4} textAlign="left" px={[3,4]}>
             <SingleComponent
               py={2}
               px={4}
               mr={3}
+              mb={2}
               border="1px solid"
               borderRadius={1}
               color={data.color}
@@ -246,6 +248,7 @@ export default class Index extends React.Component {
               py={2}
               px={4}
               mr={3}
+              mb={2}
               borderRadius={1}
               color={data.color}
               bg={data.bg}
@@ -310,15 +313,17 @@ export default class Index extends React.Component {
             <Icon color={data.color} type="wrench" />
           </Div>
 
-          <H4 mt={5}>Palette</H4>
-          <Flex>
-            {this.state.palette.sort().map((color, i) => (
-              <Div key={color} p={3} bg={color}>
-
-              </Div>
-            ))}
-          </Flex>
         </Div>
+          <Div position='absolute' width={1} style={{right: 0, left: 0, bottom: 0}}>
+            <H4 mt={5}>Palette</H4>
+            <Flex>
+              {this.state.palette.sort().map((color, i) => (
+                <Div key={color} py={3} bg={color}>
+
+                </Div>
+              ))}
+            </Flex>
+          </Div>
 
       </Div>
     )

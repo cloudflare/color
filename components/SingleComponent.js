@@ -47,7 +47,7 @@ const SingleComponent = styled.a(
   boxShadow,
   textShadow,
   {
-    transition: 'all .5s ease-in',
+    transition: 'all .25s ease-in',
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
     textDecoration: 'none',

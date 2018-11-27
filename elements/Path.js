@@ -3,7 +3,7 @@ import {color} from 'styled-system'
 
 const Path = styled.path(color, {
   boxSizing: 'border-box',
-  transition: 'color .25s ease-in'
+  transition: 'color .25s ease-in, background-color .25s ease-in'
 })
 
 Path.defaultProps = {

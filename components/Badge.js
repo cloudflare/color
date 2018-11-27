@@ -43,7 +43,7 @@ const Badge = styled.span(
   borderRadius,
   {
     boxSizing: 'border-box',
-    transition: 'all .5s ease-in',
+    transition: 'all .25s ease-in',
   },
 )
 
