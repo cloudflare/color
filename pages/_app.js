@@ -12,7 +12,6 @@ export const {
   Consumer: DebugConsumer
 } = React.createContext(false)
 
-
 // Adds server generated styles to emotion cache.
 // '__NEXT_DATA__.ids' is set in '_document.js'
 if (typeof window !== "undefined") {
@@ -35,7 +34,7 @@ export default class MyApp extends App {
     filterActive: false,
     xRay: false,
     debug: false,
-    dataDrawer: false,
+    dataDrawer: false
   }
 
   componentDidMount() {
@@ -92,26 +91,26 @@ export default class MyApp extends App {
       <Container>
         <DebugProvider value={debug}>
           <ThemeProvider theme={theme}>
-              <React.Fragment>
-                <DataDrawer
+            <React.Fragment>
+              {/* <DataDrawer
                   visible={dataDrawer}
                   filter={filter}
                   handleFilterChange={this.handleFilterChange}
                   filterActive={filterActive}
-                />
+                /> */}
 
-                <XRayWrapper>
-                  <div
-                    style={{
-                      filter: filterActive
-                        ? `url(/static/filters.svg#${filter})`
-                        : "none"
-                    }}
-                  >
-                    <Component {...pageProps} />
-                  </div>
-                </XRayWrapper>
-              </React.Fragment>
+              <XRayWrapper>
+                <div
+                  style={{
+                    filter: filterActive
+                      ? `url(/static/filters.svg#${filter})`
+                      : "none"
+                  }}
+                >
+                  <Component {...pageProps} />
+                </div>
+              </XRayWrapper>
+            </React.Fragment>
           </ThemeProvider>
         </DebugProvider>
       </Container>
