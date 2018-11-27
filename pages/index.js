@@ -180,19 +180,23 @@ export default class Index extends React.Component {
     }
 
     return (
-      <Div bg={data.parentBg} textAlign="center" height='100vh'>
-        <Form onSubmit={this.handleSubmit} py={5}>
+      <Div bg={data.parentBg} textAlign="center" height='100vh' borderBottom='1px solid black' pt={4}>
+          <Form onSubmit={this.handleSubmit} display='flex' width={1} mx='auto' maxWidth='80rem' borderRadius={2}style={{overflow: 'hidden'}}>
           <Input
-            fontSize={1}
-            py={2}
+            fontSize={2}
+            fontWeight={700}
+            py={3}
             px={3}
+            width={7/8}
             type="url"
+            border='none'
+            borderRadius={0}
             value={this.state.url}
             onChange={this.handleChange}
           />
-          <Button>Import Palette</Button>
+          <Button width={1/8} py={3} fontSize={2} bg='black' color='white' fontWeight={700} border='none'>Import Palette</Button>
         </Form>
-        <Div maxWidth="40em" mx="auto">
+        <Div maxWidth="40em" mx="auto" py={5}>
           <Text py={4} px={5} color={data.color} bg={data.bg} textAlign="left">
             <Span fontWeight={700} fontSize={4}>
               ABCDEFGHIJKLMNOPQRSTUVWXYZ
