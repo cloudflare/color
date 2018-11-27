@@ -180,34 +180,8 @@ export default class Index extends React.Component {
     }
 
     return (
-<<<<<<< HEAD
-      <Div bg={data.parentBg} textAlign='center' height='100vh'>
-      <Flex>
-        {this.state.palette.sort().map((color, i) => (
-          <Div key={color} p={3} bg={color}>
-
-          </Div>
-        ))}
-      </Flex>
-        <Div py={5}>
-          <Input fontSize={1} py={2} px={3} type='url' value={this.state.url}  onChange={this.handleChange} />
-          <Button onClick={this.handleSubmit}>Import Palette</Button>
-
-        </Div>
-        <Div maxWidth='40em' mx='auto'>
-          <Text
-            py={4}
-            px={5}
-            color={data.color}
-            bg={data.bg}
-            textAlign='left'
-          >
-            <Span fontWeight={700} fontSize={4}>ABCDEFGHIJKLMNOPQRSTUVWXYZ</Span><br />
-            abcdefghijklmnopqrstuvwxyz<br />
-            1234567890!@#$%^&*()<br />
-=======
-      <Div bg={data.parentBg} py={8} textAlign="center">
-        <Form onSubmit={this.handleSubmit}>
+      <Div bg={data.parentBg} textAlign="center" height='100vh'>
+        <Form onSubmit={this.handleSubmit} py={5}>
           <Input
             fontSize={1}
             py={2}
@@ -228,7 +202,6 @@ export default class Index extends React.Component {
             <br />
             1234567890!@#$%^&*()
             <br />
->>>>>>> 4fa31776eef5684ba51c268cfa50ae45e61fa4d3
           </Text>
           <Flex mt={2}>
             <TextInput
@@ -332,6 +305,15 @@ export default class Index extends React.Component {
             <Icon color={data.color} type="download" />
             <Icon color={data.color} type="wrench" />
           </Div>
+
+          <H4 mt={5}>Palette</H4>
+          <Flex>
+            {this.state.palette.sort().map((color, i) => (
+              <Div key={color} p={3} bg={color}>
+
+              </Div>
+            ))}
+          </Flex>
         </Div>
 
       </Div>
