@@ -1,0 +1,38 @@
+{
+  "private": true,
+  "name": "product-kit",
+  "version": "0.5.1",
+  "scripts": {
+    "dev": "next -p $(./node_modules/detect-port/bin/detect-port 3000)",
+    "build": "next build",
+    "start": "next start",
+    "deploy": "next build && next export && now ./out"
+  },
+  "dependencies": {
+    "@compositor/kit": "^1.0.47",
+    "@compositor/kit-cli": "^1.0.47",
+    "@mdx-js/loader": "^0.15.0-1",
+    "@zeit/next-mdx": "^1.2.0",
+    "emotion": "^9.2.12",
+    "emotion-server": "^9.2.12",
+    "emotion-theming": "^9.2.9",
+    "glamorous": "^4.13.1",
+    "next": "^7.0.2",
+    "now": "^11.4.6",
+    "react": "^16.5.2",
+    "react-dnd": "^5.0.0",
+    "react-dom": "^16.5.2",
+    "react-emotion": "^9.2.12",
+    "react-x-ray": "^1.0.0-4",
+    "remark-images": "^0.8.1",
+    "styled-components": "^4.0.0",
+    "styled-system": "^3.1.11",
+    "webpack": "^4.20.2"
+  },
+  "devDependencies": {
+    "@mdx-js/mdx": "^0.15.5",
+    "babel-plugin-emotion": "^9.2.11",
+    "detect-port": "1.2.3",
+    "fs-extra": "^7.0.1"
+  }
+}

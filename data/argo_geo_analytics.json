@@ -1,0 +1,1005 @@
+{
+    "type": "FeatureCollection",
+    "features": [{
+        "properties": {
+            "code": "SJC",
+            "argo_req_count": 2587389,
+            "pct_avg_change": 0.012261070238499523,
+            "no_argo_avg": 727.7255837482891,
+            "argo_avg": 736.6482782449797
+        },
+        "geometry": {
+            "coordinates": [-121.926, 37.3679],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "EWR",
+            "argo_req_count": 6696990,
+            "pct_avg_change": 0.06003951841343536,
+            "no_argo_avg": 651.7771493198342,
+            "argo_avg": 690.9095354778789
+        },
+        "geometry": {
+            "coordinates": [-74.1843, 40.6924],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "LAX",
+            "argo_req_count": 7907006,
+            "pct_avg_change": -0.05144476657430736,
+            "no_argo_avg": 778.5724547862757,
+            "argo_avg": 738.51897658861
+        },
+        "geometry": {
+            "coordinates": [-118.391, 33.9456],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "ORD",
+            "argo_req_count": 8713586,
+            "pct_avg_change": 0.06711345496972898,
+            "no_argo_avg": 640.4692217646368,
+            "argo_avg": 683.4533240390351
+        },
+        "geometry": {
+            "coordinates": [-87.8825, 41.9796],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "DFW",
+            "argo_req_count": 4770459,
+            "pct_avg_change": 0.006598214338038789,
+            "no_argo_avg": 664.0706722764743,
+            "argo_avg": 668.45235290776
+        },
+        "geometry": {
+            "coordinates": [-97.0409, 32.9222],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "IAD",
+            "argo_req_count": 6298972,
+            "pct_avg_change": 0.06268419826382432,
+            "no_argo_avg": 664.1954407115841,
+            "argo_avg": 705.8299994030773
+        },
+        "geometry": {
+            "coordinates": [-77.4484, 38.9556],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MIA",
+            "argo_req_count": 2370776,
+            "pct_avg_change": -0.025792875594300275,
+            "no_argo_avg": 702.7142831526436,
+            "argo_avg": 684.5892610689497
+        },
+        "geometry": {
+            "coordinates": [-80.2727, 25.7953],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "CDG",
+            "argo_req_count": 107242,
+            "pct_avg_change": -0.044841737505744717,
+            "no_argo_avg": 732.6144859813085,
+            "argo_avg": 699.7627795080285
+        },
+        "geometry": {
+            "coordinates": [2.5564, 49.0175],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "AMS",
+            "argo_req_count": 581118,
+            "pct_avg_change": -0.015204755701915687,
+            "no_argo_avg": 759.0495834587974,
+            "argo_avg": 747.5084199766658
+        },
+        "geometry": {
+            "coordinates": [4.77511, 52.3122],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "LHR",
+            "argo_req_count": 2980256,
+            "pct_avg_change": -0.06859816213133446,
+            "no_argo_avg": 805.5766340040944,
+            "argo_avg": 750.3155574554669
+        },
+        "geometry": {
+            "coordinates": [-0.45342, 51.4703],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "NRT",
+            "argo_req_count": 1827988,
+            "pct_avg_change": -0.03916045970471359,
+            "no_argo_avg": 1036.8772746906045,
+            "argo_avg": 996.27268395635
+        },
+        "geometry": {
+            "coordinates": [140.389, 35.7491],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "HKG",
+            "argo_req_count": 1456950,
+            "pct_avg_change": -0.07264112128433893,
+            "no_argo_avg": 1014.787080293248,
+            "argo_avg": 941.071808915886
+        },
+        "geometry": {
+            "coordinates": [113.929, 22.3124],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "SYD",
+            "argo_req_count": 1656136,
+            "pct_avg_change": -0.05414847504596847,
+            "no_argo_avg": 1036.4976118665527,
+            "argo_avg": 980.3728467951908
+        },
+        "geometry": {
+            "coordinates": [151.168, -33.9344],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "ATL",
+            "argo_req_count": 3922158,
+            "pct_avg_change": 0.050920289051297606,
+            "no_argo_avg": 658.5571413548067,
+            "argo_avg": 692.0910613493897
+        },
+        "geometry": {
+            "coordinates": [-84.4333, 33.6558],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "SEA",
+            "argo_req_count": 3228690,
+            "pct_avg_change": -0.03112493821158352,
+            "no_argo_avg": 749.8924960895262,
+            "argo_avg": 726.5521384834095
+        },
+        "geometry": {
+            "coordinates": [-122.296, 47.4405],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "YYZ",
+            "argo_req_count": 2503132,
+            "pct_avg_change": 0.064516041682621,
+            "no_argo_avg": 667.9292975248701,
+            "argo_avg": 711.0214519250284
+        },
+        "geometry": {
+            "coordinates": [-79.6142, 43.685],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "PRG",
+            "argo_req_count": 19853,
+            "pct_avg_change": -0.026470696603477596,
+            "no_argo_avg": 791.5134910751349,
+            "argo_avg": 770.5615775953256
+        },
+        "geometry": {
+            "coordinates": [14.2675, 50.1079],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "ICN",
+            "argo_req_count": 583132,
+            "pct_avg_change": -0.07156081417020102,
+            "no_argo_avg": 999.5086848278144,
+            "argo_avg": 927.9830295713492
+        },
+        "geometry": {
+            "coordinates": [126.657, 37.4534],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "SIN",
+            "argo_req_count": 177406,
+            "pct_avg_change": -0.15328457983013194,
+            "no_argo_avg": 976.3416340508808,
+            "argo_avg": 826.6835169047271
+        },
+        "geometry": {
+            "coordinates": [103.991, 1.3578],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "SCL",
+            "argo_req_count": 1326622,
+            "pct_avg_change": -0.09260960301626643,
+            "no_argo_avg": 921.2884707877683,
+            "argo_avg": 835.96831124465
+        },
+        "geometry": {
+            "coordinates": [-70.785, -33.39],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MXP",
+            "argo_req_count": 132202,
+            "pct_avg_change": -0.04592905383297021,
+            "no_argo_avg": 820.0077655964501,
+            "argo_avg": 782.345584786917
+        },
+        "geometry": {
+            "coordinates": [8.72284, 45.6314],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MAD",
+            "argo_req_count": 1220788,
+            "pct_avg_change": -0.11162779014052816,
+            "no_argo_avg": 898.3616211699548,
+            "argo_avg": 798.0794986516905
+        },
+        "geometry": {
+            "coordinates": [-3.56769, 40.4684],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MDE",
+            "argo_req_count": 471719,
+            "pct_avg_change": -0.12486864679595902,
+            "no_argo_avg": 917.5829651755533,
+            "argo_avg": 803.0056219910582
+        },
+        "geometry": {
+            "coordinates": [-75.4267, 6.1675],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "LIM",
+            "argo_req_count": 1974177,
+            "pct_avg_change": -0.06092246311654601,
+            "no_argo_avg": 761.2046469614091,
+            "argo_avg": 714.8301849327593
+        },
+        "geometry": {
+            "coordinates": [-77.1081, -12.0228],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "EZE",
+            "argo_req_count": 972328,
+            "pct_avg_change": -0.15627708747484775,
+            "no_argo_avg": 1054.2127655885643,
+            "argo_avg": 889.4634650035789
+        },
+        "geometry": {
+            "coordinates": [-58.5333, -34.82],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "JNB",
+            "argo_req_count": 251608,
+            "pct_avg_change": -0.2646168220391053,
+            "no_argo_avg": 1211.469577026266,
+            "argo_avg": 890.8943475565164
+        },
+        "geometry": {
+            "coordinates": [28.2467, -26.1219],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "AKL",
+            "argo_req_count": 146149,
+            "pct_avg_change": -0.03478089716750809,
+            "no_argo_avg": 876.4836137656094,
+            "argo_avg": 845.9987273262219
+        },
+        "geometry": {
+            "coordinates": [174.782, -37.0085],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MEL",
+            "argo_req_count": 1265523,
+            "pct_avg_change": -0.15907179901269267,
+            "no_argo_avg": 1159.3119180317876,
+            "argo_avg": 974.898085613616
+        },
+        "geometry": {
+            "coordinates": [144.844, -37.6759],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "DUS",
+            "argo_req_count": 13380,
+            "pct_avg_change": 0.006358283770197048,
+            "no_argo_avg": 970.8357457520453,
+            "argo_avg": 977.0085949177876
+        },
+        "geometry": {
+            "coordinates": [6.76481, 51.2794],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MRS",
+            "argo_req_count": 113304,
+            "pct_avg_change": -0.10166513533382927,
+            "no_argo_avg": 465.9683645334494,
+            "argo_avg": 418.5956276918732
+        },
+        "geometry": {
+            "coordinates": [5.22087, 43.4411],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "OTP",
+            "argo_req_count": 3254,
+            "pct_avg_change": 0.052074441450435965,
+            "no_argo_avg": 395.4025641025641,
+            "argo_avg": 415.9929317762753
+        },
+        "geometry": {
+            "coordinates": [26.1029, 44.5656],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "DUB",
+            "argo_req_count": 235107,
+            "pct_avg_change": 0.00981597578806191,
+            "no_argo_avg": 818.4167592721211,
+            "argo_avg": 826.4503183656802
+        },
+        "geometry": {
+            "coordinates": [-6.24418, 53.4272],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "KWI",
+            "argo_req_count": 1485,
+            "pct_avg_change": -0.31643642028591884,
+            "no_argo_avg": 514.566210045662,
+            "argo_avg": 351.7387205387205
+        },
+        "geometry": {
+            "coordinates": [47.9748, 29.2442],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "DOH",
+            "argo_req_count": 4934,
+            "pct_avg_change": -0.32676802964756824,
+            "no_argo_avg": 803.3298245614035,
+            "argo_avg": 540.827320632347
+        },
+        "geometry": {
+            "coordinates": [51.5658, 25.2592],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MCT",
+            "argo_req_count": 469,
+            "pct_avg_change": -0.09760763299431276,
+            "no_argo_avg": 984.5116279069767,
+            "argo_avg": 888.4157782515991
+        },
+        "geometry": {
+            "coordinates": [58.2792, 23.5917],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "DEL",
+            "argo_req_count": 22614,
+            "pct_avg_change": -0.31689203283117645,
+            "no_argo_avg": 1240.1343604442852,
+            "argo_avg": 847.1456619793048
+        },
+        "geometry": {
+            "coordinates": [77.1027, 28.5603],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "BOM",
+            "argo_req_count": 46871,
+            "pct_avg_change": -0.2541786624611517,
+            "no_argo_avg": 1096.0330535152152,
+            "argo_avg": 817.4448379595059
+        },
+        "geometry": {
+            "coordinates": [72.8654, 19.0932],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MAA",
+            "argo_req_count": 10009,
+            "pct_avg_change": -0.3637493511680581,
+            "no_argo_avg": 1197.990291262136,
+            "argo_avg": 762.2221001099011
+        },
+        "geometry": {
+            "coordinates": [80.1634, 12.9849],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "DXB",
+            "argo_req_count": 14327,
+            "pct_avg_change": -0.3770819876850236,
+            "no_argo_avg": 1712.585086042065,
+            "argo_avg": 1066.800097717596
+        },
+        "geometry": {
+            "coordinates": [55.3629, 25.2509],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MBA",
+            "argo_req_count": 1273,
+            "pct_avg_change": -0.5354745476375614,
+            "no_argo_avg": 1048.227848101266,
+            "argo_avg": 486.9285153181461
+        },
+        "geometry": {
+            "coordinates": [39.5936, -4.0314],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "CAI",
+            "argo_req_count": 2636,
+            "pct_avg_change": -0.29982879269796964,
+            "no_argo_avg": 581.6353276353276,
+            "argo_avg": 407.2443095599393
+        },
+        "geometry": {
+            "coordinates": [31.4078, 30.1206],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MAN",
+            "argo_req_count": 106710,
+            "pct_avg_change": -0.01528588697992083,
+            "no_argo_avg": 787.8419635787808,
+            "argo_avg": 775.7991003654765
+        },
+        "geometry": {
+            "coordinates": [-2.27089, 53.365],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "ZRH",
+            "argo_req_count": 172214,
+            "pct_avg_change": -0.006169915288159469,
+            "no_argo_avg": 791.8473823473822,
+            "argo_avg": 786.9617510771483
+        },
+        "geometry": {
+            "coordinates": [8.56137, 47.454],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "CPH",
+            "argo_req_count": 85207,
+            "pct_avg_change": -0.005898530933668248,
+            "no_argo_avg": 792.7724997546375,
+            "argo_avg": 788.0963066414731
+        },
+        "geometry": {
+            "coordinates": [12.6495, 55.6205],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "PHX",
+            "argo_req_count": 405508,
+            "pct_avg_change": 0.012155781041000563,
+            "no_argo_avg": 770.2052514085257,
+            "argo_avg": 779.5676978012764
+        },
+        "geometry": {
+            "coordinates": [-112.03, 33.4376],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "TXL",
+            "argo_req_count": 25222,
+            "pct_avg_change": -0.0963517379907196,
+            "no_argo_avg": 843.1592554291625,
+            "argo_avg": 761.9193957656015
+        },
+        "geometry": {
+            "coordinates": [13.289, 52.5548],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MNL",
+            "argo_req_count": 42859,
+            "pct_avg_change": -0.07195822584478684,
+            "no_argo_avg": 988.6077421815406,
+            "argo_avg": 917.4692829977369
+        },
+        "geometry": {
+            "coordinates": [121.016, 14.5114],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "YVR",
+            "argo_req_count": 33029,
+            "pct_avg_change": 0.021515022351921074,
+            "no_argo_avg": 678.3719028741327,
+            "argo_avg": 692.9670895273849
+        },
+        "geometry": {
+            "coordinates": [-123.172, 49.1931],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "YUL",
+            "argo_req_count": 768436,
+            "pct_avg_change": 0.05473989951617005,
+            "no_argo_avg": 686.9902255723183,
+            "argo_avg": 724.5960014887381
+        },
+        "geometry": {
+            "coordinates": [-73.7473, 45.4562],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "FRA",
+            "argo_req_count": 771020,
+            "pct_avg_change": -0.10997001123914764,
+            "no_argo_avg": 918.0254967586983,
+            "argo_avg": 817.0702225623199
+        },
+        "geometry": {
+            "coordinates": [8.57041, 50.0483],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MSP",
+            "argo_req_count": 325239,
+            "pct_avg_change": 0.030392109240908613,
+            "no_argo_avg": 751.1721868309057,
+            "argo_avg": 774.001893991803
+        },
+        "geometry": {
+            "coordinates": [-93.1987, 44.8793],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "WAW",
+            "argo_req_count": 195364,
+            "pct_avg_change": -0.127011110362441,
+            "no_argo_avg": 783.8151544181378,
+            "argo_avg": 684.2619213365821
+        },
+        "geometry": {
+            "coordinates": [20.9725, 52.17],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "SOF",
+            "argo_req_count": 5207,
+            "pct_avg_change": -0.07252496495384228,
+            "no_argo_avg": 614.8378787878787,
+            "argo_avg": 570.2467831764932
+        },
+        "geometry": {
+            "coordinates": [23.4024, 42.6895],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "HAM",
+            "argo_req_count": 5568,
+            "pct_avg_change": -0.14124633302105138,
+            "no_argo_avg": 850.9272419627748,
+            "argo_avg": 730.736889367816
+        },
+        "geometry": {
+            "coordinates": [10.0042, 53.6321],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "MNL",
+            "argo_req_count": 357827,
+            "pct_avg_change": -0.1163236946127447,
+            "no_argo_avg": 978.1631228737242,
+            "argo_avg": 864.3795744871124
+        },
+        "geometry": {
+            "coordinates": [121.016, 14.5114],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "BRU",
+            "argo_req_count": 24168,
+            "pct_avg_change": -0.014905882285571546,
+            "no_argo_avg": 655.5790849673202,
+            "argo_avg": 645.8071002979146
+        },
+        "geometry": {
+            "coordinates": [4.4859, 50.899],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "HEL",
+            "argo_req_count": 109900,
+            "pct_avg_change": -0.1911199560677061,
+            "no_argo_avg": 1033.329384268214,
+            "argo_avg": 835.8395177434031
+        },
+        "geometry": {
+            "coordinates": [24.9688, 60.3243],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "TPE",
+            "argo_req_count": 4809219,
+            "pct_avg_change": -0.11269568382398334,
+            "no_argo_avg": 1106.2271963652322,
+            "argo_avg": 981.5601660061644
+        },
+        "geometry": {
+            "coordinates": [121.237, 25.081],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "LAS",
+            "argo_req_count": 150744,
+            "pct_avg_change": 0.0028887430638713804,
+            "no_argo_avg": 811.5429069832874,
+            "argo_avg": 813.8872459268694
+        },
+        "geometry": {
+            "coordinates": [-115.143, 36.0806],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "OSL",
+            "argo_req_count": 41558,
+            "pct_avg_change": -0.005213217082263759,
+            "no_argo_avg": 910.742314833918,
+            "argo_avg": 905.9944174406853
+        },
+        "geometry": {
+            "coordinates": [11.1005, 60.1947],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "PER",
+            "argo_req_count": 193416,
+            "pct_avg_change": -0.13536860878638748,
+            "no_argo_avg": 1052.0980095742,
+            "argo_avg": 909.6769657112133
+        },
+        "geometry": {
+            "coordinates": [115.961, -31.9336],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "BNE",
+            "argo_req_count": 402140,
+            "pct_avg_change": -0.18625920344638025,
+            "no_argo_avg": 1166.0079633306575,
+            "argo_avg": 948.8282488685533
+        },
+        "geometry": {
+            "coordinates": [153.122, -27.3589],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "BKK",
+            "argo_req_count": 2959,
+            "pct_avg_change": -0.2699958477461832,
+            "no_argo_avg": 1371.155172413793,
+            "argo_avg": 1000.948969246367
+        },
+        "geometry": {
+            "coordinates": [100.608, 13.9144],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "ATH",
+            "argo_req_count": 81249,
+            "pct_avg_change": -0.05015760634254958,
+            "no_argo_avg": 970.9467170127963,
+            "argo_avg": 922.2463538012776
+        },
+        "geometry": {
+            "coordinates": [23.7235, 37.8937],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "BCN",
+            "argo_req_count": 71589,
+            "pct_avg_change": -0.12678461417565565,
+            "no_argo_avg": 752.6963486454653,
+            "argo_avg": 657.2660324910253
+        },
+        "geometry": {
+            "coordinates": [2.07976, 41.3006],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "PTY",
+            "argo_req_count": 4645,
+            "pct_avg_change": -0.1179055175376529,
+            "no_argo_avg": 789.7252336448598,
+            "argo_avg": 696.6122712594188
+        },
+        "geometry": {
+            "coordinates": [-79.3836, 9.07],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "STL",
+            "argo_req_count": 100479,
+            "pct_avg_change": 0.02757623223990037,
+            "no_argo_avg": 781.7099674601816,
+            "argo_avg": 803.2665830671085
+        },
+        "geometry": {
+            "coordinates": [-90.3647, 38.7414],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "LAD",
+            "argo_req_count": 503,
+            "pct_avg_change": -0.37165059922128,
+            "no_argo_avg": 1095.5428571428572,
+            "argo_avg": 688.3836978131212
+        },
+        "geometry": {
+            "coordinates": [13.2342, -8.8547],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "GRU",
+            "argo_req_count": 8636974,
+            "pct_avg_change": -0.019756335365092914,
+            "no_argo_avg": 849.4875148129753,
+            "argo_avg": 832.7047545818709
+        },
+        "geometry": {
+            "coordinates": [-46.4728, -23.435],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "DEN",
+            "argo_req_count": 1249783,
+            "pct_avg_change": 0.03661061336966486,
+            "no_argo_avg": 726.6562785999498,
+            "argo_avg": 753.259610668412
+        },
+        "geometry": {
+            "coordinates": [-104.672, 39.8396],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "TPA",
+            "argo_req_count": 195659,
+            "pct_avg_change": 0.04300281683239418,
+            "no_argo_avg": 669.6859354838708,
+            "argo_avg": 698.4843171027144
+        },
+        "geometry": {
+            "coordinates": [-82.5356, 27.9744],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "BKK",
+            "argo_req_count": 2405,
+            "pct_avg_change": -0.33058591588445885,
+            "no_argo_avg": 1468.6713286713284,
+            "argo_avg": 983.1492723492723
+        },
+        "geometry": {
+            "coordinates": [100.608, 13.9144],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "BOS",
+            "argo_req_count": 1078822,
+            "pct_avg_change": 0.019235471838531217,
+            "no_argo_avg": 746.9785774247708,
+            "argo_avg": 761.3470628148109
+        },
+        "geometry": {
+            "coordinates": [-71.0281, 42.3717],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "LIS",
+            "argo_req_count": 337378,
+            "pct_avg_change": -0.038813229836039714,
+            "no_argo_avg": 899.1764418502995,
+            "argo_avg": 864.2764999496113
+        },
+        "geometry": {
+            "coordinates": [-9.13775, 38.7701],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "VIE",
+            "argo_req_count": 22738,
+            "pct_avg_change": -0.0011384242429876474,
+            "no_argo_avg": 671.0824742268043,
+            "argo_avg": 670.3184976691002
+        },
+        "geometry": {
+            "coordinates": [16.5804, 48.1036],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "BNA",
+            "argo_req_count": 76126,
+            "pct_avg_change": 0.10245838405776418,
+            "no_argo_avg": 332.6254339847237,
+            "argo_avg": 366.705698447311
+        },
+        "geometry": {
+            "coordinates": [-86.6682, 36.1342],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }, {
+        "properties": {
+            "code": "OMA",
+            "argo_req_count": 6220,
+            "pct_avg_change": 0.02626241553279297,
+            "no_argo_avg": 617.3015151515151,
+            "argo_avg": 633.5133440514469
+        },
+        "geometry": {
+            "coordinates": [-95.8998, 41.3],
+            "type": "Point"
+        },
+        "type": "Feature"
+    }]
+}

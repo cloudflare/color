@@ -1,0 +1,150 @@
+{
+  "result": {
+    "zone_id": 123,
+    "since": "2016-10-25T00:01:00Z",
+    "until": "2016-10-25T00:03:00Z",
+    "time_delta": 60,
+    "golden_record": true,
+    "labels": {
+      "123e4567-e89b-12d3-a456-426655440000": "block login brute for on /login",
+      "66698345-bc87-d312-a456-937482934748": "rate limit whole site"
+    },
+    "timeseries": [
+      {
+        "since": "2016-10-25T00:01:00Z",
+        "until": "2016-10-25T00:02:00Z",
+        "rules": {
+          "123e4567-e89b-12d3-a456-426655440000": {
+            "versions": 1,
+            "actions": {
+              "all": 700,
+              "error": 50,
+              "allow": 500,
+              "simulate": 100,
+              "ban": 50
+            },
+            "colos": {
+              "SFO": {
+                "actions": {
+                  "all": 600,
+                  "error": 50,
+                  "allow": 400,
+                  "simulate": 100,
+                  "ban": 50
+                }
+              },
+              "LHR": {
+                "actions": {
+                  "all": 100,
+                  "error": 0,
+                  "allow": 100,
+                  "simulate": 0,
+                  "ban": 0
+                }
+              }
+            }
+          },
+          "66698345-bc87-d312-a456-937482934748": {
+            "versions": 2,
+            "actions": {
+              "all": 700,
+              "error": 50,
+              "allow": 500,
+              "simulate": 100,
+              "ban": 50
+            },
+            "colos": {
+              "SFO": {
+                "actions": {
+                  "all": 600,
+                  "error": 50,
+                  "allow": 400,
+                  "simulate": 100,
+                  "ban": 50
+                }
+              },
+              "LHR": {
+                "actions": {
+                  "all": 100,
+                  "error": 0,
+                  "allow": 100,
+                  "simulate": 0,
+                  "ban": 0
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "since": "2016-10-25T00:02:00Z",
+        "until": "2016-10-25T00:03:00Z",
+        "rules": {
+          "123e4567-e89b-12d3-a456-426655440000": {
+            "versions": 1,
+            "actions": {
+              "all": 700,
+              "error": 50,
+              "allow": 500,
+              "simulate": 100,
+              "ban": 50
+            },
+            "colos": {
+              "SFO": {
+                "actions": {
+                  "all": 600,
+                  "error": 50,
+                  "allow": 400,
+                  "simulate": 100,
+                  "ban": 50
+                }
+              },
+              "LHR": {
+                "actions": {
+                  "all": 100,
+                  "error": 0,
+                  "allow": 100,
+                  "simulate": 0,
+                  "ban": 0
+                }
+              }
+            }
+          },
+          "66698345-bc87-d312-a456-937482934748": {
+            "versions": 1,
+            "actions": {
+              "all": 700,
+              "error": 50,
+              "allow": 500,
+              "simulate": 100,
+              "ban": 50
+            },
+            "colos": {
+              "SFO": {
+                "actions": {
+                  "all": 600,
+                  "error": 50,
+                  "allow": 400,
+                  "simulate": 100,
+                  "ban": 50
+                }
+              },
+              "LHR": {
+                "actions": {
+                  "all": 100,
+                  "error": 0,
+                  "allow": 100,
+                  "simulate": 0,
+                  "ban": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "success": true,
+  "errors": [],
+  "messages": []
+}

@@ -1,0 +1,133 @@
+{
+  "result": [
+    {
+      "id": "fc31e250e5addefafb22a8cf94ad9136",
+      "type": "CNAME",
+      "name": "hturan.com",
+      "content": "hturan.github.io",
+      "proxiable": true,
+      "proxied": true,
+      "ttl": 1,
+      "locked": false,
+      "zone_id": "992270719090ab50df6a1f5293d437b8",
+      "zone_name": "hturan.com",
+      "modified_on": "2017-09-30T22:24:47.628439Z",
+      "created_on": "2017-09-30T22:24:47.628439Z",
+      "meta": {
+        "auto_added": false,
+        "managed_by_apps": false,
+        "managed_by_argo_tunnel": false
+      }
+    },
+    {
+      "id": "d8d16a7a608e007f23bc464e4d9ba23f",
+      "type": "MX",
+      "name": "hturan.com",
+      "content": "alt1.aspmx.l.google.com",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "priority": 5,
+      "locked": false,
+      "zone_id": "992270719090ab50df6a1f5293d437b8",
+      "zone_name": "hturan.com",
+      "modified_on": "2017-08-04T10:04:32.202311Z",
+      "created_on": "2017-08-04T10:04:32.202311Z",
+      "meta": {
+        "auto_added": true,
+        "managed_by_apps": false,
+        "managed_by_argo_tunnel": false
+      }
+    },
+    {
+      "id": "282c248551a0be651eefb0f2092353f4",
+      "type": "MX",
+      "name": "hturan.com",
+      "content": "alt2.aspmx.l.google.com",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "priority": 5,
+      "locked": false,
+      "zone_id": "992270719090ab50df6a1f5293d437b8",
+      "zone_name": "hturan.com",
+      "modified_on": "2017-08-04T10:04:32.198160Z",
+      "created_on": "2017-08-04T10:04:32.198160Z",
+      "meta": {
+        "auto_added": true,
+        "managed_by_apps": false,
+        "managed_by_argo_tunnel": false
+      }
+    },
+    {
+      "id": "f3482f3ca3b9e8d4637fa0e5f67d2bc9",
+      "type": "MX",
+      "name": "hturan.com",
+      "content": "alt3.aspmx.l.google.com",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "priority": 10,
+      "locked": false,
+      "zone_id": "992270719090ab50df6a1f5293d437b8",
+      "zone_name": "hturan.com",
+      "modified_on": "2017-08-04T10:04:32.189646Z",
+      "created_on": "2017-08-04T10:04:32.189646Z",
+      "meta": {
+        "auto_added": true,
+        "managed_by_apps": false,
+        "managed_by_argo_tunnel": false
+      }
+    },
+    {
+      "id": "4777d8b7a41dfe86ace1178ca12eaabb",
+      "type": "MX",
+      "name": "hturan.com",
+      "content": "alt4.aspmx.l.google.com",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "priority": 10,
+      "locked": false,
+      "zone_id": "992270719090ab50df6a1f5293d437b8",
+      "zone_name": "hturan.com",
+      "modified_on": "2017-08-04T10:04:32.194061Z",
+      "created_on": "2017-08-04T10:04:32.194061Z",
+      "meta": {
+        "auto_added": true,
+        "managed_by_apps": false,
+        "managed_by_argo_tunnel": false
+      }
+    },
+    {
+      "id": "7741ebde26b7ff6d389d00a1b76c0f3c",
+      "type": "MX",
+      "name": "hturan.com",
+      "content": "aspmx.l.google.com",
+      "proxiable": false,
+      "proxied": false,
+      "ttl": 1,
+      "priority": 1,
+      "locked": false,
+      "zone_id": "992270719090ab50df6a1f5293d437b8",
+      "zone_name": "hturan.com",
+      "modified_on": "2017-08-04T10:04:32.186175Z",
+      "created_on": "2017-08-04T10:04:32.186175Z",
+      "meta": {
+        "auto_added": true,
+        "managed_by_apps": false,
+        "managed_by_argo_tunnel": false
+      }
+    }
+  ],
+  "result_info": {
+    "page": 1,
+    "per_page": 50,
+    "total_pages": 1,
+    "count": 6,
+    "total_count": 7
+  },
+  "success": true,
+  "errors": [],
+  "messages": []
+}

@@ -1,0 +1,234 @@
+{
+  "result": [
+    {
+      "id": "advanced_ddos",
+      "value": "on",
+      "modified_on": null,
+      "editable": false
+    },
+    {
+      "id": "always_online",
+      "value": "off",
+      "modified_on": "2017-09-30T13:41:22.748814Z",
+      "editable": true
+    },
+    {
+      "id": "always_use_https",
+      "value": "on",
+      "modified_on": "2017-09-30T13:40:03.113461Z",
+      "editable": true
+    },
+    {
+      "id": "automatic_https_rewrites",
+      "value": "off",
+      "modified_on": null,
+      "editable": true
+    },
+    { "id": "brotli", "value": "on", "modified_on": null, "editable": true },
+    {
+      "id": "browser_cache_ttl",
+      "value": 0,
+      "modified_on": "2017-09-30T13:42:07.342116Z",
+      "editable": true
+    },
+    {
+      "id": "browser_check",
+      "value": "on",
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "cache_level",
+      "value": "aggressive",
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "challenge_ttl",
+      "value": 1800,
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "cname_flattening",
+      "value": "flatten_at_root",
+      "modified_on": null,
+      "editable": false
+    },
+    {
+      "id": "development_mode",
+      "value": "off",
+      "modified_on": "2017-09-30T13:42:56.750554Z",
+      "time_remaining": 0,
+      "editable": true
+    },
+    {
+      "id": "edge_cache_ttl",
+      "value": 7200,
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "email_obfuscation",
+      "value": "on",
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "hotlink_protection",
+      "modified_on": null,
+      "value": "off",
+      "editable": true
+    },
+    { "id": "http2", "value": "on", "modified_on": null, "editable": false },
+    {
+      "id": "ip_geolocation",
+      "value": "on",
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "ipv6",
+      "value": "on",
+      "modified_on": "2016-10-03T09:57:33.830054Z",
+      "editable": true
+    },
+    { "id": "max_upload", "value": 100, "modified_on": null, "editable": true },
+    {
+      "id": "min_tls_version",
+      "value": "1.0",
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "minify",
+      "value": { "css": "off", "html": "off", "js": "off" },
+      "modified_on": null,
+      "editable": true
+    },
+    { "id": "mirage", "value": "off", "modified_on": null, "editable": false },
+    {
+      "id": "mobile_redirect",
+      "value": {
+        "status": "off",
+        "mobile_subdomain": null,
+        "strip_uri": false
+      },
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "opportunistic_encryption",
+      "value": "on",
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "origin_error_page_pass_thru",
+      "value": "off",
+      "modified_on": null,
+      "editable": false
+    },
+    { "id": "polish", "value": "off", "modified_on": null, "editable": false },
+    {
+      "id": "prefetch_preload",
+      "value": "off",
+      "modified_on": null,
+      "editable": false
+    },
+    {
+      "id": "privacy_pass",
+      "value": "on",
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "pseudo_ipv4",
+      "value": "off",
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "response_buffering",
+      "value": "off",
+      "modified_on": null,
+      "editable": false
+    },
+    {
+      "id": "rocket_loader",
+      "value": "off",
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "security_header",
+      "modified_on": null,
+      "value": {
+        "strict_transport_security": {
+          "enabled": false,
+          "max_age": 0,
+          "include_subdomains": false,
+          "preload": false,
+          "nosniff": false
+        }
+      },
+      "editable": true
+    },
+    {
+      "id": "security_level",
+      "value": "medium",
+      "modified_on": "2018-06-10T15:12:51.692684Z",
+      "editable": true
+    },
+    {
+      "id": "server_side_exclude",
+      "value": "on",
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "sha1_support",
+      "value": "off",
+      "modified_on": null,
+      "editable": false
+    },
+    {
+      "id": "sort_query_string_for_cache",
+      "value": "off",
+      "modified_on": null,
+      "editable": false
+    },
+    {
+      "id": "ssl",
+      "value": "full",
+      "modified_on": "2017-09-30T13:39:58.888104Z",
+      "certificate_status": "active",
+      "editable": true
+    },
+    {
+      "id": "tls_1_2_only",
+      "value": "off",
+      "modified_on": null,
+      "editable": true
+    },
+    { "id": "tls_1_3", "value": "on", "modified_on": null, "editable": true },
+    {
+      "id": "tls_client_auth",
+      "value": "off",
+      "modified_on": null,
+      "editable": true
+    },
+    {
+      "id": "true_client_ip_header",
+      "value": "off",
+      "modified_on": null,
+      "editable": false
+    },
+    { "id": "waf", "value": "off", "modified_on": null, "editable": false },
+    { "id": "webp", "value": "off", "modified_on": null, "editable": false },
+    { "id": "websockets", "value": "on", "modified_on": null, "editable": true }
+  ],
+  "success": true,
+  "errors": [],
+  "messages": []
+}

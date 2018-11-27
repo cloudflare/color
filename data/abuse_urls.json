@@ -1,0 +1,126 @@
+{
+  "result": [
+    {
+      "id": "a570c963d90fda70d274c7958f5c758b",
+      "url": "www.cyrilhtgamage.com/images/client.axa.fr-layouts-NOSI-LoginPage.aspx-clientid-12345678-xtor-AL-5/axa/particuliers/wsostOstBrokerWebloginformTAM_OP%3Dlogin&ERROR_CODE%3D0x00000000&URL%3D/login.htm",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "082060731f5d76da590c357587c085e3",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/paypal/personal.php",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "10d162e36b4f3de4c44ab21aab0fe66d",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/16be4fad6a25f89e41c9f373d4bf39db/personal_info.php",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "6c1e1a6f0b0d1a63c114a33bef4ae201",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/paypal/loading.php",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "0a4436b6cb5393e0d440b17a847fcc1f",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/16be4fad6a25f89e41c9f373d4bf39db/payment_info.php",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "6f898d6774ac69d1167bca062722f4be",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/paypal/payment_info.php",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "96c7f4e28c00324962081f695a8c8bd4",
+      "url": "www.cyrilhtgamage.com/inc/css/js/cas.php?clicid=13698&amp%3Bdefault=8b3a3deac648c9f2868242fcdda0d7ac",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "5a6c2aeffd23f180a2da3d87392ba7ff",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/16be4fad6a25f89e41c9f373d4bf39db/login.php",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "e86a514f30ed74f933b7d23f6b4e380c",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/16be4fad6a25f89e41c9f373d4bf39db/personal.php",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "50b917ab66c1782de710868a99d072c7",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/paypal/error__login.php",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "46a722126b8150f2e35053faca74a2f6",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/paypal/login.php",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "a00add5958121e2785bbda63a4402944",
+      "url": "www.cyrilhtgamage.com/index/images/n/",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "1063dff3642753932d78783e7fc582c7",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "c0934248a5a07ac4cba573d01c2cde4e",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/paypal/personal_info.php",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "9814b81f62a93b5d6d08b57878ff8e63",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/1a420b8ad2585644dd105ff222110151/",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    },
+    {
+      "id": "da972c2bde9ae6c3bd5f5448433d68e7",
+      "url": "www.cyrilhtgamage.com/index/images/pdf/paypal/16be4fad6a25f89e41c9f373d4bf39db/loading.php",
+      "type": "phishing",
+      "status": "active",
+      "created_on": "2014-09-10T17:49:37.740039Z"
+    }
+  ],
+  "result_info": {
+    "page": 1,
+    "per_page": 25,
+    "total_pages": 1,
+    "count": 16,
+    "total_count": 16
+  },
+  "success": true,
+  "errors": [],
+  "messages": []
+}
