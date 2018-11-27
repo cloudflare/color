@@ -12,7 +12,6 @@ export const {
   Consumer: DebugConsumer
 } = React.createContext(false)
 
-const SECURE_PASSWORD = "#savetheinternet"
 
 // Adds server generated styles to emotion cache.
 // '__NEXT_DATA__.ids' is set in '_document.js'
@@ -33,13 +32,10 @@ export default class MyApp extends App {
 
   state = {
     filter: "achromatopsia",
-    filterActive: true,
+    filterActive: false,
     xRay: false,
     debug: false,
     dataDrawer: false,
-    authenticated: process.browser
-      ? localStorage.authenticated === "true"
-      : true
   }
 
   componentDidMount() {
@@ -48,15 +44,6 @@ export default class MyApp extends App {
 
   componentWillUnmount() {
     document.removeEventListener("keypress", this.handleKeyPress)
-  }
-
-  handlePasswordSubmit = password => {
-    if (password === SECURE_PASSWORD) {
-      this.setState({
-        authenticated: true
-      })
-      localStorage.authenticated = "true"
-    }
   }
 
   handleKeyPress = ({ key }) => {
@@ -105,7 +92,6 @@ export default class MyApp extends App {
       <Container>
         <DebugProvider value={debug}>
           <ThemeProvider theme={theme}>
-            {this.state.authenticated ? (
               <React.Fragment>
                 <DataDrawer
                   visible={dataDrawer}
@@ -126,9 +112,6 @@ export default class MyApp extends App {
                   </div>
                 </XRayWrapper>
               </React.Fragment>
-            ) : (
-              <PasswordForm handleSubmit={this.handlePasswordSubmit} />
-            )}
           </ThemeProvider>
         </DebugProvider>
       </Container>

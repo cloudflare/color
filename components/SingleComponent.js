@@ -1,4 +1,6 @@
-import glamorous from 'glamorous'
+import React from "react"
+import styled from "react-emotion"
+
 import {
   style,
   space,
@@ -13,7 +15,6 @@ import {
   color,
   borders,
   borderColor,
-  borderWidth,
   borderRadius,
   boxShadow,
 } from 'styled-system'
@@ -29,7 +30,7 @@ const textShadow = style({
   ]
 })
 
-const SingleComponent = glamorous.a(
+const SingleComponent = styled.a(
   space,
   width,
   maxWidth,
@@ -42,12 +43,12 @@ const SingleComponent = glamorous.a(
   color,
   borders,
   borderColor,
-  borderWidth,
   borderRadius,
   boxShadow,
   textShadow,
   {
     transition: 'all .5s ease-in',
+    whiteSpace: 'nowrap',
     boxSizing: 'border-box',
     textDecoration: 'none',
     ':hover': {
@@ -60,7 +61,6 @@ SingleComponent.defaultProps = {
   fontWeight: 600,
   fontSize: 2,
   display: 'inline-block',
-  mb: 5
 }
 
 export default SingleComponent

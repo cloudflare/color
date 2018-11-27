@@ -18,7 +18,7 @@ import {
 
 const textShadow = style({
   prop: 'textShadow',
-  cssTextroperty: 'textShadow',
+  cssBadgeroperty: 'textShadow',
   key: 'textShadow',
   scale: [
     '1px 1px 2px pink ', 
@@ -27,7 +27,7 @@ const textShadow = style({
   ]
 })
 
-const Text = styled.p(
+const Badge = styled.span(
   space,
   width,
   display,
@@ -47,13 +47,14 @@ const Text = styled.p(
   },
 )
 
-Text.defaultTextrops = {
-  fontWeight: 400,
-  lineHeight: 1.5,
-  fontSize: 3,
-  maxWidth: '34em',
-  display: 'block',
-  mb: 5,
+Badge.defaultProps = {
+  borderRadius: 1,
+  px: 2,
+  py: 1,
+  fontSize: 1,
+  fontWeight: 600,
+  display: 'inline-block',
+  children: 'Badge'
 }
 
-export default Text
+export default Badge

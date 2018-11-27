@@ -31,7 +31,7 @@ const Input = styled.input(
     boxSizing: "border-box",
     appearance: "none",
     webKitAppearance: "none",
-    transition: "border-color .2s ease-in",
+    transition: "all .25s ease-in",
     ":focus": {
       borderColor: theme.colors.gray[3],
       transition: "border-color .2s ease-in"
@@ -45,9 +45,7 @@ const TextInput = ({ ...props }) => {
 
 TextInput.defaultProps = {
   type: "text",
-  borderRadius: 2,
   border: "1px solid",
-  borderColor: "gray.6",
   fontSize: 2,
   py: 2,
   px: 2,

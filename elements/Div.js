@@ -35,6 +35,7 @@ const Div = styled.div(
   borderRadius,
   {
     boxSizing: 'border-box',
+    transition: 'all .25s ease-in'
   },
 )
 
