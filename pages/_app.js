@@ -53,7 +53,7 @@ export default class MyApp extends App {
           filterActive: !this.state.filterActive
         })
         break
-      case "x":
+      case "=":
         this.setState({
           xRay: !this.state.xRay
         })
@@ -63,7 +63,7 @@ export default class MyApp extends App {
           debug: !this.state.debug
         })
         break
-      case "d":
+      case "<":
         this.setState({
           dataDrawer: !this.state.dataDrawer
         })

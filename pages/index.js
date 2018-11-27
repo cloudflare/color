@@ -93,6 +93,7 @@ export default class Index extends React.Component {
       const cssdata = await res.json()
       const cssPalette = extractSkins(cssdata).colors
       const newPalette = cssPalette.filter(str => {
+        // Remove things that are not pure colors
         if(str.includes('rgba')) {
           return false
         } else if(str.includes('hsla')) {
@@ -100,6 +101,10 @@ export default class Index extends React.Component {
         } else if(str.includes('inherit')) {
           return false
         } else if(str.includes('currentColor')) {
+          return false
+        } else if(str.includes('var(--')) {
+          return false
+        } else if(str.includes('none')) {
           return false
         } else if(str.includes('transparent')) {
           return false
@@ -160,8 +165,15 @@ const getColors = () => {
   }
 
     return (
-      <Div bg={data.parentBg} py={8} textAlign='center'>
-        <Div>
+      <Div bg={data.parentBg} textAlign='center' height='100vh'>
+      <Flex>
+        {this.state.palette.sort().map((color, i) => (
+          <Div key={color} p={3} bg={color}>
+
+          </Div>
+        ))}
+      </Flex>
+        <Div py={5}>
           <Input fontSize={1} py={2} px={3} type='url' value={this.state.url}  onChange={this.handleChange} />
           <Button onClick={this.handleSubmit}>Import Palette</Button>
 
@@ -275,6 +287,7 @@ const getColors = () => {
             <Icon color={data.color} type='wrench' />
           </Div>
         </Div>
+
       </Div>
     )
   }
