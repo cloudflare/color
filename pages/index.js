@@ -4,8 +4,16 @@ import randomHex from "random-hex-color"
 import extractSkins from "../utils/extract-skins"
 import {Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, Bar, BarChart, Area, AreaChart, LineChart, Line} from "recharts" 
 import linedata from "../data/linechart"
+import bardata from "../data/barchart"
+
 import radialdata from "../data/radialchart"
+import radial2 from "../data/radial2"
+import radial3 from "../data/radial3"
+import radial4 from "../data/radial4"
+import radial5 from "../data/radial5"
+
 import BadgeOutline from "../components/BadgeOutline"
+
 
 const palette = [
       "#000000",
@@ -328,6 +336,8 @@ export default class Index extends React.Component {
               bg={data.bg}
               children="Primary Click"
             />
+            <Badge bg={data.bg} color={data.color} mr={3} />
+            <Div>
             <SingleComponent
               py={2}
               px={4}
@@ -340,32 +350,73 @@ export default class Index extends React.Component {
               borderColor={data.bg}
               children="Secondary Click"
             />
-            <Badge bg={data.bg} color={data.color} mr={3} />
             <BadgeOutline borderColor={data.bg} color={data.bg} />
-            <Flex mx={-4} mt={4} flexWrap='wrap'>
-              <Div px={4} width={[1,1/2]} style={{ overflow: 'hidden' }}>
-                <LineChart width={420} height={120} data={linedata}>
-                  <Line type='monotone' dataKey='pv' stroke={data.bg} strokeWidth={2} />
-                </LineChart>
+            </Div>
+            <Flex bg={data.bg} mx={-4} mt={4} flexWrap='wrap' py={5}>
+              <Div px={5} width={[1]}>
+                <Div style={{overflow: 'hidden'}}>
+                  <LineChart width={700} height={120} data={linedata}>
+                    <Line type='monotone' dataKey='pv' stroke={data.color} strokeWidth={2} />
+                  </LineChart>
+                </Div>
               </Div>
-              <Div px={4} width={[1,1/2]} style={{overflow: 'hidden' }}>
-              <AreaChart width={420} height={120} data={linedata}
+              <Div pl={5} pr={3} width={[1,1/2]}>
+                <Div style={{overflow: 'hidden'}}>
+              <AreaChart width={360} height={120} data={linedata}
                         margin={{top: 5, right: 0, left: 0, bottom: 5}}>
-                    <Area type='monotone' dataKey='uv' stroke={data.bg} strokeWidth={2} fill={data.bg} />
+                    <Area type='monotone' dataKey='uv' stroke={data.color} strokeWidth={2} fill={data.color} />
                   </AreaChart>
                 </Div>
-                <Div px={3} width={1} display='none' style={{overflow: 'hidden'}}>
-                <BarChart width={300} height={100} data={linedata}>
-                   <Bar dataKey='uv' fill={data.bg} />
-                 </BarChart>
                 </Div>
-                <Div width={1/2} style={{overflow: 'hidden'}}>
-	<RadarChart cx={200} cy={200} outerRadius={130} width={420} height={420} data={radialdata}>
-          <PolarGrid stroke={data.bg} strokeOpacity={.5} strokeWidth={1} />
-          <PolarAngleAxis dataKey="subject" color='white'  fill='white' stroke={data.bg} />
-          <Radar name="Mike" dataKey="A" stroke={data.color} fill={data.bg} strokeOpacity={.5} fillOpacity={.5}/>
+                <Div pl={3} pr={5} width={[1,1/2]}>
+                  <Div style={{overflow: 'hidden'}}>
+                    <BarChart width={320} height={120} data={bardata}>
+                     <Bar dataKey='amt' fillOpacity={.75} fill={data.color} />
+                   </BarChart>
+                 </Div>
+                </Div>
+                <Flex width={1} px={5} flexWrap='wrap' mt={4}>
+                    <Div width={1/5}>
+
+	<RadarChart cx={64} cy={64} outerRadius={48} width={128} height={128} data={radialdata}>
+          <PolarGrid stroke={data.color} strokeOpacity={.5} strokeWidth={1} />
+          <PolarAngleAxis dataKey="subject" stroke={data.color} />
+          <Radar name="Mike" dataKey="A" stroke={data.color} fill={data.color} strokeOpacity={.5} fillOpacity={.5}/>
         </RadarChart>
-        </Div>
+                  </Div>
+                  <Div width={1/5}>
+
+	<RadarChart cx={64} cy={64} outerRadius={48} width={128} height={128} data={radial5}>
+          <PolarGrid stroke={data.color} strokeOpacity={.5} strokeWidth={1} />
+          <PolarAngleAxis dataKey="subject" stroke={data.color} />
+          <Radar name="Mike" dataKey="A" stroke={data.color} fill={data.color} strokeOpacity={.5} fillOpacity={.5}/>
+        </RadarChart>
+                  </Div>
+                  <Div width={1/5}>
+
+	<RadarChart cx={64} cy={64} outerRadius={48} width={128} height={128} data={radial2}>
+          <PolarGrid stroke={data.color} strokeOpacity={.5} strokeWidth={1} />
+          <PolarAngleAxis dataKey="subject" stroke={data.color} />
+          <Radar name="Mike" dataKey="A" stroke={data.color} fill={data.color} strokeOpacity={.5} fillOpacity={.5}/>
+        </RadarChart>
+                  </Div>
+                  <Div width={1/5}>
+
+	<RadarChart cx={64} cy={64} outerRadius={48} width={128} height={128} data={radial3}>
+          <PolarGrid stroke={data.color} strokeOpacity={.5} strokeWidth={1} />
+          <PolarAngleAxis dataKey="subject" stroke={data.color} />
+          <Radar name="Mike" dataKey="A" stroke={data.color} fill={data.color} strokeOpacity={.5} fillOpacity={.5}/>
+        </RadarChart>
+                  </Div>
+                  <Div width={1/5}>
+
+	<RadarChart cx={64} cy={64} outerRadius={48} width={128} height={128} data={radial4}>
+          <PolarGrid stroke={data.color} strokeOpacity={.5} strokeWidth={1} />
+          <PolarAngleAxis dataKey="subject" stroke={data.color} />
+          <Radar name="Mike" dataKey="A" stroke={data.color} fill={data.color} strokeOpacity={.5} fillOpacity={.5}/>
+        </RadarChart>
+                  </Div>
+        </Flex>
             </Flex>
           </Div>
 
