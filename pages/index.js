@@ -182,6 +182,18 @@ const Index = () => {
     setUrl(e.target.value)
   }
 
+  const handleRemove = index => {
+    const alteredPalette = palette.filter((_, i) => index !== i)
+    setPalette(alteredPalette)
+  }
+
+  const handleColorUpdate = (e, index) => {
+    const updatedPalette = [...palette]
+    updatedPalette[index] = e.target.value
+    console.log(updatedPalette, e.target.value)
+    setPalette(updatedPalette)
+  }
+
   const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(
     JSON.stringify(likes)
   )}`
@@ -598,11 +610,12 @@ const Index = () => {
       </Div>
       <Div width={1}>
         <H4 mt={5}>Palette</H4>
-        <Flex>
-          {palette.map(color => (
-            <Div key={color} py={3} bg={color} />
-          ))}
-        </Flex>
+
+        <Palette
+          palette={palette}
+          onRemove={handleRemove}
+          onUpdate={handleColorUpdate}
+        />
       </Div>
 
       <Div width={1}>
