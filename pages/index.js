@@ -113,16 +113,37 @@ const palette = [
   "#f7f1f8"
 ]
 
+const getRandomColor = palette => {
+  return palette[Math.round(Math.random() * (palette.length - 1))]
+}
+
+const handleHistory = async data => {
+  const hasHistory = await get("history")
+  const history = hasHistory ? hasHistory : []
+  const newHistory = [data, ...history.slice(0, 9)]
+  await set("history", newHistory)
+}
+
 export default class Index extends React.Component {
   state = {
     url: "https://cloudflare.com",
     palette: palette
   }
-  componentDidMount() {
-    setInterval(() => this.setState({}), 2000)
+
+  handleLike = data => async () => {
+    const dataWithTimestamp = { date: new Date(), ...data }
+    const hasLikes = await get("likes")
+    const likes = hasLikes ? hasLikes : []
+    await set("likes", [dataWithTimestamp, ...likes])
+    handleHistory(dataWithTimestamp)
+    this.forceUpdate()
   }
 
-  componentDidUpdate() {}
+  handleNext = () => {
+    const dataWithTimestamp = { date: new Date(), ...data }
+    handleHistory(dataWithTimestamp)
+    this.forceUpdate()
+  }
 
   handleChange = e => {
     this.setState({ url: e.target.value })
@@ -164,12 +185,9 @@ export default class Index extends React.Component {
 
   render() {
     const getColors = () => {
-      const randomColor = this.state.palette
-        ? this.state.palette[randomPaletteColor]
-        : randomHex()
-      let randomBg = this.state.palette
-        ? this.state.palette[randomPaletteColor1]
-        : randomHex()
+      const randomColor = getRandomColor(this.state.palette)
+      let randomBg = getRandomColor(this.state.palette)
+
       while (chroma.contrast(randomColor, randomBg) < 4.5) {
         randomBg = this.state.palette[
           Math.round(Math.random() * (this.state.palette.length - 1))
@@ -272,6 +290,10 @@ export default class Index extends React.Component {
             Go
           </Button>
         </Form>
+        <Div>
+          <Button onClick={this.handleLike(data)}>Like</Button>
+          <Button>Next</Button>
+        </Div>
         <Div maxWidth="48em" mx="auto" py={5}>
           <Text
             py={[4, 5]}
