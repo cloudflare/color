@@ -169,6 +169,10 @@ const Index = () => {
     setUrl(e.target.value)
   }
 
+  const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(
+    JSON.stringify(likes)
+  )}`
+
   const handleSubmit = async e => {
     e.preventDefault()
     const fullUrl = `https://api.cssstats.com/stats/?url=${url}`
@@ -602,6 +606,10 @@ const Index = () => {
           })}
         </Div>
       </Div>
+
+      <A download="likes.json" href={dataStr}>
+        Export Likes as JSON
+      </A>
     </Div>
   )
 }
