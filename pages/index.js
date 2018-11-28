@@ -2,64 +2,94 @@ import React from "react"
 import chroma from "chroma-js"
 import randomHex from "random-hex-color"
 import extractSkins from "../utils/extract-skins"
+import {Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis, Bar, BarChart, Area, AreaChart, LineChart, Line} from "recharts" 
+import linedata from "../data/linechart"
+import radialdata from "../data/radialchart"
+import BadgeOutline from "../components/BadgeOutline"
 
 const palette = [
-  "#000000",
-  "#333333",
-  "#ffffff",
-  "#666666",
-  "#444444",
-  "#eeeeee",
-  //'#404041',
-  //'#4D4D4F',
-  //'#7D7D7D',
-  //'#808285',
-  //'#a3a3a3',
-  //'#cccccc',
-  //'#bcbec0',
-  //'#dedede',
-  //'#e0e0e0',
-  //'#ebebeb',
-  //'#f7f7f7',
-  //'#f9f9f9',
-  //'#ffffff',
-  //'#9f1f21',
-  //'#BD2527',
-  //'#f16975',
-  //'#de9293',
-  //'#f8e9e9',
-  //'#e66b00',
-  //'#f56500',
-  //'#FF7900',
-  //'#f48120',
-  //'#f69259',
-  //'#faad3f',
-  //'#ffdb6f',
-  //'#8176b5',
-  //'#ba77b1',
-  //'#1e4e79',
-  //'#215686',
-  //'#26669d',
-  //'#286ea4',
-  //'#2869a2',
-  //'#2F7BBF',
-  //'#408bc9',
-  //'#62a1d8',
-  //'#76c4e2',
-  //'#76c2e2',
-  //'#97bddf',
-  //'#cbdeef',
-  //'#eaf2f8',
-  //'#85cba8',
-  //'#5d7b22',
-  //'#729729',
-  //'#85b832',
-  //'#87b331',
-  //'#9BCA3E',
-  //'#cde49e',
-  //'#f5faeb',
-  //'#9545e5',
-  "#d91698"
+      "#000000",
+      "#1d1f20",
+      "#36393a",
+      "#4e5255",
+      "#62676a",
+      "#72777b",
+      "#92979b",
+      "#b7bbbd",
+      "#d5d7d8",
+      "#eaebeb",
+      "#f7f7f8",
+      "#ffffff",
+      "#430c15",
+      "#711423",
+      "#a01c32",
+      "#bf223c",
+      "#da304c",
+      "#e35f75",
+      "#ec93a2",
+      "#f3bac3",
+      "#f9dce1",
+      "#fcf0f2",
+      "#341a04",
+      "#5b2c06",
+      "#813f09",
+      "#a24f0b",
+      "#b6590d",
+      "#e06d10",
+      "#f4a15d",
+      "#f8c296",
+      "#fbdbc1",
+      "#fdf1e7",
+      "#0f2417",
+      "#1c422b",
+      "#285d3d",
+      "#31724b",
+      "#398557",
+      "#46a46c",
+      "#79c698",
+      "#b0ddc2",
+      "#d8eee1",
+      "#eff8f3",
+      "#0c2427",
+      "#164249",
+      "#1d5962",
+      "#26727e",
+      "#2b818e",
+      "#35a0b1",
+      "#66c3d1",
+      "#a5dce4",
+      "#d0edf1",
+      "#e9f7f9",
+      "#0c2231",
+      "#163d57",
+      "#1f567a",
+      "#276d9b",
+      "#2c7cb0",
+      "#479ad1",
+      "#7cb7de",
+      "#add2eb",
+      "#d6e9f5",
+      "#ebf4fa",
+      "#181e34",
+      "#2c365e",
+      "#404e88",
+      "#5062aa",
+      "#6373b6",
+      "#8794c7",
+      "#a5aed5",
+      "#c8cde5",
+      "#e0e3f0",
+      "#f1f3f8",
+      "#2d1832",
+      "#502b5a",
+      "#753f83",
+      "#8e4c9e",
+      "#9f5bb0",
+      "#b683c3",
+      "#c9a2d2",
+      "#dbc1e1",
+      "#ebddee",
+      "#f7f1f8",
 ]
 
 export default class Index extends React.Component {
@@ -68,7 +98,7 @@ export default class Index extends React.Component {
     palette: palette
   }
   componentDidMount() {
-    setInterval(() => this.setState({}), 1000)
+    setInterval(() => this.setState({}), 2000)
   }
 
   componentDidUpdate() {}
@@ -180,8 +210,8 @@ export default class Index extends React.Component {
     }
 
     return (
-      <Div bg='white' textAlign="center" height='100vh' borderBottom='1px solid black' pt={3} position='relative'>
-          <Form onSubmit={this.handleSubmit} display='flex' width={1} mx='auto' maxWidth='64rem' px={[3,0,0]} borderRadius={2}style={{overflow: 'hidden'}}>
+      <Div bg={data.parentBg} textAlign="center" pt={[0,3]} position='relative' style={{overflow: 'hidden'}}>
+          <Form onSubmit={this.handleSubmit} display='flex' width={1} mx='auto' maxWidth='64rem' borderRadius={[0,2]} style={{overflow: 'hidden'}}>
           <Input
             fontSize={2}
             fontWeight={700}
@@ -197,68 +227,20 @@ export default class Index extends React.Component {
           />
           <Button width={[1/4, 1/8]} py={3} fontSize={2} bg='black' color='white' fontWeight={700} border='none'>Go</Button>
         </Form>
-        <Div maxWidth="40em" mx="auto" py={5}>
-          <Text py={4} px={[3,4]} color={data.color} bg={data.bg} textAlign="left">
-            <Span fontWeight={700} fontSize={4}>
+        <Div maxWidth="48em" mx="auto" py={5}>
+          <Text py={[4,5]} px={[3,4,5]} color={data.color} bg={data.bg} textAlign="left">
+            <Span fontWeight={800} fontSize={[5,6]}>
               ABCDEFGHIJKLMNOPQRSTUVWXYZ
             </Span>
-            <br />
-            abcdefghijklmnopqrstuvwxyz
-            <br />
-            1234567890!@#$%^&*()
-            <br />
+            <Span fontWeight={600} fontSize={5} display='block' lineHeight={1.5}>abcdefghijklmnopqrstuvwxyz 1234567890!@#$%^&*()</Span>
+            <Span lineHeight={1.5} display='block' mt={3}>
+              Every perception of colour is an illusion.. ..we do not see colours as they really are. In our perception they alter one another. In order to use color effectively it is necessary to recognize that color deceives continually. In visual perception a color is almost never seen as it really is — as it physically is. This fact makes color the most relative medium in art.
+            </Span>
           </Text>
-          <Flex mt={2} px={[3,4]}>
-            <TextInput
-              py={3}
-              px={4}
-              mr={1}
-              border="1px solid"
-              borderRadius={1}
-              color={data.bg}
-              bg={data.color}
-              borderColor={data.borderColor}
-              defaultValue="email@example.com"
-            />
-            <SingleComponent
-              py={3}
-              px={4}
-              border="1px solid"
-              borderRadius={1}
-              color={data.color}
-              bg={data.bg}
-              borderColor={data.borderColor}
-              children="Click Here"
-            />
-          </Flex>
-          <Div mt={4} textAlign="left" px={[3,4]}>
-            <SingleComponent
-              py={2}
-              px={4}
-              mr={3}
-              mb={2}
-              border="1px solid"
-              borderRadius={1}
-              color={data.color}
-              bg="transparent"
-              borderColor={data.color}
-              children="Secondary Click"
-            />
-            <SingleComponent
-              py={2}
-              px={4}
-              mr={3}
-              mb={2}
-              borderRadius={1}
-              color={data.color}
-              bg={data.bg}
-              children="Primary Click"
-            />
-            <Badge bg={data.bg} color={data.color} />
-          </Div>
           <Div
             mt={5}
-            p={4}
+            py={[4,5]}
+            px={[3,4,5]}
             bg={data.bg}
             display="grid"
             style={{ gridTemplateColumns: "repeat(12, 1fr)", rowGap: "2em" }}
@@ -312,19 +294,92 @@ export default class Index extends React.Component {
             <Icon color={data.color} type="download" />
             <Icon color={data.color} type="wrench" />
           </Div>
+          <Flex mt={2} px={[3,4]} display='none'>
+            <TextInput
+              py={3}
+              px={4}
+              mr={1}
+              border="1px solid"
+              borderRadius={1}
+              color={data.bg}
+              bg={data.color}
+              borderColor={data.borderColor}
+              defaultValue="email@example.com"
+            />
+            <SingleComponent
+              py={3}
+              px={4}
+              border="1px solid"
+              borderRadius={1}
+              color={data.color}
+              bg={data.bg}
+              borderColor={data.borderColor}
+              children="Click Here"
+            />
+          </Flex>
+          <Div mt={4} textAlign="left" px={[3,4]}>
+            <SingleComponent
+              py={2}
+              px={4}
+              mr={3}
+              mb={3}
+              borderRadius={1}
+              color={data.color}
+              bg={data.bg}
+              children="Primary Click"
+            />
+            <SingleComponent
+              py={2}
+              px={4}
+              mr={3}
+              mb={3}
+              border="1px solid"
+              borderRadius={1}
+              color={data.bg}
+              bg="transparent"
+              borderColor={data.bg}
+              children="Secondary Click"
+            />
+            <Badge bg={data.bg} color={data.color} mr={3} />
+            <BadgeOutline borderColor={data.bg} color={data.bg} />
+            <Flex mx={-4} mt={4} flexWrap='wrap'>
+              <Div px={4} width={[1,1/2]} style={{ overflow: 'hidden' }}>
+                <LineChart width={420} height={120} data={linedata}>
+                  <Line type='monotone' dataKey='pv' stroke={data.bg} strokeWidth={2} />
+                </LineChart>
+              </Div>
+              <Div px={4} width={[1,1/2]} style={{overflow: 'hidden' }}>
+              <AreaChart width={420} height={120} data={linedata}
+                        margin={{top: 5, right: 0, left: 0, bottom: 5}}>
+                    <Area type='monotone' dataKey='uv' stroke={data.bg} strokeWidth={2} fill={data.bg} />
+                  </AreaChart>
+                </Div>
+                <Div px={3} width={1} display='none' style={{overflow: 'hidden'}}>
+                <BarChart width={300} height={100} data={linedata}>
+                   <Bar dataKey='uv' fill={data.bg} />
+                 </BarChart>
+                </Div>
+                <Div width={1/2} style={{overflow: 'hidden'}}>
+	<RadarChart cx={200} cy={200} outerRadius={130} width={420} height={420} data={radialdata}>
+          <PolarGrid stroke={data.bg} strokeOpacity={.5} strokeWidth={1} />
+          <PolarAngleAxis dataKey="subject" color='white'  fill='white' stroke={data.bg} />
+          <Radar name="Mike" dataKey="A" stroke={data.color} fill={data.bg} strokeOpacity={.5} fillOpacity={.5}/>
+        </RadarChart>
+        </Div>
+            </Flex>
+          </Div>
 
         </Div>
-          <Div position='absolute' width={1} style={{right: 0, left: 0, bottom: 0}}>
+          <Div width={1}>
             <H4 mt={5}>Palette</H4>
             <Flex>
-              {this.state.palette.sort().map((color, i) => (
+              {this.state.palette.map((color, i) => (
                 <Div key={color} py={3} bg={color}>
 
                 </Div>
               ))}
             </Flex>
           </Div>
-
       </Div>
     )
   }

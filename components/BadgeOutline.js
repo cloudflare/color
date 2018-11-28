@@ -18,7 +18,7 @@ import {
 
 const textShadow = style({
   prop: 'textShadow',
-  cssBadgeroperty: 'textShadow',
+  cssBadgeOutlineroperty: 'textShadow',
   key: 'textShadow',
   scale: [
     '1px 1px 2px pink ', 
@@ -27,7 +27,7 @@ const textShadow = style({
   ]
 })
 
-const BadgeWrapper = styled.span(
+const BadgeOutlineWrapper = styled.span(
   space,
   width,
   display,
@@ -48,23 +48,27 @@ const BadgeWrapper = styled.span(
   },
 )
 
-const Badge = ({...props}) => {
+const BadgeOutline = ({...props}) => {
   return (
-    <BadgeWrapper {...props}>
-      <Icon color={props.color} type='lock' size={12} />
+    <BadgeOutlineWrapper {...props}>
+      <Icon color={props.color} type='gear' size={12} />
       <Span pl={1}>{props.children}</Span>
-    </BadgeWrapper>
+    </BadgeOutlineWrapper>
   )
 }
 
-Badge.defaultProps = {
+BadgeOutline.defaultProps = {
   display: 'inline-flex',
   borderRadius: 1,
   px: 2,
   py: 1,
+  my: '-1px',
+  mx: '-1px',
   fontSize: 1,
   fontWeight: 600,
-  children: 'Badge'
+  bg: 'transparent',
+  border: '1px solid',
+  children: 'Badge Outline'
 }
 
-export default Badge
+export default BadgeOutline

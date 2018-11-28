@@ -22,7 +22,7 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
-          <style>{`body { margin: 0 } /* custom! */`}</style>
+          <style>{`body { margin: 0 } * { transition: color .25s ease-in, background-color .25s ease-in, stroke .25s ease-in; /* custom! */`}</style>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         <body

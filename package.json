@@ -29,6 +29,7 @@
     "react-dom": "^16.5.2",
     "react-emotion": "^9.2.12",
     "react-x-ray": "^1.0.0-4",
+    "recharts": "^1.4.1",
     "remark-images": "^0.8.1",
     "styled-components": "^4.0.0",
     "styled-system": "^3.1.11",
