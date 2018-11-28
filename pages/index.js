@@ -114,14 +114,6 @@ const getRandomColor = palette => {
   return palette[Math.round(Math.random() * (palette.length - 1))]
 }
 
-const handleHistory = async (data, updateHistory) => {
-  const hasHistory = await get("history")
-  const history = hasHistory ? hasHistory : []
-  const newHistory = [data, ...history.slice(0, 9)]
-  updateHistory(newHistory)
-  await set("history", newHistory)
-}
-
 const generateRandomPalette = palette => {
   const getColors = palette => {
     const randomColor = getRandomColor(palette)
@@ -156,23 +148,22 @@ const Index = () => {
     updateCombination(generateRandomPalette(palette))
   }, [])
 
-  const handleLike = () => async () => {
-    const dataWithTimestamp = { date: new Date(), ...currentCombination }
-    const hasLikes = await get("likes")
-    const likes = hasLikes ? hasLikes : []
-    updateLikes([dataWithTimestamp, ...likes])
-    await set("likes", [dataWithTimestamp, ...likes])
-    handleHistory(dataWithTimestamp, updateHistory)
+  const handleLike = () => {
+    updateLikes([currentCombination, ...likes])
+    updateHistory([currentCombination, ...history.slice(0, 9)])
     updateCombination(generateRandomPalette(palette))
   }
 
   const handleNext = () => {
-    const dataWithTimestamp = { date: new Date(), ...currentCombination }
-    handleHistory(dataWithTimestamp, updateHistory)
+    updateHistory([currentCombination, ...history.slice(0, 9)])
     updateCombination(generateRandomPalette(palette))
   }
 
   const handlePrevious = () => {}
+
+  const handleSetLike = index => () => {
+    updateCombination(likes[index])
+  }
 
   const handleChange = e => {
     setUrl(e.target.value)
@@ -598,11 +589,18 @@ const Index = () => {
 
       <Div width={1}>
         <H4 mt={5}>Likes</H4>
-        <Flex>
-          {palette.map(color => (
-            <Div key={color} py={3} bg={color} />
-          ))}
-        </Flex>
+        <Div>
+          {likes.map((like, i) => {
+            const colors = Object.values(like)
+            return (
+              <Flex onClick={handleSetLike(i)} width={1 / 4}>
+                {colors.map(color => (
+                  <Div key={color} py={3} bg={color} />
+                ))}
+              </Flex>
+            )
+          })}
+        </Div>
       </Div>
     </Div>
   )
