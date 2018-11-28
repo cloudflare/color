@@ -146,6 +146,7 @@ const Index = () => {
   const [currentCombination, updateCombination] = useState([])
   const [history, updateHistory] = useState([])
   const [likes, updateLikes] = useState([])
+  const [historyIndex, updateHistoryIndex] = useState(0)
 
   useEffect(() => {
     updateCombination(generateRandomPalette(palette))
@@ -153,16 +154,25 @@ const Index = () => {
 
   const handleLike = () => {
     updateLikes([currentCombination, ...likes])
-    updateHistory([currentCombination, ...history.slice(0, 9)])
+    updateHistory([...history.slice(-9, 10), currentCombination])
     updateCombination(generateRandomPalette(palette))
   }
 
   const handleNext = () => {
-    updateHistory([currentCombination, ...history.slice(0, 9)])
+    if (historyIndex < history.length) {
+      updateCombination(history[historyIndex])
+      return updateHistoryIndex(historyIndex + 1)
+    }
+    updateHistory([...history.slice(-9, 10), currentCombination])
+
+    history.length < 10 && updateHistoryIndex(history.length + 1)
     updateCombination(generateRandomPalette(palette))
   }
 
-  const handlePrevious = () => {}
+  const handlePrevious = () => {
+    updateCombination(history[historyIndex - 1])
+    updateHistoryIndex(historyIndex - 1)
+  }
 
   const handleSetLike = index => () => {
     updateCombination(likes[index])
@@ -208,6 +218,7 @@ const Index = () => {
       setPalette(newPalette)
     }
   }
+
   return (
     <Div
       bg={currentCombination.parentBg}
@@ -251,7 +262,7 @@ const Index = () => {
         </Button>
       </Form>
       <Flex mx='auto' justifyContent='center' mt={3}>
-        <ButtonPrimary mx={1} alignItems='center' onClick={handlePrevious} button='left' children='Previous' />
+        {historyIndex > 0 && <ButtonPrimary mx={1} alignItems='center' onClick={handlePrevious} button='left' children='Previous' />}
         <ButtonPrimary mx={1} alignItems='center' onClick={handleLike} button='plus' children='Add to collection' />
         <ButtonPrimary mx={1} alignItems='center' onClick={handleNext} button='right' align='right' children='Next' />
       </Flex>
