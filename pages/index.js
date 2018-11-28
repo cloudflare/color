@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import chroma from "chroma-js"
 import { set, get } from "idb-keyval"
 import extractSkins from "../utils/extract-skins"
+
 import {
   Radar,
   RadarChart,
@@ -24,6 +25,8 @@ import radial2 from "../data/radial2"
 import radial3 from "../data/radial3"
 import radial4 from "../data/radial4"
 import radial5 from "../data/radial5"
+
+import ButtonPrimary from '../components/ButtonPrimary'
 
 const defaultPalette = [
   "#000000",
@@ -247,11 +250,11 @@ const Index = () => {
           Go
         </Button>
       </Form>
-      <Div>
-        <Button onClick={handlePrevious}>Previous</Button>
-        <Button onClick={handleLike}>Like</Button>
-        <Button onClick={handleNext}>Next</Button>
-      </Div>
+      <Flex mx='auto' justifyContent='center' mt={3}>
+        <ButtonPrimary mx={1} alignItems='center' onClick={handlePrevious} button='left' children='Previous' />
+        <ButtonPrimary mx={1} alignItems='center' onClick={handleLike} button='plus' children='Add to collection' />
+        <ButtonPrimary mx={1} alignItems='center' onClick={handleNext} button='right' align='right' children='Next' />
+      </Flex>
       <Div maxWidth="48em" mx="auto" py={5}>
         <Text
           py={[4, 5]}
