@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react"
+import { withRouter } from "next/router"
 import chroma from "chroma-js"
 import { set, get } from "idb-keyval"
 import extractSkins from "../utils/extract-skins"
+import queryString from "query-string"
+import isEmpty from "lodash/isEmpty"
 
 import {
   Radar,
@@ -141,7 +144,29 @@ const generateRandomPalette = palette => {
   }
 }
 
-const Index = () => {
+const addLike = ({
+  updateLikes,
+  currentCombination,
+  likes,
+  updateHistory,
+  history,
+  palette,
+  updateCombination,
+  updateHistoryIndex,
+  historyIndex
+}) => {
+  const newCombination = generateRandomPalette(palette)
+  updateLikes([currentCombination, ...likes])
+  updateCombination(newCombination)
+  updateHistory([...history.slice(-9, 10), newCombination])
+  history.length < 10 && updateHistoryIndex(historyIndex + 1)
+}
+
+const encodeCombination = currentCombination => {
+  return queryString.stringify(currentCombination)
+}
+
+const Index = ({ router }) => {
   const [url, setUrl] = useState("https://cloudflare.com")
   const [palette, setPalette] = useState(defaultPalette)
   const [currentCombination, updateCombination] = useState({})
@@ -151,10 +176,19 @@ const Index = () => {
   const [newColor, updateNewColor] = useState("")
 
   useEffect(() => {
-    const starterCombination = generateRandomPalette(palette)
+    const starterCombination = isEmpty(router.query)
+      ? generateRandomPalette(palette)
+      : router.query
     updateCombination(starterCombination)
     updateHistory([starterCombination])
   }, [])
+
+  useEffect(
+    () => {
+      router.push("/", `?${encodeCombination(currentCombination)}`)
+    },
+    [currentCombination]
+  )
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress)
@@ -164,11 +198,18 @@ const Index = () => {
     }
   })
 
-  const handleLike = () => {
-    updateLikes([currentCombination, ...likes])
-    updateHistory([...history.slice(-9, 10), currentCombination])
-    updateCombination(generateRandomPalette(palette))
-  }
+  const handleLike = () =>
+    addLike({
+      updateLikes,
+      currentCombination,
+      likes,
+      updateHistory,
+      history,
+      palette,
+      updateCombination,
+      updateHistoryIndex,
+      historyIndex
+    })
 
   const handleNext = () => {
     if (historyIndex < history.length - 1) {
@@ -706,4 +747,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default withRouter(Index)
