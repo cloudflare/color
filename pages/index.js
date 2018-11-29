@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { withRouter } from "next/router"
 import chroma from "chroma-js"
-import { set, get } from "idb-keyval"
 import extractSkins from "../utils/extract-skins"
 import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
@@ -475,7 +474,7 @@ const Index = ({ router }) => {
           />
         </Flex>
         <Div mt={4} textAlign="left" px={[3, 4]}>
-          <Div display='flex' alignItems='center'>
+          <Div display="flex" alignItems="center">
             <SingleComponent
               py={2}
               px={4}
@@ -490,12 +489,24 @@ const Index = ({ router }) => {
               color={currentCombination.color}
               mr={3}
             />
-            <Div display='flex' alignItems='center' borderRadius={2} pl={3}>
-              <RadioButton name='group 1' color={currentCombination.color} mr={3}>Yes</RadioButton>
-              <RadioButton name='group 1' color={currentCombination.color} checked='true'>No</RadioButton>
+            <Div display="flex" alignItems="center" borderRadius={2} pl={3}>
+              <RadioButton
+                name="group 1"
+                color={currentCombination.color}
+                mr={3}
+              >
+                Yes
+              </RadioButton>
+              <RadioButton
+                name="group 1"
+                color={currentCombination.color}
+                checked={true}
+              >
+                No
+              </RadioButton>
             </Div>
           </Div>
-          <Div alignItems='center' display='flex' mt={3}>
+          <Div alignItems="center" display="flex" mt={3}>
             <SingleComponent
               py={2}
               px={4}
@@ -506,18 +517,25 @@ const Index = ({ router }) => {
               bg="transparent"
               borderColor={currentCombination.bg}
               children="Secondary Click"
-              width='auto'
+              width="auto"
             />
             <BadgeOutline
               borderColor={currentCombination.bg}
               color={currentCombination.bg}
-              width='auto'
+              width="auto"
             />
-            <Div display='flex' alignItems='center' borderRadius={2} pl={3}>
-              <RadioButton name='group 1' color={currentCombination.bg} mr={3}>Yes</RadioButton>
-              <RadioButton name='group 1' color={currentCombination.bg} checked='true'>No</RadioButton>
+            <Div display="flex" alignItems="center" borderRadius={2} pl={3}>
+              <RadioButton name="group 1" color={currentCombination.bg} mr={3}>
+                Yes
+              </RadioButton>
+              <RadioButton
+                name="group 1"
+                color={currentCombination.bg}
+                checked={true}
+              >
+                No
+              </RadioButton>
             </Div>
-
           </Div>
           <Flex
             bg={currentCombination.bg}
