@@ -27,6 +27,7 @@ import radial4 from "../data/radial4"
 import radial5 from "../data/radial5"
 
 import ButtonPrimary from "../components/ButtonPrimary"
+import RadioButton from "../components/RadioButton"
 
 const defaultPalette = [
   "#000000",
@@ -408,38 +409,49 @@ const Index = () => {
           />
         </Flex>
         <Div mt={4} textAlign="left" px={[3, 4]}>
-          <SingleComponent
-            py={2}
-            px={4}
-            mr={3}
-            mb={3}
-            borderRadius={1}
-            color={currentCombination.color}
-            bg={currentCombination.bg}
-            children="Primary Click"
-          />
-          <Badge
-            bg={currentCombination.bg}
-            color={currentCombination.color}
-            mr={3}
-          />
-          <Div>
+          <Div display='flex' alignItems='center'>
             <SingleComponent
               py={2}
               px={4}
               mr={3}
-              mb={3}
+              borderRadius={1}
+              color={currentCombination.color}
+              bg={currentCombination.bg}
+              children="Primary Click"
+            />
+            <Badge
+              bg={currentCombination.bg}
+              color={currentCombination.color}
+              mr={3}
+            />
+            <Div display='flex' alignItems='center' borderRadius={2} pl={3}>
+              <RadioButton name='group 1' color={currentCombination.color} mr={3}>Yes</RadioButton>
+              <RadioButton name='group 1' color={currentCombination.color} checked='true'>No</RadioButton>
+            </Div>
+          </Div>
+          <Div alignItems='center' display='flex' mt={3}>
+            <SingleComponent
+              py={2}
+              px={4}
+              mr={3}
               border="1px solid"
               borderRadius={1}
               color={currentCombination.bg}
               bg="transparent"
               borderColor={currentCombination.bg}
               children="Secondary Click"
+              width='auto'
             />
             <BadgeOutline
               borderColor={currentCombination.bg}
               color={currentCombination.bg}
+              width='auto'
             />
+            <Div display='flex' alignItems='center' borderRadius={2} pl={3}>
+              <RadioButton name='group 1' color={currentCombination.bg} mr={3}>Yes</RadioButton>
+              <RadioButton name='group 1' color={currentCombination.bg} checked='true'>No</RadioButton>
+            </Div>
+
           </Div>
           <Flex
             bg={currentCombination.bg}

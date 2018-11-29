@@ -52,13 +52,13 @@ const BadgeOutline = ({...props}) => {
   return (
     <BadgeOutlineWrapper {...props}>
       <Icon color={props.color} type='gear' size={12} />
-      <Span pl={1}>{props.children}</Span>
+      <Span pl={1} style={{whiteSpace: 'nowrap'}}>{props.children}</Span>
     </BadgeOutlineWrapper>
   )
 }
 
 BadgeOutline.defaultProps = {
-  display: 'inline-flex',
+  display: 'flex',
   borderRadius: 1,
   px: 2,
   py: 1,
