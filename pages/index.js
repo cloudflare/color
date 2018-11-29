@@ -143,34 +143,45 @@ const generateRandomPalette = palette => {
 const Index = () => {
   const [url, setUrl] = useState("https://cloudflare.com")
   const [palette, setPalette] = useState(defaultPalette)
-  const [currentCombination, updateCombination] = useState([])
+  const [currentCombination, updateCombination] = useState({})
   const [history, updateHistory] = useState([])
   const [likes, updateLikes] = useState([])
   const [historyIndex, updateHistoryIndex] = useState(0)
   const [newColor, updateNewColor] = useState("")
 
   useEffect(() => {
-    updateCombination(generateRandomPalette(palette))
+    const starterCombination = generateRandomPalette(palette)
+    updateCombination(starterCombination)
+    updateHistory([starterCombination])
   }, [])
 
-  const handleLike = ({ history, currentCombination, likes, palette }) => {
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress)
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress)
+    }
+  })
+
+  const handleLike = () => {
     updateLikes([currentCombination, ...likes])
     updateHistory([...history.slice(-9, 10), currentCombination])
     updateCombination(generateRandomPalette(palette))
   }
 
   const handleNext = () => {
-    if (historyIndex < history.length) {
-      updateCombination(history[historyIndex])
+    if (historyIndex < history.length - 1) {
+      updateCombination(history[historyIndex + 1])
       return updateHistoryIndex(historyIndex + 1)
     }
-    updateHistory([...history.slice(-9, 10), currentCombination])
-
-    history.length < 10 && updateHistoryIndex(history.length + 1)
-    updateCombination(generateRandomPalette(palette))
+    const newCombination = generateRandomPalette(palette)
+    updateCombination(newCombination)
+    updateHistory([...history.slice(-9, 10), newCombination])
+    history.length < 10 && updateHistoryIndex(historyIndex + 1)
   }
 
   const handlePrevious = () => {
+    if (historyIndex <= 0) return
     updateCombination(history[historyIndex - 1])
     updateHistoryIndex(historyIndex - 1)
   }
@@ -198,6 +209,20 @@ const Index = () => {
 
   const handleAddColor = () =>
     newColor.length > 0 && setPalette([...palette, newColor])
+
+  const handleKeyPress = ({ key }) => {
+    switch (key) {
+      case "ArrowUp":
+        handleLike()
+        break
+      case "ArrowRight":
+        handleNext()
+        break
+      case "ArrowLeft":
+        handlePrevious()
+        break
+    }
+  }
 
   const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(
     JSON.stringify(likes)
@@ -279,15 +304,15 @@ const Index = () => {
         </Button>
       </Form>
       <Flex mx="auto" justifyContent="center" mt={3}>
-        {historyIndex > 0 && (
-          <ButtonPrimary
-            mx={1}
-            alignItems="center"
-            onClick={handlePrevious}
-            button="left"
-            children="Previous"
-          />
-        )}
+        <ButtonPrimary
+          mx={1}
+          disabled={historyIndex <= 0}
+          alignItems="center"
+          onClick={handlePrevious}
+          button="left"
+          children="Previous"
+        />
+
         <ButtonPrimary
           mx={1}
           alignItems="center"
@@ -647,6 +672,7 @@ const Index = () => {
 
       <Div width={1}>
         <H4 mt={5}>Likes</H4>
+        {/* {console.log(likes)} */}
         <Div>
           {likes.map((like, i) => {
             const colors = Object.values(like)
