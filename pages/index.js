@@ -26,7 +26,7 @@ import radial3 from "../data/radial3"
 import radial4 from "../data/radial4"
 import radial5 from "../data/radial5"
 
-import ButtonPrimary from '../components/ButtonPrimary'
+import ButtonPrimary from "../components/ButtonPrimary"
 
 const defaultPalette = [
   "#000000",
@@ -147,12 +147,13 @@ const Index = () => {
   const [history, updateHistory] = useState([])
   const [likes, updateLikes] = useState([])
   const [historyIndex, updateHistoryIndex] = useState(0)
+  const [newColor, updateNewColor] = useState("")
 
   useEffect(() => {
     updateCombination(generateRandomPalette(palette))
   }, [])
 
-  const handleLike = () => {
+  const handleLike = ({ history, currentCombination, likes, palette }) => {
     updateLikes([currentCombination, ...likes])
     updateHistory([...history.slice(-9, 10), currentCombination])
     updateCombination(generateRandomPalette(palette))
@@ -190,9 +191,13 @@ const Index = () => {
   const handleColorUpdate = (e, index) => {
     const updatedPalette = [...palette]
     updatedPalette[index] = e.target.value
-    console.log(updatedPalette, e.target.value)
     setPalette(updatedPalette)
   }
+
+  const handleNewColorInput = e => updateNewColor(e.target.value)
+
+  const handleAddColor = () =>
+    newColor.length > 0 && setPalette([...palette, newColor])
 
   const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(
     JSON.stringify(likes)
@@ -273,10 +278,31 @@ const Index = () => {
           Go
         </Button>
       </Form>
-      <Flex mx='auto' justifyContent='center' mt={3}>
-        {historyIndex > 0 && <ButtonPrimary mx={1} alignItems='center' onClick={handlePrevious} button='left' children='Previous' />}
-        <ButtonPrimary mx={1} alignItems='center' onClick={handleLike} button='plus' children='Add to collection' />
-        <ButtonPrimary mx={1} alignItems='center' onClick={handleNext} button='right' align='right' children='Next' />
+      <Flex mx="auto" justifyContent="center" mt={3}>
+        {historyIndex > 0 && (
+          <ButtonPrimary
+            mx={1}
+            alignItems="center"
+            onClick={handlePrevious}
+            button="left"
+            children="Previous"
+          />
+        )}
+        <ButtonPrimary
+          mx={1}
+          alignItems="center"
+          onClick={handleLike}
+          button="plus"
+          children="Add to collection"
+        />
+        <ButtonPrimary
+          mx={1}
+          alignItems="center"
+          onClick={handleNext}
+          button="right"
+          align="right"
+          children="Next"
+        />
       </Flex>
       <Div maxWidth="48em" mx="auto" py={5}>
         <Text
@@ -610,7 +636,8 @@ const Index = () => {
       </Div>
       <Div width={1}>
         <H4 mt={5}>Palette</H4>
-
+        <TextInput value={newColor} onChange={handleNewColorInput} />
+        <Button onClick={handleAddColor}>Add Color</Button>
         <Palette
           palette={palette}
           onRemove={handleRemove}
@@ -624,7 +651,7 @@ const Index = () => {
           {likes.map((like, i) => {
             const colors = Object.values(like)
             return (
-              <Flex onClick={handleSetLike(i)} width={1 / 4}>
+              <Flex key={i} onClick={handleSetLike(i)} width={1 / 4}>
                 {colors.map(color => (
                   <Div key={color} py={3} bg={color} />
                 ))}
@@ -634,9 +661,9 @@ const Index = () => {
         </Div>
       </Div>
 
-      <A download="likes.json" href={dataStr}>
+      <ButtonLink download="likes.json" href={dataStr}>
         Export Likes as JSON
-      </A>
+      </ButtonLink>
     </Div>
   )
 }
