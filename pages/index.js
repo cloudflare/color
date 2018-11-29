@@ -276,8 +276,8 @@ const Index = ({ router }) => {
     const res = await fetch(fullUrl)
 
     if (res.ok) {
-      const cssdata = await res.json()
-      const cssPalette = extractSkins(cssdata).colors
+      const data = await res.json()
+      const cssPalette = extractSkins(data).colors
       const newPalette = cssPalette.filter(str => {
         if (str.includes("rgba")) {
           return false
@@ -340,6 +340,7 @@ const Index = ({ router }) => {
           color="white"
           fontWeight={700}
           border="none"
+          css={{ cursor: "pointer" }}
         >
           Go
         </Button>
