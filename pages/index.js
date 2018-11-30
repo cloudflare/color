@@ -5,6 +5,10 @@ import extractSkins from "../utils/extract-skins"
 import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
 
+import defaultPalette from "../utils/defaultPalette"
+
+import IconBlock from "../components/IconBlock"
+
 import {
   Radar,
   RadarChart,
@@ -39,7 +43,6 @@ import Button from "../elements/Button"
 import Label from "../elements/Label"
 import Span from "../elements/Span"
 import Text from "../components/Text"
-import Icon from "../components/Icon"
 import TextInput from "../components/TextInput"
 import SingleComponent from "../components/SingleComponent"
 import Badge from "../components/Badge"
@@ -48,115 +51,26 @@ import H4 from "../elements/H4"
 import Palette from "../components/Palette"
 import ButtonLink from "../components/ButtonLink"
 
-const defaultPalette = [
-  "#000000",
-  "#1d1f20",
-  "#36393a",
-  "#4e5255",
-  "#62676a",
-  "#72777b",
-  "#92979b",
-  "#b7bbbd",
-  "#d5d7d8",
-  "#eaebeb",
-  "#f7f7f8",
-  "#ffffff",
-  "#430c15",
-  "#711423",
-  "#a01c32",
-  "#bf223c",
-  "#da304c",
-  "#e35f75",
-  "#ec93a2",
-  "#f3bac3",
-  "#f9dce1",
-  "#fcf0f2",
-  "#341a04",
-  "#5b2c06",
-  "#813f09",
-  "#a24f0b",
-  "#b6590d",
-  "#e06d10",
-  "#f4a15d",
-  "#f8c296",
-  "#fbdbc1",
-  "#fdf1e7",
-  "#0f2417",
-  "#1c422b",
-  "#285d3d",
-  "#31724b",
-  "#398557",
-  "#46a46c",
-  "#79c698",
-  "#b0ddc2",
-  "#d8eee1",
-  "#eff8f3",
-  "#0c2427",
-  "#164249",
-  "#1d5962",
-  "#26727e",
-  "#2b818e",
-  "#35a0b1",
-  "#66c3d1",
-  "#a5dce4",
-  "#d0edf1",
-  "#e9f7f9",
-  "#0c2231",
-  "#163d57",
-  "#1f567a",
-  "#276d9b",
-  "#2c7cb0",
-  "#479ad1",
-  "#7cb7de",
-  "#add2eb",
-  "#d6e9f5",
-  "#ebf4fa",
-  "#181e34",
-  "#2c365e",
-  "#404e88",
-  "#5062aa",
-  "#6373b6",
-  "#8794c7",
-  "#a5aed5",
-  "#c8cde5",
-  "#e0e3f0",
-  "#f1f3f8",
-  "#2d1832",
-  "#502b5a",
-  "#753f83",
-  "#8e4c9e",
-  "#9f5bb0",
-  "#b683c3",
-  "#c9a2d2",
-  "#dbc1e1",
-  "#ebddee",
-  "#f7f1f8"
-]
+const getRandomColor = palette =>
+  palette[Math.round(Math.random() * (palette.length - 1))]
 
-const getRandomColor = palette => {
-  return palette[Math.round(Math.random() * (palette.length - 1))]
+const getAccessibleColors = (palette, comparisonColor) => {
+  return palette.filter(p => chroma.contrast(p, comparisonColor) > 4.5)
 }
 
 const generateRandomPalette = palette => {
-  const getColors = palette => {
-    const randomColor = getRandomColor(palette)
-    let randomBg = getRandomColor(palette)
-
-    while (chroma.contrast(randomColor, randomBg) < 4.5) {
-      randomBg = getRandomColor(palette)
-    }
-    return [randomColor, randomBg]
-  }
-
-  const [randomBg, randomColor] = getColors(palette)
+  const randomMainColor = getRandomColor(palette)
+  const accessibleBgColor = getRandomColor(
+    getAccessibleColors(palette, randomMainColor)
+  )
   const randomParentBg = getRandomColor(palette)
   const randomBorderColor = getRandomColor(palette)
 
   return {
-    parentBg: randomParentBg,
-    bg: randomBg,
-    color: randomColor,
-    borderColor: randomBorderColor
+    color: randomMainColor,
+    bg: accessibleBgColor,
+    borderColor: randomBorderColor,
+    parentBg: randomParentBg
   }
 }
 
@@ -506,63 +420,7 @@ const Index = ({ router }) => {
             color the most relative medium in art.
           </Span>
         </Text>
-        <Div
-          mt={5}
-          py={[4, 5]}
-          px={[3, 4, 5]}
-          bg={currentCombination.bg}
-          display="grid"
-          style={{ gridTemplateColumns: "repeat(12, 1fr)", rowGap: "2em" }}
-        >
-          <Icon color={currentCombination.color} type="remove" />
-          <Icon color={currentCombination.color} type="caretDown" />
-          <Icon color={currentCombination.color} type="caretRight" />
-          <Icon color={currentCombination.color} type="caretLeft" />
-          <Icon color={currentCombination.color} type="caretUp" />
-          <Icon color={currentCombination.color} type="pop" />
-          <Icon color={currentCombination.color} type="cost" />
-          <Icon color={currentCombination.color} type="creditCard" />
-          <Icon color={currentCombination.color} type="upload" />
-          <Icon color={currentCombination.color} type="exclamationOutline" />
-          <Icon color={currentCombination.color} type="exclamation" />
-          <Icon color={currentCombination.color} type="collapse" />
-          <Icon color={currentCombination.color} type="expand" />
-          <Icon color={currentCombination.color} type="file" />
-          <Icon color={currentCombination.color} type="forward" />
-          <Icon color={currentCombination.color} type="left" />
-          <Icon color={currentCombination.color} type="right" />
-          <Icon color={currentCombination.color} type="down" />
-          <Icon color={currentCombination.color} type="gear" />
-          <Icon color={currentCombination.color} type="generalInfo" />
-          <Icon color={currentCombination.color} type="hamburger" />
-          <Icon color={currentCombination.color} type="info" />
-          <Icon color={currentCombination.color} type="help" />
-          <Icon color={currentCombination.color} type="list" />
-          <Icon color={currentCombination.color} type="mail" />
-          <Icon color={currentCombination.color} type="refresh" />
-          <Icon color={currentCombination.color} type="reorder" />
-          <Icon color={currentCombination.color} type="resizeHorizontal" />
-          <Icon color={currentCombination.color} type="minus" />
-          <Icon color={currentCombination.color} type="plus" />
-          <Icon color={currentCombination.color} type="okSign" />
-          <Icon color={currentCombination.color} type="activation" />
-          <Icon color={currentCombination.color} type="validator" />
-          <Icon color={currentCombination.color} type="safeOutline" />
-          <Icon color={currentCombination.color} type="safe" />
-          <Icon color={currentCombination.color} type="warningOutline" />
-          <Icon color={currentCombination.color} type="warning" />
-          <Icon color={currentCombination.color} type="stopOutline" />
-          <Icon color={currentCombination.color} type="stop" />
-          <Icon color={currentCombination.color} type="lock" />
-          <Icon color={currentCombination.color} type="time" />
-          <Icon color={currentCombination.color} type="quotes" />
-          <Icon color={currentCombination.color} type="signup" />
-          <Icon color={currentCombination.color} type="facebook" />
-          <Icon color={currentCombination.color} type="google" />
-          <Icon color={currentCombination.color} type="linkedin" />
-          <Icon color={currentCombination.color} type="download" />
-          <Icon color={currentCombination.color} type="wrench" />
-        </Div>
+        <IconBlock currentCombination={currentCombination} />
         <Flex mt={2} px={[3, 4]} display="none">
           <TextInput
             py={3}
