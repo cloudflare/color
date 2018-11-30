@@ -731,16 +731,23 @@ const Index = ({ router }) => {
           </Flex>
         </Div>
       </Div>
-      <Div width={1}>
-        <H4 mt={5}>Palette</H4>
-        <TextInput value={newColor} onChange={handleNewColorInput} />
-        <Button onClick={handleAddColor}>Add Color</Button>
-        <Palette
-          palette={palette}
-          onRemove={handleRemove}
-          onUpdate={handleColorUpdate}
-        />
-      </Div>
+     <Div width={1} bg='rgba(0,0,0,.7)' color='white' py={4} px={[3,4]}>
+        <Div>
+          <H4>Palette</H4>
+          <Palette
+            palette={palette}
+            onRemove={handleRemove}
+            onUpdate={handleColorUpdate}
+          />
+          <Div display='flex' justifyContent='center' mt={2}>
+            <Div display='flex' borderRadius={2} style={{ overflow: 'hidden' }} width='auto' mx='auto'>
+              <Div maxWidth='10rem'>
+                <TextInput  borderColor='transparent' value={newColor} onChange={handleNewColorInput} />
+              </Div>
+              <Button fontWeight={700} fontSize={2} px={3} bg='black' color='white'  border='1px solid black' width='auto' style={{ whiteSpace: 'nowrap' }} onClick={handleAddColor}>Add Color</Button>
+            </Div>
+          </Div>
+        </Div>
 
       <Div width={1}>
         <H4 mt={5}>Likes</H4>
@@ -759,9 +766,10 @@ const Index = ({ router }) => {
         </Div>
       </Div>
 
-      <ButtonLink download="likes.json" href={dataStr}>
+      <ButtonOutline bg='transparent' color='white' borderColor='white' download="likes.json" href={dataStr}>
         Export Likes as JSON
-      </ButtonLink>
+      </ButtonOutline>
+    </Div>
     </Div>
   )
 }
