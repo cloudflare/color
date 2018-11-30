@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "react-emotion"
+import styled from "@emotion/styled"
 
 import {
   style,
@@ -16,18 +16,14 @@ import {
   borders,
   borderColor,
   borderRadius,
-  boxShadow,
-} from 'styled-system'
+  boxShadow
+} from "styled-system"
 
 const textShadow = style({
-  prop: 'textShadow',
-  cssProperty: 'textShadow',
-  key: 'textShadow',
-  scale: [
-    '1px 1px 2px pink ', 
-    '#f30 1px 0 10px', 
-    'red 2px 5px'
-  ]
+  prop: "textShadow",
+  cssProperty: "textShadow",
+  key: "textShadow",
+  scale: ["1px 1px 2px pink ", "#f30 1px 0 10px", "red 2px 5px"]
 })
 
 const SingleComponent = styled.a(
@@ -47,20 +43,20 @@ const SingleComponent = styled.a(
   boxShadow,
   textShadow,
   {
-    transition: 'all .25s ease-in',
-    whiteSpace: 'nowrap',
-    boxSizing: 'border-box',
-    textDecoration: 'none',
-    ':hover': {
-      cursor: 'pointer'
+    transition: "all .25s ease-in",
+    whiteSpace: "nowrap",
+    boxSizing: "border-box",
+    textDecoration: "none",
+    ":hover": {
+      cursor: "pointer"
     }
-  },
+  }
 )
 
 SingleComponent.defaultProps = {
   fontWeight: 600,
   fontSize: 2,
-  display: 'inline-block',
+  display: "inline-block"
 }
 
 export default SingleComponent

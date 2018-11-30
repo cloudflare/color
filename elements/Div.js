@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled from "@emotion/styled"
 import {
   space,
   width,
@@ -14,8 +14,8 @@ import {
   color,
   borders,
   borderColor,
-  borderRadius,
-} from 'styled-system'
+  borderRadius
+} from "styled-system"
 
 const Div = styled.div(
   space,
@@ -34,13 +34,13 @@ const Div = styled.div(
   borderColor,
   borderRadius,
   {
-    boxSizing: 'border-box',
-    transition: 'all .25s ease-in'
-  },
+    boxSizing: "border-box",
+    transition: "all .25s ease-in"
+  }
 )
 
 Div.defaultProps = {
-  width: 1,
+  width: 1
 }
 
 export default Div

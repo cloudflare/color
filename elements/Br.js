@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import {space, display} from 'styled-system'
 
 const Br = styled.br(space, display, {})
