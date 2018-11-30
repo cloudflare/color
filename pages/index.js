@@ -173,6 +173,7 @@ const Index = ({ router }) => {
   const [likes, updateLikes] = useState([])
   const [historyIndex, updateHistoryIndex] = useState(0)
   const [newColor, updateNewColor] = useState("")
+  const [parentBg, updateParentBg] = useState("white")
 
   useEffect(() => {
     const starterCombination = isEmpty(router.query)
@@ -302,9 +303,22 @@ const Index = ({ router }) => {
     }
   }
 
+  const handleUpdateParentBg = e => updateParentBg(e.target.value)
+
+  const setParentBg = option => {
+    switch (option) {
+      case "white":
+        return "#ffffff"
+      case "black":
+        return "#000000"
+      case "currentCombination":
+        return currentCombination.parentBg
+    }
+  }
+
   return (
     <Div
-      bg={currentCombination.parentBg}
+      bg={setParentBg(parentBg)}
       textAlign="center"
       pt={[0, 3]}
       position="relative"
@@ -370,6 +384,40 @@ const Index = ({ router }) => {
           align="right"
           children="Next"
         />
+      </Flex>
+      <Flex mx="auto" justifyContent="center" mt={3}>
+        <Div>
+          <Label>White</Label>
+          <Input
+            type="radio"
+            name="parentBg"
+            value="white"
+            checked={parentBg === "white"}
+            onChange={handleUpdateParentBg}
+          />
+        </Div>
+
+        <Div>
+          <Label>Black</Label>
+          <Input
+            type="radio"
+            name="parentBg"
+            value="black"
+            checked={parentBg === "black"}
+            onChange={handleUpdateParentBg}
+          />
+        </Div>
+
+        <Div>
+          <Label>From Combination</Label>
+          <Input
+            type="radio"
+            name="parentBg"
+            value="currentCombination"
+            checked={parentBg === "currentCombination"}
+            onChange={handleUpdateParentBg}
+          />
+        </Div>
       </Flex>
       <Div maxWidth="48em" mx="auto" py={5}>
         <Text
@@ -751,7 +799,6 @@ const Index = ({ router }) => {
 
       <Div width={1}>
         <H4 mt={5}>Likes</H4>
-        {/* {console.log(likes)} */}
         <Div>
           {likes.map((like, i) => {
             const colors = Object.values(like)
