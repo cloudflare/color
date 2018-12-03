@@ -318,18 +318,18 @@ const Index = ({ router }) => {
 
   return (
     <Div
+      display='flex'
+      flexWrap='wrap'
       bg={setParentBg(parentBg)}
-      textAlign="center"
-      pt={[0, 3]}
+      width={1}
       position="relative"
       style={{ overflow: "hidden" }}
     >
+      <Div width={[1, 1/4]} bg='rgba(0,0,0,.7)' color='white' py={4} px={[3,4]} style={{minHeight: '100vh'}}>
       <Form
         onSubmit={handleSubmit}
         display="flex"
         width={1}
-        mx="auto"
-        maxWidth="64rem"
         borderRadius={[0, 2]}
         style={{ overflow: "hidden" }}
       >
@@ -359,7 +359,89 @@ const Index = ({ router }) => {
           Go
         </Button>
       </Form>
-      <Flex mx="auto" justifyContent="center" mt={3}>
+        <Div>
+          <Label fontWeight={700} mt={4} mb={2} display='block' textAlign='left'>Palette</Label>
+          <Palette
+            palette={palette}
+            onRemove={handleRemove}
+            onUpdate={handleColorUpdate}
+          />
+
+          <Div display='flex' mt={2}>
+            <Div display='flex' borderRadius={2} style={{ overflow: 'hidden' }} width={1}>
+              <Div>
+                <TextInput  borderColor='transparent' value={newColor} onChange={handleNewColorInput} />
+              </Div>
+              <Button fontWeight={700} fontSize={2} px={3} bg='black' color='white'  border='1px solid black' width='auto' style={{ whiteSpace: 'nowrap' }} onClick={handleAddColor}>Add Color</Button>
+            </Div>
+          </Div>
+        </Div>
+        <Div display='flex' flexWrap='wrap'>
+          <H4 width={1} mb={2} mt={4}>Background</H4>
+          <Div display='flex' alignItems='center' width='auto' mr={3}>
+          <Input
+            type="radio"
+            name="parentBg"
+            id="parentBgWhite"
+            value="white"
+            checked={parentBg === "white"}
+            onChange={handleUpdateParentBg}
+          />
+            <Label pl={1} for='parentBgWhite'>
+              White
+            </Label>
+        </Div>
+
+        <Div display='flex' alignItems='center' width='auto' mr={3}>
+          <Input
+            type="radio"
+            name="parentBg"
+            id='parentBgBlack'
+            value="black"
+            checked={parentBg === "black"}
+            onChange={handleUpdateParentBg}
+          />
+          <Label pl={1} for='parentBgBlack'>Black</Label>
+        </Div>
+
+        <Div display='flex' alignItems='center' width='auto'>
+          <Input
+            type="radio"
+            name="parentBg"
+            value="currentCombination"
+            checked={parentBg === "currentCombination"}
+            onChange={handleUpdateParentBg}
+          />
+          <Label pl={1}>Palette</Label>
+        </Div>
+        </Div>
+
+      <Div width={1}>
+        {likes.length > 0 &&
+          <H4 mt={5} mb={2}>Collection</H4>
+        }
+        <Div>
+          {likes.map((like, i) => {
+            const colors = Object.values(like)
+            return (
+              <Flex key={i} onClick={handleSetLike(i)} width={1}>
+                {colors.map(color => (
+                  <Div width={1/4} key={color} py={3} bg={color} />
+                ))}
+              </Flex>
+            )
+          })}
+        </Div>
+      </Div>
+
+      {likes.length > 0 &&
+      <ButtonOutline mt={3} width={1} bg='transparent' color='white' borderColor='white' download="likes.json" href={dataStr}>
+        Export Likes as JSON
+      </ButtonOutline>
+      }
+    </Div>
+      <Div maxWidth="48em" mx="auto" pt={3} pb={5}>
+      <Flex mx="auto" justifyContent="center">
         <ButtonPrimary
           mx={1}
           disabled={historyIndex <= 0}
@@ -385,41 +467,6 @@ const Index = ({ router }) => {
           children="Next"
         />
       </Flex>
-      <Flex mx="auto" justifyContent="center" mt={3}>
-        <Div>
-          <Label>White</Label>
-          <Input
-            type="radio"
-            name="parentBg"
-            value="white"
-            checked={parentBg === "white"}
-            onChange={handleUpdateParentBg}
-          />
-        </Div>
-
-        <Div>
-          <Label>Black</Label>
-          <Input
-            type="radio"
-            name="parentBg"
-            value="black"
-            checked={parentBg === "black"}
-            onChange={handleUpdateParentBg}
-          />
-        </Div>
-
-        <Div>
-          <Label>From Combination</Label>
-          <Input
-            type="radio"
-            name="parentBg"
-            value="currentCombination"
-            checked={parentBg === "currentCombination"}
-            onChange={handleUpdateParentBg}
-          />
-        </Div>
-      </Flex>
-      <Div maxWidth="48em" mx="auto" py={5}>
         <Text
           py={[4, 5]}
           px={[3, 4, 5]}
@@ -779,44 +826,7 @@ const Index = ({ router }) => {
           </Flex>
         </Div>
       </Div>
-     <Div width={1} bg='rgba(0,0,0,.7)' color='white' py={4} px={[3,4]}>
-        <Div>
-          <H4>Palette</H4>
-          <Palette
-            palette={palette}
-            onRemove={handleRemove}
-            onUpdate={handleColorUpdate}
-          />
-          <Div display='flex' justifyContent='center' mt={2}>
-            <Div display='flex' borderRadius={2} style={{ overflow: 'hidden' }} width='auto' mx='auto'>
-              <Div maxWidth='10rem'>
-                <TextInput  borderColor='transparent' value={newColor} onChange={handleNewColorInput} />
-              </Div>
-              <Button fontWeight={700} fontSize={2} px={3} bg='black' color='white'  border='1px solid black' width='auto' style={{ whiteSpace: 'nowrap' }} onClick={handleAddColor}>Add Color</Button>
-            </Div>
-          </Div>
-        </Div>
-
-      <Div width={1}>
-        <H4 mt={5}>Likes</H4>
-        <Div>
-          {likes.map((like, i) => {
-            const colors = Object.values(like)
-            return (
-              <Flex key={i} onClick={handleSetLike(i)} width={1 / 4}>
-                {colors.map(color => (
-                  <Div key={color} py={3} bg={color} />
-                ))}
-              </Flex>
-            )
-          })}
-        </Div>
-      </Div>
-
-      <ButtonOutline bg='transparent' color='white' borderColor='white' download="likes.json" href={dataStr}>
-        Export Likes as JSON
-      </ButtonOutline>
-    </Div>
+    
     </Div>
   )
 }

@@ -7,7 +7,8 @@ const SingleColor = ({
   onRemove,
   onUpdate,
   onClick,
-  isActive
+  isActive,
+  ...props
 }) => {
   const handleRemove = () => onRemove(index)
   const handleUpdate = e => onUpdate(e, index)
@@ -19,6 +20,7 @@ const SingleColor = ({
       bg={color}
       css={{ cursor: "pointer", position: "relative" }}
       onClick={handleActiveUI}
+      {...props}
     >
       {isActive && (
         <OutsideClickHandler onOutsideClick={() => onClick(null)}>
@@ -69,7 +71,7 @@ const Palette = ({ palette, onUpdate, onRemove, onAdd }) => {
   const [activeColor, updateActiveColor] = useState(null)
 
   return (
-    <Flex>
+    <Flex flexWrap='wrap'>
       {palette.map((color, i) => (
         <SingleColor
           isActive={i === activeColor}
@@ -79,6 +81,7 @@ const Palette = ({ palette, onUpdate, onRemove, onAdd }) => {
           onRemove={onRemove}
           onUpdate={onUpdate}
           onClick={updateActiveColor}
+          width={1/16}
         />
       ))}
     </Flex>
