@@ -28,7 +28,7 @@ import radial5 from "../data/radial5"
 
 const ChartsBlock = ({ currentCombination }) => {
   return (
-    <Flex bg={currentCombination.bg} mx={-4} mt={4} flexWrap="wrap" py={5}>
+    <Flex bg={currentCombination.bg} mt={4} flexWrap="wrap" py={5}>
       <Div px={5} width={[1]}>
         <Div style={{ overflow: "hidden" }}>
           <LineChart width={700} height={120} data={linedata}>

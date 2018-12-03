@@ -1,4 +1,5 @@
 import React from "react"
+import Button from "../elements/Button"
 
 // This file can be copied to start new components
 // You'll want to replace ButtonOutline with the component name which should
@@ -18,9 +19,8 @@ ButtonOutline.defaultProps = {
   fontSize: 2,
   fontWeight: 600,
   lineHeight: 1,
-  mt: '-1px',
-  mb: '-1px',
-
+  mt: "-1px",
+  mb: "-1px"
 }
 
 export default ButtonOutline
