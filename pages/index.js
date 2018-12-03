@@ -4,10 +4,10 @@ import useHistory from "../utils/useHistory"
 import extractSkins from "../utils/extract-skins"
 import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
-import chroma from "chroma-js"
 
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
+import sortPalette from "../utils/sortPalette"
 
 import IconBlock from "../components/IconBlock"
 import ChartsBlock from "../components/ChartsBlock"
@@ -25,7 +25,6 @@ import Button from "../elements/Button"
 import Label from "../elements/Label"
 
 import TextInput from "../components/TextInput"
-
 import ButtonOutline from "../components/ButtonOutline"
 import H4 from "../elements/H4"
 import Palette from "../components/Palette"
@@ -37,7 +36,7 @@ const encodeCombination = currentCombination => {
 
 const Index = ({ router }) => {
   const [url, setUrl] = useState("https://cloudflare.com")
-  const [palette, setPalette] = useState(defaultPalette)
+  const [palette, setPalette] = useState(sortPalette(defaultPalette))
   const [likes, updateLikes] = useState([])
   const [newColor, updateNewColor] = useState("")
   const [parentBg, updateParentBg] = useState("currentCombination")
@@ -160,7 +159,7 @@ const Index = ({ router }) => {
         }
       })
 
-      setPalette(newPalette)
+      setPalette(sortPalette(newPalette))
     }
   }
 
@@ -278,130 +277,152 @@ const Index = ({ router }) => {
               </Button>
             </Div>
           </Div>
-        <Div display="flex" flexWrap="wrap">
-          <H4 width={1} mb={2} mt={4}>
-            Background
-          </H4>
-          <Div display="flex" alignItems="center" width="auto" mr={3}>
-            <Input
-              type="radio"
-              name="parentBg"
-              value="currentCombination"
-              checked={parentBg === "currentCombination"}
-              onChange={handleUpdateParentBg}
-            />
-            <Label pl={1}>Palette</Label>
-          </Div>
-          <Div display="flex" alignItems="center" width="auto" mr={3}>
-            <Input
-              type="radio"
-              name="parentBg"
-              id="parentBgWhite"
-              value="white"
-              checked={parentBg === "white"}
-              onChange={handleUpdateParentBg}
-            />
-            <Label pl={1} htmlFor="parentBgWhite">
-              White
-            </Label>
-          </Div>
-
-          <Div display="flex" alignItems="center" width="auto" mr={3}>
-            <Input
-              type="radio"
-              name="parentBg"
-              id="parentBgBlack"
-              value="black"
-              checked={parentBg === "black"}
-              onChange={handleUpdateParentBg}
-            />
-            <Label pl={1} htmlFor="parentBgBlack">
-              Black
-            </Label>
-          </Div>
-
-        </Div>
-
-        <ColorBlindFilter
-          onChange={handleColorBlindFilter}
-          currentValue={colorFilter}
-        />
-
-        {likes.length > 0 && (
-          <>
-            <Div width={1}>
-              <H4 mt={5} mb={2}>
-                Collection
-              </H4>
-
-              <Div>
-                {likes.map((like, i) => {
-                  const colors = Object.values(like)
-                  return (
-                    <Flex key={i} onClick={handleViewLike(i)} width={1} mb={1}>
-                      {colors.map(color => (
-                        <Div width={1 / 4} key={color} py={3} bg={color} />
-                      ))}
-                    </Flex>
-                  )
-                })}
-              </Div>
+          <Div display="flex" flexWrap="wrap">
+            <H4 width={1} mb={2} mt={4}>
+              Background
+            </H4>
+            <Div display="flex" alignItems="center" width="auto" mr={3}>
+              <Input
+                type="radio"
+                name="parentBg"
+                value="currentCombination"
+                checked={parentBg === "currentCombination"}
+                onChange={handleUpdateParentBg}
+              />
+              <Label pl={1}>Palette</Label>
+            </Div>
+            <Div display="flex" alignItems="center" width="auto" mr={3}>
+              <Input
+                type="radio"
+                name="parentBg"
+                id="parentBgWhite"
+                value="white"
+                checked={parentBg === "white"}
+                onChange={handleUpdateParentBg}
+              />
+              <Label pl={1} htmlFor="parentBgWhite">
+                White
+              </Label>
             </Div>
 
-            <ButtonOutline
-              mt={3}
-              width={1}
-              bg="transparent"
-              color="white"
-              borderColor="white"
-              download="likes.json"
-              href={dataStr}
-            >
-              Export Likes as JSON
-            </ButtonOutline>
-          </>
-        )}
-      </Div>
+            <Div display="flex" alignItems="center" width="auto" mr={3}>
+              <Input
+                type="radio"
+                name="parentBg"
+                id="parentBgBlack"
+                value="black"
+                checked={parentBg === "black"}
+                onChange={handleUpdateParentBg}
+              />
+              <Label pl={1} htmlFor="parentBgBlack">
+                Black
+              </Label>
+            </Div>
+          </Div>
+
+          <ColorBlindFilter
+            onChange={handleColorBlindFilter}
+            currentValue={colorFilter}
+          />
+
+          {likes.length > 0 && (
+            <>
+              <Div width={1}>
+                <H4 mt={5} mb={2}>
+                  Collection
+                </H4>
+
+                <Div>
+                  {likes.map((like, i) => {
+                    const colors = Object.values(like)
+                    return (
+                      <Flex
+                        key={i}
+                        onClick={handleViewLike(i)}
+                        width={1}
+                        mb={1}
+                      >
+                        {colors.map(color => (
+                          <Div width={1 / 4} key={color} py={3} bg={color} />
+                        ))}
+                      </Flex>
+                    )
+                  })}
+                </Div>
+              </Div>
+
+              <ButtonOutline
+                mt={3}
+                width={1}
+                bg="transparent"
+                color="white"
+                borderColor="white"
+                download="likes.json"
+                href={dataStr}
+              >
+                Export Likes as JSON
+              </ButtonOutline>
+            </>
+          )}
         </Div>
+      </Div>
 
       {!isEmpty(currentCombination) && (
-        <Div width={3/4} pb={5}>
-          <Flex fontSize={1} mb={4} justifyContent='center' bg='white' py={2}>
+        <Div width={3 / 4} pb={5}>
+          <Flex fontSize={1} mb={4} justifyContent="center" bg="white" py={2}>
             <ButtonPrimary
               mx={1}
               alignItems="center"
               onClick={handlePrevious}
               button="left"
-              bg='transparent'
-              color='black'
+              bg="transparent"
+              color="black"
               children="Previous"
             />
             <Flex>
-              <Div alignItems='center' display='flex' width='auto'>
-                <Div width={64} bg={currentCombination.parentBg} py={3} mr={2} />
+              <Div alignItems="center" display="flex" width="auto">
+                <Div
+                  width={64}
+                  bg={currentCombination.parentBg}
+                  py={3}
+                  mr={2}
+                />
                 <Div>
-                  <Span display='block' fontWeight={700}>Parent Bg: </Span>
+                  <Span display="block" fontWeight={700}>
+                    Parent Bg:{" "}
+                  </Span>
                   <Code>{currentCombination.parentBg}</Code>
                 </Div>
               </Div>
-              <Div alignItems='center' display='flex' width='auto'>
+              <Div alignItems="center" display="flex" width="auto">
                 <Div width={64} bg={currentCombination.color} py={3} mr={2} />
                 <Div>
-                  <Span display='block' fontWeight={700}>Color: </Span>
+                  <Span display="block" fontWeight={700}>
+                    Color:{" "}
+                  </Span>
                   <Code>{currentCombination.color}</Code>
                 </Div>
               </Div>
-              <Div alignItems='center' display='flex' width='auto'>
+              <Div alignItems="center" display="flex" width="auto">
                 <Div width={64} bg={currentCombination.bg} py={3} mr={2} />
                 <Div>
-                  <Span display='block' fontWeight={700}>Bg: </Span>
+                  <Span display="block" fontWeight={700}>
+                    Bg:{" "}
+                  </Span>
                   <Code>{currentCombination.bg}</Code>
                 </Div>
               </Div>
-              <Div alignItems='center' display='flex' width='auto'>
-                <Div width={64} bg={currentCombination.borderColor} py={3} mr={2} />
+              <Div alignItems="center" display="flex" width="auto">
+                <Div
+                  width={64}
+                  bg={currentCombination.borderColor}
+                  py={3}
+                  mr={2}
+                />
                 <Div>
-                  <Span display='block' fontWeight={700}>Border: </Span>
+                  <Span display="block" fontWeight={700}>
+                    Border:{" "}
+                  </Span>
                   <Code>{currentCombination.borderColor}</Code>
                 </Div>
               </Div>
@@ -410,9 +431,9 @@ const Index = ({ router }) => {
                 alignItems="center"
                 onClick={handleLike}
                 button="plus"
-                bg='transparent'
-                color='black'
-                border='1px solid black'
+                bg="transparent"
+                color="black"
+                border="1px solid black"
                 children="Save"
                 iconSize={12}
               />
@@ -424,11 +445,11 @@ const Index = ({ router }) => {
               button="right"
               align="right"
               children="Next"
-              bg='transparent'
-              color='black'
+              bg="transparent"
+              color="black"
             />
           </Flex>
-          <Div maxWidth='48em' mx='auto'>
+          <Div maxWidth="48em" mx="auto">
             <TextBlock currentCombination={currentCombination} />
             <IconBlock currentCombination={currentCombination} />
 
