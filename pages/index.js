@@ -158,117 +158,13 @@ const Index = ({ router }) => {
             : `url(/static/filters.svg#${colorFilter})`
       }}
     >
-      <Div
-        width={[1, 1 / 4]}
-        bg="rgba(0,0,0,.7)"
-        color="white"
-        py={4}
-        px={[3, 4]}
-        style={{ minHeight: "100vh" }}
-      >
-        <SiteFetch onSubmit={handleSiteFetch} />
 
-        <Div>
-          <Label
-            fontWeight={700}
-            mt={4}
-            mb={2}
-            display="block"
-            textAlign="left"
-          >
-            Palette
-          </Label>
-          <Palette
-            palette={palette}
-            onRemove={handleRemove}
-            onUpdate={handleColorUpdate}
-          />
-
-          <Div display="flex" mt={2}>
-            <Div
-              display="flex"
-              borderRadius={2}
-              style={{ overflow: "hidden" }}
-              width={1}
-            >
-              <Div>
-                <TextInput
-                  borderColor="transparent"
-                  value={newColor}
-                  onChange={handleNewColorInput}
-                />
-              </Div>
-              <Button
-                fontWeight={700}
-                fontSize={2}
-                px={3}
-                bg="black"
-                color="white"
-                border="1px solid black"
-                width="auto"
-                style={{ whiteSpace: "nowrap" }}
-                onClick={handleAddColor}
-              >
-                Add Color
-              </Button>
-            </Div>
-          </Div>
-        </Div>
-
-        <Div display="flex" flexWrap="wrap">
-          <H4 width={1} mb={2} mt={4}>
-            Background
-          </H4>
-          <Div display="flex" alignItems="center" width="auto" mr={3}>
-            <Input
-              type="radio"
-              name="parentBg"
-              value="currentCombination"
-              checked={parentBg === "currentCombination"}
-              onChange={handleUpdateParentBg}
-            />
-            <Label pl={1}>Palette</Label>
-          </Div>
-          <Div display="flex" alignItems="center" width="auto" mr={3}>
-            <Input
-              type="radio"
-              name="parentBg"
-              id="parentBgWhite"
-              value="white"
-              checked={parentBg === "white"}
-              onChange={handleUpdateParentBg}
-            />
-            <Label pl={1} htmlFor="parentBgWhite">
-              White
-            </Label>
-          </Div>
-
-          <Div display="flex" alignItems="center" width="auto" mr={3}>
-            <Input
-              type="radio"
-              name="parentBg"
-              id="parentBgBlack"
-              value="black"
-              checked={parentBg === "black"}
-              onChange={handleUpdateParentBg}
-            />
-            <Label pl={1} htmlFor="parentBgBlack">
-              Black
-            </Label>
-          </Div>
-        </Div>
-
-        <ColorBlindFilter
-          onChange={handleColorBlindFilter}
-          currentValue={colorFilter}
-        />
-
-        <Likes likes={likes} onSelectLike={handleViewLike} />
+    <Div bg='white' display='flex' alignItems='center' width={1} >
+      <Div width={1/4} py={2} pl={3}>
+        <Logo />
       </Div>
-
-      {!isEmpty(currentCombination) && (
-        <Div width={3 / 4} pb={5}>
-          <Flex fontSize={1} mb={4} justifyContent="center" bg="white" py={2}>
+      <Div width={3/4}>
+          <Flex fontSize={1} justifyContent="center" bg="white">
             <ButtonPrimary
               mx={1}
               alignItems="center"
@@ -348,6 +244,122 @@ const Index = ({ router }) => {
               color="black"
             />
           </Flex>
+        </Div>
+        </Div>
+
+      <Div
+        width={[1, 1 / 4]}
+        bg="rgba(255,255,255,1)"
+        borderTop='1px solid rgba(0,0,0,.1)'
+        color="black"
+        pt={3}
+        pb={4}
+        px={[3,4]}
+        style={{ minHeight: "100vh" }}
+      >
+        <SiteFetch onSubmit={handleSiteFetch} />
+
+        <Div>
+          <Label
+            fontWeight={700}
+            mt={4}
+            mb={2}
+            display="block"
+            textAlign="left"
+          >
+            Palette
+          </Label>
+          <Palette
+            palette={palette}
+            onRemove={handleRemove}
+            onUpdate={handleColorUpdate}
+          />
+
+          <Div display="flex" mt={2}>
+            <Div
+              display="flex"
+              borderRadius={2}
+              style={{ overflow: "hidden" }}
+              width={1}
+            >
+              <Div>
+                <TextInput
+                  borderColor="transparent"
+                  bg='gray.8'
+                  value={newColor}
+                  onChange={handleNewColorInput}
+                />
+              </Div>
+              <Button
+                fontWeight={700}
+                fontSize={2}
+                px={3}
+                bg="black"
+                color="white"
+                border="1px solid black"
+                width="auto"
+                style={{ whiteSpace: "nowrap" }}
+                onClick={handleAddColor}
+              >
+                Add Color
+              </Button>
+            </Div>
+          </Div>
+        </Div>
+
+        <Div display="flex" flexWrap="wrap">
+          <H4 width={1} mb={2} mt={4}>
+            Background
+          </H4>
+          <Div display="flex" alignItems="center" width="auto" mr={3}>
+            <Input
+              type="radio"
+              name="parentBg"
+              value="currentCombination"
+              checked={parentBg === "currentCombination"}
+              onChange={handleUpdateParentBg}
+            />
+            <Label pl={1}>Palette</Label>
+          </Div>
+          <Div display="flex" alignItems="center" width="auto" mr={3}>
+            <Input
+              type="radio"
+              name="parentBg"
+              id="parentBgWhite"
+              value="white"
+              checked={parentBg === "white"}
+              onChange={handleUpdateParentBg}
+            />
+            <Label pl={1} htmlFor="parentBgWhite">
+              White
+            </Label>
+          </Div>
+
+          <Div display="flex" alignItems="center" width="auto" mr={3}>
+            <Input
+              type="radio"
+              name="parentBg"
+              id="parentBgBlack"
+              value="black"
+              checked={parentBg === "black"}
+              onChange={handleUpdateParentBg}
+            />
+            <Label pl={1} htmlFor="parentBgBlack">
+              Black
+            </Label>
+          </Div>
+        </Div>
+
+        <ColorBlindFilter
+          onChange={handleColorBlindFilter}
+          currentValue={colorFilter}
+        />
+
+        <Likes likes={likes} onSelectLike={handleViewLike} />
+      </Div>
+
+      {!isEmpty(currentCombination) && (
+        <Div width={3 / 4} pb={5} pt={4} borderTop='1px solid rgba(0,0,0,.1)'>
           <Div maxWidth="48em" mx="auto">
             <TextBlock currentCombination={currentCombination} />
             <IconBlock currentCombination={currentCombination} />

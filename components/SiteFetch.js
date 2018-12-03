@@ -13,8 +13,6 @@ const SiteFetch = ({ onSubmit }) => {
       onSubmit={handleSubmit}
       display="flex"
       width={1}
-      borderRadius={[0, 2]}
-      style={{ overflow: "hidden" }}
     >
       <Input
         fontSize={2}
