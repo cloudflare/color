@@ -15,6 +15,8 @@ import TextBlock from "../components/TextBlock"
 import ColorBlindFilter from "../components/ColorBlindFilter"
 
 import Div from "../elements/Div"
+import Code from "../elements/Code"
+import Span from "../elements/Span"
 import Flex from "../components/Flex"
 import Form from "../elements/Form"
 import Input from "../elements/Input"
@@ -387,6 +389,36 @@ const Index = ({ router }) => {
               align="right"
               children="Next"
             />
+          </Flex>
+          <Flex fontSize={1} mt={4} mb={4} justifyContent='center'>
+            <Div alignItems='center' display='flex' width='auto'>
+              <Div width={64} bg={currentCombination.parentBg} py={3} mr={2} />
+              <Div>
+                <Span display='block' fontWeight={700}>Parent Bg: </Span>
+                <Code>{currentCombination.parentBg}</Code>
+              </Div>
+            </Div>
+            <Div alignItems='center' display='flex' width='auto'>
+              <Div width={64} bg={currentCombination.color} py={3} mr={2} />
+              <Div>
+                <Span display='block' fontWeight={700}>Color: </Span>
+                <Code>{currentCombination.color}</Code>
+              </Div>
+            </Div>
+            <Div alignItems='center' display='flex' width='auto'>
+              <Div width={64} bg={currentCombination.bg} py={3} mr={2} />
+              <Div>
+                <Span display='block' fontWeight={700}>Bg: </Span>
+                <Code>{currentCombination.bg}</Code>
+              </Div>
+            </Div>
+            <Div alignItems='center' display='flex' width='auto'>
+              <Div width={64} bg={currentCombination.borderColor} py={3} mr={2} />
+              <Div>
+                <Span display='block' fontWeight={700}>Border: </Span>
+                <Code>{currentCombination.borderColor}</Code>
+              </Div>
+            </Div>
           </Flex>
           <TextBlock currentCombination={currentCombination} />
           <IconBlock currentCombination={currentCombination} />
