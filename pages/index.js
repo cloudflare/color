@@ -361,39 +361,41 @@ const Index = ({ router }) => {
         )}
       </Div>
 
-      <Div maxWidth="48em" mx="auto" pt={3} pb={5}>
-        <Flex mx="auto" justifyContent="center">
-          <ButtonPrimary
-            mx={1}
-            alignItems="center"
-            onClick={handlePrevious}
-            button="left"
-            children="Previous"
-          />
+      {!isEmpty(currentCombination) && (
+        <Div maxWidth="48em" mx="auto" pt={3} pb={5}>
+          <Flex mx="auto" justifyContent="center">
+            <ButtonPrimary
+              mx={1}
+              alignItems="center"
+              onClick={handlePrevious}
+              button="left"
+              children="Previous"
+            />
 
-          <ButtonPrimary
-            mx={1}
-            alignItems="center"
-            onClick={handleLike}
-            button="plus"
-            children="Add to collection"
-          />
-          <ButtonPrimary
-            mx={1}
-            alignItems="center"
-            onClick={handleNext}
-            button="right"
-            align="right"
-            children="Next"
-          />
-        </Flex>
-        <TextBlock currentCombination={currentCombination} />
-        <IconBlock currentCombination={currentCombination} />
+            <ButtonPrimary
+              mx={1}
+              alignItems="center"
+              onClick={handleLike}
+              button="plus"
+              children="Add to collection"
+            />
+            <ButtonPrimary
+              mx={1}
+              alignItems="center"
+              onClick={handleNext}
+              button="right"
+              align="right"
+              children="Next"
+            />
+          </Flex>
+          <TextBlock currentCombination={currentCombination} />
+          <IconBlock currentCombination={currentCombination} />
 
-        <FormBlock currentCombination={currentCombination} />
+          <FormBlock currentCombination={currentCombination} />
 
-        <ChartsBlock currentCombination={currentCombination} />
-      </Div>
+          <ChartsBlock currentCombination={currentCombination} />
+        </Div>
+      )}
     </Div>
   )
 }
