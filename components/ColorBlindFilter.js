@@ -7,14 +7,14 @@ import Label from "../elements/Label"
 
 const filters = [
   { label: "None", value: "none" },
-  { label: "achromatopsia", value: "achromatopsia" },
-  { label: "protanopia", value: "protanopia" },
-  { label: "protanomaly", value: "protanomaly" },
-  { label: "deuteranopia", value: "deuteranopia" },
-  { label: "deuteranomaly", value: "deuteranomaly" },
-  { label: "tritanopia", value: "tritanopia" },
-  { label: "tritanomaly", value: "tritanomaly" },
-  { label: "achromatomaly", value: "achromatomaly" }
+  { label: "Achromatopsia", value: "achromatopsia" },
+  { label: "Protanopia", value: "protanopia" },
+  { label: "Protanomaly", value: "protanomaly" },
+  { label: "Deuteranopia", value: "deuteranopia" },
+  { label: "Deuteranomaly", value: "deuteranomaly" },
+  { label: "Tritanopia", value: "tritanopia" },
+  { label: "Tritanomaly", value: "tritanomaly" },
+  { label: "Achromatomaly", value: "achromatomaly" }
 ]
 
 const SingleRadio = ({ label, value, onChange, currentValue }) => (

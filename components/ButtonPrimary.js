@@ -58,11 +58,11 @@ Button.defaultProps = {
   textAlign: "center"
 }
 
-const ButtonPrimary = ({ button, ...props }) => {
+const ButtonPrimary = ({ button, iconSize, ...props }) => {
   return (
     <Button {...props}>
-      {props.align === "left" && <Icon size={16} type={button} />}
-      <Span display="inline-block" px={1}>
+      {props.align === "left" && <Icon size={iconSize} type={button} />}
+      <Span height={16} display="inline-block" px={1}>
         {props.children}
       </Span>
       {props.align === "right" && <Icon size={16} type={button} />}
@@ -72,13 +72,14 @@ const ButtonPrimary = ({ button, ...props }) => {
 
 ButtonPrimary.defaultProps = {
   borderRadius: 2,
-  borderColor: "transparent",
+  border: "1px solid transparent",
   py: 2,
   px: 3,
   fontSize: 2,
   button: "left",
   children: "Click",
-  align: "left"
+  align: "left",
+  iconSize: 16,
 }
 
 export default ButtonPrimary

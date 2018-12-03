@@ -4,6 +4,7 @@ import useHistory from "../utils/useHistory"
 import extractSkins from "../utils/extract-skins"
 import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
+import chroma from "chroma-js"
 
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
@@ -39,7 +40,7 @@ const Index = ({ router }) => {
   const [palette, setPalette] = useState(defaultPalette)
   const [likes, updateLikes] = useState([])
   const [newColor, updateNewColor] = useState("")
-  const [parentBg, updateParentBg] = useState("white")
+  const [parentBg, updateParentBg] = useState("currentCombination")
   const [colorFilter, setColorFilter] = useState("none")
   const [currentState, { set, undo, redo, canRedo, canUndo }] = useHistory({})
 
@@ -277,11 +278,20 @@ const Index = ({ router }) => {
               </Button>
             </Div>
           </Div>
-        </Div>
         <Div display="flex" flexWrap="wrap">
           <H4 width={1} mb={2} mt={4}>
             Background
           </H4>
+          <Div display="flex" alignItems="center" width="auto" mr={3}>
+            <Input
+              type="radio"
+              name="parentBg"
+              value="currentCombination"
+              checked={parentBg === "currentCombination"}
+              onChange={handleUpdateParentBg}
+            />
+            <Label pl={1}>Palette</Label>
+          </Div>
           <Div display="flex" alignItems="center" width="auto" mr={3}>
             <Input
               type="radio"
@@ -310,16 +320,6 @@ const Index = ({ router }) => {
             </Label>
           </Div>
 
-          <Div display="flex" alignItems="center" width="auto">
-            <Input
-              type="radio"
-              name="parentBg"
-              value="currentCombination"
-              checked={parentBg === "currentCombination"}
-              onChange={handleUpdateParentBg}
-            />
-            <Label pl={1}>Palette</Label>
-          </Div>
         </Div>
 
         <ColorBlindFilter
@@ -338,7 +338,7 @@ const Index = ({ router }) => {
                 {likes.map((like, i) => {
                   const colors = Object.values(like)
                   return (
-                    <Flex key={i} onClick={handleViewLike(i)} width={1}>
+                    <Flex key={i} onClick={handleViewLike(i)} width={1} mb={1}>
                       {colors.map(color => (
                         <Div width={1 / 4} key={color} py={3} bg={color} />
                       ))}
@@ -362,25 +362,61 @@ const Index = ({ router }) => {
           </>
         )}
       </Div>
+        </Div>
 
       {!isEmpty(currentCombination) && (
-        <Div maxWidth="48em" mx="auto" pt={3} pb={5}>
-          <Flex mx="auto" justifyContent="center">
+        <Div width={3/4} pb={5}>
+          <Flex fontSize={1} mb={4} justifyContent='center' bg='white' py={2}>
             <ButtonPrimary
               mx={1}
               alignItems="center"
               onClick={handlePrevious}
               button="left"
+              bg='transparent'
+              color='black'
               children="Previous"
             />
-
-            <ButtonPrimary
-              mx={1}
-              alignItems="center"
-              onClick={handleLike}
-              button="plus"
-              children="Add to collection"
-            />
+            <Flex>
+              <Div alignItems='center' display='flex' width='auto'>
+                <Div width={64} bg={currentCombination.parentBg} py={3} mr={2} />
+                <Div>
+                  <Span display='block' fontWeight={700}>Parent Bg: </Span>
+                  <Code>{currentCombination.parentBg}</Code>
+                </Div>
+              </Div>
+              <Div alignItems='center' display='flex' width='auto'>
+                <Div width={64} bg={currentCombination.color} py={3} mr={2} />
+                <Div>
+                  <Span display='block' fontWeight={700}>Color: </Span>
+                  <Code>{currentCombination.color}</Code>
+                </Div>
+              </Div>
+              <Div alignItems='center' display='flex' width='auto'>
+                <Div width={64} bg={currentCombination.bg} py={3} mr={2} />
+                <Div>
+                  <Span display='block' fontWeight={700}>Bg: </Span>
+                  <Code>{currentCombination.bg}</Code>
+                </Div>
+              </Div>
+              <Div alignItems='center' display='flex' width='auto'>
+                <Div width={64} bg={currentCombination.borderColor} py={3} mr={2} />
+                <Div>
+                  <Span display='block' fontWeight={700}>Border: </Span>
+                  <Code>{currentCombination.borderColor}</Code>
+                </Div>
+              </Div>
+              <ButtonPrimary
+                mx={1}
+                alignItems="center"
+                onClick={handleLike}
+                button="plus"
+                bg='transparent'
+                color='black'
+                border='1px solid black'
+                children="Save"
+                iconSize={12}
+              />
+            </Flex>
             <ButtonPrimary
               mx={1}
               alignItems="center"
@@ -388,44 +424,18 @@ const Index = ({ router }) => {
               button="right"
               align="right"
               children="Next"
+              bg='transparent'
+              color='black'
             />
           </Flex>
-          <Flex fontSize={1} mt={4} mb={4} justifyContent='center'>
-            <Div alignItems='center' display='flex' width='auto'>
-              <Div width={64} bg={currentCombination.parentBg} py={3} mr={2} />
-              <Div>
-                <Span display='block' fontWeight={700}>Parent Bg: </Span>
-                <Code>{currentCombination.parentBg}</Code>
-              </Div>
-            </Div>
-            <Div alignItems='center' display='flex' width='auto'>
-              <Div width={64} bg={currentCombination.color} py={3} mr={2} />
-              <Div>
-                <Span display='block' fontWeight={700}>Color: </Span>
-                <Code>{currentCombination.color}</Code>
-              </Div>
-            </Div>
-            <Div alignItems='center' display='flex' width='auto'>
-              <Div width={64} bg={currentCombination.bg} py={3} mr={2} />
-              <Div>
-                <Span display='block' fontWeight={700}>Bg: </Span>
-                <Code>{currentCombination.bg}</Code>
-              </Div>
-            </Div>
-            <Div alignItems='center' display='flex' width='auto'>
-              <Div width={64} bg={currentCombination.borderColor} py={3} mr={2} />
-              <Div>
-                <Span display='block' fontWeight={700}>Border: </Span>
-                <Code>{currentCombination.borderColor}</Code>
-              </Div>
-            </Div>
-          </Flex>
-          <TextBlock currentCombination={currentCombination} />
-          <IconBlock currentCombination={currentCombination} />
+          <Div maxWidth='48em' mx='auto'>
+            <TextBlock currentCombination={currentCombination} />
+            <IconBlock currentCombination={currentCombination} />
 
-          <FormBlock currentCombination={currentCombination} />
+            <FormBlock currentCombination={currentCombination} />
 
-          <ChartsBlock currentCombination={currentCombination} />
+            <ChartsBlock currentCombination={currentCombination} />
+          </Div>
         </Div>
       )}
     </Div>

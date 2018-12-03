@@ -10,7 +10,6 @@ import Div from "../elements/Div"
 
 const FormBlock = ({ currentCombination }) => {
   let outlineBg = 'transparent'
-  console.log(chroma.contrast(currentCombination.color, currentCombination.parentBg))
   if (chroma.contrast(currentCombination.color, currentCombination.parentBg) < 4.5) {
     outlineBg = currentCombination.bg 
   }

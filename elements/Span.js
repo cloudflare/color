@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import {
   space,
   width,
+  height,
   display,
   fontSize,
   fontWeight,
@@ -13,6 +14,7 @@ import {
 const Span = styled.span(
   space,
   width,
+  height,
   display,
   fontSize,
   fontWeight,
