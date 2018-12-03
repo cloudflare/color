@@ -6,16 +6,20 @@
     "dev": "next -p $(./node_modules/detect-port/bin/detect-port 3000)",
     "build": "next build",
     "start": "next start",
-    "deploy": "next build && next export && now ./out"
+    "deploy": "next build && next export && now ./out",
+    "analyze": "BUNDLE_ANALYZE=both next build"
   },
   "dependencies": {
     "@emotion/core": "^10.0.1",
     "@emotion/styled": "^10.0.0",
+    "@zeit/next-bundle-analyzer": "^0.1.2",
     "chroma-js": "^1.4.1",
+    "color": "^3.1.0",
     "cssstats": "^3.2.0",
     "emotion": "^10.0.0",
     "emotion-server": "^10.0.0",
     "emotion-theming": "^10.0.0",
+    "fs-extra": "^7.0.1",
     "idb-keyval": "^3.1.0",
     "lodash": "^4.17.11",
     "next": "^7.0.2",
@@ -26,7 +30,8 @@
     "react-outside-click-handler": "^1.2.2",
     "recharts": "^1.4.1",
     "styled-system": "^3.1.11",
-    "use-undo": "^0.1.1"
+    "use-undo": "^0.1.1",
+    "webpack": "^4.26.1"
   },
   "devDependencies": {
     "babel-plugin-emotion": "^10.0.0",

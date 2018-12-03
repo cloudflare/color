@@ -1,5 +1,5 @@
 import React from "react"
-import chroma from "chroma-js"
+import Color from "color"
 import Flex from "../components/Flex"
 import RadioButton from "../components/RadioButton"
 import SingleComponent from "../components/SingleComponent"
@@ -9,10 +9,11 @@ import TextInput from "../components/TextInput"
 import Div from "../elements/Div"
 
 const FormBlock = ({ currentCombination }) => {
-  let outlineBg = 'transparent'
-  if (chroma.contrast(currentCombination.color, currentCombination.parentBg) < 4.5) {
-    outlineBg = currentCombination.bg 
-  }
+  const contrastValue = Color(currentCombination.color).contrast(
+    Color(currentCombination.parentBg)
+  )
+  const outlineBg = contrastValue < 4.5 ? currentCombination.bg : "transparent"
+
   return (
     <>
       <Flex mt={2} px={[3, 4]} display="none">

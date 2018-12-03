@@ -9,36 +9,14 @@ import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
 
-import IconBlock from "../components/IconBlock"
-import ChartsBlock from "../components/ChartsBlock"
-import FormBlock from "../components/FormBlock"
-import TextBlock from "../components/TextBlock"
-import ColorBlindFilter from "../components/ColorBlindFilter"
-
-import Div from "../elements/Div"
-import Code from "../elements/Code"
-import Span from "../elements/Span"
-import Flex from "../components/Flex"
-import Form from "../elements/Form"
-import Input from "../elements/Input"
-import Button from "../elements/Button"
-import Label from "../elements/Label"
-
-import TextInput from "../components/TextInput"
-import ButtonOutline from "../components/ButtonOutline"
-import H4 from "../elements/H4"
-import Palette from "../components/Palette"
-import ButtonPrimary from "../components/ButtonPrimary"
-
 const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
 }
 
 const Index = ({ router }) => {
-  const [url, setUrl] = useState("https://cloudflare.com")
   const [palette, setPalette] = useState(sortPalette(defaultPalette))
-  const [likes, updateLikes] = useState([])
   const [newColor, updateNewColor] = useState("")
+  const [likes, updateLikes] = useState([])
   const [parentBg, updateParentBg] = useState("currentCombination")
   const [colorFilter, setColorFilter] = useState("none")
   const [currentState, { set, undo, redo, canRedo, canUndo }] = useHistory({})
@@ -84,13 +62,7 @@ const Index = ({ router }) => {
     canUndo && undo()
   }
 
-  const handleViewLike = index => () => {
-    set(likes[index])
-  }
-
-  const handleChange = e => {
-    setUrl(e.target.value)
-  }
+  const handleViewLike = index => set(likes[index])
 
   const handleRemove = index => {
     const alteredPalette = palette.filter((_, i) => index !== i)
@@ -126,12 +98,7 @@ const Index = ({ router }) => {
     setColorFilter(e.target.value)
   }
 
-  const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(
-    JSON.stringify(likes)
-  )}`
-
-  const handleSubmit = async e => {
-    e.preventDefault()
+  const handleSiteFetch = async url => {
     const fullUrl = `https://api.cssstats.com/stats/?url=${url}`
 
     const res = await fetch(fullUrl)
@@ -199,39 +166,8 @@ const Index = ({ router }) => {
         px={[3, 4]}
         style={{ minHeight: "100vh" }}
       >
-        <Form
-          onSubmit={handleSubmit}
-          display="flex"
-          width={1}
-          borderRadius={[0, 2]}
-          style={{ overflow: "hidden" }}
-        >
-          <Input
-            fontSize={2}
-            fontWeight={700}
-            py={3}
-            px={3}
-            width={[3 / 4, 7 / 8]}
-            type="url"
-            border="none"
-            bg="#eeeeee"
-            borderRadius={0}
-            value={url}
-            onChange={handleChange}
-          />
-          <Button
-            width={[1 / 4, 1 / 8]}
-            py={3}
-            fontSize={2}
-            bg="black"
-            color="white"
-            fontWeight={700}
-            border="none"
-            style={{ cursor: "pointer" }}
-          >
-            Go
-          </Button>
-        </Form>
+        <SiteFetch onSubmit={handleSiteFetch} />
+
         <Div>
           <Label
             fontWeight={700}
@@ -277,94 +213,57 @@ const Index = ({ router }) => {
               </Button>
             </Div>
           </Div>
-          <Div display="flex" flexWrap="wrap">
-            <H4 width={1} mb={2} mt={4}>
-              Background
-            </H4>
-            <Div display="flex" alignItems="center" width="auto" mr={3}>
-              <Input
-                type="radio"
-                name="parentBg"
-                value="currentCombination"
-                checked={parentBg === "currentCombination"}
-                onChange={handleUpdateParentBg}
-              />
-              <Label pl={1}>Palette</Label>
-            </Div>
-            <Div display="flex" alignItems="center" width="auto" mr={3}>
-              <Input
-                type="radio"
-                name="parentBg"
-                id="parentBgWhite"
-                value="white"
-                checked={parentBg === "white"}
-                onChange={handleUpdateParentBg}
-              />
-              <Label pl={1} htmlFor="parentBgWhite">
-                White
-              </Label>
-            </Div>
+        </Div>
 
-            <Div display="flex" alignItems="center" width="auto" mr={3}>
-              <Input
-                type="radio"
-                name="parentBg"
-                id="parentBgBlack"
-                value="black"
-                checked={parentBg === "black"}
-                onChange={handleUpdateParentBg}
-              />
-              <Label pl={1} htmlFor="parentBgBlack">
-                Black
-              </Label>
-            </Div>
+        <Div display="flex" flexWrap="wrap">
+          <H4 width={1} mb={2} mt={4}>
+            Background
+          </H4>
+          <Div display="flex" alignItems="center" width="auto" mr={3}>
+            <Input
+              type="radio"
+              name="parentBg"
+              value="currentCombination"
+              checked={parentBg === "currentCombination"}
+              onChange={handleUpdateParentBg}
+            />
+            <Label pl={1}>Palette</Label>
+          </Div>
+          <Div display="flex" alignItems="center" width="auto" mr={3}>
+            <Input
+              type="radio"
+              name="parentBg"
+              id="parentBgWhite"
+              value="white"
+              checked={parentBg === "white"}
+              onChange={handleUpdateParentBg}
+            />
+            <Label pl={1} htmlFor="parentBgWhite">
+              White
+            </Label>
           </Div>
 
-          <ColorBlindFilter
-            onChange={handleColorBlindFilter}
-            currentValue={colorFilter}
-          />
-
-          {likes.length > 0 && (
-            <>
-              <Div width={1}>
-                <H4 mt={5} mb={2}>
-                  Collection
-                </H4>
-
-                <Div>
-                  {likes.map((like, i) => {
-                    const colors = Object.values(like)
-                    return (
-                      <Flex
-                        key={i}
-                        onClick={handleViewLike(i)}
-                        width={1}
-                        mb={1}
-                      >
-                        {colors.map(color => (
-                          <Div width={1 / 4} key={color} py={3} bg={color} />
-                        ))}
-                      </Flex>
-                    )
-                  })}
-                </Div>
-              </Div>
-
-              <ButtonOutline
-                mt={3}
-                width={1}
-                bg="transparent"
-                color="white"
-                borderColor="white"
-                download="likes.json"
-                href={dataStr}
-              >
-                Export Likes as JSON
-              </ButtonOutline>
-            </>
-          )}
+          <Div display="flex" alignItems="center" width="auto" mr={3}>
+            <Input
+              type="radio"
+              name="parentBg"
+              id="parentBgBlack"
+              value="black"
+              checked={parentBg === "black"}
+              onChange={handleUpdateParentBg}
+            />
+            <Label pl={1} htmlFor="parentBgBlack">
+              Black
+            </Label>
+          </Div>
         </Div>
+
+        <ColorBlindFilter
+          onChange={handleColorBlindFilter}
+          currentValue={colorFilter}
+        />
+
+        <Likes likes={likes} onSelectLike={handleViewLike} />
       </Div>
 
       {!isEmpty(currentCombination) && (

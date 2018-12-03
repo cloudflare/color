@@ -1,10 +1,10 @@
-import chroma from "chroma-js"
+import Color from "color"
 
 const getRandomColor = palette =>
   palette[Math.round(Math.random() * (palette.length - 1))]
 
 const getAccessibleColors = (palette, comparisonColor) =>
-  palette.filter(p => chroma.contrast(p, comparisonColor) > 4.5)
+  palette.filter(p => Color(p).contrast(Color(comparisonColor)) > 4.5)
 
 const generateRandomPalette = palette => {
   const randomMainColor = getRandomColor(palette)
