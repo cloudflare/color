@@ -4,6 +4,8 @@ import useHistory from "../utils/useHistory"
 import extractSkins from "../utils/extract-skins"
 import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
+import uniqWith from "lodash/uniqWith"
+import isEqual from "lodash/isEqual"
 
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
@@ -46,7 +48,8 @@ const Index = ({ router }) => {
   })
 
   const handleLike = () => {
-    updateLikes([...likes, currentCombination])
+    const deDuped = uniqWith([...likes, currentCombination], isEqual)
+    updateLikes(deDuped)
   }
 
   const handleNext = () => {
