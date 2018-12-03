@@ -9,7 +9,7 @@
     "deploy": "next build && next export && now ./out"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.0",
+    "@emotion/core": "^10.0.1",
     "@emotion/styled": "^10.0.0",
     "chroma-js": "^1.4.1",
     "cssstats": "^3.2.0",
