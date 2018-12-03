@@ -20,7 +20,7 @@ const SingleColor = ({
     <Div
       py={3}
       bg={color}
-      css={{ cursor: "pointer", position: "relative" }}
+      style={{ cursor: "pointer", position: "relative" }}
       onClick={handleActiveUI}
       {...props}
     >
@@ -31,7 +31,7 @@ const SingleColor = ({
             py={2}
             bg={color}
             width="auto"
-            css={{
+            style={{
               position: "absolute",
               transform: "translate(-50%, -100%)",
               top: "-10px",
@@ -73,7 +73,7 @@ const Palette = ({ palette, onUpdate, onRemove, onAdd }) => {
   const [activeColor, updateActiveColor] = useState(null)
 
   return (
-    <Flex flexWrap='wrap'>
+    <Flex flexWrap="wrap">
       {palette.map((color, i) => (
         <SingleColor
           isActive={i === activeColor}
@@ -83,7 +83,7 @@ const Palette = ({ palette, onUpdate, onRemove, onAdd }) => {
           onRemove={onRemove}
           onUpdate={onUpdate}
           onClick={updateActiveColor}
-          width={1/16}
+          width={1 / 16}
         />
       ))}
     </Flex>

@@ -12,6 +12,7 @@ import IconBlock from "../components/IconBlock"
 import ChartsBlock from "../components/ChartsBlock"
 import FormBlock from "../components/FormBlock"
 import TextBlock from "../components/TextBlock"
+import ColorBlindFilter from "../components/ColorBlindFilter"
 
 import Div from "../elements/Div"
 import Flex from "../components/Flex"
@@ -37,6 +38,7 @@ const Index = ({ router }) => {
   const [likes, updateLikes] = useState([])
   const [newColor, updateNewColor] = useState("")
   const [parentBg, updateParentBg] = useState("white")
+  const [colorFilter, setColorFilter] = useState("none")
   const [currentState, { set, undo, redo, canRedo, canUndo }] = useHistory({})
 
   const { present: currentCombination } = currentState
@@ -118,6 +120,10 @@ const Index = ({ router }) => {
     }
   }
 
+  const handleColorBlindFilter = e => {
+    setColorFilter(e.target.value)
+  }
+
   const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(
     JSON.stringify(likes)
   )}`
@@ -175,7 +181,13 @@ const Index = ({ router }) => {
       bg={setParentBg(parentBg)}
       width={1}
       position="relative"
-      style={{ overflow: "hidden" }}
+      style={{
+        overflow: "hidden",
+        filter:
+          colorFilter === "none"
+            ? "none"
+            : `url(/static/filters.svg#${colorFilter})`
+      }}
     >
       <Div
         width={[1, 1 / 4]}
@@ -213,7 +225,7 @@ const Index = ({ router }) => {
             color="white"
             fontWeight={700}
             border="none"
-            css={{ cursor: "pointer" }}
+            style={{ cursor: "pointer" }}
           >
             Go
           </Button>
@@ -307,6 +319,11 @@ const Index = ({ router }) => {
             <Label pl={1}>Palette</Label>
           </Div>
         </Div>
+
+        <ColorBlindFilter
+          onChange={handleColorBlindFilter}
+          currentValue={colorFilter}
+        />
 
         {likes.length > 0 && (
           <>
