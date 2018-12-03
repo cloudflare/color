@@ -1,6 +1,4 @@
 import styled from "@emotion/styled"
-import Icon from "../components/Icon"
-import Span from "../elements/Span"
 
 import {
   style,

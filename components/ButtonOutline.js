@@ -1,5 +1,4 @@
 import React from "react"
-import Button from "../elements/Button"
 
 // This file can be copied to start new components
 // You'll want to replace ButtonOutline with the component name which should

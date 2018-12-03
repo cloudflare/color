@@ -1,6 +1,4 @@
 import React from "react"
-import Span from "../elements/Span"
-import Text from "../components/Text"
 
 const TextBlock = ({ currentCombination }) => {
   return (

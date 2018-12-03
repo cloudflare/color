@@ -1,10 +1,4 @@
 import React from "react"
-import Svg from "../elements/Svg"
-import Polygon from "../elements/Polygon"
-import Polyline from "../elements/Polyline"
-import Path from "../elements/Path"
-import Rect from "../elements/Rect"
-import Circle from "../elements/Circle"
 
 const Icon = ({ type, color, size, ...props }) => {
   return (

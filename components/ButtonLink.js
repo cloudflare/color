@@ -1,8 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
 
-import Span from "../elements/Span"
-
 import {
   space,
   width,

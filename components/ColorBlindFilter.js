@@ -1,10 +1,5 @@
 import React from "react"
 
-import Div from "../elements/Div"
-import H4 from "../elements/H4"
-import Input from "../elements/Input"
-import Label from "../elements/Label"
-
 const filters = [
   { label: "None", value: "none" },
   { label: "Achromatopsia", value: "achromatopsia" },
