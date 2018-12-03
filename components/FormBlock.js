@@ -1,4 +1,5 @@
 import React from "react"
+import chroma from "chroma-js"
 import Flex from "../components/Flex"
 import RadioButton from "../components/RadioButton"
 import SingleComponent from "../components/SingleComponent"
@@ -8,6 +9,10 @@ import TextInput from "../components/TextInput"
 import Div from "../elements/Div"
 
 const FormBlock = ({ currentCombination }) => {
+  let outlineBg = 'transparent'
+  if (chroma.contrast(currentCombination.color, currentCombination.parentBg) < 4.5) {
+    outlineBg = currentCombination.bg 
+  }
   return (
     <>
       <Flex mt={2} px={[3, 4]} display="none">
@@ -33,8 +38,8 @@ const FormBlock = ({ currentCombination }) => {
           children="Click Here"
         />
       </Flex>
-      <Div mt={4} textAlign="left" px={[3, 4]}>
-        <Div display="flex" alignItems="center">
+      <Div mt={4} textAlign="left">
+        <Div display="flex" alignItems="center" px={3}>
           <SingleComponent
             py={2}
             px={4}
@@ -62,31 +67,31 @@ const FormBlock = ({ currentCombination }) => {
             </RadioButton>
           </Div>
         </Div>
-        <Div alignItems="center" display="flex" mt={3}>
+        <Div alignItems="center" display="flex" mt={3} bg={outlineBg} p={3}>
           <SingleComponent
             py={2}
             px={4}
             mr={3}
             border="1px solid"
             borderRadius={1}
-            color={currentCombination.bg}
+            color={currentCombination.color}
             bg="transparent"
-            borderColor={currentCombination.bg}
+            borderColor={currentCombination.color}
             children="Secondary Click"
             width="auto"
           />
           <BadgeOutline
-            borderColor={currentCombination.bg}
-            color={currentCombination.bg}
+            borderColor={currentCombination.color}
+            color={currentCombination.color}
             width="auto"
           />
           <Div display="flex" alignItems="center" borderRadius={2} pl={3}>
-            <RadioButton name="group 1" color={currentCombination.bg} mr={3}>
+            <RadioButton name="group 1" color={currentCombination.color} mr={3}>
               Yes
             </RadioButton>
             <RadioButton
               name="group 1"
-              color={currentCombination.bg}
+              color={currentCombination.color}
               checked={true}
             >
               No
