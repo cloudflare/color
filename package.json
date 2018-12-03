@@ -25,7 +25,8 @@
     "react-dom": "^16.7.0-alpha.2",
     "react-outside-click-handler": "^1.2.2",
     "recharts": "^1.4.1",
-    "styled-system": "^3.1.11"
+    "styled-system": "^3.1.11",
+    "use-undo": "^0.1.1"
   },
   "devDependencies": {
     "babel-plugin-emotion": "^10.0.0",

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react"
 import { withRouter } from "next/router"
-import chroma from "chroma-js"
+import useHistory from "../utils/useHistory"
 import extractSkins from "../utils/extract-skins"
 import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
 
 import defaultPalette from "../utils/defaultPalette"
+import generateRandomPalette from "../utils/generateRandomPalette"
 
 import IconBlock from "../components/IconBlock"
 import ChartsBlock from "../components/ChartsBlock"
 
-import ButtonPrimary from "../components/ButtonPrimary"
 import RadioButton from "../components/RadioButton"
 import Div from "../elements/Div"
 import Flex from "../components/Flex"
@@ -27,46 +27,7 @@ import BadgeOutline from "../components/BadgeOutline"
 import H4 from "../elements/H4"
 import Palette from "../components/Palette"
 import ButtonLink from "../components/ButtonLink"
-
-const getRandomColor = palette =>
-  palette[Math.round(Math.random() * (palette.length - 1))]
-
-const getAccessibleColors = (palette, comparisonColor) =>
-  palette.filter(p => chroma.contrast(p, comparisonColor) > 4.5)
-
-const generateRandomPalette = palette => {
-  const randomMainColor = getRandomColor(palette)
-  const accessibleBgColor = getRandomColor(
-    getAccessibleColors(palette, randomMainColor)
-  )
-  const randomParentBg = getRandomColor(palette)
-  const randomBorderColor = getRandomColor(palette)
-
-  return {
-    color: randomMainColor,
-    bg: accessibleBgColor,
-    borderColor: randomBorderColor,
-    parentBg: randomParentBg
-  }
-}
-
-const addLike = ({
-  updateLikes,
-  currentCombination,
-  likes,
-  updateHistory,
-  history,
-  palette,
-  updateCombination,
-  updateHistoryIndex,
-  historyIndex
-}) => {
-  const newCombination = generateRandomPalette(palette)
-  updateLikes([currentCombination, ...likes])
-  updateCombination(newCombination)
-  updateHistory([...history.slice(-9, 10), newCombination])
-  history.length < 10 && updateHistoryIndex(historyIndex + 1)
-}
+import ButtonPrimary from "../components/ButtonPrimary"
 
 const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
@@ -75,19 +36,18 @@ const encodeCombination = currentCombination => {
 const Index = ({ router }) => {
   const [url, setUrl] = useState("https://cloudflare.com")
   const [palette, setPalette] = useState(defaultPalette)
-  const [currentCombination, updateCombination] = useState({})
-  const [history, updateHistory] = useState([])
   const [likes, updateLikes] = useState([])
-  const [historyIndex, updateHistoryIndex] = useState(0)
   const [newColor, updateNewColor] = useState("")
   const [parentBg, updateParentBg] = useState("white")
+  const [currentState, { set, undo, redo, canRedo, canUndo }] = useHistory({})
+
+  const { present: currentCombination } = currentState
 
   useEffect(() => {
     const starterCombination = isEmpty(router.query)
       ? generateRandomPalette(palette)
       : router.query
-    updateCombination(starterCombination)
-    updateHistory([starterCombination])
+    set(starterCombination)
   }, [])
 
   useEffect(
@@ -105,34 +65,21 @@ const Index = ({ router }) => {
     }
   })
 
-  const handleLike = () =>
-    addLike({
-      updateLikes,
-      currentCombination,
-      likes,
-      updateHistory,
-      history,
-      palette,
-      updateCombination,
-      updateHistoryIndex,
-      historyIndex
-    })
+  const handleLike = like => {
+    console.log("like")
+  }
 
   const handleNext = () => {
-    if (historyIndex < history.length - 1) {
-      updateCombination(history[historyIndex + 1])
-      return updateHistoryIndex(historyIndex + 1)
+    if (canRedo) {
+      return redo()
     }
-    const newCombination = generateRandomPalette(palette)
-    updateCombination(newCombination)
-    updateHistory([...history.slice(-9, 10), newCombination])
-    history.length < 10 && updateHistoryIndex(historyIndex + 1)
+
+    const newCombo = generateRandomPalette(palette)
+    set(newCombo)
   }
 
   const handlePrevious = () => {
-    if (historyIndex <= 0) return
-    updateCombination(history[historyIndex - 1])
-    updateHistoryIndex(historyIndex - 1)
+    canUndo && undo()
   }
 
   const handleSetLike = index => () => {
@@ -266,6 +213,35 @@ const Index = ({ router }) => {
           Go
         </Button>
       </Form>
+
+      <Flex mx="auto" justifyContent="center" mt={3}>
+        <ButtonPrimary
+          mx={1}
+          disabled={!canUndo}
+          alignItems="center"
+          onClick={handlePrevious}
+          button="left"
+          children="Previous"
+        />
+
+        <ButtonPrimary
+          mx={1}
+          alignItems="center"
+          onClick={handleLike}
+          button="plus"
+          children="Add to collection"
+        />
+        <ButtonPrimary
+          mx={1}
+          alignItems="center"
+          onClick={handleNext}
+          button="right"
+          align="right"
+          children="Next"
+        />
+      </Flex>
+
+      <Flex mx="auto" justifyContent="center" mt={3}>
         <Div>
           <Label fontWeight={700} mt={4} mb={2} display='block' textAlign='left'>Palette</Label>
           <Palette
