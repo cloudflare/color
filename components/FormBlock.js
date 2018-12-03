@@ -1,12 +1,5 @@
 import React from "react"
 import Color from "color"
-import Flex from "../components/Flex"
-import RadioButton from "../components/RadioButton"
-import SingleComponent from "../components/SingleComponent"
-import Badge from "../components/Badge"
-import BadgeOutline from "../components/BadgeOutline"
-import TextInput from "../components/TextInput"
-import Div from "../elements/Div"
 
 const FormBlock = ({ currentCombination }) => {
   const contrastValue = Color(currentCombination.color).contrast(

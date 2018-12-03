@@ -26,7 +26,7 @@ const sortPalette = palette => {
 
   // Check if a colour is logically a gray by not having a hue or if the saturation is less than 10%
   const isGray = c => {
-    return isNaN(c.hsl[0]) ? false : c.hsl[1] > 0.1
+    return isNaN(c.hsl[0]) ? false : c.hsl[1] > 10
   }
 
   // Removes all grays first

@@ -1,9 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
 
-import Icon from "../components/Icon"
-import Span from "../elements/Span"
-
 import {
   space,
   width,
@@ -79,7 +76,7 @@ ButtonPrimary.defaultProps = {
   button: "left",
   children: "Click",
   align: "left",
-  iconSize: 16,
+  iconSize: 16
 }
 
 export default ButtonPrimary

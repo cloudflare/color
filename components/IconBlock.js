@@ -1,6 +1,4 @@
 import React from "react"
-import Div from "../elements/Div"
-import Icon from "./Icon"
 
 const IconBlock = ({ currentCombination }) => {
   return (

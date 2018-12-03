@@ -1,8 +1,5 @@
 import React from "react"
 
-import Div from "../elements/Div"
-import Span from "../elements/Span"
-
 const RadioButton = ({ color, ...props }) => {
   return (
     <Div {...props}>
