@@ -1,7 +1,8 @@
 import React from "react"
 
-const Likes = ({ likes, onSelectLike }) => {
+const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
   const handleViewLike = i => () => onSelectLike(i)
+  const handleRemoveLike = i => () => onRemoveLike(i)
 
   const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(
     JSON.stringify(likes)
@@ -29,6 +30,7 @@ const Likes = ({ likes, onSelectLike }) => {
                   {colors.map(color => (
                     <Div width={1 / 4} key={color} py={3} bg={color} />
                   ))}
+                  <Button onClick={handleRemoveLike(i)}>Remove</Button>
                 </Flex>
               )
             })}

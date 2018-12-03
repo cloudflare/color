@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { withRouter } from "next/router"
 import useHistory from "../utils/useHistory"
-import extractSkins from "../utils/extract-skins"
 import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
 import uniqWith from "lodash/uniqWith"
@@ -52,6 +51,11 @@ const Index = ({ router }) => {
     updateLikes(deDuped)
   }
 
+  const handleRemoveLike = index => {
+    const newLikes = likes.filter((_, i) => index !== i)
+    updateLikes(newLikes)
+  }
+
   const handleNext = () => {
     if (canRedo) {
       return redo()
@@ -97,41 +101,9 @@ const Index = ({ router }) => {
     }
   }
 
-  const handleColorBlindFilter = e => {
-    setColorFilter(e.target.value)
-  }
+  const handleColorBlindFilter = e => setColorFilter(e.target.value)
 
-  const handleSiteFetch = async url => {
-    const fullUrl = `https://api.cssstats.com/stats/?url=${url}`
-
-    const res = await fetch(fullUrl)
-
-    if (res.ok) {
-      const data = await res.json()
-      const cssPalette = extractSkins(data).colors
-      const newPalette = cssPalette.filter(str => {
-        if (str.includes("rgba")) {
-          return false
-        } else if (str.includes("hsla")) {
-          return false
-        } else if (str.includes("inherit")) {
-          return false
-        } else if (str.includes("currentColor")) {
-          return false
-        } else if (str.includes("transparent")) {
-          return false
-        } else if (str.includes("none")) {
-          return false
-        } else if (str.includes("var(")) {
-          return false
-        } else {
-          return str
-        }
-      })
-
-      setPalette(sortPalette(newPalette))
-    }
-  }
+  const handleSiteFetch = async palette => setPalette(palette)
 
   const handleUpdateParentBg = e => updateParentBg(e.target.value)
 
@@ -161,12 +133,11 @@ const Index = ({ router }) => {
             : `url(/static/filters.svg#${colorFilter})`
       }}
     >
-
-    <Div bg='white' display='flex' alignItems='center' width={1} >
-      <Div width={1/4} py={2} pl={3}>
-        <Logo />
-      </Div>
-      <Div width={3/4}>
+      <Div bg="white" display="flex" alignItems="center" width={1}>
+        <Div width={1 / 4} py={2} pl={3}>
+          <Logo />
+        </Div>
+        <Div width={3 / 4}>
           <Flex fontSize={1} justifyContent="center" bg="white">
             <ButtonPrimary
               mx={1}
@@ -248,16 +219,16 @@ const Index = ({ router }) => {
             />
           </Flex>
         </Div>
-        </Div>
+      </Div>
 
       <Div
         width={[1, 1 / 4]}
         bg="rgba(255,255,255,1)"
-        borderTop='1px solid rgba(0,0,0,.1)'
+        borderTop="1px solid rgba(0,0,0,.1)"
         color="black"
         pt={3}
         pb={4}
-        px={[3,4]}
+        px={[3, 4]}
         style={{ minHeight: "100vh" }}
       >
         <SiteFetch onSubmit={handleSiteFetch} />
@@ -288,7 +259,7 @@ const Index = ({ router }) => {
               <Div>
                 <TextInput
                   borderColor="transparent"
-                  bg='gray.8'
+                  bg="gray.8"
                   value={newColor}
                   onChange={handleNewColorInput}
                 />
@@ -358,11 +329,97 @@ const Index = ({ router }) => {
           currentValue={colorFilter}
         />
 
-        <Likes likes={likes} onSelectLike={handleViewLike} />
+        <Likes
+          likes={likes}
+          onSelectLike={handleViewLike}
+          onRemoveLike={handleRemoveLike}
+        />
       </Div>
 
       {!isEmpty(currentCombination) && (
-        <Div width={3 / 4} pb={5} pt={4} borderTop='1px solid rgba(0,0,0,.1)'>
+        <Div width={3 / 4} pb={5} pt={4} borderTop="1px solid rgba(0,0,0,.1)">
+          <Flex fontSize={1} mb={4} justifyContent="center" bg="white" py={2}>
+            <ButtonPrimary
+              disabled={!canUndo}
+              mx={1}
+              alignItems="center"
+              onClick={handlePrevious}
+              button="left"
+              bg="transparent"
+              color="black"
+              children="Previous"
+              style={{ ":disabled": { cursor: "default" } }}
+            />
+            <Flex>
+              <Div alignItems="center" display="flex" width="auto">
+                <Div
+                  width={64}
+                  bg={currentCombination.parentBg}
+                  py={3}
+                  mr={2}
+                />
+                <Div>
+                  <Span display="block" fontWeight={700}>
+                    Parent Bg:{" "}
+                  </Span>
+                  <Code>{currentCombination.parentBg}</Code>
+                </Div>
+              </Div>
+              <Div alignItems="center" display="flex" width="auto">
+                <Div width={64} bg={currentCombination.color} py={3} mr={2} />
+                <Div>
+                  <Span display="block" fontWeight={700}>
+                    Color:{" "}
+                  </Span>
+                  <Code>{currentCombination.color}</Code>
+                </Div>
+              </Div>
+              <Div alignItems="center" display="flex" width="auto">
+                <Div width={64} bg={currentCombination.bg} py={3} mr={2} />
+                <Div>
+                  <Span display="block" fontWeight={700}>
+                    Bg:{" "}
+                  </Span>
+                  <Code>{currentCombination.bg}</Code>
+                </Div>
+              </Div>
+              <Div alignItems="center" display="flex" width="auto">
+                <Div
+                  width={64}
+                  bg={currentCombination.borderColor}
+                  py={3}
+                  mr={2}
+                />
+                <Div>
+                  <Span display="block" fontWeight={700}>
+                    Border:{" "}
+                  </Span>
+                  <Code>{currentCombination.borderColor}</Code>
+                </Div>
+              </Div>
+              <ButtonPrimary
+                mx={1}
+                alignItems="center"
+                onClick={handleLike}
+                button="plus"
+                bg="transparent"
+                color="black"
+                border="1px solid black"
+                children="Save"
+                iconSize={12}
+              />
+            </Flex>
+            <ButtonPrimary
+              mx={1}
+              alignItems="center"
+              onClick={handleNext}
+              button="right"
+              align="right"
+              children="Next"
+              bg="transparent"
+              color="black"
+            />
+          </Flex>
           <Div maxWidth="48em" mx="auto">
             <TextBlock currentCombination={currentCombination} />
             <IconBlock currentCombination={currentCombination} />

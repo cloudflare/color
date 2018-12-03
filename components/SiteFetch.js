@@ -1,11 +1,41 @@
 import React, { useState } from "react"
+import extractSkins from "../utils/extract-skins"
+import sortPalette from "../utils/sortPalette"
 
 const SiteFetch = ({ onSubmit }) => {
   const [url, setUrl] = useState("https://cloudflare.com")
   const handleChange = e => setUrl(e.target.value)
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    onSubmit(url)
+    const fullUrl = `https://api.cssstats.com/stats/?url=${url}`
+
+    const res = await fetch(fullUrl)
+
+    if (res.ok) {
+      const data = await res.json()
+      const cssPalette = extractSkins(data).colors
+      const newPalette = cssPalette.filter(str => {
+        if (str.includes("rgba")) {
+          return false
+        } else if (str.includes("hsla")) {
+          return false
+        } else if (str.includes("inherit")) {
+          return false
+        } else if (str.includes("currentColor")) {
+          return false
+        } else if (str.includes("transparent")) {
+          return false
+        } else if (str.includes("none")) {
+          return false
+        } else if (str.includes("var(")) {
+          return false
+        } else {
+          return str
+        }
+      })
+
+      onSubmit(sortPalette(newPalette))
+    }
   }
 
   return (
