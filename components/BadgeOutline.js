@@ -1,4 +1,6 @@
-import styled from 'react-emotion'
+import styled from "@emotion/styled"
+import Icon from "../components/Icon"
+import Span from "../elements/Span"
 
 import {
   style,
@@ -13,18 +15,14 @@ import {
   color,
   borders,
   borderColor,
-  borderRadius,
-} from 'styled-system'
+  borderRadius
+} from "styled-system"
 
 const textShadow = style({
-  prop: 'textShadow',
-  cssBadgeOutlineroperty: 'textShadow',
-  key: 'textShadow',
-  scale: [
-    '1px 1px 2px pink ', 
-    '#f30 1px 0 10px', 
-    'red 2px 5px'
-  ]
+  prop: "textShadow",
+  cssBadgeOutlineroperty: "textShadow",
+  key: "textShadow",
+  scale: ["1px 1px 2px pink ", "#f30 1px 0 10px", "red 2px 5px"]
 })
 
 const BadgeOutlineWrapper = styled.span(
@@ -42,33 +40,35 @@ const BadgeOutlineWrapper = styled.span(
   borderColor,
   borderRadius,
   {
-    boxSizing: 'border-box',
-    transition: 'all .25s ease-in',
-    alignItems: 'center',
-  },
+    boxSizing: "border-box",
+    transition: "all .25s ease-in",
+    alignItems: "center"
+  }
 )
 
-const BadgeOutline = ({...props}) => {
+const BadgeOutline = ({ ...props }) => {
   return (
     <BadgeOutlineWrapper {...props}>
-      <Icon color={props.color} type='gear' size={12} />
-      <Span pl={1} style={{whiteSpace: 'nowrap'}}>{props.children}</Span>
+      <Icon color={props.color} type="gear" size={12} />
+      <Span pl={1} style={{ whiteSpace: "nowrap" }}>
+        {props.children}
+      </Span>
     </BadgeOutlineWrapper>
   )
 }
 
 BadgeOutline.defaultProps = {
-  display: 'flex',
+  display: "flex",
   borderRadius: 1,
   px: 2,
   py: 1,
-  my: '-1px',
-  mx: '-1px',
+  my: "-1px",
+  mx: "-1px",
   fontSize: 1,
   fontWeight: 600,
-  bg: 'transparent',
-  border: '1px solid',
-  children: 'Badge Outline'
+  bg: "transparent",
+  border: "1px solid",
+  children: "Badge Outline"
 }
 
 export default BadgeOutline

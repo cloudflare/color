@@ -1,5 +1,7 @@
 import React from "react"
-import styled from "react-emotion"
+import styled from "@emotion/styled"
+
+import Span from "../elements/Span"
 
 import {
   space,
@@ -53,21 +55,19 @@ const ButtonLink = ({ variant, icon, align, ...props }) => {
     case 1:
       return (
         <A {...props}>
-          {icon &&
-            align === "left" && (
-              <Span pr={2}>
-                <Icon color="black" size={iconSize} type={icon} />
-              </Span>
-            )}
+          {icon && align === "left" && (
+            <Span pr={2}>
+              <Icon color="black" size={iconSize} type={icon} />
+            </Span>
+          )}
           <Span style={{ whiteSpace: "nowrap" }} lineHeight={1}>
             {props.children}
           </Span>
-          {icon &&
-            align === "right" && (
-              <Span pl={2}>
-                <Icon color="black" size={iconSize} type={icon} />
-              </Span>
-            )}
+          {icon && align === "right" && (
+            <Span pl={2}>
+              <Icon color="black" size={iconSize} type={icon} />
+            </Span>
+          )}
         </A>
       )
   }
