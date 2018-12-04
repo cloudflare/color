@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { withRouter } from "next/router"
 import useHistory from "../utils/useHistory"
+import useInterval from "../utils/useInterval"
 import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
 import uniqWith from "lodash/uniqWith"
@@ -39,6 +40,13 @@ const Index = ({ router }) => {
   const [parentBg, updateParentBg] = useState("currentCombination")
   const [colorFilter, setColorFilter] = useState("none")
   const [currentState, { set, undo, redo, canRedo, canUndo }] = useHistory({})
+  const { start, stop, isRunning } = useInterval({
+    duration: 2000,
+    callback: () => {
+      const newCombo = generateRandomPalette(palette)
+      set(newCombo)
+    }
+  })
 
   const { present: currentCombination } = currentState
 
@@ -69,6 +77,10 @@ const Index = ({ router }) => {
     }
   })
 
+  const handleAutoCycling = () => {
+    isRunning ? stop() : start()
+  }
+
   const handleLike = () => {
     const deDuped = uniqWith([...likes, updatedCurrentCombo], isEqual)
     updateLikes(deDuped)
@@ -83,13 +95,16 @@ const Index = ({ router }) => {
     if (canRedo) {
       return redo()
     }
-
+    stop()
     const newCombo = generateRandomPalette(palette)
     set(newCombo)
   }
 
   const handlePrevious = () => {
-    canUndo && undo()
+    if (canUndo) {
+      stop()
+      undo()
+    }
   }
 
   const handleViewLike = index => set(likes[index])
@@ -229,7 +244,19 @@ const Index = ({ router }) => {
                 children="Save"
                 iconSize={12}
               />
+              <ButtonPrimary
+                mx={1}
+                alignItems="center"
+                onClick={handleAutoCycling}
+                button={null}
+                bg="transparent"
+                color="black"
+                border="1px solid black"
+                children={isRunning ? "Pause" : "Play"}
+                iconSize={12}
+              />
             </Flex>
+
             <ButtonPrimary
               mx={1}
               alignItems="center"
