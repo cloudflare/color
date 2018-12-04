@@ -9,6 +9,7 @@ const SingleColor = ({
   onUpdate,
   onClick,
   isActive,
+  isVisible,
   ...props
 }) => {
   const handleRemove = () => onRemove(index)
@@ -16,12 +17,20 @@ const SingleColor = ({
   const handleActiveUI = () => onClick(index)
 
   const isDark = Color(color).isDark()
-  
+
   return (
     <Div
-      py={3}
+      py={2}
+      m={1}
+      borderRadius="9999px"
       bg={color}
-      style={{ cursor: "pointer", position: "relative" }}
+      style={{
+        cursor: "pointer",
+        position: "relative",
+        boxShadow: isVisible ? " 0 0 10px rgba(0,0,0,0.3)" : "",
+        transform: isVisible ? "scale(1.5)" : "",
+        transition: "transform 200ms ease-in"
+      }}
       onClick={handleActiveUI}
       {...props}
     >
@@ -32,7 +41,7 @@ const SingleColor = ({
             py={2}
             bg={color}
             borderRadius={2}
-            width='auto'
+            width="auto"
             style={{
               position: "absolute",
               transform: "translate(-50%, -100%)",
@@ -55,7 +64,7 @@ const SingleColor = ({
             <TextInput
               borderRadius={1}
               type="text"
-              border='0'
+              border="0"
               value={color}
               onChange={handleUpdate}
               width={96}
@@ -63,12 +72,12 @@ const SingleColor = ({
             />
             <TextButton
               onClick={handleRemove}
-              display='block'
+              display="block"
               width={1}
-              textAlign='center'
+              textAlign="center"
               children="Delete"
-              bg='transparent'
-              color={isDark? 'white':'black'}
+              bg="transparent"
+              color={isDark ? "white" : "black"}
             />
           </Div>
         </OutsideClickHandler>
@@ -77,7 +86,7 @@ const SingleColor = ({
   )
 }
 
-const Palette = ({ palette, onUpdate, onRemove, onAdd }) => {
+const Palette = ({ palette, onUpdate, onRemove, onAdd, activeColors }) => {
   const [activeColor, updateActiveColor] = useState(null)
 
   return (
@@ -85,6 +94,7 @@ const Palette = ({ palette, onUpdate, onRemove, onAdd }) => {
       {palette.map((color, i) => (
         <SingleColor
           isActive={i === activeColor}
+          isVisible={activeColors.includes(color)}
           key={i}
           color={color}
           index={i}
