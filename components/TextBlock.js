@@ -16,7 +16,7 @@ const TextBlock = ({ currentCombination }) => {
         abcdefghijklmnopqrstuvwxyz 1234567890!@#$%^&*()
       </Span>
       <Span lineHeight={1.5} display="block" mt={3}>
-        Every perception of colour is an illusion.. ..we do not see colours as
+        Every perception of color is an illusion.. ..we do not see colors as
         they really are. In our perception they alter one another. In order to
         use color effectively it is necessary to recognize that color deceives
         continually. In visual perception a color is almost never seen as it
