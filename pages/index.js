@@ -34,6 +34,7 @@ const Index = ({ router }) => {
   const [pinnedColors, setPinnedColors] = useState(resetPinned)
   const { start, stop, isRunning } = useInterval({
     duration: 2000,
+    startImmediate: true,
     callback: () => {
       const newCombo = generateRandomPalette(
         palette,
@@ -335,7 +336,7 @@ const Index = ({ router }) => {
         color="black"
         pt={3}
         pb={4}
-        px={[3, 4]}
+        px={3}
         style={{ minHeight: "100vh" }}
       >
         <SiteFetch onSubmit={handleSiteFetch} />
@@ -355,6 +356,7 @@ const Index = ({ router }) => {
           </Div>
           <Palette
             palette={palette}
+            activeColors={Object.values(currentCombination)}
             onRemove={handleRemove}
             onUpdate={handleColorUpdate}
           />
