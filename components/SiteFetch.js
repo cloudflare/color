@@ -4,9 +4,12 @@ import sortPalette from "../utils/sortPalette"
 
 const SiteFetch = ({ onSubmit }) => {
   const [url, setUrl] = useState("https://cloudflare.com")
+  const [isLoading, setLoading] = useState(false)
+
   const handleChange = e => setUrl(e.target.value)
   const handleSubmit = async e => {
     e.preventDefault()
+    setLoading(true)
     const fullUrl = `https://api.cssstats.com/stats/?url=${url}`
 
     const res = await fetch(fullUrl)
@@ -36,14 +39,11 @@ const SiteFetch = ({ onSubmit }) => {
 
       onSubmit(sortPalette(newPalette))
     }
+    setLoading(false)
   }
 
   return (
-    <Form
-      onSubmit={handleSubmit}
-      display="flex"
-      width={1}
-    >
+    <Form onSubmit={handleSubmit} display="flex" width={1}>
       <Input
         fontSize={2}
         fontWeight={700}
@@ -66,9 +66,11 @@ const SiteFetch = ({ onSubmit }) => {
         fontWeight={700}
         border="none"
         style={{ cursor: "pointer" }}
+        disabled={isLoading}
       >
         Go
       </Button>
+      {isLoading && <P>Fetching Palette</P>}
     </Form>
   )
 }
