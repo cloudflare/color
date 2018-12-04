@@ -1,4 +1,5 @@
-import styled from "@emotion/styled"
+import styled from "react-emotion"
+
 import {
   space,
   width,
@@ -32,15 +33,15 @@ const TextButton = styled.button(
   {
     boxSizing: "border-box",
     textDecoration: "none",
-    webkitAppearance: 'none',
-    appearance: 'none',
-    cursor: 'pointer'
+    webkitAppearance: "none",
+    appearance: "none",
+    cursor: "pointer"
   }
 )
 
 TextButton.defaultProps = {
   border: 0,
-  p: 0,
+  p: 0
 }
 
 export default TextButton
