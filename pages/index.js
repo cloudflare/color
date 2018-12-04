@@ -14,6 +14,24 @@ const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
 }
 
+const setParentBg = (option, present) => {
+  switch (option) {
+    case "white":
+      return "#ffffff"
+    case "black":
+      return "#000000"
+    case "currentCombination":
+      return present.parentBg
+  }
+}
+
+const getCurrentCombination = ({ currentCombination, parentBg }) => {
+  return {
+    ...currentCombination,
+    parentBg: setParentBg(parentBg, currentCombination)
+  }
+}
+
 const Index = ({ router }) => {
   const [palette, setPalette] = useState(sortPalette(defaultPalette))
   const [newColor, updateNewColor] = useState("")
@@ -23,6 +41,11 @@ const Index = ({ router }) => {
   const [currentState, { set, undo, redo, canRedo, canUndo }] = useHistory({})
 
   const { present: currentCombination } = currentState
+
+  const updatedCurrentCombo = getCurrentCombination({
+    currentCombination,
+    parentBg
+  })
 
   useEffect(() => {
     const starterCombination = isEmpty(router.query)
@@ -47,7 +70,7 @@ const Index = ({ router }) => {
   })
 
   const handleLike = () => {
-    const deDuped = uniqWith([...likes, currentCombination], isEqual)
+    const deDuped = uniqWith([...likes, updatedCurrentCombo], isEqual)
     updateLikes(deDuped)
   }
 
@@ -103,26 +126,19 @@ const Index = ({ router }) => {
 
   const handleColorBlindFilter = e => setColorFilter(e.target.value)
 
-  const handleSiteFetch = async palette => setPalette(palette)
+  const handleSiteFetch = async palette => {
+    setPalette(palette)
+    const newCombo = generateRandomPalette(palette)
+    set(newCombo)
+  }
 
   const handleUpdateParentBg = e => updateParentBg(e.target.value)
-
-  const setParentBg = option => {
-    switch (option) {
-      case "white":
-        return "#ffffff"
-      case "black":
-        return "#000000"
-      case "currentCombination":
-        return currentCombination.parentBg
-    }
-  }
 
   return (
     <Div
       display="flex"
       flexWrap="wrap"
-      bg={setParentBg(parentBg)}
+      bg={updatedCurrentCombo.parentBg}
       width={1}
       position="relative"
       style={{
@@ -152,7 +168,7 @@ const Index = ({ router }) => {
               <Div alignItems="center" display="flex" width="auto">
                 <Div
                   width={64}
-                  bg={currentCombination.parentBg}
+                  bg={updatedCurrentCombo.parentBg}
                   py={3}
                   mr={2}
                 />
@@ -160,31 +176,31 @@ const Index = ({ router }) => {
                   <Span display="block" fontWeight={700}>
                     Parent Bg:{" "}
                   </Span>
-                  <Code>{currentCombination.parentBg}</Code>
+                  <Code>{updatedCurrentCombo.parentBg}</Code>
                 </Div>
               </Div>
               <Div alignItems="center" display="flex" width="auto">
-                <Div width={64} bg={currentCombination.color} py={3} mr={2} />
+                <Div width={64} bg={updatedCurrentCombo.color} py={3} mr={2} />
                 <Div>
                   <Span display="block" fontWeight={700}>
                     Color:{" "}
                   </Span>
-                  <Code>{currentCombination.color}</Code>
+                  <Code>{updatedCurrentCombo.color}</Code>
                 </Div>
               </Div>
               <Div alignItems="center" display="flex" width="auto">
-                <Div width={64} bg={currentCombination.bg} py={3} mr={2} />
+                <Div width={64} bg={updatedCurrentCombo.bg} py={3} mr={2} />
                 <Div>
                   <Span display="block" fontWeight={700}>
                     Bg:{" "}
                   </Span>
-                  <Code>{currentCombination.bg}</Code>
+                  <Code>{updatedCurrentCombo.bg}</Code>
                 </Div>
               </Div>
               <Div alignItems="center" display="flex" width="auto">
                 <Div
                   width={64}
-                  bg={currentCombination.borderColor}
+                  bg={updatedCurrentCombo.borderColor}
                   py={3}
                   mr={2}
                 />
@@ -192,7 +208,7 @@ const Index = ({ router }) => {
                   <Span display="block" fontWeight={700}>
                     Border:{" "}
                   </Span>
-                  <Code>{currentCombination.borderColor}</Code>
+                  <Code>{updatedCurrentCombo.borderColor}</Code>
                 </Div>
               </Div>
               <ButtonPrimary
@@ -336,15 +352,13 @@ const Index = ({ router }) => {
         />
       </Div>
 
-      {!isEmpty(currentCombination) && (
+      {!isEmpty(updatedCurrentCombo) && (
         <Div width={3 / 4} pb={5} pt={4} borderTop="1px solid rgba(0,0,0,.1)">
           <Div maxWidth="48em" mx="auto">
-            <TextBlock currentCombination={currentCombination} />
-            <IconBlock currentCombination={currentCombination} />
-
-            <FormBlock currentCombination={currentCombination} />
-
-            <ChartsBlock currentCombination={currentCombination} />
+            <TextBlock currentCombination={updatedCurrentCombo} />
+            <IconBlock currentCombination={updatedCurrentCombo} />
+            <FormBlock currentCombination={updatedCurrentCombo} />
+            <ChartsBlock currentCombination={updatedCurrentCombo} />
           </Div>
         </Div>
       )}
