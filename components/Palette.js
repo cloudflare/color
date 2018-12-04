@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import Color from "color"
 import OutsideClickHandler from "react-outside-click-handler"
 
 const SingleColor = ({
@@ -14,6 +15,8 @@ const SingleColor = ({
   const handleUpdate = e => onUpdate(e, index)
   const handleActiveUI = () => onClick(index)
 
+  const isDark = Color(color).isDark()
+  
   return (
     <Div
       py={3}
@@ -28,13 +31,13 @@ const SingleColor = ({
             px={2}
             py={2}
             bg={color}
-            width="auto"
+            borderRadius={2}
+            width='auto'
             style={{
               position: "absolute",
               transform: "translate(-50%, -100%)",
               top: "-10px",
               left: "50%",
-              borderRadius: "5px",
               "&:before": {
                 content: "''",
                 height: 0,
@@ -50,15 +53,22 @@ const SingleColor = ({
             }}
           >
             <TextInput
+              borderRadius={1}
               type="text"
+              border='0'
               value={color}
               onChange={handleUpdate}
+              width={96}
               mb={2}
             />
-            <ButtonPrimary
+            <TextButton
               onClick={handleRemove}
-              children="Remove"
-              button="remove"
+              display='block'
+              width={1}
+              textAlign='center'
+              children="Delete"
+              bg='transparent'
+              color={isDark? 'white':'black'}
             />
           </Div>
         </OutsideClickHandler>

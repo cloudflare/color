@@ -11,6 +11,7 @@ import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
 import TextButton from "../components/TextButton"
+import ButtonIcon from "../components/ButtonIcon"
 
 const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
@@ -235,26 +236,21 @@ const Index = ({ router }) => {
                 </Div>
               </Div>
               <ButtonPrimary
-                mx={1}
                 alignItems="center"
                 onClick={handleLike}
                 button="plus"
                 bg="transparent"
                 color="black"
-                border="1px solid black"
                 children="Save"
                 iconSize={12}
               />
-              <ButtonPrimary
-                mx={1}
+              <ButtonIcon
                 alignItems="center"
                 onClick={handleAutoCycling}
                 button={null}
-                bg="transparent"
-                color="black"
-                border="1px solid black"
-                children={isRunning ? "Pause" : "Play"}
-                iconSize={12}
+                color="#000000"
+                icon={isRunning ? "pause" : "play"}
+                iconSize={16}
               />
             </Flex>
 
