@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from 'react-emotion'
 import {color, display, width, maxWidth, height} from 'styled-system'
 
 const Svg = styled.svg(color, display, width, maxWidth, height, {

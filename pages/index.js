@@ -109,7 +109,10 @@ const Index = ({ router }) => {
     }
   }
 
-  const handleViewLike = index => set(likes[index])
+  const handleViewLike = index => {
+    stop()
+    set(likes[index])
+  }
 
   const handleRemove = index => {
     const alteredPalette = palette.filter((_, i) => index !== i)
@@ -190,12 +193,14 @@ const Index = ({ router }) => {
             />
             <Flex>
               <Div alignItems="center" display="flex" width="auto">
-                <Div
-                  width={64}
-                  bg={updatedCurrentCombo.parentBg}
-                  py={3}
-                  mr={2}
-                />
+                <Div width={64} bg={updatedCurrentCombo.parentBg} py={1} mr={2}>
+                  <Icon
+                    mx="auto"
+                    type="lock"
+                    color="white"
+                    css={{ opacity: 0, ":hover": { opacity: 1 } }}
+                  />
+                </Div>
                 <Div>
                   <Span display="block" fontWeight={700}>
                     Parent Bg:{" "}

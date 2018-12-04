@@ -1,5 +1,5 @@
-import styled from "@emotion/styled"
-import { keyframes } from "@emotion/core"
+import styled from "react-emotion"
+import { keyframes } from "react-emotion"
 
 const keyframe = keyframes`
 0%,
