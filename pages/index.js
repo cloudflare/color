@@ -10,6 +10,7 @@ import isEqual from "lodash/isEqual"
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
+import TextButton from "../components/TextButton"
 
 const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
@@ -275,6 +276,7 @@ const Index = ({ router }) => {
         width={[1, 1 / 4]}
         bg="rgba(255,255,255,1)"
         borderTop="1px solid rgba(0,0,0,.1)"
+        borderRight="1px solid rgba(0,0,0,.1)"
         color="black"
         pt={3}
         pb={4}
@@ -284,16 +286,16 @@ const Index = ({ router }) => {
         <SiteFetch onSubmit={handleSiteFetch} />
 
         <Div>
-          <Label
+          <Div
             fontWeight={700}
             mt={4}
             mb={2}
-            display="block"
-            textAlign="left"
+            display="flex"
+            alignItems="center"
           >
-            Palette
-            <ButtonLink onClick={handleClearPalette}>Clear palette</ButtonLink>
-          </Label>
+            <Label fontWeight={700}>Palette</Label>
+            <TextButton ml='auto' onClick={handleClearPalette}>Clear</TextButton>
+          </Div>
           <Palette
             palette={palette}
             onRemove={handleRemove}
