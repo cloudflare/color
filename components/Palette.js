@@ -20,12 +20,12 @@ const SingleColor = ({
 
   return (
     <Div
-      width="18px"
       m={1}
-      borderRadius="50%"
+      borderRadius='100%'
       bg={color}
+      height={24}
+      width={24}
       style={{
-        height: "18px",
         cursor: "pointer",
         position: "relative",
         boxShadow: isVisible ? " 0 0 10px rgba(0,0,0,0.3)" : "none",
@@ -102,7 +102,6 @@ const Palette = ({ palette, onUpdate, onRemove, onAdd, activeColors }) => {
           onRemove={onRemove}
           onUpdate={onUpdate}
           onClick={updateActiveColor}
-          width={1 / 16}
         />
       ))}
     </Flex>
