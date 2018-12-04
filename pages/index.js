@@ -17,49 +17,36 @@ const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
 }
 
-const setParentBg = (option, present) => {
-  switch (option) {
-    case "white":
-      return "#ffffff"
-    case "black":
-      return "#000000"
-    case "currentCombination":
-      return present.parentBg
-  }
-}
-
-const getCurrentCombination = ({ currentCombination, parentBg }) => {
-  return {
-    ...currentCombination,
-    parentBg: setParentBg(parentBg, currentCombination)
-  }
+const resetPinned = {
+  color: false,
+  bg: false,
+  borderColor: false,
+  parentBg: false
 }
 
 const Index = ({ router }) => {
   const [palette, setPalette] = useState(sortPalette(defaultPalette))
   const [newColor, updateNewColor] = useState("")
   const [likes, updateLikes] = useState([])
-  const [parentBg, updateParentBg] = useState("currentCombination")
   const [colorFilter, setColorFilter] = useState("none")
   const [currentState, { set, undo, redo, canRedo, canUndo }] = useHistory({})
+  const { present: currentCombination } = currentState
+  const [pinnedColors, setPinnedColors] = useState(resetPinned)
   const { start, stop, isRunning } = useInterval({
     duration: 2000,
     callback: () => {
-      const newCombo = generateRandomPalette(palette)
+      const newCombo = generateRandomPalette(
+        palette,
+        pinnedColors,
+        currentCombination
+      )
       set(newCombo)
     }
   })
 
-  const { present: currentCombination } = currentState
-
-  const updatedCurrentCombo = getCurrentCombination({
-    currentCombination,
-    parentBg
-  })
-
   useEffect(() => {
     const starterCombination = isEmpty(router.query)
-      ? generateRandomPalette(palette)
+      ? generateRandomPalette(palette, pinnedColors, currentCombination)
       : router.query
     set(starterCombination)
   }, [])
@@ -84,7 +71,7 @@ const Index = ({ router }) => {
   }
 
   const handleLike = () => {
-    const deDuped = uniqWith([...likes, updatedCurrentCombo], isEqual)
+    const deDuped = uniqWith([...likes, currentCombination], isEqual)
     updateLikes(deDuped)
   }
 
@@ -98,7 +85,11 @@ const Index = ({ router }) => {
       return redo()
     }
     stop()
-    const newCombo = generateRandomPalette(palette)
+    const newCombo = generateRandomPalette(
+      palette,
+      pinnedColors,
+      currentCombination
+    )
     set(newCombo)
   }
 
@@ -148,24 +139,29 @@ const Index = ({ router }) => {
 
   const handleSiteFetch = async palette => {
     setPalette(palette)
-    const newCombo = generateRandomPalette(palette)
+    setPinnedColors(resetPinned)
+    const newCombo = generateRandomPalette(palette, resetPinned)
     set(newCombo)
   }
-
-  const handleUpdateParentBg = e => updateParentBg(e.target.value)
 
   const handleClearPalette = () => {
     const clearedPalette = ["#000000", "#FFFFFF", "#2c7cb0", "#757575"]
     setPalette(clearedPalette)
-    const newCombo = generateRandomPalette(clearedPalette)
+    const newCombo = generateRandomPalette(clearedPalette, resetPinned)
     set(newCombo)
   }
+
+  const handlePinColor = key => () => {
+    setPinnedColors(prevState => ({ ...prevState, [key]: !prevState[key] }))
+  }
+
+  console.log(pinnedColors)
 
   return (
     <Div
       display="flex"
       flexWrap="wrap"
-      bg={updatedCurrentCombo.parentBg}
+      bg={currentCombination.parentBg}
       width={1}
       position="relative"
       style={{
@@ -193,51 +189,111 @@ const Index = ({ router }) => {
             />
             <Flex>
               <Div alignItems="center" display="flex" width="auto">
-                <Div width={64} bg={updatedCurrentCombo.parentBg} py={1} mr={2}>
+                <Div
+                  width={64}
+                  bg={currentCombination.parentBg}
+                  py={1}
+                  mr={2}
+                  css={{ cursor: "pointer" }}
+                  onClick={handlePinColor("parentBg")}
+                >
                   <Icon
-                    mx="auto"
                     type="lock"
                     color="white"
-                    css={{ opacity: 0, ":hover": { opacity: 1 } }}
+                    css={{
+                      opacity: pinnedColors.parentBg ? 1 : 0,
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      ":hover": { opacity: 1 }
+                    }}
                   />
                 </Div>
                 <Div>
                   <Span display="block" fontWeight={700}>
-                    Parent Bg:{" "}
+                    Parent Bg:
                   </Span>
-                  <Code>{updatedCurrentCombo.parentBg}</Code>
-                </Div>
-              </Div>
-              <Div alignItems="center" display="flex" width="auto">
-                <Div width={64} bg={updatedCurrentCombo.color} py={3} mr={2} />
-                <Div>
-                  <Span display="block" fontWeight={700}>
-                    Color:{" "}
-                  </Span>
-                  <Code>{updatedCurrentCombo.color}</Code>
-                </Div>
-              </Div>
-              <Div alignItems="center" display="flex" width="auto">
-                <Div width={64} bg={updatedCurrentCombo.bg} py={3} mr={2} />
-                <Div>
-                  <Span display="block" fontWeight={700}>
-                    Bg:{" "}
-                  </Span>
-                  <Code>{updatedCurrentCombo.bg}</Code>
+                  <Code>{currentCombination.parentBg}</Code>
                 </Div>
               </Div>
               <Div alignItems="center" display="flex" width="auto">
                 <Div
                   width={64}
-                  bg={updatedCurrentCombo.borderColor}
-                  py={3}
+                  bg={currentCombination.color}
+                  py={1}
                   mr={2}
-                />
+                  css={{ cursor: "pointer" }}
+                  onClick={handlePinColor("color")}
+                >
+                  <Icon
+                    type="lock"
+                    color="white"
+                    css={{
+                      opacity: pinnedColors.color ? 1 : 0,
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      ":hover": { opacity: 1 }
+                    }}
+                  />
+                </Div>
                 <Div>
                   <Span display="block" fontWeight={700}>
-                    Border:{" "}
+                    Color:
                   </Span>
-                  <Code>{updatedCurrentCombo.borderColor}</Code>
+                  <Code>{currentCombination.color}</Code>
+                </Div>
+              </Div>
+              <Div alignItems="center" display="flex" width="auto">
+                <Div
+                  width={64}
+                  bg={currentCombination.bg}
+                  py={1}
+                  mr={2}
+                  css={{ cursor: "pointer" }}
+                  onClick={handlePinColor("bg")}
+                >
+                  <Icon
+                    type="lock"
+                    color="white"
+                    css={{
+                      opacity: pinnedColors.bg ? 1 : 0,
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      ":hover": { opacity: 1 }
+                    }}
+                  />
+                </Div>
+                <Div>
+                  <Span display="block" fontWeight={700}>
+                    Bg:
+                  </Span>
+                  <Code>{currentCombination.bg}</Code>
+                </Div>
+              </Div>
+              <Div alignItems="center" display="flex" width="auto">
+                <Div
+                  width={64}
+                  bg={currentCombination.borderColor}
+                  py={1}
+                  mr={2}
+                  css={{ cursor: "pointer" }}
+                  onClick={handlePinColor("borderColor")}
+                >
+                  <Icon
+                    type="lock"
+                    color="white"
+                    css={{
+                      opacity: pinnedColors.borderColor ? 1 : 0,
+                      marginLeft: "auto",
+                      marginRight: "auto",
+                      ":hover": { opacity: 1 }
+                    }}
+                  />
+                </Div>
+                <Div>
+                  <Span display="block" fontWeight={700}>
+                    Border:
+                  </Span>
+                  <Code>{currentCombination.borderColor}</Code>
                 </Div>
               </Div>
               <ButtonPrimary
@@ -335,49 +391,6 @@ const Index = ({ router }) => {
           </Div>
         </Div>
 
-        <Div display="flex" flexWrap="wrap">
-          <H4 width={1} mb={2} mt={4}>
-            Background
-          </H4>
-          <Div display="flex" alignItems="center" width="auto" mr={3}>
-            <Input
-              type="radio"
-              name="parentBg"
-              value="currentCombination"
-              checked={parentBg === "currentCombination"}
-              onChange={handleUpdateParentBg}
-            />
-            <Label pl={1}>Palette</Label>
-          </Div>
-          <Div display="flex" alignItems="center" width="auto" mr={3}>
-            <Input
-              type="radio"
-              name="parentBg"
-              id="parentBgWhite"
-              value="white"
-              checked={parentBg === "white"}
-              onChange={handleUpdateParentBg}
-            />
-            <Label pl={1} htmlFor="parentBgWhite">
-              White
-            </Label>
-          </Div>
-
-          <Div display="flex" alignItems="center" width="auto" mr={3}>
-            <Input
-              type="radio"
-              name="parentBg"
-              id="parentBgBlack"
-              value="black"
-              checked={parentBg === "black"}
-              onChange={handleUpdateParentBg}
-            />
-            <Label pl={1} htmlFor="parentBgBlack">
-              Black
-            </Label>
-          </Div>
-        </Div>
-
         <ColorBlindFilter
           onChange={handleColorBlindFilter}
           currentValue={colorFilter}
@@ -390,13 +403,13 @@ const Index = ({ router }) => {
         />
       </Div>
 
-      {!isEmpty(updatedCurrentCombo) && (
+      {!isEmpty(currentCombination) && (
         <Div width={3 / 4} pb={5} pt={4} borderTop="1px solid rgba(0,0,0,.1)">
           <Div maxWidth="48em" mx="auto">
-            <TextBlock currentCombination={updatedCurrentCombo} />
-            <IconBlock currentCombination={updatedCurrentCombo} />
-            <FormBlock currentCombination={updatedCurrentCombo} />
-            <ChartsBlock currentCombination={updatedCurrentCombo} />
+            <TextBlock currentCombination={currentCombination} />
+            <IconBlock currentCombination={currentCombination} />
+            <FormBlock currentCombination={currentCombination} />
+            <ChartsBlock currentCombination={currentCombination} />
           </Div>
         </Div>
       )}
