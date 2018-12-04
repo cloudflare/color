@@ -20,15 +20,16 @@ const SingleColor = ({
 
   return (
     <Div
-      py={2}
+      width="18px"
       m={1}
-      borderRadius="9999px"
+      borderRadius="50%"
       bg={color}
       style={{
+        height: "18px",
         cursor: "pointer",
         position: "relative",
-        boxShadow: isVisible ? " 0 0 10px rgba(0,0,0,0.3)" : "",
-        transform: isVisible ? "scale(1.5)" : "",
+        boxShadow: isVisible ? " 0 0 10px rgba(0,0,0,0.3)" : "none",
+        transform: isVisible ? "scale(1.5)" : "none",
         transition: "transform 200ms ease-in"
       }}
       onClick={handleActiveUI}
