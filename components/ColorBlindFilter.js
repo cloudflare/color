@@ -1,18 +1,18 @@
 import React from "react"
 
 const filters = [
-  { label: "None", value: "none" },
-  { label: "Achromatopsia", value: "achromatopsia" },
-  { label: "Protanopia", value: "protanopia" },
-  { label: "Protanomaly", value: "protanomaly" },
-  { label: "Deuteranopia", value: "deuteranopia" },
-  { label: "Deuteranomaly", value: "deuteranomaly" },
-  { label: "Tritanopia", value: "tritanopia" },
-  { label: "Tritanomaly", value: "tritanomaly" },
-  { label: "Achromatomaly", value: "achromatomaly" }
+  { label: "None", value: "none", population: "92%" },
+  { label: "Deuteranomaly", value: "deuteranomaly", population: "2.7%" },
+  { label: "Protanomaly", value: "protanomaly", population: "0.66"},
+  { label: "Protanopia", value: "protanopia", population: ".59%"},
+  { label: "Deuteranopia", value: "deuteranopia", population: "0.56%"},
+  { label: "Tritanopia", value: "tritanopia", population: "0.016%"},
+  { label: "Tritanomaly", value: "tritanomaly", population: ".01%" },
+  { label: "Achromatopsia", value: "achromatopsia", population: "<0.0001%" },
+  { label: "Achromatomaly", value: "achromatomaly", population: "Unknown" }
 ]
 
-const SingleRadio = ({ label, value, onChange, currentValue }) => (
+const SingleRadio = ({ label, value, population, onChange, currentValue }) => (
   <Div display="flex" alignItems="center" width="auto" width={1}>
     <Input
       type="radio"
@@ -22,8 +22,9 @@ const SingleRadio = ({ label, value, onChange, currentValue }) => (
       value={value}
       onChange={onChange}
     />
-    <Label pl={1} htmlFor={label}>
-      {label}
+    <Label pl={1} htmlFor={label} display='flex'>
+      <Span width={1/2}>{label}</Span> 
+      <Span color='gray.3' width={1/2}>{population}</Span>
     </Label>
   </Div>
 )
@@ -40,6 +41,7 @@ const ColorBlindFilter = ({ onChange, currentValue }) => {
           key={f.label}
           label={f.label}
           value={f.value}
+          population={f.population}
           onChange={onChange}
           currentValue={currentValue}
         />
