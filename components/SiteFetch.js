@@ -39,6 +39,7 @@ const SiteFetch = ({ onSubmit }) => {
 
       onSubmit(sortPalette(newPalette))
     }
+
     setLoading(false)
   }
 

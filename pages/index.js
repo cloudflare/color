@@ -134,6 +134,13 @@ const Index = ({ router }) => {
 
   const handleUpdateParentBg = e => updateParentBg(e.target.value)
 
+  const handleClearPalette = () => {
+    const clearedPalette = ["#000000", "#FFFFFF", "#2c7cb0", "#757575"]
+    setPalette(clearedPalette)
+    const newCombo = generateRandomPalette(clearedPalette)
+    set(newCombo)
+  }
+
   return (
     <Div
       display="flex"
@@ -258,6 +265,7 @@ const Index = ({ router }) => {
             textAlign="left"
           >
             Palette
+            <ButtonLink onClick={handleClearPalette}>Clear palette</ButtonLink>
           </Label>
           <Palette
             palette={palette}
