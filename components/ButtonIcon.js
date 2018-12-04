@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "@emotion/styled"
+import styled from "react-emotion"
 
 import {
   space,
@@ -43,12 +43,11 @@ const Button = styled.button(
 )
 
 const ButtonIcon = ({ variant, icon, iconSize, ...props }) => {
-
   switch (variant) {
     case 1:
       return (
         <Button {...props}>
-          <Icon color='black' size={iconSize} type={icon} />
+          <Icon color="black" size={iconSize} type={icon} />
         </Button>
       )
   }
@@ -62,10 +61,10 @@ ButtonIcon.defaultProps = {
   justifyContent: "center",
   border: "0px solid currentColor",
   textAlign: "center",
-  bg: 'transparent',
-  color: 'black',
+  bg: "transparent",
+  color: "black",
   variant: 1,
-  borderRadius: 9999,
+  borderRadius: 9999
 }
 
 export default ButtonIcon

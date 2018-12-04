@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from 'react-emotion'
 import {color} from 'styled-system'
 
 const Polygon = styled.polygon(color, {
