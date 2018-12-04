@@ -34,6 +34,7 @@ const Index = ({ router }) => {
   const [pinnedColors, setPinnedColors] = useState(resetPinned)
   const { start, stop, isRunning } = useInterval({
     duration: 2000,
+    startImmediate: true,
     callback: () => {
       const newCombo = generateRandomPalette(
         palette,
