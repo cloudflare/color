@@ -155,8 +155,6 @@ const Index = ({ router }) => {
     setPinnedColors(prevState => ({ ...prevState, [key]: !prevState[key] }))
   }
 
-  console.log(pinnedColors)
-
   return (
     <Div
       display="flex"
@@ -351,7 +349,9 @@ const Index = ({ router }) => {
             alignItems="center"
           >
             <Label fontWeight={700}>Palette</Label>
-            <TextButton ml='auto' onClick={handleClearPalette}>Clear</TextButton>
+            <TextButton ml="auto" onClick={handleClearPalette}>
+              Clear
+            </TextButton>
           </Div>
           <Palette
             palette={palette}
