@@ -2,10 +2,11 @@ import React from "react"
 import Color from "color"
 
 const FormBlock = ({ currentCombination }) => {
-  const contrastValue = Color(currentCombination.color).contrast(
+  const colorParentBgContrastValue = Color(currentCombination.color).contrast(
     Color(currentCombination.parentBg)
   )
-  const outlineBg = contrastValue < 4.5 ? currentCombination.bg : "transparent"
+  const outlineBg = colorParentBgContrastValue < 4.5 ? currentCombination.bg : "transparent"
+  const radioColor = colorParentBgContrastValue < 4.5 ? currentCombination.bg : currentCombination.color
 
   return (
     <>
@@ -49,12 +50,12 @@ const FormBlock = ({ currentCombination }) => {
             mr={3}
           />
           <Div display="flex" alignItems="center" borderRadius={2} pl={3}>
-            <RadioButton name="group 1" color={currentCombination.color} mr={3}>
+            <RadioButton name="group 1" color={radioColor} mr={3}>
               Yes
             </RadioButton>
             <RadioButton
               name="group 1"
-              color={currentCombination.color}
+              color={radioColor}
               checked={true}
             >
               No
