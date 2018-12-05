@@ -6,6 +6,7 @@ import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
 import uniqWith from "lodash/uniqWith"
 import isEqual from "lodash/isEqual"
+import IconOutlineBlock from '../components/IconOutlineBlock'
 
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
@@ -293,6 +294,7 @@ const Index = ({ router }) => {
         <Div width={3 / 4} pb={5} pt={4} borderTop="1px solid rgba(0,0,0,.1)">
           <Div maxWidth="48em" mx="auto">
             <TextBlock currentCombination={currentCombination} />
+            <IconOutlineBlock currentCombination={currentCombination} />
             <IconBlock currentCombination={currentCombination} />
             <FormBlock currentCombination={currentCombination} />
             <ChartsBlock currentCombination={currentCombination} />

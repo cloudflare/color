@@ -1,6 +1,8 @@
 import React from "react"
+import Color from "color"
 
 const IconBlock = ({ currentCombination }) => {
+
   return (
     <Div
       mt={5}
@@ -8,7 +10,7 @@ const IconBlock = ({ currentCombination }) => {
       px={[3, 4, 5]}
       bg={currentCombination.bg}
       display="grid"
-      style={{ gridTemplateColumns: "repeat(12, 1fr)", rowGap: "2em" }}
+      style={{ justifyItems: 'center', gridTemplateColumns: "repeat(12, 1fr)", rowGap: "2em" }}
     >
       <Icon color={currentCombination.color} type="remove" />
       <Icon color={currentCombination.color} type="caretDown" />

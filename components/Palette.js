@@ -91,7 +91,7 @@ const Palette = ({ palette, onUpdate, onRemove, activeColors }) => {
   const [activeColor, updateActiveColor] = useState(null)
 
   return (
-    <Flex flexWrap="wrap">
+    <Div display='grid' style={{ justifyItems: 'center', gridTemplateColumns: "repeat(12, 1fr)", rowGap: ".5em" }}>
       {palette.map((color, i) => (
         <SingleColor
           isActive={i === activeColor}
@@ -104,7 +104,7 @@ const Palette = ({ palette, onUpdate, onRemove, activeColors }) => {
           onClick={updateActiveColor}
         />
       ))}
-    </Flex>
+    </Div>
   )
 }
 
