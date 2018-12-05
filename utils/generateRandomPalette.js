@@ -14,10 +14,18 @@ const randMainAndComplementaryColors = (
   if (!pinnedColors.color && !pinnedColors.bg) {
     const mainColor = getRandomColor(palette)
     const bgColor = getRandomColor(getAccessibleColors(palette, mainColor))
-    return {
-      mainColor,
-      bgColor
+    if (bgColor) {
+      return {
+        mainColor,
+        bgColor
+      }
     }
+
+    return randMainAndComplementaryColors(
+      palette,
+      pinnedColors,
+      currentCombination
+    )
   }
 
   if (pinnedColors.color && pinnedColors.bg) {
@@ -29,13 +37,27 @@ const randMainAndComplementaryColors = (
   if (pinnedColors.color) {
     const mainColor = currentCombination.color
     const bgColor = getRandomColor(getAccessibleColors(palette, mainColor))
-    return { mainColor, bgColor }
+    if (bgColor) {
+      return { mainColor, bgColor }
+    }
+    return randMainAndComplementaryColors(
+      palette,
+      pinnedColors,
+      currentCombination
+    )
   }
 
   if (pinnedColors.bg) {
     const bgColor = currentCombination.bg
     const mainColor = getRandomColor(getAccessibleColors(palette, bgColor))
-    return { mainColor, bgColor }
+    if (mainColor) {
+      return { mainColor, bgColor }
+    }
+    return randMainAndComplementaryColors(
+      palette,
+      pinnedColors,
+      currentCombination
+    )
   }
 }
 

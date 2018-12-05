@@ -27,8 +27,8 @@ const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
                   mb={1}
                   style={{ cursor: "pointer" }}
                 >
-                  {colors.map(color => (
-                    <Div width={1 / 4} key={color} py={3} bg={color} />
+                  {colors.map((color, i) => (
+                    <Div width={1 / 4} key={i} py={3} bg={color} />
                   ))}
                   <Button onClick={handleRemoveLike(i)}>Remove</Button>
                 </Flex>

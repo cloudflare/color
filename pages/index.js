@@ -163,6 +163,18 @@ const Index = ({ router }) => {
     set(newCombo)
   }
 
+  const handleImageUpload = async e => {
+    const res = await fetch("http://localhost:50007", {
+      method: "POST",
+      body: e.target.files[0]
+    })
+    const palette = await res.json()
+    setPalette(palette)
+    setPinnedColors(resetPinned)
+    const newCombo = generateRandomPalette(palette, resetPinned)
+    set(newCombo)
+  }
+
   return (
     <Div
       display="flex"
@@ -208,6 +220,10 @@ const Index = ({ router }) => {
         style={{ minHeight: "100vh" }}
       >
         <SiteFetch onSubmit={handleSiteFetch} />
+
+        <Div>
+          <Input type="file" onChange={handleImageUpload} />
+        </Div>
 
         <Div>
           <Div
