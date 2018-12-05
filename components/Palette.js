@@ -87,7 +87,7 @@ const SingleColor = ({
   )
 }
 
-const Palette = ({ palette, onUpdate, onRemove, onAdd, activeColors }) => {
+const Palette = ({ palette, onUpdate, onRemove, activeColors }) => {
   const [activeColor, updateActiveColor] = useState(null)
 
   return (

@@ -10,8 +10,6 @@ import isEqual from "lodash/isEqual"
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
-import TextButton from "../components/TextButton"
-import ButtonIcon from "../components/ButtonIcon"
 
 const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
@@ -156,6 +154,15 @@ const Index = ({ router }) => {
     setPinnedColors(prevState => ({ ...prevState, [key]: !prevState[key] }))
   }
 
+  const handleShowEditTooltip = () => {
+    stop()
+  }
+
+  const handleComboColorUpdate = (newColor, tooltipKey) => {
+    const newCombo = { ...currentCombination, [tooltipKey]: newColor }
+    set(newCombo)
+  }
+
   return (
     <Div
       display="flex"
@@ -175,157 +182,18 @@ const Index = ({ router }) => {
         <Div width={1 / 4} py={2} pl={3}>
           <Logo />
         </Div>
-        <Div width={3 / 4}>
-          <Flex fontSize={1} justifyContent="center" bg="white">
-            <ButtonPrimary
-              mx={1}
-              alignItems="center"
-              onClick={handlePrevious}
-              button="left"
-              bg="transparent"
-              color="black"
-              children="Previous"
-            />
-            <Flex>
-              <Div alignItems="center" display="flex" width="auto">
-                <Div
-                  width={64}
-                  bg={currentCombination.parentBg}
-                  py={1}
-                  mr={2}
-                  css={{ cursor: "pointer" }}
-                  onClick={handlePinColor("parentBg")}
-                >
-                  <Icon
-                    type="lock"
-                    color="white"
-                    css={{
-                      opacity: pinnedColors.parentBg ? 1 : 0,
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      ":hover": { opacity: 1 }
-                    }}
-                  />
-                </Div>
-                <Div>
-                  <Span display="block" fontWeight={700}>
-                    Parent Bg:
-                  </Span>
-                  <Code>{currentCombination.parentBg}</Code>
-                </Div>
-              </Div>
-              <Div alignItems="center" display="flex" width="auto">
-                <Div
-                  width={64}
-                  bg={currentCombination.color}
-                  py={1}
-                  mr={2}
-                  css={{ cursor: "pointer" }}
-                  onClick={handlePinColor("color")}
-                >
-                  <Icon
-                    type="lock"
-                    color="white"
-                    css={{
-                      opacity: pinnedColors.color ? 1 : 0,
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      ":hover": { opacity: 1 }
-                    }}
-                  />
-                </Div>
-                <Div>
-                  <Span display="block" fontWeight={700}>
-                    Color:
-                  </Span>
-                  <Code>{currentCombination.color}</Code>
-                </Div>
-              </Div>
-              <Div alignItems="center" display="flex" width="auto">
-                <Div
-                  width={64}
-                  bg={currentCombination.bg}
-                  py={1}
-                  mr={2}
-                  css={{ cursor: "pointer" }}
-                  onClick={handlePinColor("bg")}
-                >
-                  <Icon
-                    type="lock"
-                    color="white"
-                    css={{
-                      opacity: pinnedColors.bg ? 1 : 0,
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      ":hover": { opacity: 1 }
-                    }}
-                  />
-                </Div>
-                <Div>
-                  <Span display="block" fontWeight={700}>
-                    Bg:
-                  </Span>
-                  <Code>{currentCombination.bg}</Code>
-                </Div>
-              </Div>
-              <Div alignItems="center" display="flex" width="auto">
-                <Div
-                  width={64}
-                  bg={currentCombination.borderColor}
-                  py={1}
-                  mr={2}
-                  css={{ cursor: "pointer" }}
-                  onClick={handlePinColor("borderColor")}
-                >
-                  <Icon
-                    type="lock"
-                    color="white"
-                    css={{
-                      opacity: pinnedColors.borderColor ? 1 : 0,
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      ":hover": { opacity: 1 }
-                    }}
-                  />
-                </Div>
-                <Div>
-                  <Span display="block" fontWeight={700}>
-                    Border:
-                  </Span>
-                  <Code>{currentCombination.borderColor}</Code>
-                </Div>
-              </Div>
-              <ButtonPrimary
-                alignItems="center"
-                onClick={handleLike}
-                button="plus"
-                bg="transparent"
-                color="black"
-                children="Save"
-                iconSize={12}
-              />
-              <ButtonIcon
-                alignItems="center"
-                onClick={handleAutoCycling}
-                button={null}
-                color="#000000"
-                icon={isRunning ? "pause" : "play"}
-                iconSize={16}
-              />
-            </Flex>
-
-            <ButtonPrimary
-              mx={1}
-              alignItems="center"
-              onClick={handleNext}
-              button="right"
-              align="right"
-              children="Next"
-              bg="transparent"
-              color="black"
-            />
-          </Flex>
-        </Div>
+        <CombinationTools
+          currentCombination={currentCombination}
+          pinnedColors={pinnedColors}
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          onPinColor={handlePinColor}
+          onLike={handleLike}
+          onShowEditTooltip={handleShowEditTooltip}
+          onAutoCycling={handleAutoCycling}
+          isRunning={isRunning}
+          onComboColorUpdate={handleComboColorUpdate}
+        />
       </Div>
 
       <Div
