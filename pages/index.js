@@ -6,7 +6,7 @@ import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
 import uniqWith from "lodash/uniqWith"
 import isEqual from "lodash/isEqual"
-import IconOutlineBlock from '../components/IconOutlineBlock'
+import IconOutlineBlock from "../components/IconOutlineBlock"
 
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
@@ -25,9 +25,10 @@ const resetPinned = {
 
 const Index = ({ router }) => {
   const [palette, setPalette] = useState(sortPalette(defaultPalette))
-  const [newColor, updateNewColor] = useState("")
   const [likes, updateLikes] = useState([])
   const [colorFilter, setColorFilter] = useState("none")
+  const [paletteImage, setPaletteImage] = useState(null)
+  const [imageName, setImageName] = useState("")
   const [currentState, { set, undo, redo, canRedo, canUndo }] = useHistory({})
   const { present: currentCombination } = currentState
   const [pinnedColors, setPinnedColors] = useState(resetPinned)
@@ -147,6 +148,8 @@ const Index = ({ router }) => {
     setPalette(clearedPalette)
     const newCombo = generateRandomPalette(clearedPalette, resetPinned)
     set(newCombo)
+    setImageName(new Date())
+    setPaletteImage("")
   }
 
   const handlePinColor = key => () => {
@@ -163,11 +166,14 @@ const Index = ({ router }) => {
   }
 
   const handleImageUpload = async e => {
-    const res = await fetch("http://localhost:50007", {
+    setPaletteImage(e.target.files[0])
+
+    const res = await fetch("http://localhost:50855", {
       method: "POST",
       body: e.target.files[0]
     })
     const palette = await res.json()
+
     setPalette(palette)
     setPinnedColors(resetPinned)
     const newCombo = generateRandomPalette(palette, resetPinned)
@@ -221,7 +227,13 @@ const Index = ({ router }) => {
         <SiteFetch onSubmit={handleSiteFetch} />
 
         <Div>
-          <Input type="file" onChange={handleImageUpload} />
+          <Input
+            key={imageName}
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
+          {paletteImage && <Img src={URL.createObjectURL(paletteImage)} />}
         </Div>
 
         <Div>
