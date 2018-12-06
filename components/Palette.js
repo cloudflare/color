@@ -21,7 +21,7 @@ const SingleColor = ({
   return (
     <Div
       m={1}
-      borderRadius='100%'
+      borderRadius="100%"
       bg={color}
       height={24}
       width={24}
@@ -87,11 +87,18 @@ const SingleColor = ({
   )
 }
 
-const Palette = ({ palette, onUpdate, onRemove, activeColors }) => {
+const Palette = ({ palette, onUpdate, onRemove, activeColors, onAddColor }) => {
   const [activeColor, updateActiveColor] = useState(null)
 
   return (
-    <Div display='grid' style={{ justifyItems: 'center', gridTemplateColumns: "repeat(12, 1fr)", rowGap: ".5em" }}>
+    <Div
+      display="grid"
+      style={{
+        justifyItems: "center",
+        gridTemplateColumns: "repeat(12, 1fr)",
+        rowGap: ".5em"
+      }}
+    >
       {palette.map((color, i) => (
         <SingleColor
           isActive={i === activeColor}
@@ -104,6 +111,7 @@ const Palette = ({ palette, onUpdate, onRemove, activeColors }) => {
           onClick={updateActiveColor}
         />
       ))}
+      <AddColor onAddColor={onAddColor} />
     </Div>
   )
 }

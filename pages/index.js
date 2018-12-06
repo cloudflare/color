@@ -116,9 +116,7 @@ const Index = ({ router }) => {
     setPalette(updatedPalette)
   }
 
-  const handleNewColorInput = e => updateNewColor(e.target.value)
-
-  const handleAddColor = () =>
+  const handleAddColor = newColor =>
     newColor.length > 0 && setPalette([...palette, newColor])
 
   const handleKeyPress = ({ key }) => {
@@ -244,6 +242,7 @@ const Index = ({ router }) => {
             activeColors={Object.values(currentCombination)}
             onRemove={handleRemove}
             onUpdate={handleColorUpdate}
+            onAddColor={handleAddColor}
           />
 
           <Div display="flex" mt={2}>
@@ -252,29 +251,7 @@ const Index = ({ router }) => {
               borderRadius={2}
               style={{ overflow: "hidden" }}
               width={1}
-            >
-              <Div>
-                <TextInput
-                  borderColor="transparent"
-                  bg="gray.8"
-                  value={newColor}
-                  onChange={handleNewColorInput}
-                />
-              </Div>
-              <Button
-                fontWeight={700}
-                fontSize={2}
-                px={3}
-                bg="black"
-                color="white"
-                border="1px solid black"
-                width="auto"
-                style={{ whiteSpace: "nowrap" }}
-                onClick={handleAddColor}
-              >
-                Add Color
-              </Button>
-            </Div>
+            />
           </Div>
         </Div>
 
