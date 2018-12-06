@@ -168,7 +168,7 @@ const Index = ({ router }) => {
   const handleImageUpload = async e => {
     setPaletteImage(e.target.files[0])
 
-    const res = await fetch("http://localhost:50855", {
+    const res = await fetch("https://palette-image-xdihrlacdc.now.sh", {
       method: "POST",
       body: e.target.files[0]
     })
