@@ -92,11 +92,14 @@ const Palette = ({ palette, onUpdate, onRemove, activeColors, onAddColor }) => {
 
   return (
     <Div
-      display="grid"
-      style={{
-        justifyItems: "center",
-        gridTemplateColumns: "repeat(12, 1fr)",
-        rowGap: ".5em"
+      display="flex"
+      css={{
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+        "&:after": {
+          content: '""',
+          flex: "auto"
+        }
       }}
     >
       {palette.map((color, i) => (
