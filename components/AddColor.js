@@ -19,6 +19,7 @@ const AddColor = ({ onAddColor }) => {
   return (
     <Div
       borderRadius="100%"
+      m={1}
       height={24}
       width={24}
       border="1px solid"
