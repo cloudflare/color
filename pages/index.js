@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react"
 import { withRouter } from "next/router"
+import { get as getIdb, set as setIdb } from "idb-keyval"
+import palx from "palx"
 import useHistory from "../utils/useHistory"
 import useInterval from "../utils/useInterval"
 import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
+import isArray from "lodash/isArray"
 import uniqWith from "lodash/uniqWith"
 import isEqual from "lodash/isEqual"
+import reduce from "lodash/reduce"
 import IconOutlineBlock from "../components/IconOutlineBlock"
 
 import defaultPalette from "../utils/defaultPalette"
@@ -34,7 +38,7 @@ const Index = ({ router }) => {
   const [pinnedColors, setPinnedColors] = useState(resetPinned)
   const [withBorders, setWithBorders] = useState(true)
   const [borderWidth, setBorderWidth] = useState(2)
-  const [hue, setHue] = useState(0)
+  const [palxColor, setPalxColor] = useState("#07c")
   const { start, stop, isRunning } = useInterval({
     duration: 2000,
     startImmediate: true,
@@ -47,6 +51,12 @@ const Index = ({ router }) => {
       set(newCombo)
     }
   })
+
+  useEffect(() => {
+    getIdb("likes").then(likes => {
+      likes && updateLikes(likes)
+    })
+  }, [])
 
   useEffect(() => {
     const starterCombination = isEmpty(router.query)
@@ -74,14 +84,18 @@ const Index = ({ router }) => {
     isRunning ? stop() : start()
   }
 
-  const handleLike = () => {
-    const deDuped = uniqWith([...likes, currentCombination], isEqual)
+  const handleLike = async () => {
+    const currentLikes = await likes
+
+    const deDuped = uniqWith([...currentLikes, currentCombination], isEqual)
     updateLikes(deDuped)
+    await setIdb("likes", deDuped)
   }
 
-  const handleRemoveLike = index => {
+  const handleRemoveLike = async index => {
     const newLikes = likes.filter((_, i) => index !== i)
     updateLikes(newLikes)
+    await setIdb("likes", newLikes)
   }
 
   const handleNext = () => {
@@ -169,7 +183,7 @@ const Index = ({ router }) => {
   }
 
   const handleImageUpload = async e => {
-    setPaletteImage(e.target.files[0])
+    setPaletteImage(URL.createObjectURL(e.target.files[0]))
 
     const res = await fetch("https://palette-image-erabnzvsxv.now.sh", {
       method: "POST",
@@ -186,6 +200,36 @@ const Index = ({ router }) => {
   const handleBorderToggle = () => setWithBorders(value => !value)
 
   const handleBorderWidthChange = e => setBorderWidth(parseInt(e.target.value))
+
+  const handleFetchFromUnsplash = async () => {
+    const res = await fetch("http://localhost:63137")
+    const { colors, url } = await res.json()
+    setPalette(colors)
+    setPinnedColors(resetPinned)
+    const newCombo = generateRandomPalette(palette, resetPinned)
+    set(newCombo)
+    setPaletteImage(url)
+  }
+
+  const handlePalxColor = e => {
+    setPalxColor(e.target.value)
+  }
+
+  const handleUsePalx = () => {
+    const newPaletteObj = palx(palxColor)
+
+    const newPalette = reduce(
+      newPaletteObj,
+      (acc, curr) => {
+        return isArray(curr) ? [...acc, ...curr] : acc
+      },
+      []
+    )
+    setPalette(newPalette)
+    setPinnedColors(resetPinned)
+    const newCombo = generateRandomPalette(newPalette, resetPinned)
+    set(newCombo)
+  }
 
   return (
     <Div
@@ -237,11 +281,17 @@ const Index = ({ router }) => {
           <Input
             key={imageName}
             type="file"
-            accept="image/*"
+            accept=".png, .jpg, .jpeg"
             onChange={handleImageUpload}
           />
-          {paletteImage && <Img src={URL.createObjectURL(paletteImage)} />}
         </Div>
+        <P>or</P>
+        <Div>
+          <Button onClick={handleFetchFromUnsplash}>
+            Choose an image from Unsplash
+          </Button>
+        </Div>
+        {paletteImage && <Img src={paletteImage} />}
 
         <Div>
           <Div
@@ -268,26 +318,10 @@ const Index = ({ router }) => {
             <TextButton fontSize={2} fontWeight={700} onClick={handleBorderToggle}>
               {withBorders ? "Hide" : "Show"} borders
             </TextButton>
-            {withBorders && (
-              <Input
-                value={borderWidth}
-                onChange={handleBorderWidthChange}
-                type="number"
-                min={1}
-                max={32}
-                step={1}
-              />
-            )}
+            <Button onClick={handleUsePalx}>Use Palx</Button>{" "}
+            <Input type="text" value={palxColor} onChange={handlePalxColor} />
           </Div>
 
-          <Div display="flex" mt={2}>
-            <Div
-              display="flex"
-              borderRadius={2}
-              style={{ overflow: "hidden" }}
-              width={1}
-            />
-          </Div>
         </Div>
 
         <ColorBlindFilter

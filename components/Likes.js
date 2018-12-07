@@ -1,5 +1,5 @@
 import React from "react"
-import TextButton from './TextButton'
+import TextButton from "./TextButton"
 
 const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
   const handleViewLike = i => () => onSelectLike(i)
@@ -29,9 +29,17 @@ const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
                   style={{ cursor: "pointer" }}
                 >
                   {colors.map((color, i) => (
-                    <Div width={1 / 4} borderRight='4px solid white' key={i} py={3} bg={color} />
+                    <Div
+                      width={1 / 4}
+                      borderRight="4px solid white"
+                      key={i}
+                      py={3}
+                      bg={color}
+                    />
                   ))}
-                  <TextButton px={2} onClick={handleRemoveLike(i)}>Remove</TextButton>
+                  <TextButton px={2} onClick={handleRemoveLike(i)}>
+                    Remove
+                  </TextButton>
                 </Flex>
               )
             })}
