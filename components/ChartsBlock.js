@@ -86,14 +86,14 @@ const ChartsBlock = ({ currentCombination, ...props }) => {
       </Div>
       <Div display='grid' style={{justifyItems: 'center', gridTemplateColumns: 'repeat(3, 1fr)' }}>
  	<PieChart width={200} height={180}>
-        <Pie stroke={currentCombination.bg} data={data03} innerRadius={40} outerRadius={60} fill={currentCombination.color}/>
+        <Pie stroke={currentCombination.bg} data={data03} innerRadius={40} outerRadius={60} dataKey="value" fill={currentCombination.color}/>
        </PieChart>
  	<PieChart width={200} height={180}>
-        <Pie stroke={currentCombination.bg} isAnimationActive={false} data={data01} outerRadius={60} fill={currentCombination.color} label/>
+        <Pie stroke={currentCombination.bg} isAnimationActive={false} data={data01} dataKey="value" outerRadius={60} fill={currentCombination.color} label/>
        </PieChart>
  	<PieChart width={200} height={180}>
-        <Pie stroke={currentCombination.bg} data={data01} outerRadius={48} fill={currentCombination.color} />
-        <Pie stroke={currentCombination.bg} data={data02} innerRadius={64} outerRadius={80} fill={currentCombination.color} label/>
+        <Pie stroke={currentCombination.bg} dataKey="value" data={data01} outerRadius={48} fill={currentCombination.color} />
+        <Pie stroke={currentCombination.bg} data={data02} innerRadius={64} outerRadius={80} dataKey="value" fill={currentCombination.color}/>
        </PieChart>
      </Div>
 
