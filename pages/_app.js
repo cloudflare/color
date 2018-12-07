@@ -15,11 +15,6 @@ injectGlobal`
     font-family: ${theme.font.sansSerif};
     background-color: ${theme.colors.gray[9]};
   }
-
-  * {
-    transition:
-      color .25s ease-in, background-color .25s ease-in, stroke .25s ease-in;
-  }
 `
 
 export default class MyApp extends App {
