@@ -695,6 +695,10 @@ const Icon = ({ type, color, size, ...props }) => {
       {type == "play" && (
         <Path color={color} d="M2 2 L14 8 L2 14 z" />
       )}
+      {type == "like" && (
+        <Path color={color} d="M0 5 C0 3, 1.5 1, 4 1 C6 1, 7.5 2.5, 8 3 C8.5 2.5, 10 1, 12 1 C15 1, 
+        16 3, 16 5 C16 9, 9 14.5, 8 15 C7 14.5, 0 9, 0 5"></Path>
+      )}
     </Svg>
   )
 }

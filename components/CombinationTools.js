@@ -133,14 +133,13 @@ const CombinationTools = ({
             handleActiveComboProp={handleActiveColor}
           />
 
-          <ButtonPrimary
+          <ButtonIcon
             alignItems="center"
             onClick={onLike}
-            button="plus"
+            icon="like"
             bg="transparent"
             color="black"
-            children="Save"
-            iconSize={12}
+            iconSize={16}
           />
           <ButtonIcon
             alignItems="center"
