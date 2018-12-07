@@ -22,6 +22,7 @@
     "lodash": "^4.17.11",
     "next": "^7.0.2",
     "now": "^12.1.8",
+    "palx": "^1.0.3",
     "query-string": "^6.2.0",
     "react": "^16.7.0-alpha.2",
     "react-dom": "^16.7.0-alpha.2",

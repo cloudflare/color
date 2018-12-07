@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react"
 import { withRouter } from "next/router"
 import { get as getIdb, set as setIdb } from "idb-keyval"
+import palx from "palx"
 import useHistory from "../utils/useHistory"
 import useInterval from "../utils/useInterval"
 import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
+import isArray from "lodash/isArray"
 import uniqWith from "lodash/uniqWith"
 import isEqual from "lodash/isEqual"
+import reduce from "lodash/reduce"
 import IconOutlineBlock from "../components/IconOutlineBlock"
 
 import defaultPalette from "../utils/defaultPalette"
@@ -208,6 +211,26 @@ const Index = ({ router }) => {
     setPaletteImage(url)
   }
 
+  const handlePalxColor = e => {
+    setPalxColor(e.target.value)
+  }
+
+  const handleUsePalx = () => {
+    const newPaletteObj = palx(palxColor)
+
+    const newPalette = reduce(
+      newPaletteObj,
+      (acc, curr) => {
+        return isArray(curr) ? [...acc, ...curr] : acc
+      },
+      []
+    )
+    setPalette(newPalette)
+    setPinnedColors(resetPinned)
+    const newCombo = generateRandomPalette(newPalette, resetPinned)
+    set(newCombo)
+  }
+
   return (
     <Div
       display="flex"
@@ -292,7 +315,8 @@ const Index = ({ router }) => {
           />
 
           <Div>
-            Use Palx <Input type="text" />
+            <Button onClick={handleUsePalx}>Use Palx</Button>{" "}
+            <Input type="text" value={palxColor} onChange={handlePalxColor} />
           </Div>
 
           <Div>
