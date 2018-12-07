@@ -1,7 +1,7 @@
 import React from "react"
 import Color from "color"
 
-const FormBlock = ({ currentCombination }) => {
+const FormBlock = ({ withBorders, borderWidth, currentCombination }) => {
   const colorParentBgContrastValue = Color(currentCombination.color).contrast(
     Color(currentCombination.parentBg)
   )
@@ -10,7 +10,7 @@ const FormBlock = ({ currentCombination }) => {
 
   return (
     <>
-      <Flex mt={2} px={[3, 4]} display="none">
+    <Flex mt={2} px={[3, 4]} display="none">
         <TextInput
           py={3}
           px={4}
@@ -43,11 +43,16 @@ const FormBlock = ({ currentCombination }) => {
             color={currentCombination.color}
             bg={currentCombination.bg}
             children="Primary Click"
+            borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+            border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+
           />
           <Badge
             bg={currentCombination.bg}
             color={currentCombination.color}
             mr={3}
+            borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+            border={withBorders ? `${borderWidth}px solid` : '2px solid'}
           />
           <Div display="flex" alignItems="center" borderRadius={2} pl={3}>
             <RadioButton name="group 1" color={radioColor} mr={3}>
@@ -62,7 +67,8 @@ const FormBlock = ({ currentCombination }) => {
             </RadioButton>
           </Div>
         </Div>
-        <Div alignItems="center" display="flex" mt={3} bg={outlineBg} p={3}>
+        <Div 
+          alignItems="center" display="flex" mt={3} bg={outlineBg} p={3}>
           <SingleComponent
             py={2}
             px={4}

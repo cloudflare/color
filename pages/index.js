@@ -32,7 +32,7 @@ const Index = ({ router }) => {
   const [currentState, { set, undo, redo, canRedo, canUndo }] = useHistory({})
   const { present: currentCombination } = currentState
   const [pinnedColors, setPinnedColors] = useState(resetPinned)
-  const [withBorders, setWithBorders] = useState(false)
+  const [withBorders, setWithBorders] = useState(true)
   const [borderWidth, setBorderWidth] = useState(2)
   const [hue, setHue] = useState(0)
   const { start, stop, isRunning } = useInterval({
@@ -265,17 +265,17 @@ const Index = ({ router }) => {
           />
 
           <Div>
-            <Button onClick={handleBorderToggle}>
-              {withBorders ? "Disable" : "Enable"} borders
-            </Button>
+            <TextButton fontSize={2} fontWeight={700} onClick={handleBorderToggle}>
+              {withBorders ? "Hide" : "Show"} borders
+            </TextButton>
             {withBorders && (
               <Input
                 value={borderWidth}
                 onChange={handleBorderWidthChange}
                 type="number"
-                min={2}
-                max={5}
-                step={2}
+                min={1}
+                max={32}
+                step={1}
               />
             )}
           </Div>
@@ -310,10 +310,27 @@ const Index = ({ router }) => {
               borderWidth={borderWidth}
               currentCombination={currentCombination}
             />
-            <IconOutlineBlock currentCombination={currentCombination} />
-            <IconBlock currentCombination={currentCombination} />
-            <FormBlock currentCombination={currentCombination} />
-            <ChartsBlock currentCombination={currentCombination} />
+            <IconOutlineBlock 
+              currentCombination={currentCombination} 
+              withBorders={withBorders}
+              borderWidth={borderWidth}
+            />
+
+            <IconBlock 
+              currentCombination={currentCombination} 
+              withBorders={withBorders}
+              borderWidth={borderWidth}
+            />
+            <FormBlock 
+              currentCombination={currentCombination} 
+              withBorders={withBorders}
+              borderWidth={borderWidth}
+            />
+            <ChartsBlock 
+              currentCombination={currentCombination} 
+              withBorders={withBorders}
+              borderWidth={borderWidth}
+            />
           </Div>
         </Div>
       )}
