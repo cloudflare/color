@@ -300,8 +300,6 @@ const Index = ({ router }) => {
           onSelectLike={handleViewLike}
           onRemoveLike={handleRemoveLike}
         />
-
-        <GenerativePalette colorValue="#0033CC" />
       </Div>
 
       {!isEmpty(currentCombination) && (
