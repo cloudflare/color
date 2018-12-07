@@ -6,6 +6,7 @@ const GenerativePalette = ({ colorValue }) => {
   const [hueValue, satValue, lightValue] = Color(colorValue)
     .hsl()
     .array()
+
   const [hue, setHue] = useState(hueValue)
   const [palette, setPalette] = useState([])
 
@@ -37,6 +38,7 @@ const GenerativePalette = ({ colorValue }) => {
           {Color(c)
             .contrast(Color("white"))
             .toFixed(2)}
+          {Color(c).hex()}
         </Div>
       ))}
     </Div>

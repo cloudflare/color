@@ -42,16 +42,19 @@ const calcLightest = (hue, sat) => {
 const calcMiddle = (hue, sat) => {
   const doesContrastWithWhite = color => {
     const contrastScore = color.contrast(Color("white"))
-    return inRange(contrastScore, 4.5, 4.67)
+    console.log(contrastScore, color)
+    return inRange(contrastScore, 4.48, 4.8)
   }
 
   const doesContrastWithBlack = color => {
     const contrastScore = color.contrast(Color("black"))
-    return inRange(contrastScore, 4.5, 4.67)
+    console.log(contrastScore)
+    return inRange(contrastScore, 4.48, 4.8)
   }
 
   const light = range(101).filter(light => {
     const C = Color.hsl(hue, sat, light)
+    console.log(doesContrastWithWhite(C) && doesContrastWithBlack(C))
     return doesContrastWithWhite(C) && doesContrastWithBlack(C)
   })
 
@@ -75,6 +78,8 @@ const createPalette = (hueVal, satVal, lgtVal) => {
   const darkest = calcDarkest(hue, sat)
   const middle = calcMiddle(hue, sat)
   const lightest = calcLightest(hue, sat)
+
+  console.log(darkest, middle)
 
   const darkestToMiddle = calcStepValues(darkest, middle, steps / 2)
   const middleToLightest = calcStepValues(middle, lightest, steps / 2)

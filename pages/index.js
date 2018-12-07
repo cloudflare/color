@@ -301,7 +301,7 @@ const Index = ({ router }) => {
           onRemoveLike={handleRemoveLike}
         />
 
-        <GenerativePalette colorValue="#07c" />
+        <GenerativePalette colorValue="#0033CC" />
       </Div>
 
       {!isEmpty(currentCombination) && (
