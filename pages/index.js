@@ -32,6 +32,9 @@ const Index = ({ router }) => {
   const [currentState, { set, undo, redo, canRedo, canUndo }] = useHistory({})
   const { present: currentCombination } = currentState
   const [pinnedColors, setPinnedColors] = useState(resetPinned)
+  const [withBorders, setWithBorders] = useState(false)
+  const [borderWidth, setBorderWidth] = useState(2)
+  const [hue, setHue] = useState(0)
   const { start, stop, isRunning } = useInterval({
     duration: 2000,
     startImmediate: true,
@@ -180,6 +183,10 @@ const Index = ({ router }) => {
     set(newCombo)
   }
 
+  const handleBorderToggle = () => setWithBorders(value => !value)
+
+  const handleBorderWidthChange = e => setBorderWidth(parseInt(e.target.value))
+
   return (
     <Div
       display="flex"
@@ -257,6 +264,22 @@ const Index = ({ router }) => {
             onAddColor={handleAddColor}
           />
 
+          <Div>
+            <Button onClick={handleBorderToggle}>
+              {withBorders ? "Disable" : "Enable"} borders
+            </Button>
+            {withBorders && (
+              <Input
+                value={borderWidth}
+                onChange={handleBorderWidthChange}
+                type="number"
+                min={2}
+                max={5}
+                step={2}
+              />
+            )}
+          </Div>
+
           <Div display="flex" mt={2}>
             <Div
               display="flex"
@@ -277,12 +300,18 @@ const Index = ({ router }) => {
           onSelectLike={handleViewLike}
           onRemoveLike={handleRemoveLike}
         />
+
+        <GenerativePalette colorValue="#07c" />
       </Div>
 
       {!isEmpty(currentCombination) && (
         <Div width={3 / 4} pb={5} pt={4} borderTop="1px solid rgba(0,0,0,.1)">
           <Div maxWidth="48em" mx="auto">
-            <TextBlock currentCombination={currentCombination} />
+            <TextBlock
+              withBorders={withBorders}
+              borderWidth={borderWidth}
+              currentCombination={currentCombination}
+            />
             <IconOutlineBlock currentCombination={currentCombination} />
             <IconBlock currentCombination={currentCombination} />
             <FormBlock currentCombination={currentCombination} />

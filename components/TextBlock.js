@@ -1,8 +1,10 @@
 import React from "react"
 
-const TextBlock = ({ currentCombination }) => {
+const TextBlock = ({ currentCombination, withBorders, borderWidth }) => {
   return (
     <Text
+      borderColor={currentCombination.borderColor}
+      border={withBorders ? `${borderWidth}px solid` : null}
       py={[4, 5]}
       px={[3, 4, 5]}
       color={currentCombination.color}
