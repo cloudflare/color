@@ -11,11 +11,12 @@ import uniqWith from "lodash/uniqWith"
 import isEqual from "lodash/isEqual"
 import reduce from "lodash/reduce"
 import IconOutlineBlock from "../components/IconOutlineBlock"
-import theme from '../theme'
+import theme from "../theme"
 
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
+import ColorPicker from "../components/ColorPicker"
 
 const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
@@ -40,6 +41,7 @@ const Index = ({ router }) => {
   const [withBorders, setWithBorders] = useState(true)
   const [borderWidth, setBorderWidth] = useState(2)
   const [palxColor, setPalxColor] = useState("#07c")
+  const [currentPickerColor, setPickerColor] = useState(null)
   const { start, stop, isRunning } = useInterval({
     duration: 2000,
     startImmediate: true,
@@ -103,7 +105,7 @@ const Index = ({ router }) => {
     if (canRedo) {
       return redo()
     }
-    stop()
+    isRunning && stop()
     const newCombo = generateRandomPalette(
       palette,
       pinnedColors,
@@ -120,7 +122,7 @@ const Index = ({ router }) => {
   }
 
   const handleViewLike = index => {
-    stop()
+    isRunning && stop()
     set(likes[index])
   }
 
@@ -175,7 +177,7 @@ const Index = ({ router }) => {
   }
 
   const handleShowEditTooltip = () => {
-    stop()
+    isRunning && stop()
   }
 
   const handleComboColorUpdate = (newColor, tooltipKey) => {
@@ -230,6 +232,20 @@ const Index = ({ router }) => {
     setPinnedColors(resetPinned)
     const newCombo = generateRandomPalette(newPalette, resetPinned)
     set(newCombo)
+  }
+
+  const handlePaletteColorClick = (index, color) => {
+    setPickerColor({ index, color })
+  }
+
+  const handleSetEditColor = color => {
+    isRunning && stop()
+
+    const updatedPalette = [...palette]
+    updatedPalette[currentPickerColor.index] = color
+
+    setPalette(updatedPalette)
+    setPickerColor(prevPicker => ({ index: prevPicker.index, color }))
   }
 
   return (
@@ -288,7 +304,11 @@ const Index = ({ router }) => {
         </Div>
         <P>or</P>
         <Div>
-          <TextButton fontSize={2} fontWeight={700} onClick={handleFetchFromUnsplash}>
+          <TextButton
+            fontSize={2}
+            fontWeight={700}
+            onClick={handleFetchFromUnsplash}
+          >
             Choose an image from Unsplash
           </TextButton>
         </Div>
@@ -301,11 +321,16 @@ const Index = ({ router }) => {
             mt={4}
             mb={2}
             display="flex"
-            flexWrap='wrap'
+            flexWrap="wrap"
             alignItems="center"
           >
             <Div width={1} mb={4}>
-              <Input type="text" value={palxColor} onChange={handlePalxColor} mr={3} />
+              <Input
+                type="text"
+                value={palxColor}
+                onChange={handlePalxColor}
+                mr={3}
+              />
               <TextButton onClick={handleUsePalx}>Generate palette</TextButton>{" "}
             </Div>
             <Label fontWeight={700}>Palette</Label>
@@ -316,18 +341,34 @@ const Index = ({ router }) => {
           <Palette
             palette={palette}
             activeColors={Object.values(currentCombination)}
-            onRemove={handleRemove}
-            onUpdate={handleColorUpdate}
+            onClick={handlePaletteColorClick}
             onAddColor={handleAddColor}
           />
 
-          <Div mt={4} display='flex'>
-            <TextButton fontSize={2} fontWeight={700} onClick={handleBorderToggle} width={1/2} textAlign='left'>
+          {currentPickerColor && (
+            <Div>
+              <ColorPicker
+                currentColor={currentPickerColor.color}
+                onChange={handleSetEditColor}
+              />
+            </Div>
+          )}
+
+          <Div mt={4} display="flex">
+            <TextButton
+              fontSize={2}
+              fontWeight={700}
+              onClick={handleBorderToggle}
+              width={1 / 2}
+              textAlign="left"
+            >
               {withBorders ? "Hide" : "Show"} borders
             </TextButton>
             {withBorders && (
-              <Div ml='auto' textAlign='right'>
-                <Label fontWeight={700} fontSize={2} mr={2}>Border width</Label>
+              <Div ml="auto" textAlign="right">
+                <Label fontWeight={700} fontSize={2} mr={2}>
+                  Border width
+                </Label>
                 <Input
                   value={borderWidth}
                   onChange={handleBorderWidthChange}
@@ -337,16 +378,14 @@ const Index = ({ router }) => {
                   fontSize={2}
                   fontWeight={600}
                   borderRadius={2}
-                  border={'1px solid ' + theme.colors.gray[8]}
+                  border={"1px solid " + theme.colors.gray[8]}
                   min={1}
                   max={32}
                   step={1}
                 />
               </Div>
             )}
- 
           </Div>
-
         </Div>
 
         <ColorBlindFilter
@@ -359,9 +398,20 @@ const Index = ({ router }) => {
           onSelectLike={handleViewLike}
           onRemoveLike={handleRemoveLike}
         />
-        <Div display='flex' mt={2} borderTop='1px solid rgba(0,0,0,.2)' py={3}>
-          <A display='block' href='https://cloudflare.design' fontWeight={700}>Cloudflare Design</A>
-          <A href='https://github.com/cloudflare-design' ml='auto' fontSize={2} color='blue.4' display='block' fontWeight={700}>GitHub</A>
+        <Div display="flex" mt={2} borderTop="1px solid rgba(0,0,0,.2)" py={3}>
+          <A display="block" href="https://cloudflare.design" fontWeight={700}>
+            Cloudflare Design
+          </A>
+          <A
+            href="https://github.com/cloudflare-design"
+            ml="auto"
+            fontSize={2}
+            color="blue.4"
+            display="block"
+            fontWeight={700}
+          >
+            GitHub
+          </A>
         </Div>
       </Div>
 
@@ -373,24 +423,24 @@ const Index = ({ router }) => {
               borderWidth={borderWidth}
               currentCombination={currentCombination}
             />
-            <IconOutlineBlock 
-              currentCombination={currentCombination} 
+            <IconOutlineBlock
+              currentCombination={currentCombination}
               withBorders={withBorders}
               borderWidth={borderWidth}
             />
 
-            <IconBlock 
-              currentCombination={currentCombination} 
+            <IconBlock
+              currentCombination={currentCombination}
               withBorders={withBorders}
               borderWidth={borderWidth}
             />
-            <FormBlock 
-              currentCombination={currentCombination} 
+            <FormBlock
+              currentCombination={currentCombination}
               withBorders={withBorders}
               borderWidth={borderWidth}
             />
-            <ChartsBlock 
-              currentCombination={currentCombination} 
+            <ChartsBlock
+              currentCombination={currentCombination}
               withBorders={withBorders}
               borderWidth={borderWidth}
             />
