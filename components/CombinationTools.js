@@ -14,8 +14,8 @@ const ComboColor = ({
 
   let isLight = Color(currentCombination[comboProperty]).contrast(Color('#ffffff')) 
 
-  let lockColor = isLight < 4.5? "rgba(0,0,0,.75)": "rgba(255,255,255,.75)"
-  let outlineColor =  isLight < 12? "rgba(0,0,0,.15)": "white"
+  let lockColor = isLight < 4.5? Color(currentCombination[comboProperty]).darken(.75): Color(currentCombination[comboProperty]).lighten(1.5)
+  let outlineColor =  isLight < 1.5? Color(currentCombination[comboProperty]).darken(0.125): 'white'
 
   return (
   <Div
