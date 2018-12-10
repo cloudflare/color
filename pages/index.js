@@ -322,7 +322,7 @@ const Index = ({ router }) => {
           />
 
           <Div mt={4} display='flex'>
-            <TextButton fontSize={2} fontWeight={700} onClick={handleBorderToggle} width={1/2}>
+            <TextButton fontSize={2} fontWeight={700} onClick={handleBorderToggle} width={1/2} textAlign='left'>
               {withBorders ? "Hide" : "Show"} borders
             </TextButton>
             {withBorders && (
