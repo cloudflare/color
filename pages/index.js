@@ -277,7 +277,7 @@ const Index = ({ router }) => {
       >
         <SiteFetch onSubmit={handleSiteFetch} />
 
-        <Div>
+        <Div mt={2}>
           <Input
             key={imageName}
             type="file"
@@ -287,10 +287,11 @@ const Index = ({ router }) => {
         </Div>
         <P>or</P>
         <Div>
-          <Button onClick={handleFetchFromUnsplash}>
+          <TextButton fontSize={2} fontWeight={700} onClick={handleFetchFromUnsplash}>
             Choose an image from Unsplash
-          </Button>
+          </TextButton>
         </Div>
+        <P>or</P>
         {paletteImage && <Img src={paletteImage} />}
 
         <Div>
@@ -299,8 +300,13 @@ const Index = ({ router }) => {
             mt={4}
             mb={2}
             display="flex"
+            flexWrap='wrap'
             alignItems="center"
           >
+            <Div width={1} mb={4}>
+              <Input type="text" value={palxColor} onChange={handlePalxColor} mr={3} />
+              <TextButton onClick={handleUsePalx}>Generate palette</TextButton>{" "}
+            </Div>
             <Label fontWeight={700}>Palette</Label>
             <TextButton ml="auto" onClick={handleClearPalette}>
               Clear
@@ -314,12 +320,10 @@ const Index = ({ router }) => {
             onAddColor={handleAddColor}
           />
 
-          <Div>
+          <Div mt={4}>
             <TextButton fontSize={2} fontWeight={700} onClick={handleBorderToggle}>
               {withBorders ? "Hide" : "Show"} borders
             </TextButton>
-            <Button onClick={handleUsePalx}>Use Palx</Button>{" "}
-            <Input type="text" value={palxColor} onChange={handlePalxColor} />
           </Div>
 
         </Div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import Color from "color" 
 
 const ComboColor = ({
   name,
@@ -9,7 +10,14 @@ const ComboColor = ({
   onComboColorUpdate,
   onPinColor,
   handleActiveComboProp
-}) => (
+}) => {
+
+  let isLight = Color(currentCombination[comboProperty]).contrast(Color('#ffffff')) 
+
+  let lockColor = isLight < 4.5? "rgba(0,0,0,.75)": "rgba(255,255,255,.75)"
+  let outlineColor =  isLight < 12? "rgba(0,0,0,.15)": "white"
+
+  return (
   <Div
     alignItems="center"
     display="flex"
@@ -19,18 +27,25 @@ const ComboColor = ({
     <Div
       width={64}
       bg={currentCombination[comboProperty]}
+      display='flex'
+      alignItems='center'
+      justifyContent='center'
       py={1}
       mr={2}
-      css={{ cursor: "pointer" }}
+      css={{ 
+        cursor: "pointer",
+        ':hover > svg': { opacity: 1 }
+      }}
+      style={{outline: '1px solid ' + outlineColor }}
       onClick={onPinColor(comboProperty)}
     >
       <Icon
         type="lock"
-        color="white"
+        color={lockColor}
+        size={16}
+        mx='auto'
         css={{
           opacity: pinnedColors[comboProperty] ? 1 : 0,
-          marginLeft: "auto",
-          marginRight: "auto",
           ":hover": { opacity: 1 }
         }}
       />
@@ -55,7 +70,8 @@ const ComboColor = ({
       />
     )}
   </Div>
-)
+  )
+}
 
 const CombinationTools = ({
   currentCombination,
