@@ -9,6 +9,7 @@ import isEmpty from "lodash/isEmpty"
 import isArray from "lodash/isArray"
 import uniqWith from "lodash/uniqWith"
 import isEqual from "lodash/isEqual"
+import toNumber from "lodash/toNumber"
 import reduce from "lodash/reduce"
 import IconOutlineBlock from "../components/IconOutlineBlock"
 import theme from "../theme"
@@ -32,6 +33,7 @@ const resetPinned = {
 const Index = ({ router }) => {
   const [palette, setPalette] = useState(sortPalette(defaultPalette))
   const [likes, updateLikes] = useState([])
+  const [contrastRatio, setContrastRatio] = useState(4.5)
   const [colorFilter, setColorFilter] = useState("none")
   const [paletteImage, setPaletteImage] = useState(null)
   const [imageName, setImageName] = useState("")
@@ -49,7 +51,8 @@ const Index = ({ router }) => {
       const newCombo = generateRandomPalette(
         palette,
         pinnedColors,
-        currentCombination
+        currentCombination,
+        contrastRatio
       )
       set(newCombo)
     }
@@ -63,7 +66,12 @@ const Index = ({ router }) => {
 
   useEffect(() => {
     const starterCombination = isEmpty(router.query)
-      ? generateRandomPalette(palette, pinnedColors, currentCombination)
+      ? generateRandomPalette(
+          palette,
+          pinnedColors,
+          currentCombination,
+          contrastRatio
+        )
       : router.query
     set(starterCombination)
   }, [])
@@ -109,7 +117,8 @@ const Index = ({ router }) => {
     const newCombo = generateRandomPalette(
       palette,
       pinnedColors,
-      currentCombination
+      currentCombination,
+      contrastRatio
     )
     set(newCombo)
   }
@@ -159,14 +168,24 @@ const Index = ({ router }) => {
   const handleSiteFetch = async palette => {
     setPalette(palette)
     setPinnedColors(resetPinned)
-    const newCombo = generateRandomPalette(palette, resetPinned)
+    const newCombo = generateRandomPalette(
+      palette,
+      resetPinned,
+      null,
+      contrastRatio
+    )
     set(newCombo)
   }
 
   const handleClearPalette = () => {
     const clearedPalette = ["#000000", "#FFFFFF", "#2c7cb0", "#757575"]
     setPalette(clearedPalette)
-    const newCombo = generateRandomPalette(clearedPalette, resetPinned)
+    const newCombo = generateRandomPalette(
+      clearedPalette,
+      resetPinned,
+      null,
+      contrastRatio
+    )
     set(newCombo)
     setImageName(new Date())
     setPaletteImage("")
@@ -196,7 +215,12 @@ const Index = ({ router }) => {
 
     setPalette(palette)
     setPinnedColors(resetPinned)
-    const newCombo = generateRandomPalette(palette, resetPinned)
+    const newCombo = generateRandomPalette(
+      palette,
+      resetPinned,
+      null,
+      contrastRatio
+    )
     set(newCombo)
   }
 
@@ -209,7 +233,12 @@ const Index = ({ router }) => {
     const { colors, url } = await res.json()
     setPalette(colors)
     setPinnedColors(resetPinned)
-    const newCombo = generateRandomPalette(palette, resetPinned)
+    const newCombo = generateRandomPalette(
+      palette,
+      resetPinned,
+      null,
+      contrastRatio
+    )
     set(newCombo)
     setPaletteImage(url)
   }
@@ -230,7 +259,12 @@ const Index = ({ router }) => {
     )
     setPalette(newPalette)
     setPinnedColors(resetPinned)
-    const newCombo = generateRandomPalette(newPalette, resetPinned)
+    const newCombo = generateRandomPalette(
+      newPalette,
+      resetPinned,
+      null,
+      contrastRatio
+    )
     set(newCombo)
   }
 
@@ -246,6 +280,10 @@ const Index = ({ router }) => {
 
     setPalette(updatedPalette)
     setPickerColor(prevPicker => ({ index: prevPicker.index, color }))
+  }
+
+  const handleContrastRatioChange = e => {
+    setContrastRatio(toNumber(e.target.value))
   }
 
   return (
@@ -385,6 +423,30 @@ const Index = ({ router }) => {
                 />
               </Div>
             )}
+          </Div>
+        </Div>
+
+        <Div>
+          <P>Contrast Ratio</P>
+          <Div>
+            <Label>4.5</Label>
+            <Input
+              type="radio"
+              name="contrastRatio"
+              value={4.5}
+              onChange={handleContrastRatioChange}
+              checked={contrastRatio === 4.5}
+            />
+          </Div>
+          <Div>
+            <Label>7</Label>
+            <Input
+              type="radio"
+              name="contrastRatio"
+              value={7}
+              onChange={handleContrastRatioChange}
+              checked={contrastRatio === 7}
+            />
           </Div>
         </Div>
 

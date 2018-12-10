@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import Color from "color" 
+import Color from "color"
+import getContrastScore from "../utils/getContrastScore"
 
 const ComboColor = ({
   name,
@@ -11,65 +12,73 @@ const ComboColor = ({
   onPinColor,
   handleActiveComboProp
 }) => {
+  const contrastScore = getContrastScore(
+    currentCombination[comboProperty],
+    "#ffffff"
+  )
 
-  let isLight = Color(currentCombination[comboProperty]).contrast(Color('#ffffff')) 
-
-  let lockColor = isLight < 4.5? Color(currentCombination[comboProperty]).darken(.75): Color(currentCombination[comboProperty]).lighten(1.5)
-  let outlineColor =  isLight < 1.5? Color(currentCombination[comboProperty]).darken(0.125): 'white'
+  let lockColor =
+    contrastScore < 4.5
+      ? Color(currentCombination[comboProperty]).darken(0.75)
+      : Color(currentCombination[comboProperty]).lighten(1.5)
+  let outlineColor =
+    contrastScore < 1.5
+      ? Color(currentCombination[comboProperty]).darken(0.125)
+      : "white"
 
   return (
-  <Div
-    alignItems="center"
-    display="flex"
-    width="auto"
-    css={{ position: "relative" }}
-  >
     <Div
-      width={64}
-      bg={currentCombination[comboProperty]}
-      display='flex'
-      alignItems='center'
-      justifyContent='center'
-      py={1}
-      mr={2}
-      css={{ 
-        cursor: "pointer",
-        ':hover > svg': { opacity: 1 }
-      }}
-      style={{outline: '1px solid ' + outlineColor }}
-      onClick={onPinColor(comboProperty)}
+      alignItems="center"
+      display="flex"
+      width="auto"
+      css={{ position: "relative" }}
     >
-      <Icon
-        type="lock"
-        color={lockColor}
-        size={16}
-        mx='auto'
+      <Div
+        width={64}
+        bg={currentCombination[comboProperty]}
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        py={1}
+        mr={2}
         css={{
-          opacity: pinnedColors[comboProperty] ? 1 : 0,
-          ":hover": { opacity: 1 }
+          cursor: "pointer",
+          ":hover > svg": { opacity: 1 }
         }}
-      />
-    </Div>
-    <Div>
-      <Span display="block" fontWeight={700}>
-        {name}:
-      </Span>
-      <Code
-        css={{ cursor: "pointer" }}
-        onClick={handleActiveComboProp(comboProperty)}
+        style={{ outline: "1px solid " + outlineColor }}
+        onClick={onPinColor(comboProperty)}
       >
-        {currentCombination[comboProperty]}
-      </Code>
+        <Icon
+          type="lock"
+          color={lockColor}
+          size={16}
+          mx="auto"
+          css={{
+            opacity: pinnedColors[comboProperty] ? 1 : 0,
+            ":hover": { opacity: 1 }
+          }}
+        />
+      </Div>
+      <Div>
+        <Span display="block" fontWeight={700}>
+          {name}:
+        </Span>
+        <Code
+          css={{ cursor: "pointer" }}
+          onClick={handleActiveComboProp(comboProperty)}
+        >
+          {currentCombination[comboProperty]}
+        </Code>
+      </Div>
+      {activeComboColor === comboProperty && (
+        <EditColorTooltip
+          tooltipKey={comboProperty}
+          color={currentCombination[comboProperty]}
+          onClick={handleActiveComboProp}
+          onSubmit={onComboColorUpdate}
+        />
+      )}
     </Div>
-    {activeComboColor === comboProperty && (
-      <EditColorTooltip
-        tooltipKey={comboProperty}
-        color={currentCombination[comboProperty]}
-        onClick={handleActiveComboProp}
-        onSubmit={onComboColorUpdate}
-      />
-    )}
-  </Div>
   )
 }
 

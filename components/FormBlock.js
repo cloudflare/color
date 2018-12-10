@@ -1,16 +1,22 @@
 import React from "react"
-import Color from "color"
+import getContrastScore from "../utils/getContrastScore"
 
 const FormBlock = ({ withBorders, borderWidth, currentCombination }) => {
-  const colorParentBgContrastValue = Color(currentCombination.color).contrast(
-    Color(currentCombination.parentBg)
+  const colorParentBgContrastValue = getContrastScore(
+    currentCombination.color,
+    currentCombination.parentBg
   )
-  const outlineBg = colorParentBgContrastValue < 4.5 ? currentCombination.bg : "transparent"
-  const radioColor = colorParentBgContrastValue < 4.5 ? currentCombination.bg : currentCombination.color
+
+  const outlineBg =
+    colorParentBgContrastValue < 4.5 ? currentCombination.bg : "transparent"
+  const radioColor =
+    colorParentBgContrastValue < 4.5
+      ? currentCombination.bg
+      : currentCombination.color
 
   return (
     <>
-    <Flex mt={2} px={[3, 4]} display="none">
+      <Flex mt={2} px={[3, 4]} display="none">
         <TextInput
           py={3}
           px={4}
@@ -43,32 +49,34 @@ const FormBlock = ({ withBorders, borderWidth, currentCombination }) => {
             color={currentCombination.color}
             bg={currentCombination.bg}
             children="Primary Click"
-            borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
-            border={withBorders ? `${borderWidth}px solid` : '2px solid'}
-
+            borderColor={
+              withBorders
+                ? currentCombination.borderColor
+                : currentCombination.bg
+            }
+            border={withBorders ? `${borderWidth}px solid` : "2px solid"}
           />
           <Badge
             bg={currentCombination.bg}
             color={currentCombination.color}
             mr={3}
-            borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
-            border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+            borderColor={
+              withBorders
+                ? currentCombination.borderColor
+                : currentCombination.bg
+            }
+            border={withBorders ? `${borderWidth}px solid` : "2px solid"}
           />
           <Div display="flex" alignItems="center" borderRadius={2} pl={3}>
             <RadioButton name="group 1" color={radioColor} mr={3}>
               Yes
             </RadioButton>
-            <RadioButton
-              name="group 1"
-              color={radioColor}
-              checked={true}
-            >
+            <RadioButton name="group 1" color={radioColor} checked={true}>
               No
             </RadioButton>
           </Div>
         </Div>
-        <Div 
-          alignItems="center" display="flex" mt={3} bg={outlineBg} p={3}>
+        <Div alignItems="center" display="flex" mt={3} bg={outlineBg} p={3}>
           <SingleComponent
             py={2}
             px={4}
