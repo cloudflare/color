@@ -2,6 +2,7 @@ import App, { Container } from "next/app"
 import React from "react"
 import { hydrate, injectGlobal } from "react-emotion"
 import { ThemeProvider } from "emotion-theming"
+import { initGA, logPageView } from '../utils/analytics'
 
 import theme from "../theme"
 
@@ -18,6 +19,13 @@ injectGlobal`
 `
 
 export default class MyApp extends App {
+  componentDidMount () {
+    if (!window.GA_INITIALIZED) {
+      initGA()
+      window.GA_INITIALIZED = true
+    }
+    logPageView()
+  }
   render() {
     const { Component, pageProps } = this.props
 
