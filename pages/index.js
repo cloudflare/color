@@ -11,6 +11,7 @@ import uniqWith from "lodash/uniqWith"
 import isEqual from "lodash/isEqual"
 import reduce from "lodash/reduce"
 import IconOutlineBlock from "../components/IconOutlineBlock"
+import theme from '../theme'
 
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
@@ -320,10 +321,30 @@ const Index = ({ router }) => {
             onAddColor={handleAddColor}
           />
 
-          <Div mt={4}>
-            <TextButton fontSize={2} fontWeight={700} onClick={handleBorderToggle}>
+          <Div mt={4} display='flex'>
+            <TextButton fontSize={2} fontWeight={700} onClick={handleBorderToggle} width={1/2}>
               {withBorders ? "Hide" : "Show"} borders
             </TextButton>
+            {withBorders && (
+              <Div ml='auto' textAlign='right'>
+                <Label fontWeight={700} fontSize={2} mr={2}>Border width</Label>
+                <Input
+                  value={borderWidth}
+                  onChange={handleBorderWidthChange}
+                  type="number"
+                  py={2}
+                  px={2}
+                  fontSize={2}
+                  fontWeight={600}
+                  borderRadius={2}
+                  border={'1px solid ' + theme.colors.gray[8]}
+                  min={1}
+                  max={32}
+                  step={1}
+                />
+              </Div>
+            )}
+ 
           </Div>
 
         </Div>
