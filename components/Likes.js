@@ -46,17 +46,20 @@ const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
           </Div>
         </Div>
 
-        <ButtonOutline
-          mt={3}
-          width={1}
-          bg="transparent"
-          color="white"
-          borderColor="white"
-          download="likes.json"
-          href={dataStr}
-        >
-          Export Likes as JSON
-        </ButtonOutline>
+        <H4 mb={0} mt={4} fontSize={2}>Export likes</H4>
+        <Div display='flex'>
+          <ButtonOutline
+            mt={2}
+            width={1}
+            bg="gray.8"
+            color="gray.1"
+            borderColor="gray.7"
+            download="likes.json"
+            href={dataStr}
+          >
+            JSON
+          </ButtonOutline>
+        </Div>
       </>
     )
   )

@@ -359,6 +359,10 @@ const Index = ({ router }) => {
           onSelectLike={handleViewLike}
           onRemoveLike={handleRemoveLike}
         />
+        <Div display='flex' mt={2} borderTop='1px solid rgba(0,0,0,.2)' py={3}>
+          <A display='block' href='https://cloudflare.design' fontWeight={700}>Cloudflare Design</A>
+          <A href='https://github.com/cloudflare-design' ml='auto' fontSize={2} color='blue.4' display='block' fontWeight={700}>GitHub</A>
+        </Div>
       </Div>
 
       {!isEmpty(currentCombination) && (
