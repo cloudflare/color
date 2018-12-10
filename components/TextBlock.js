@@ -1,6 +1,10 @@
 import React from "react"
+import Color from 'color'
 
 const TextBlock = ({ currentCombination, withBorders, borderWidth }) => {
+
+  const contrast = Color(currentCombination.bg).contrast(Color(currentCombination.color)).toFixed(2)
+
   return (
     <Text
       borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
@@ -11,6 +15,10 @@ const TextBlock = ({ currentCombination, withBorders, borderWidth }) => {
       bg={currentCombination.bg}
       textAlign="left"
     >
+      <Span fontSize={2} fontWeight={600}>Contrast</Span>
+      <Span fontSize={7} fontWeight={800} display='block' mb={3}>
+        {contrast}
+      </Span>
       <Span fontWeight={800} fontSize={[5, 6]}>
         ABCDEFGHIJKLMNOPQRSTUVWXYZ
       </Span>
