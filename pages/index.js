@@ -186,7 +186,7 @@ const Index = ({ router }) => {
   const handleImageUpload = async e => {
     setPaletteImage(URL.createObjectURL(e.target.files[0]))
 
-    const res = await fetch("https://palette-image-erabnzvsxv.now.sh", {
+    const res = await fetch("https://image-palette.now.sh", {
       method: "POST",
       body: e.target.files[0]
     })
@@ -203,7 +203,7 @@ const Index = ({ router }) => {
   const handleBorderWidthChange = e => setBorderWidth(parseInt(e.target.value))
 
   const handleFetchFromUnsplash = async () => {
-    const res = await fetch("http://localhost:63137")
+    const res = await fetch("https://unsplash-palette.now.sh")
     const { colors, url } = await res.json()
     setPalette(colors)
     setPinnedColors(resetPinned)
