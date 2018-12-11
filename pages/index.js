@@ -171,6 +171,8 @@ const Index = ({ router }) => {
   const handleSiteFetch = async palette => {
     setPalette(palette)
     setPinnedColors(resetPinned)
+    const availableCombos = getAllCombos(palette)
+    setAvailableCombos(availableCombos)
     const newCombo = generateRandomPalette(
       palette,
       resetPinned,
@@ -183,6 +185,8 @@ const Index = ({ router }) => {
   const handleClearPalette = () => {
     const clearedPalette = ["#000000", "#FFFFFF", "#2c7cb0", "#757575"]
     setPalette(clearedPalette)
+    const availableCombos = getAllCombos(clearedPalette)
+    setAvailableCombos(availableCombos)
     const newCombo = generateRandomPalette(
       clearedPalette,
       resetPinned,
@@ -218,6 +222,8 @@ const Index = ({ router }) => {
 
     setPalette(palette)
     setPinnedColors(resetPinned)
+    const availableCombos = getAllCombos(palette)
+    setAvailableCombos(availableCombos)
     const newCombo = generateRandomPalette(
       palette,
       resetPinned,
@@ -234,6 +240,8 @@ const Index = ({ router }) => {
     const { colors, url } = await res.json()
     setPalette(colors)
     setPinnedColors(resetPinned)
+    const availableCombos = getAllCombos(colors)
+    setAvailableCombos(availableCombos)
     const newCombo = generateRandomPalette(
       palette,
       resetPinned,
@@ -260,6 +268,8 @@ const Index = ({ router }) => {
     )
     setPalette(newPalette)
     setPinnedColors(resetPinned)
+    const availableCombos = getAllCombos(newPalette)
+    setAvailableCombos(availableCombos)
     const newCombo = generateRandomPalette(
       newPalette,
       resetPinned,
@@ -280,6 +290,8 @@ const Index = ({ router }) => {
     updatedPalette[currentPickerColor.index] = color
 
     setPalette(updatedPalette)
+    const availableCombos = getAllCombos(updatedPalette)
+    setAvailableCombos(availableCombos)
     setPickerColor(prevPicker => ({ index: prevPicker.index, color }))
   }
 
@@ -293,8 +305,8 @@ const Index = ({ router }) => {
       flexWrap="wrap"
       width={1}
       position="relative"
+      bg={currentCombination.parentBg}
       style={{
-        backgroundColor: "var(--parent-bg)",
         overflow: "hidden",
         filter:
           colorFilter === "none"
@@ -587,11 +599,14 @@ const Index = ({ router }) => {
               borderWidth={borderWidth}
             />
 
-            {/* <IconBlock borderWidth={borderWidth} />
+            <IconBlock
+              currentCombination={currentCombination}
+              borderWidth={borderWidth}
+            />
             <FormBlock
               currentCombination={currentCombination}
               borderWidth={borderWidth}
-            /> */}
+            />
             {/* <ChartsBlock
               currentCombination={currentCombination}
               borderWidth={borderWidth}
