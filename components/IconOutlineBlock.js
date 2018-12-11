@@ -50,7 +50,7 @@ IconSolid.defaultProps = {
   justifyContent: "center",
   height: 48,
   width: 48,
-  borderRadius: "100%"
+  borderRadius: "100%",
 }
 
 const IconOutline = styled.div(
@@ -86,7 +86,7 @@ IconOutline.defaultProps = {
   justifyContent: "center"
 }
 
-const IconOutlineBlock = ({ currentCombination }) => {
+const IconOutlineBlock = ({ currentCombination, withBorders, borderWidth }) => {
   const colorParentBgContrastValue = getContrastScore(
     currentCombination.color,
     currentCombination.parentBg
@@ -106,76 +106,148 @@ const IconOutlineBlock = ({ currentCombination }) => {
           rowGap: "1em"
         }}
       >
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="remove" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="caretDown" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="caretRight" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="caretLeft" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="caretUp" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="pop" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="cost" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="creditCard" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="upload" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="exclamationOutline" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="exclamation" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="collapse" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="expand" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="file" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="forward" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="left" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="right" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="down" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="gear" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="generalInfo" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="hamburger" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="info" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="help" />
         </IconSolid>
-        <IconSolid bg={currentCombination.bg}>
+        <IconSolid bg={currentCombination.bg}
+          borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
+          border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+        >
           <Icon color={currentCombination.color} type="list" />
         </IconSolid>
       </Div>
