@@ -6,7 +6,7 @@
     "dev": "next -p $(./node_modules/detect-port/bin/detect-port 3000)",
     "build": "next build",
     "start": "next start",
-    "deploy": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll && touch out/CNAME && echo \"lp-test.cloudflare.design\" >> out/CNAME && git add out/ && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages",
+    "deploy": "next build && next export && now ./out",
     "analyze": "BUNDLE_ANALYZE=both next build"
   },
   "dependencies": {
