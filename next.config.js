@@ -3,6 +3,8 @@ const fs = require("fs-extra")
 const webpack = require("webpack")
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer")
 
+const debug = process.env.NODE_ENV !== "production";
+
 const fetchFiles = async filePath => {
   const files = await fs.readdir(filePath)
 
@@ -16,6 +18,13 @@ const fetchFiles = async filePath => {
 }
 
 module.exports = withBundleAnalyzer({
+  exportPathMap: function () {
+    return {
+      "/": { page: "/" },
+    }
+  },
+  //assetPrefix: '',
+  assetPrefix: !debug ? '/color/' : '',
   analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
   analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
   bundleAnalyzerConfig: {
@@ -28,7 +37,13 @@ module.exports = withBundleAnalyzer({
       reportFilename: "./bundles/client.html"
     }
   },
-  webpack: async (config, {}) => {
+  webpack: async (config, {dev}) => {
+     config.module.rules = config.module.rules.map(rule => {
+      if(rule.loader === 'babel-loader') {
+        rule.options.cacheDirectory = false
+      }
+      return rule
+    })
     const elements = await fetchFiles(path.join(__dirname, "elements"))
     const components = await fetchFiles(path.join(__dirname, "components"))
     config.plugins.push(
