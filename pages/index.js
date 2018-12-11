@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { injectGlobal } from "emotion"
 import { withRouter } from "next/router"
 import { get as getIdb, set as setIdb } from "idb-keyval"
 import palx from "palx"
@@ -17,8 +18,8 @@ import theme from "../theme"
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
+import getAllCombos from "../utils/getAllCombos"
 import ColorPicker from "../components/ColorPicker"
-import Color from "color"
 
 const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
@@ -33,6 +34,9 @@ const resetPinned = {
 
 const Index = ({ router }) => {
   const [palette, setPalette] = useState(sortPalette(defaultPalette))
+  const [availableCombos, setAvailableCombos] = useState(() =>
+    getAllCombos(defaultPalette, 4.5)
+  )
   const [likes, updateLikes] = useState([])
   const [contrastRatio, setContrastRatio] = useState(4.5)
   const [colorFilter, setColorFilter] = useState("none")
@@ -41,20 +45,19 @@ const Index = ({ router }) => {
   const [currentState, { set, undo, redo, canRedo, canUndo }] = useHistory({})
   const { present: currentCombination } = currentState
   const [pinnedColors, setPinnedColors] = useState(resetPinned)
-  const [withBorders, setWithBorders] = useState(true)
   const [borderWidth, setBorderWidth] = useState(0)
   const [palxColor, setPalxColor] = useState("#07c")
   const [palxColorContrast, setPalxColorContrast] = useState(true)
   const [currentPickerColor, setPickerColor] = useState(null)
   const { start, stop, isRunning } = useInterval({
-    duration: 2000,
+    duration: 3000,
     startImmediate: true,
     callback: () => {
       const newCombo = generateRandomPalette(
         palette,
         pinnedColors,
         currentCombination,
-        contrastRatio
+        availableCombos
       )
       set(newCombo)
     }
@@ -64,15 +67,13 @@ const Index = ({ router }) => {
     getIdb("likes").then(likes => {
       likes && updateLikes(likes)
     })
-  }, [])
 
-  useEffect(() => {
     const starterCombination = isEmpty(router.query)
       ? generateRandomPalette(
           palette,
           pinnedColors,
           currentCombination,
-          contrastRatio
+          availableCombos
         )
       : router.query
     set(starterCombination)
@@ -120,7 +121,7 @@ const Index = ({ router }) => {
       palette,
       pinnedColors,
       currentCombination,
-      contrastRatio
+      availableCombos
     )
     set(newCombo)
   }
@@ -174,7 +175,7 @@ const Index = ({ router }) => {
       palette,
       resetPinned,
       null,
-      contrastRatio
+      availableCombos
     )
     set(newCombo)
   }
@@ -186,7 +187,7 @@ const Index = ({ router }) => {
       clearedPalette,
       resetPinned,
       null,
-      contrastRatio
+      availableCombos
     )
     set(newCombo)
     setImageName(new Date())
@@ -221,12 +222,10 @@ const Index = ({ router }) => {
       palette,
       resetPinned,
       null,
-      contrastRatio
+      availableCombos
     )
     set(newCombo)
   }
-
-  const handleBorderToggle = () => setWithBorders(value => !value)
 
   const handleBorderWidthChange = e => setBorderWidth(parseInt(e.target.value))
 
@@ -239,7 +238,7 @@ const Index = ({ router }) => {
       palette,
       resetPinned,
       null,
-      contrastRatio
+      availableCombos
     )
     set(newCombo)
     setPaletteImage(url)
@@ -265,7 +264,7 @@ const Index = ({ router }) => {
       newPalette,
       resetPinned,
       null,
-      contrastRatio
+      availableCombos
     )
     set(newCombo)
   }
@@ -292,10 +291,10 @@ const Index = ({ router }) => {
     <Div
       display="flex"
       flexWrap="wrap"
-      bg={currentCombination.parentBg}
       width={1}
       position="relative"
       style={{
+        backgroundColor: "var(--parent-bg)",
         overflow: "hidden",
         filter:
           colorFilter === "none"
@@ -580,31 +579,23 @@ const Index = ({ router }) => {
         <Div width={3 / 4} pb={5} pt={4} borderTop="1px solid rgba(0,0,0,.1)">
           <Div maxWidth="48em" mx="auto">
             <TextBlock
-              withBorders={withBorders}
               borderWidth={borderWidth}
               currentCombination={currentCombination}
             />
             <IconOutlineBlock
               currentCombination={currentCombination}
-              withBorders={withBorders}
               borderWidth={borderWidth}
             />
 
-            <IconBlock
-              currentCombination={currentCombination}
-              withBorders={withBorders}
-              borderWidth={borderWidth}
-            />
+            {/* <IconBlock borderWidth={borderWidth} />
             <FormBlock
               currentCombination={currentCombination}
-              withBorders={withBorders}
               borderWidth={borderWidth}
-            />
-            <ChartsBlock
+            /> */}
+            {/* <ChartsBlock
               currentCombination={currentCombination}
-              withBorders={withBorders}
               borderWidth={borderWidth}
-            />
+            /> */}
           </Div>
         </Div>
       )}
