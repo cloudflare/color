@@ -34,7 +34,7 @@ const resetPinned = {
 
 const Index = ({ router }) => {
   const [palette, setPalette] = useState(sortPalette(defaultPalette))
-  const [availableCombos, setAvailableCombos] = useState(
+  const [availableCombos, setAvailableCombos] = useState(() =>
     getAllCombos(defaultPalette, 4.5)
   )
   const [likes, updateLikes] = useState([])
@@ -53,31 +53,21 @@ const Index = ({ router }) => {
     duration: 3000,
     startImmediate: true,
     callback: () => {
-      // const newCombo = generateRandomPalette(
-      //   palette,
-      //   pinnedColors,
-      //   currentCombination,
-      //   availableCombos
-      // )
-      // set(newCombo)
+      const newCombo = generateRandomPalette(
+        palette,
+        pinnedColors,
+        currentCombination,
+        availableCombos
+      )
+      set(newCombo)
     }
   })
-
-  useEffect(
-    () => {
-      const combos = getAllCombos(palette, 4.5)
-      setAvailableCombos(combos)
-    },
-    [palette]
-  )
 
   useEffect(() => {
     getIdb("likes").then(likes => {
       likes && updateLikes(likes)
     })
-  }, [])
 
-  useEffect(() => {
     const starterCombination = isEmpty(router.query)
       ? generateRandomPalette(
           palette,
