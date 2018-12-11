@@ -144,12 +144,6 @@ const Index = ({ router }) => {
     setPalette(alteredPalette)
   }
 
-  const handleColorUpdate = (e, index) => {
-    const updatedPalette = [...palette]
-    updatedPalette[index] = e.target.value
-    setPalette(updatedPalette)
-  }
-
   const handleAddColor = newColor =>
     newColor.length > 0 && setPalette([...palette, newColor])
 
@@ -213,7 +207,11 @@ const Index = ({ router }) => {
   }
 
   const handleImageUpload = async e => {
-    setPaletteImage(URL.createObjectURL(e.target.files[0]))
+    setPaletteImage({
+      url: URL.createObjectURL(e.target.files[0]),
+      name: null,
+      username: null
+    })
 
     const res = await fetch("https://image-palette.now.sh", {
       method: "POST",
@@ -238,7 +236,7 @@ const Index = ({ router }) => {
 
   const handleFetchFromUnsplash = async () => {
     const res = await fetch("https://unsplash-palette.now.sh")
-    const { colors, url } = await res.json()
+    const { colors, url, name, username } = await res.json()
     setPalette(colors)
     setPinnedColors(resetPinned)
     const availableCombos = getAllCombos(colors, contrastRatio)
@@ -250,7 +248,7 @@ const Index = ({ router }) => {
       availableCombos
     )
     set(newCombo)
-    setPaletteImage(url)
+    setPaletteImage({ url, name, username })
   }
 
   const handlePalxColor = e => {
@@ -430,7 +428,19 @@ const Index = ({ router }) => {
                 </Flex>
 
                 <Div p={2} border="1px solid rgba(0,0,0,.1)">
-                  <Img src={paletteImage} />
+                  <Img src={paletteImage.url} />
+                  {paletteImage.name && (
+                    <P color="gray.5" fontSize={0}>
+                      Photo by{" "}
+                      <TextLink
+                        href={`https://unsplash.com/@${paletteImage.username}`}
+                      >
+                        {paletteImage.name}
+                      </TextLink>{" "}
+                      on{" "}
+                      <TextLink href="https://unsplash.com/">Unsplash</TextLink>
+                    </P>
+                  )}
                 </Div>
               </>
             )}
