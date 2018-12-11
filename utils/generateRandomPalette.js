@@ -1,35 +1,18 @@
-import Color from "color"
+import sample from "lodash/sample"
+import shuffle from "lodash/shuffle"
+import without from "lodash/without"
 
 const getRandomColor = palette =>
   palette[Math.round(Math.random() * (palette.length - 1))]
 
-const getAccessibleColors = (palette, comparisonColor, contrastRatio) =>
-  palette.filter(p => Color(p).contrast(Color(comparisonColor)) > contrastRatio)
-
 const randMainAndComplementaryColors = (
-  palette,
+  allCombos,
   pinnedColors,
-  currentCombination,
-  contrastRatio
+  currentCombination
 ) => {
   if (!pinnedColors.color && !pinnedColors.bg) {
-    const mainColor = getRandomColor(palette)
-    const bgColor = getRandomColor(
-      getAccessibleColors(palette, mainColor, contrastRatio)
-    )
-    if (bgColor) {
-      return {
-        mainColor,
-        bgColor
-      }
-    }
-
-    return randMainAndComplementaryColors(
-      palette,
-      pinnedColors,
-      currentCombination,
-      contrastRatio
-    )
+    const [mainColor, bgColor] = shuffle(sample(allCombos))
+    return { mainColor, bgColor }
   }
 
   if (pinnedColors.color && pinnedColors.bg) {
@@ -40,34 +23,34 @@ const randMainAndComplementaryColors = (
 
   if (pinnedColors.color) {
     const mainColor = currentCombination.color
-    const bgColor = getRandomColor(
-      getAccessibleColors(palette, mainColor, contrastRatio)
-    )
-    if (bgColor) {
-      return { mainColor, bgColor }
+    const bgColorArray = allCombos.reduce((acc, curr) => {
+      if (curr.includes(mainColor)) {
+        const withoutMain = without(curr, mainColor)
+        return [...acc, ...withoutMain]
+      }
+      return acc
+    }, [])
+    const bgColor = sample(bgColorArray)
+    return {
+      mainColor,
+      bgColor
     }
-    return randMainAndComplementaryColors(
-      palette,
-      pinnedColors,
-      currentCombination,
-      contrastRatio
-    )
   }
 
   if (pinnedColors.bg) {
     const bgColor = currentCombination.bg
-    const mainColor = getRandomColor(
-      getAccessibleColors(palette, bgColor, contrastRatio)
-    )
-    if (mainColor) {
-      return { mainColor, bgColor }
+    const mainColorArray = allCombos.reduce((acc, curr) => {
+      if (curr.includes(bgColor)) {
+        const withoutMain = without(curr, bgColor)
+        return [...acc, ...withoutMain]
+      }
+      return acc
+    }, [])
+    const mainColor = sample(mainColorArray)
+    return {
+      mainColor,
+      bgColor
     }
-    return randMainAndComplementaryColors(
-      palette,
-      pinnedColors,
-      currentCombination,
-      contrastRatio
-    )
   }
 }
 
@@ -75,13 +58,12 @@ const generateRandomPalette = (
   palette,
   pinnedColors,
   currentCombination = null,
-  contrastRatio
+  allCombos
 ) => {
   const { mainColor, bgColor } = randMainAndComplementaryColors(
-    palette,
+    allCombos,
     pinnedColors,
-    currentCombination,
-    contrastRatio
+    currentCombination
   )
 
   const randomParentBg = pinnedColors.parentBg
