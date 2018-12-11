@@ -18,7 +18,7 @@ import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
 import ColorPicker from "../components/ColorPicker"
-import Color from 'color'
+import Color from "color"
 
 const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
@@ -332,19 +332,27 @@ const Index = ({ router }) => {
         style={{ minHeight: "100vh" }}
       >
         <Div pb={2} px={3}>
-          <TextButton mr={3} fontWeight={700} fontSize={2}>URL</TextButton>
-          <TextButton mr={3} fontWeight={700} fontSize={2}>Image</TextButton>
-          <TextButton mr={3}  fontWeight={700} fontSize={2} color='blue.4'>Generative</TextButton>
+          <TextButton mr={3} fontWeight={700} fontSize={2}>
+            URL
+          </TextButton>
+          <TextButton mr={3} fontWeight={700} fontSize={2}>
+            Image
+          </TextButton>
+          <TextButton mr={3} fontWeight={700} fontSize={2} color="blue.4">
+            Generative
+          </TextButton>
         </Div>
 
-        {!paletteImage &&
-            <Div px={3}><SiteFetch  onSubmit={handleSiteFetch} /></Div>
-        }
+        {!paletteImage && (
+          <Div px={3}>
+            <SiteFetch onSubmit={handleSiteFetch} />
+          </Div>
+        )}
 
         <Flex mt={3} mb={2} px={3}>
-          <Div width={1/2}>
+          <Div width={1 / 2}>
             <Input
-              border='1px solid rgba(0,0,0,.1)'
+              border="1px solid rgba(0,0,0,.1)"
               py={3}
               width={1}
               pl={3}
@@ -354,32 +362,32 @@ const Index = ({ router }) => {
               onChange={handleImageUpload}
             />
           </Div>
-          <Div width={1/2} textAlign='right'>
+          <Div width={1 / 2} textAlign="right">
             <Button
-              bg='white'
-              border='1px solid black'
+              bg="white"
+              border="1px solid black"
               fontSize={1}
               borderRadius={2}
               py={2}
               px={3}
-              ml='auto'
-              display='flex'
-              justifyContent='center'
-              width={'auto'}
-              alignItems='center'
+              ml="auto"
+              display="flex"
+              justifyContent="center"
+              width={"auto"}
+              alignItems="center"
               fontWeight={700}
               onClick={handleFetchFromUnsplash}
             >
-              <Icon viewBox='0 0 32 32' size={16} type='unsplash' />
+              <Icon viewBox="0 0 32 32" size={16} type="unsplash" />
               <Span pl={1}>Unsplash photo</Span>
             </Button>
           </Div>
         </Flex>
-        {paletteImage && 
-        <Div p={2} border='1px solid rgba(0,0,0,.1)'>
-          <Img src={paletteImage} />
-        </Div>
-        }
+        {paletteImage && (
+          <Div p={2} border="1px solid rgba(0,0,0,.1)">
+            <Img src={paletteImage} />
+          </Div>
+        )}
 
         <Div>
           <Div
@@ -390,54 +398,65 @@ const Index = ({ router }) => {
             flexWrap="wrap"
             alignItems="center"
           >
-        {!paletteImage &&
-            <Div width={1} mb={4} px={3}>
-              <Label mb={2} display='block'>Base Color</Label>
-              <Flex>
-                <TextInput width={48} fontSize={2} py={3} readonly border={0} bg={palxColor} />
-              <TextInput
-                type="text"
-                value={palxColor}
-                onChange={handlePalxColor}
-        fontSize={2}
-        fontWeight={700}
-        py={3}
-        px={3}
-        width={[3/4]}
-        type="url"
-        border='0'
-        bg='gray.8'
-        borderRadius={0}
+            {!paletteImage && (
+              <Div width={1} mb={4} px={3}>
+                <Label mb={2} display="block">
+                  Base Color
+                </Label>
+                <Flex>
+                  <TextInput
+                    width={48}
+                    fontSize={2}
+                    py={3}
+                    readOnly
+                    border={0}
+                    bg={palxColor}
+                  />
+                  <TextInput
+                    type="text"
+                    value={palxColor}
+                    onChange={handlePalxColor}
+                    fontSize={2}
+                    fontWeight={700}
+                    py={3}
+                    px={3}
+                    width={[3 / 4]}
+                    type="url"
+                    border="0"
+                    bg="gray.8"
+                    borderRadius={0}
+                  />
+                  <Button
+                    py={3}
+                    width={1 / 4}
+                    fontSize={2}
+                    bg="black"
+                    color="white"
+                    fontWeight={700}
+                    border="none"
+                    style={{ cursor: "pointer", minWidth: 128 }}
+                    onClick={handleUsePalx}
+                  >
+                    Generate
+                  </Button>{" "}
+                </Flex>
+              </Div>
+            )}
+            <Div px={3}>
+              <Flex mb={2}>
+                <Label fontWeight={700}>Palette</Label>
+                <TextButton ml="auto" onClick={handleClearPalette}>
+                  Clear
+                </TextButton>
+              </Flex>
+              <Palette
+                palette={palette}
+                activeColors={Object.values(currentCombination)}
+                onClick={handlePaletteColorClick}
+                onAddColor={handleAddColor}
               />
-              <Button 
-        py={3}
-        
-        width={1/4}
-        fontSize={2}
-        bg="black"
-        color="white"
-        fontWeight={700}
-        border="none"
-        style={{ cursor: "pointer", minWidth: 128 }}
-                onClick={handleUsePalx}>Generate</Button>{" "}
-            </Flex>
             </Div>
-        }
-        <Div px={3}>
-          <Flex mb={2}>
-            <Label fontWeight={700}>Palette</Label>
-            <TextButton ml="auto" onClick={handleClearPalette}>
-              Clear
-            </TextButton>
-          </Flex>
-          <Palette
-            palette={palette}
-            activeColors={Object.values(currentCombination)}
-            onClick={handlePaletteColorClick}
-            onAddColor={handleAddColor}
-          />
           </Div>
-        </Div>
 
           {currentPickerColor && (
             <Div>
@@ -449,65 +468,73 @@ const Index = ({ router }) => {
           )}
 
           <Div mt={4} px={3}>
-              <Div>
-                <Label fontWeight={700} fontSize={2} mr={2}>
-                  Border width
-                </Label>
-                <Input
-                  value={borderWidth}
-                  onChange={handleBorderWidthChange}
-                  type="number"
-                  py={2}
-                  px={2}
-                  fontSize={2}
-                  fontWeight={600}
-                  borderRadius={2}
-                  border={"1px solid " + theme.colors.gray[8]}
-                  min={0}
-                  max={32}
-                  step={1}
-                />
-              </Div>
+            <Div>
+              <Label fontWeight={700} fontSize={2} mr={2}>
+                Border width
+              </Label>
+              <Input
+                value={borderWidth}
+                onChange={handleBorderWidthChange}
+                type="number"
+                py={2}
+                px={2}
+                fontSize={2}
+                fontWeight={600}
+                borderRadius={2}
+                border={"1px solid " + theme.colors.gray[8]}
+                min={0}
+                max={32}
+                step={1}
+              />
+            </Div>
           </Div>
         </Div>
 
         <Form mt={3} px={3}>
           <Fieldset border="0" p={0}>
-            <Legend fontWeight={700} fontSize={3}>Contrast Ratio</Legend>
+            <Legend fontWeight={700} fontSize={3}>
+              Contrast Ratio
+            </Legend>
             <Flex mx={-3} py={2}>
-            <Flex px={3}>
-              <Input
-                type="radio"
-                name="contrastRatio"
-                value={3}
-                onChange={handleContrastRatioChange}
-                checked={contrastRatio === 3}
-                mr={2}
-              />
-              <Label><Span fontWeight={800}>3:1</Span> AA large</Label>
-            </Flex>
-            <Flex px={3}>
-              <Input
-                type="radio"
-                name="contrastRatio"
-                value={4.5}
-                onChange={handleContrastRatioChange}
-                checked={contrastRatio === 4.5}
-                mr={2}
-              />
-              <Label><Span fontWeight={800}>4.5:1</Span> AA</Label>
-            </Flex>
-            <Flex px={3}>
-              <Input
-                type="radio"
-                name="contrastRatio"
-                value={7}
-                onChange={handleContrastRatioChange}
-                checked={contrastRatio === 7}
-                mr={2}
-              />
-              <Label><Span fontWeight={800}>7:1</Span> AAA</Label>
-            </Flex>
+              <Flex px={3}>
+                <Input
+                  type="radio"
+                  name="contrastRatio"
+                  value={3}
+                  onChange={handleContrastRatioChange}
+                  checked={contrastRatio === 3}
+                  mr={2}
+                />
+                <Label>
+                  <Span fontWeight={800}>3:1</Span> AA large
+                </Label>
+              </Flex>
+              <Flex px={3}>
+                <Input
+                  type="radio"
+                  name="contrastRatio"
+                  value={4.5}
+                  onChange={handleContrastRatioChange}
+                  checked={contrastRatio === 4.5}
+                  mr={2}
+                />
+                <Label>
+                  <Span fontWeight={800}>4.5:1</Span> AA
+                </Label>
+              </Flex>
+              <Flex px={3}>
+                <Input
+                  type="radio"
+                  name="contrastRatio"
+                  value={7}
+                  onChange={handleContrastRatioChange}
+                  checked={contrastRatio === 7}
+                  mr={2}
+                />
+                <Label>
+                  <Span fontWeight={800}>7:1</Span> AAA
+                </Label>
+              </Flex>
             </Flex>
           </Fieldset>
         </Form>
@@ -522,24 +549,31 @@ const Index = ({ router }) => {
             onSelectLike={handleViewLike}
             onRemoveLike={handleRemoveLike}
           />
-<Div display="flex" mt={2} borderTop="1px solid rgba(0,0,0,.2)" py={3}>
-          <A display="block" href="https://cloudflare.design" fontWeight={700}>
-            Cloudflare Design
-          </A>
-          <A
-            href="https://github.com/cloudflare-design"
-            ml="auto"
-            fontSize={2}
-            color="blue.4"
-            display="block"
-            fontWeight={700}
+          <Div
+            display="flex"
+            mt={2}
+            borderTop="1px solid rgba(0,0,0,.2)"
+            py={3}
           >
-            GitHub
-          </A>
+            <A
+              display="block"
+              href="https://cloudflare.design"
+              fontWeight={700}
+            >
+              Cloudflare Design
+            </A>
+            <A
+              href="https://github.com/cloudflare-design"
+              ml="auto"
+              fontSize={2}
+              color="blue.4"
+              display="block"
+              fontWeight={700}
+            >
+              GitHub
+            </A>
+          </Div>
         </Div>
-        </Div>
-
-        
       </Div>
 
       {!isEmpty(currentCombination) && (

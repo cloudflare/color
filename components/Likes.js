@@ -21,22 +21,18 @@ const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
             {likes.map((like, i) => {
               const colors = Object.values(like)
               return (
-                <Flex
-                  key={i}
-                  onClick={handleViewLike(i)}
-                  width={1}
-                  mb={1}
-                  style={{ cursor: "pointer" }}
-                >
-                  {colors.map((color, i) => (
-                    <Div
-                      width={1 / 4}
-                      borderRight="4px solid white"
-                      key={i}
-                      py={3}
-                      bg={color}
-                    />
-                  ))}
+                <Flex key={i} mb={1} style={{ cursor: "pointer" }}>
+                  <Flex width={1} onClick={handleViewLike(i)}>
+                    {colors.map((color, i) => (
+                      <Div
+                        width={1 / 4}
+                        borderRight="4px solid white"
+                        key={i}
+                        py={3}
+                        bg={color}
+                      />
+                    ))}
+                  </Flex>
                   <TextButton px={2} onClick={handleRemoveLike(i)}>
                     Remove
                   </TextButton>
@@ -46,8 +42,10 @@ const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
           </Div>
         </Div>
 
-        <H4 mb={0} mt={4} fontSize={2}>Export likes</H4>
-        <Div display='flex'>
+        <H4 mb={0} mt={4} fontSize={2}>
+          Export likes
+        </H4>
+        <Div display="flex">
           <ButtonOutline
             mt={2}
             width={1}
