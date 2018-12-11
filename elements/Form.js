@@ -2,6 +2,7 @@ import styled from 'react-emotion'
 import {
   space,
   width,
+  display,
   maxWidth,
   fontSize,
   color,
@@ -13,6 +14,7 @@ import {
 const Form = styled.form(
   space,
   width,
+  display,
   maxWidth,
   fontSize,
   color,

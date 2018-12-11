@@ -43,6 +43,7 @@ const Palette = ({ palette, onClick, activeColors, onAddColor }) => {
   return (
     <Div
       display="flex"
+      mx={-1}
       css={{
         flexWrap: "wrap",
         justifyContent: "space-between",

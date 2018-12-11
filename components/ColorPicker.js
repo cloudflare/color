@@ -58,127 +58,186 @@ const ColorPicker = ({ currentColor, onChange }) => {
   }
 
   return (
-    <Div py={3}>
-      <Div css={{ transition: "none" }} mb={2} height={24} bg={currentColor} />
+    <Div px={4} pt={4} pb={5}
+        color={Color(currentColor).isLight()? 'rbga(0,0,0,.75)': 'rgba(255,255,255,.85)'}
+      bg={currentColor} mt={3} display='flex' flexWrap='wrap'>
       <TextInput
-        width={1 / 2}
+        width={1}
+        color={Color(currentColor).isLight()? 'rbga(0,0,0,.75)': 'rgba(255,255,255,.85)'}
+        bg='transparent'
+        border={0}
+        fontSize={5} fontWeight={800}
         value={currentColor}
         onChange={handleHexColorChange}
+        px={0}
       />
-      <Flex>
-        <Span>R</Span>
+      <Flex
+        width={1/5}
+        flexWrap='wrap'
+      >
+        <Label color='inherit' fontWeight={700}>R</Label>
         <TextInput
           type="number"
+          border={0}
+          color='inherit'
+          bg='transparent'
+          width='auto'
           min="0"
           max="255"
+          fontSize={3}
           name="r"
           value={Math.floor(RGBValue.r)}
           onChange={handleRGBColorChange}
         />
+      <Div width={1}>
         <Input
           name="r"
           type="range"
           min="0"
           max="255"
+          width={64}
           value={Math.floor(RGBValue.r)}
           onChange={handleRGBColorChange}
         />
+      </Div>
       </Flex>
-      <Flex>
-        <Span>G</Span>
+      <Flex width={1/5} flexWrap='wrap'>
+        <Label fontWeight={700} color='inherit'>G</Label>
         <TextInput
           name="g"
           type="number"
+          color='inherit'
+          fontSize={3}
+          bg='transparent'
+          border={0}
+          width='auto'
           min="0"
           max="255"
           value={Math.floor(RGBValue.g)}
           onChange={handleRGBColorChange}
         />
+        <Div width={1}>
         <Input
           name="g"
           type="range"
+          width={64}
           min="0"
           max="255"
           value={Math.floor(RGBValue.g)}
           onChange={handleRGBColorChange}
         />
+      </Div>
       </Flex>
-      <Flex>
-        <Span>B</Span>
+      <Flex width={1/5} flexWrap='wrap'>
+        <Label color='inherit' fontWeight={700}>B</Label>
         <TextInput
           name="b"
           type="number"
+          border={0}
+          fontSize={3}
+          bg='transparent'
+          width='auto'
+          color='inherit'
           min="0"
           max="255"
           value={Math.floor(RGBValue.b)}
           onChange={handleRGBColorChange}
         />
+        <Div width={1}>
         <Input
           name="b"
           type="range"
           min="0"
           max="255"
+          width={64}
           value={Math.floor(RGBValue.b)}
           onChange={handleRGBColorChange}
         />
+      </Div>
       </Flex>
-      <Flex>
-        <Span>H</Span>
+      <Flex flexWrap='wrap'>
+        <Flex width={1/5} flexWrap='wrap'>
+        <Label fontWeight={700} color='inherit'>H </Label>
         <TextInput
           name="h"
           type="number"
+          width='auto'
+          bg='transparent'
+          color='inherit'
+          border={0}
+          fontSize={3}
           min="0"
           max="360"
           onChange={handleHSLColorChange}
           value={Math.floor(HSLValue.h)}
         />
+        <Div width={1}>
         <Input
           name="h"
           type="range"
+          width={64}
           min="0"
           max="360"
           value={Math.floor(HSLValue.h)}
           onChange={handleHSLColorChange}
         />
+      </Div>
       </Flex>
-      <Flex>
-        <Span>S</Span>
+      <Flex width={1/5} flexWrap='wrap'>
+        <Label fontWeight={700} color='inherit'>S</Label>
         <TextInput
           name="s"
           type="number"
+          width='auto'
+          bg='transparent'
+          color='inherit'
+          border={0}
+          fontSize={3}
           min="0"
           max="100"
           onChange={handleHSLColorChange}
           value={Math.floor(HSLValue.s)}
         />
+        <Div width={1}>
         <Input
           name="s"
           type="range"
+          width={64}
           min="0"
           max="100"
           value={Math.floor(HSLValue.s)}
           onChange={handleHSLColorChange}
         />
+      </Div>
       </Flex>
-      <Flex>
-        <Span>L</Span>
+      <Flex flexWrap='wrap' width={1/5}>
+        <Label fontWeight={700} color='inherit'>L</Label>
         <TextInput
           name="l"
           type="number"
+          width='auto'
+          bg='transparent'
+          color='inherit'
+          border={0}
+          fontSize={3}
           min="0"
           max="100"
           value={Math.floor(HSLValue.l)}
           onChange={handleHSLColorChange}
         />
+        <Div width={1}>
         <Input
           name="l"
           type="range"
+          width={64}
           min="0"
           max="100"
           value={Math.floor(HSLValue.l)}
           onChange={handleHSLColorChange}
         />
+      </Div>
       </Flex>
+    </Flex>
     </Div>
   )
 }

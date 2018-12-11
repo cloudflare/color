@@ -18,6 +18,7 @@ import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
 import ColorPicker from "../components/ColorPicker"
+import Color from 'color'
 
 const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
@@ -41,8 +42,9 @@ const Index = ({ router }) => {
   const { present: currentCombination } = currentState
   const [pinnedColors, setPinnedColors] = useState(resetPinned)
   const [withBorders, setWithBorders] = useState(true)
-  const [borderWidth, setBorderWidth] = useState(2)
+  const [borderWidth, setBorderWidth] = useState(0)
   const [palxColor, setPalxColor] = useState("#07c")
+  const [palxColorContrast, setPalxColorContrast] = useState(true)
   const [currentPickerColor, setPickerColor] = useState(null)
   const { start, stop, isRunning } = useInterval({
     duration: 2000,
@@ -327,61 +329,115 @@ const Index = ({ router }) => {
         color="black"
         pt={3}
         pb={4}
-        px={3}
         style={{ minHeight: "100vh" }}
       >
-        <SiteFetch onSubmit={handleSiteFetch} />
+        <Div pb={2} px={3}>
+          <TextButton mr={3} fontWeight={700} fontSize={2}>URL</TextButton>
+          <TextButton mr={3} fontWeight={700} fontSize={2}>Image</TextButton>
+          <TextButton mr={3}  fontWeight={700} fontSize={2} color='blue.4'>Generative</TextButton>
+        </Div>
 
-        <Div mt={2}>
-          <Input
-            key={imageName}
-            type="file"
-            accept=".png, .jpg, .jpeg"
-            onChange={handleImageUpload}
-          />
+        {!paletteImage &&
+            <Div px={3}><SiteFetch  onSubmit={handleSiteFetch} /></Div>
+        }
+
+        <Flex mt={3} mb={2} px={3}>
+          <Div width={1/2}>
+            <Input
+              border='1px solid rgba(0,0,0,.1)'
+              py={3}
+              width={1}
+              pl={3}
+              key={imageName}
+              type="file"
+              accept=".png, .jpg, .jpeg"
+              onChange={handleImageUpload}
+            />
+          </Div>
+          <Div width={1/2} textAlign='right'>
+            <Button
+              bg='white'
+              border='1px solid black'
+              fontSize={1}
+              borderRadius={2}
+              py={2}
+              px={3}
+              ml='auto'
+              display='flex'
+              justifyContent='center'
+              width={'auto'}
+              alignItems='center'
+              fontWeight={700}
+              onClick={handleFetchFromUnsplash}
+            >
+              <Icon viewBox='0 0 32 32' size={16} type='unsplash' />
+              <Span pl={1}>Unsplash photo</Span>
+            </Button>
+          </Div>
+        </Flex>
+        {paletteImage && 
+        <Div p={2} border='1px solid rgba(0,0,0,.1)'>
+          <Img src={paletteImage} />
         </Div>
-        <P>or</P>
-        <Div>
-          <TextButton
-            fontSize={2}
-            fontWeight={700}
-            onClick={handleFetchFromUnsplash}
-          >
-            Choose an image from Unsplash
-          </TextButton>
-        </Div>
-        <P>or</P>
-        {paletteImage && <Img src={paletteImage} />}
+        }
 
         <Div>
           <Div
             fontWeight={700}
-            mt={4}
+            mt={3}
             mb={2}
             display="flex"
             flexWrap="wrap"
             alignItems="center"
           >
-            <Div width={1} mb={4}>
-              <Input
+        {!paletteImage &&
+            <Div width={1} mb={4} px={3}>
+              <Label mb={2} display='block'>Base Color</Label>
+              <Flex>
+                <TextInput width={48} fontSize={2} py={3} readonly border={0} bg={palxColor} />
+              <TextInput
                 type="text"
                 value={palxColor}
                 onChange={handlePalxColor}
-                mr={3}
+        fontSize={2}
+        fontWeight={700}
+        py={3}
+        px={3}
+        width={[3/4]}
+        type="url"
+        border='0'
+        bg='gray.8'
+        borderRadius={0}
               />
-              <TextButton onClick={handleUsePalx}>Generate palette</TextButton>{" "}
+              <Button 
+        py={3}
+        
+        width={1/4}
+        fontSize={2}
+        bg="black"
+        color="white"
+        fontWeight={700}
+        border="none"
+        style={{ cursor: "pointer", minWidth: 128 }}
+                onClick={handleUsePalx}>Generate</Button>{" "}
+            </Flex>
             </Div>
+        }
+        <Div px={3}>
+          <Flex mb={2}>
             <Label fontWeight={700}>Palette</Label>
             <TextButton ml="auto" onClick={handleClearPalette}>
               Clear
             </TextButton>
-          </Div>
+          </Flex>
           <Palette
             palette={palette}
             activeColors={Object.values(currentCombination)}
             onClick={handlePaletteColorClick}
             onAddColor={handleAddColor}
           />
+          </Div>
+        </Div>
 
           {currentPickerColor && (
             <Div>
@@ -392,18 +448,8 @@ const Index = ({ router }) => {
             </Div>
           )}
 
-          <Div mt={4} display="flex">
-            <TextButton
-              fontSize={2}
-              fontWeight={700}
-              onClick={handleBorderToggle}
-              width={1 / 2}
-              textAlign="left"
-            >
-              {withBorders ? "Hide" : "Show"} borders
-            </TextButton>
-            {withBorders && (
-              <Div ml="auto" textAlign="right">
+          <Div mt={4} px={3}>
+              <Div>
                 <Label fontWeight={700} fontSize={2} mr={2}>
                   Border width
                 </Label>
@@ -417,50 +463,66 @@ const Index = ({ router }) => {
                   fontWeight={600}
                   borderRadius={2}
                   border={"1px solid " + theme.colors.gray[8]}
-                  min={1}
+                  min={0}
                   max={32}
                   step={1}
                 />
               </Div>
-            )}
           </Div>
         </Div>
 
-        <Div>
-          <P>Contrast Ratio</P>
-          <Div>
-            <Label>4.5</Label>
-            <Input
-              type="radio"
-              name="contrastRatio"
-              value={4.5}
-              onChange={handleContrastRatioChange}
-              checked={contrastRatio === 4.5}
-            />
-          </Div>
-          <Div>
-            <Label>7</Label>
-            <Input
-              type="radio"
-              name="contrastRatio"
-              value={7}
-              onChange={handleContrastRatioChange}
-              checked={contrastRatio === 7}
-            />
-          </Div>
-        </Div>
+        <Form mt={3} px={3}>
+          <Fieldset border="0" p={0}>
+            <Legend fontWeight={700} fontSize={3}>Contrast Ratio</Legend>
+            <Flex mx={-3} py={2}>
+            <Flex px={3}>
+              <Input
+                type="radio"
+                name="contrastRatio"
+                value={3}
+                onChange={handleContrastRatioChange}
+                checked={contrastRatio === 3}
+                mr={2}
+              />
+              <Label><Span fontWeight={800}>3:1</Span> AA large</Label>
+            </Flex>
+            <Flex px={3}>
+              <Input
+                type="radio"
+                name="contrastRatio"
+                value={4.5}
+                onChange={handleContrastRatioChange}
+                checked={contrastRatio === 4.5}
+                mr={2}
+              />
+              <Label><Span fontWeight={800}>4.5:1</Span> AA</Label>
+            </Flex>
+            <Flex px={3}>
+              <Input
+                type="radio"
+                name="contrastRatio"
+                value={7}
+                onChange={handleContrastRatioChange}
+                checked={contrastRatio === 7}
+                mr={2}
+              />
+              <Label><Span fontWeight={800}>7:1</Span> AAA</Label>
+            </Flex>
+            </Flex>
+          </Fieldset>
+        </Form>
 
-        <ColorBlindFilter
-          onChange={handleColorBlindFilter}
-          currentValue={colorFilter}
-        />
-
-        <Likes
-          likes={likes}
-          onSelectLike={handleViewLike}
-          onRemoveLike={handleRemoveLike}
-        />
-        <Div display="flex" mt={2} borderTop="1px solid rgba(0,0,0,.2)" py={3}>
+        <Div px={3}>
+          <ColorBlindFilter
+            onChange={handleColorBlindFilter}
+            currentValue={colorFilter}
+          />
+          <Likes
+            likes={likes}
+            onSelectLike={handleViewLike}
+            onRemoveLike={handleRemoveLike}
+          />
+<Div display="flex" mt={2} borderTop="1px solid rgba(0,0,0,.2)" py={3}>
           <A display="block" href="https://cloudflare.design" fontWeight={700}>
             Cloudflare Design
           </A>
@@ -475,6 +537,9 @@ const Index = ({ router }) => {
             GitHub
           </A>
         </Div>
+        </Div>
+
+        
       </Div>
 
       {!isEmpty(currentCombination) && (

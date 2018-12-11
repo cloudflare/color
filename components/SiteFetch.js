@@ -50,7 +50,7 @@ const SiteFetch = ({ onSubmit }) => {
         fontWeight={700}
         py={3}
         px={3}
-        width={[3 / 4, 7 / 8]}
+        width={[3/4]}
         type="url"
         border="none"
         bg="#eeeeee"
@@ -59,7 +59,7 @@ const SiteFetch = ({ onSubmit }) => {
         onChange={handleChange}
       />
       <Button
-        width={[1 / 4, 1 / 8]}
+        width={[1 / 4]}
         py={3}
         fontSize={2}
         bg="black"
