@@ -48,8 +48,8 @@ const Index = ({ router }) => {
   const [pinnedColors, setPinnedColors] = useState(resetPinned)
   const [borderWidth, setBorderWidth] = useState(0)
   const [palxColor, setPalxColor] = useState("#07c")
-  const [palxColorContrast, setPalxColorContrast] = useState(true)
   const [currentPickerColor, setPickerColor] = useState(null)
+  const [activeTab, setActiveTab] = useState("url")
   const { start, stop, isRunning } = useInterval({
     duration: 3000,
     startImmediate: true,
@@ -303,6 +303,8 @@ const Index = ({ router }) => {
     setAvailableCombos(availableCombos)
   }
 
+  const handleActiveTab = value => () => setActiveTab(value)
+
   return (
     <Div
       display="flex"
@@ -347,61 +349,92 @@ const Index = ({ router }) => {
         style={{ minHeight: "100vh" }}
       >
         <Div pb={2} px={3}>
-          <TextButton mr={3} fontWeight={700} fontSize={2}>
+          <TextButton
+            onClick={handleActiveTab("url")}
+            mr={3}
+            fontWeight={700}
+            fontSize={2}
+            color={activeTab === "url" ? "blue.4" : null}
+          >
             URL
           </TextButton>
-          <TextButton mr={3} fontWeight={700} fontSize={2}>
+          <TextButton
+            onClick={handleActiveTab("image")}
+            mr={3}
+            fontWeight={700}
+            fontSize={2}
+            color={activeTab === "image" ? "blue.4" : null}
+          >
             Image
           </TextButton>
-          <TextButton mr={3} fontWeight={700} fontSize={2} color="blue.4">
+          <TextButton
+            onClick={handleActiveTab("generative")}
+            mr={3}
+            fontWeight={700}
+            fontSize={2}
+            color={activeTab === "generative" ? "blue.4" : null}
+          >
             Generative
           </TextButton>
         </Div>
 
-        {!paletteImage && (
+        {activeTab === "url" && (
           <Div px={3}>
             <SiteFetch onSubmit={handleSiteFetch} />
           </Div>
         )}
 
-        <Flex mt={3} mb={2} px={3}>
-          <Div width={1 / 2}>
-            <Input
-              border="1px solid rgba(0,0,0,.1)"
-              py={3}
-              width={1}
-              pl={3}
-              key={imageName}
-              type="file"
-              accept=".png, .jpg, .jpeg"
-              onChange={handleImageUpload}
-            />
-          </Div>
-          <Div width={1 / 2} textAlign="right">
-            <Button
-              bg="white"
-              border="1px solid black"
-              fontSize={1}
-              borderRadius={2}
-              py={2}
-              px={3}
-              ml="auto"
-              display="flex"
-              justifyContent="center"
-              width={"auto"}
-              alignItems="center"
-              fontWeight={700}
-              onClick={handleFetchFromUnsplash}
-            >
-              <Icon viewBox="0 0 32 32" size={16} type="unsplash" />
-              <Span pl={1}>Unsplash photo</Span>
-            </Button>
-          </Div>
-        </Flex>
-        {paletteImage && (
-          <Div p={2} border="1px solid rgba(0,0,0,.1)">
-            <Img src={paletteImage} />
-          </Div>
+        {activeTab === "image" && (
+          <>
+            <Flex mt={3} mb={2} px={3}>
+              <Div width={1 / 2}>
+                <Input
+                  border="1px solid rgba(0,0,0,.1)"
+                  py={3}
+                  width={1}
+                  pl={3}
+                  key={imageName}
+                  type="file"
+                  accept=".png, .jpg, .jpeg"
+                  onChange={handleImageUpload}
+                />
+              </Div>
+              <Div width={1 / 2} textAlign="right">
+                <Button
+                  bg="white"
+                  border="1px solid black"
+                  fontSize={1}
+                  borderRadius={2}
+                  py={2}
+                  px={3}
+                  ml="auto"
+                  display="flex"
+                  justifyContent="center"
+                  width={"auto"}
+                  alignItems="center"
+                  fontWeight={700}
+                  onClick={handleFetchFromUnsplash}
+                >
+                  <Icon viewBox="0 0 32 32" size={16} type="unsplash" />
+                  <Span pl={1}>Unsplash photo</Span>
+                </Button>
+              </Div>
+            </Flex>
+
+            {paletteImage && (
+              <>
+                <Flex px={3}>
+                  <TextButton ml="auto" onClick={handleClearPalette}>
+                    Clear Image
+                  </TextButton>
+                </Flex>
+
+                <Div p={2} border="1px solid rgba(0,0,0,.1)">
+                  <Img src={paletteImage} />
+                </Div>
+              </>
+            )}
+          </>
         )}
 
         <Div>
@@ -413,7 +446,7 @@ const Index = ({ router }) => {
             flexWrap="wrap"
             alignItems="center"
           >
-            {!paletteImage && (
+            {activeTab === "generative" && (
               <Div width={1} mb={4} px={3}>
                 <Label mb={2} display="block">
                   Base Color
