@@ -12,7 +12,6 @@ import uniqWith from "lodash/uniqWith"
 import isEqual from "lodash/isEqual"
 import toNumber from "lodash/toNumber"
 import reduce from "lodash/reduce"
-import IconOutlineBlock from "../components/IconOutlineBlock"
 import theme from "../theme"
 
 import defaultPalette from "../utils/defaultPalette"
@@ -20,6 +19,9 @@ import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
 import getAllCombos from "../utils/getAllCombos"
 import ColorPicker from "../components/ColorPicker"
+
+import IconOutlineBlock from "../components/IconOutlineBlock"
+import CombinationTools from "../components/CombinationTools"
 
 const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
