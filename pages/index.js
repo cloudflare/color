@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { injectGlobal } from "emotion"
 import { withRouter } from "next/router"
 import { get as getIdb, set as setIdb } from "idb-keyval"
 import palx from "palx"
@@ -171,7 +170,7 @@ const Index = ({ router }) => {
   const handleSiteFetch = async palette => {
     setPalette(palette)
     setPinnedColors(resetPinned)
-    const availableCombos = getAllCombos(palette)
+    const availableCombos = getAllCombos(palette, contrastRatio)
     setAvailableCombos(availableCombos)
     const newCombo = generateRandomPalette(
       palette,
@@ -185,7 +184,7 @@ const Index = ({ router }) => {
   const handleClearPalette = () => {
     const clearedPalette = ["#000000", "#FFFFFF", "#2c7cb0", "#757575"]
     setPalette(clearedPalette)
-    const availableCombos = getAllCombos(clearedPalette)
+    const availableCombos = getAllCombos(clearedPalette, contrastRatio)
     setAvailableCombos(availableCombos)
     const newCombo = generateRandomPalette(
       clearedPalette,
@@ -222,7 +221,7 @@ const Index = ({ router }) => {
 
     setPalette(palette)
     setPinnedColors(resetPinned)
-    const availableCombos = getAllCombos(palette)
+    const availableCombos = getAllCombos(palette, contrastRatio)
     setAvailableCombos(availableCombos)
     const newCombo = generateRandomPalette(
       palette,
@@ -240,7 +239,7 @@ const Index = ({ router }) => {
     const { colors, url } = await res.json()
     setPalette(colors)
     setPinnedColors(resetPinned)
-    const availableCombos = getAllCombos(colors)
+    const availableCombos = getAllCombos(colors, contrastRatio)
     setAvailableCombos(availableCombos)
     const newCombo = generateRandomPalette(
       palette,
@@ -268,7 +267,7 @@ const Index = ({ router }) => {
     )
     setPalette(newPalette)
     setPinnedColors(resetPinned)
-    const availableCombos = getAllCombos(newPalette)
+    const availableCombos = getAllCombos(newPalette, contrastRatio)
     setAvailableCombos(availableCombos)
     const newCombo = generateRandomPalette(
       newPalette,
@@ -290,13 +289,16 @@ const Index = ({ router }) => {
     updatedPalette[currentPickerColor.index] = color
 
     setPalette(updatedPalette)
-    const availableCombos = getAllCombos(updatedPalette)
+    const availableCombos = getAllCombos(updatedPalette, contrastRatio)
     setAvailableCombos(availableCombos)
     setPickerColor(prevPicker => ({ index: prevPicker.index, color }))
   }
 
   const handleContrastRatioChange = e => {
-    setContrastRatio(toNumber(e.target.value))
+    const newContrastRatio = toNumber(e.target.value)
+    setContrastRatio(newContrastRatio)
+    const availableCombos = getAllCombos(palette, newContrastRatio)
+    setAvailableCombos(availableCombos)
   }
 
   return (
@@ -454,12 +456,18 @@ const Index = ({ router }) => {
               </Div>
             )}
             <Div px={3}>
+              <Div>No of possible combinations: {availableCombos.length}</Div>
+              <Div>
+                No of possible combinations with parent Bg:{" "}
+                {availableCombos.length * palette.length}
+              </Div>
               <Flex mb={2}>
                 <Label fontWeight={700}>Palette</Label>
                 <TextButton ml="auto" onClick={handleClearPalette}>
                   Clear
                 </TextButton>
               </Flex>
+
               <Palette
                 palette={palette}
                 activeColors={Object.values(currentCombination)}
@@ -607,10 +615,10 @@ const Index = ({ router }) => {
               currentCombination={currentCombination}
               borderWidth={borderWidth}
             />
-            {/* <ChartsBlock
+            <ChartsBlock
               currentCombination={currentCombination}
               borderWidth={borderWidth}
-            /> */}
+            />
           </Div>
         </Div>
       )}
