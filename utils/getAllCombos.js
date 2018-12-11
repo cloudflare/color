@@ -3,7 +3,6 @@ import uniqWith from "lodash/uniqWith"
 import isEqual from "lodash/isEqual"
 
 const getAllCombos = (palette, targetContrast) => {
-  console.log("fired")
   const allCombos = palette.reduce((acc, parentCurr, _, orig) => {
     const colorCombos = orig.reduce((acc, curr) => {
       const hasContrast =
