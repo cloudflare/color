@@ -1,7 +1,7 @@
 import React from "react"
 import getContrastScore from "../utils/getContrastScore"
 
-const FormBlock = ({ withBorders, borderWidth, currentCombination }) => {
+const FormBlock = ({ borderWidth, currentCombination }) => {
   const colorParentBgContrastValue = getContrastScore(
     currentCombination.color,
     currentCombination.parentBg
@@ -49,23 +49,15 @@ const FormBlock = ({ withBorders, borderWidth, currentCombination }) => {
             color={currentCombination.color}
             bg={currentCombination.bg}
             children="Primary Click"
-            borderColor={
-              withBorders
-                ? currentCombination.borderColor
-                : currentCombination.bg
-            }
-            border={withBorders ? `${borderWidth}px solid` : "2px solid"}
+            borderColor={currentCombination.borderColor}
+            border={`${borderWidth}px solid`}
           />
           <Badge
             bg={currentCombination.bg}
             color={currentCombination.color}
             mr={3}
-            borderColor={
-              withBorders
-                ? currentCombination.borderColor
-                : currentCombination.bg
-            }
-            border={withBorders ? `${borderWidth}px solid` : "2px solid"}
+            borderColor={currentCombination.borderColor}
+            border={`${borderWidth}px solid`}
           />
           <Div display="flex" alignItems="center" borderRadius={2} pl={3}>
             <RadioButton name="group 1" color={radioColor} mr={3}>

@@ -70,14 +70,6 @@ const ComboColor = ({
           {currentCombination[comboProperty]}
         </Code>
       </Div>
-      {activeComboColor === comboProperty && (
-        <EditColorTooltip
-          tooltipKey={comboProperty}
-          color={currentCombination[comboProperty]}
-          onClick={handleActiveComboProp}
-          onSubmit={onComboColorUpdate}
-        />
-      )}
     </Div>
   )
 }

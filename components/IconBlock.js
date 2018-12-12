@@ -1,8 +1,7 @@
 import React from "react"
 import Color from "color"
 
-const IconBlock = ({ currentCombination, withBorders, borderWidth }) => {
-
+const IconBlock = ({ currentCombination, borderWidth }) => {
   return (
     <Div
       mt={5}
@@ -10,9 +9,13 @@ const IconBlock = ({ currentCombination, withBorders, borderWidth }) => {
       px={[3, 4, 5]}
       bg={currentCombination.bg}
       display="grid"
-      style={{ justifyItems: 'center', gridTemplateColumns: "repeat(12, 1fr)", rowGap: "2em" }}
-      borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
-      border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+      style={{
+        justifyItems: "center",
+        gridTemplateColumns: "repeat(12, 1fr)",
+        rowGap: "2em"
+      }}
+      borderColor={currentCombination.borderColor}
+      border={`${borderWidth}px solid`}
     >
       <Icon color={currentCombination.color} type="remove" />
       <Icon color={currentCombination.color} type="caretDown" />

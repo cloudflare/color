@@ -1,22 +1,25 @@
 import React from "react"
-import Color from 'color'
+import Color from "color"
 
-const TextBlock = ({ currentCombination, withBorders, borderWidth }) => {
-
-  const contrast = Color(currentCombination.bg).contrast(Color(currentCombination.color)).toFixed(2)
+const TextBlock = ({ currentCombination, borderWidth }) => {
+  const contrast = Color(currentCombination.bg)
+    .contrast(Color(currentCombination.color))
+    .toFixed(2)
 
   return (
     <Text
-      borderColor={withBorders? currentCombination.borderColor: currentCombination.bg}
-      border={withBorders ? `${borderWidth}px solid` : '2px solid'}
+      borderColor={currentCombination.borderColor}
+      border={`${borderWidth}px solid`}
       py={[4, 5]}
       px={[3, 4, 5]}
       color={currentCombination.color}
       bg={currentCombination.bg}
       textAlign="left"
     >
-      <Span fontSize={2} fontWeight={600}>Contrast</Span>
-      <Span fontSize={7} fontWeight={800} display='block' mb={3}>
+      <Span fontSize={2} fontWeight={600}>
+        Contrast
+      </Span>
+      <Span fontSize={7} fontWeight={800} display="block" mb={3}>
         {contrast}
       </Span>
       <Span fontWeight={800} fontSize={[5, 6]}>
