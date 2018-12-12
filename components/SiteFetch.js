@@ -44,7 +44,8 @@ const SiteFetch = ({ onSubmit }) => {
   }
 
   return (
-    <Form onSubmit={handleSubmit} display="flex" width={1} style={{ overflow: 'hidden' }} borderRadius={2}>
+    <Div>
+    <Form onSubmit={handleSubmit} display="flex" width={1} style={{ overflow: 'hidden'}} borderRadius={2}>
       <Input
         fontSize={2}
         fontWeight={700}
@@ -71,8 +72,9 @@ const SiteFetch = ({ onSubmit }) => {
       >
         Go
       </Button>
-      {isLoading && <P>Fetching Palette</P>}
     </Form>
+      {isLoading && <P width={1}>Fetching Palette</P>}
+    </Div>
   )
 }
 
