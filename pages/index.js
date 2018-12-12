@@ -342,11 +342,10 @@ const Index = ({ router }) => {
         borderTop="1px solid rgba(0,0,0,.1)"
         borderRight="1px solid rgba(0,0,0,.1)"
         color="black"
-        pt={3}
         pb={4}
         style={{ minHeight: "100vh" }}
       >
-        <Div pb={2} px={3}>
+        <Div py={3} px={3} bg='gray.9'>
           <TextButton
             onClick={handleActiveTab("url")}
             mr={3}
@@ -501,24 +500,33 @@ const Index = ({ router }) => {
               </Div>
             )}
             <Div px={3}>
-              <Div>No of possible combinations: {availableCombos.length}</Div>
-              <Div>
-                No of possible combinations with parent Bg:{" "}
-                {availableCombos.length * palette.length}
-              </Div>
-              <Flex mb={2}>
-                <Label fontWeight={700}>Palette</Label>
-                <TextButton ml="auto" onClick={handleClearPalette}>
-                  Clear
-                </TextButton>
+              <Flex>
+                <Dl width={1/2}>
+                  <Dt fontSize={2}>
+                    Accessible Combos
+                  </Dt>
+                  <Dd fontSize={6} fontWeight={800} ml={0}>
+                    {availableCombos.length}
+                  </Dd>
+                </Dl>
+                <Dl width={1/2}>
+                  <Dt fontSize={2}>
+                    Combos with Parent Bg
+                  </Dt>
+                  <Dd fontSize={6} fontWeight={800} ml={0}>
+                    {availableCombos.length * palette.length}
+                  </Dd>
+                </Dl>
               </Flex>
-
               <Palette
                 palette={palette}
                 activeColors={Object.values(currentCombination)}
                 onClick={handlePaletteColorClick}
                 onAddColor={handleAddColor}
               />
+              <TextButton mt={3} ml="auto" onClick={handleClearPalette}>
+                Clear palette
+              </TextButton>
             </Div>
           </Div>
 
@@ -531,27 +539,6 @@ const Index = ({ router }) => {
             </Div>
           )}
 
-          <Div mt={4} px={3}>
-            <Div>
-              <Label fontWeight={700} fontSize={2} mr={2}>
-                Border width
-              </Label>
-              <Input
-                value={borderWidth}
-                onChange={handleBorderWidthChange}
-                type="number"
-                py={2}
-                px={2}
-                fontSize={2}
-                fontWeight={600}
-                borderRadius={2}
-                border={"1px solid " + theme.colors.gray[8]}
-                min={0}
-                max={32}
-                step={1}
-              />
-            </Div>
-          </Div>
         </Div>
 
         <Form mt={3} px={3}>
@@ -602,6 +589,27 @@ const Index = ({ router }) => {
             </Flex>
           </Fieldset>
         </Form>
+          <Div mt={4} px={3}>
+            <Div>
+              <Label fontWeight={700} fontSize={2} mr={2}>
+                Border width
+              </Label>
+              <Input
+                value={borderWidth}
+                onChange={handleBorderWidthChange}
+                type="number"
+                py={2}
+                px={2}
+                fontSize={2}
+                fontWeight={600}
+                borderRadius={2}
+                border={"1px solid " + theme.colors.gray[8]}
+                min={0}
+                max={32}
+                step={1}
+              />
+            </Div>
+          </Div>
 
         <Div px={3}>
           <ColorBlindFilter
