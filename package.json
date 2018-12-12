@@ -10,7 +10,6 @@
     "analyze": "BUNDLE_ANALYZE=both next build"
   },
   "dependencies": {
-    "@zeit/next-bundle-analyzer": "^0.1.2",
     "chroma-js": "^1.4.1",
     "color": "^3.1.0",
     "cssstats": "^3.2.0",

@@ -1,7 +1,6 @@
 const path = require("path")
 const fs = require("fs-extra")
 const webpack = require("webpack")
-const withBundleAnalyzer = require("@zeit/next-bundle-analyzer")
 
 const fetchFiles = async filePath => {
   const files = await fs.readdir(filePath)
@@ -15,19 +14,7 @@ const fetchFiles = async filePath => {
   }, {})
 }
 
-module.exports = withBundleAnalyzer({
-  analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
-  analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
-  bundleAnalyzerConfig: {
-    server: {
-      analyzerMode: "static",
-      reportFilename: "../bundles/server.html"
-    },
-    browser: {
-      analyzerMode: "static",
-      reportFilename: "./bundles/client.html"
-    }
-  },
+module.exports = {
   webpack: async (config, {}) => {
     const elements = await fetchFiles(path.join(__dirname, "elements"))
     const components = await fetchFiles(path.join(__dirname, "components"))
@@ -43,4 +30,4 @@ module.exports = withBundleAnalyzer({
     }
     return config
   }
-})
+}
