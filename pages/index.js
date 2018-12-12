@@ -82,7 +82,10 @@ const Index = ({ router }) => {
 
   useEffect(
     () => {
-      router.push("/", `?${encodeCombination(currentCombination)}`)
+      const href = `/?${encodeCombination(currentCombination)}`
+      router.push(href, href, {
+        shallow: true
+      })
     },
     [currentCombination]
   )
@@ -284,14 +287,15 @@ const Index = ({ router }) => {
 
   const handleSetEditColor = color => {
     isRunning && stop()
+    setPickerColor({ color })
 
-    const updatedPalette = [...palette]
-    updatedPalette[currentPickerColor.index] = color
+    // const updatedPalette = [...palette]
+    // updatedPalette[currentPickerColor.index] = color
 
-    setPalette(updatedPalette)
-    const availableCombos = getAllCombos(updatedPalette, contrastRatio)
-    setAvailableCombos(availableCombos)
-    setPickerColor(prevPicker => ({ index: prevPicker.index, color }))
+    // setPalette(updatedPalette)
+    // const availableCombos = getAllCombos(updatedPalette, contrastRatio)
+    // setAvailableCombos(availableCombos)
+    // setPickerColor(prevPicker => ({ index: prevPicker.index, color }))
   }
 
   const handleContrastRatioChange = e => {
