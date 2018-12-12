@@ -349,9 +349,10 @@ const Index = ({ router }) => {
         pb={4}
         style={{ minHeight: "100vh" }}
       >
-        <Div py={3} px={3} bg='gray.9'>
+        <Div py={3} px={3} bg='gray.9' borderBottom='1px solid rgba(0,0,0,.1)' mb={3}>
           <TextButton
             onClick={handleActiveTab("url")}
+            bg='transparent'
             mr={3}
             fontWeight={700}
             fontSize={2}
@@ -361,6 +362,7 @@ const Index = ({ router }) => {
           </TextButton>
           <TextButton
             onClick={handleActiveTab("image")}
+            bg='transparent'
             mr={3}
             fontWeight={700}
             fontSize={2}
@@ -370,6 +372,7 @@ const Index = ({ router }) => {
           </TextButton>
           <TextButton
             onClick={handleActiveTab("generative")}
+            bg='transparent'
             mr={3}
             fontWeight={700}
             fontSize={2}
@@ -417,7 +420,7 @@ const Index = ({ router }) => {
                   onClick={handleFetchFromUnsplash}
                 >
                   <Icon viewBox="0 0 32 32" size={16} type="unsplash" />
-                  <Span pl={1}>Unsplash photo</Span>
+                  <Span pl={2}>Unsplash photo</Span>
                 </Button>
               </Div>
             </Flex>
@@ -460,7 +463,7 @@ const Index = ({ router }) => {
             alignItems="center"
           >
             {activeTab === "generative" && (
-              <Div width={1} mb={4} px={3}>
+              <Form width={1} mb={4} px={3} borderRadius={2} style={{overflow: 'hidden'}}>
                 <Label mb={2} display="block">
                   Base Color
                 </Label>
@@ -501,7 +504,7 @@ const Index = ({ router }) => {
                     Generate
                   </Button>{" "}
                 </Flex>
-              </Div>
+              </Form>
             )}
             <Div px={3}>
               <Flex>

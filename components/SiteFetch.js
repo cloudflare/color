@@ -44,7 +44,7 @@ const SiteFetch = ({ onSubmit }) => {
   }
 
   return (
-    <Form onSubmit={handleSubmit} display="flex" width={1}>
+    <Form onSubmit={handleSubmit} display="flex" width={1} style={{ overflow: 'hidden' }} borderRadius={2}>
       <Input
         fontSize={2}
         fontWeight={700}
@@ -62,7 +62,7 @@ const SiteFetch = ({ onSubmit }) => {
         width={[1 / 4]}
         py={3}
         fontSize={2}
-        bg="black"
+        bg="gray.3"
         color="white"
         fontWeight={700}
         border="none"
