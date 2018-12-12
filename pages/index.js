@@ -12,6 +12,7 @@ import uniqWith from "lodash/uniqWith"
 import isEqual from "lodash/isEqual"
 import toNumber from "lodash/toNumber"
 import reduce from "lodash/reduce"
+import findKey from "lodash/findKey"
 import debounce from "lodash/debounce"
 import theme from "../theme"
 
@@ -58,6 +59,7 @@ const Index = ({ router }) => {
     color: null,
     index: null
   })
+  const [currentComboProp, setCurrentComboProp] = useState(null)
   const [activeTab, setActiveTab] = useState("url")
   const { start, stop, isRunning } = useInterval({
     duration: 3000,
@@ -157,7 +159,7 @@ const Index = ({ router }) => {
   }
 
   const handleAddColor = newColor =>
-    newColor.length > 0 && setPalette([...palette, newColor])
+    newColor.length > 0 && setPalette(uniqWith([...palette, newColor], isEqual))
 
   const handleKeyPress = ({ key }) => {
     switch (key) {
@@ -207,10 +209,6 @@ const Index = ({ router }) => {
 
   const handlePinColor = key => () => {
     setPinnedColors(prevState => ({ ...prevState, [key]: !prevState[key] }))
-  }
-
-  const handleShowEditTooltip = () => {
-    isRunning && stop()
   }
 
   const handleComboColorUpdate = (newColor, tooltipKey) => {
@@ -291,8 +289,11 @@ const Index = ({ router }) => {
   }
 
   const handlePaletteColorClick = (color, index) => {
-    const currentColors = Object.values(currentCombination)
-    currentColors.includes(color) && stop()
+    const comboColorProp = findKey(currentCombination, c => c === color)
+    if (comboColorProp) {
+      stop()
+      setCurrentComboProp(comboColorProp)
+    }
     setPickerColor({ color, index })
   }
 
@@ -304,6 +305,11 @@ const Index = ({ router }) => {
     const updatedPalette = [...palette]
     updatedPalette[currentPickerColor.index] = color
     setPalette(updatedPalette)
+
+    if (currentComboProp) {
+      set({ ...currentCombination, [currentComboProp]: color })
+    }
+
     debouncedUpdateCombos(updatedPalette, contrastRatio, setAvailableCombos)
   }
 
@@ -315,6 +321,13 @@ const Index = ({ router }) => {
   }
 
   const handleActiveTab = value => () => setActiveTab(value)
+
+  const handleColorClick = (color, key) => {
+    isRunning && stop()
+    setCurrentComboProp(key)
+    const paletteIndex = palette.findIndex(p => p === color)
+    setPickerColor({ color, index: paletteIndex })
+  }
 
   return (
     <Div
@@ -342,10 +355,10 @@ const Index = ({ router }) => {
           onNext={handleNext}
           onPinColor={handlePinColor}
           onLike={handleLike}
-          onShowEditTooltip={handleShowEditTooltip}
           onAutoCycling={handleAutoCycling}
           isRunning={isRunning}
           onComboColorUpdate={handleComboColorUpdate}
+          onColorClick={handleColorClick}
         />
       </Div>
 
@@ -358,7 +371,7 @@ const Index = ({ router }) => {
         pb={4}
         style={{ minHeight: "100vh" }}
       >
-        <Div py={3} px={3} bg='gray.9'>
+        <Div py={3} px={3} bg="gray.9">
           <TextButton
             onClick={handleActiveTab("url")}
             mr={3}
@@ -514,18 +527,14 @@ const Index = ({ router }) => {
             )}
             <Div px={3}>
               <Flex>
-                <Dl width={1/2}>
-                  <Dt fontSize={2}>
-                    Accessible Combos
-                  </Dt>
+                <Dl width={1 / 2}>
+                  <Dt fontSize={2}>Accessible Combos</Dt>
                   <Dd fontSize={6} fontWeight={800} ml={0}>
                     {availableCombos.length}
                   </Dd>
                 </Dl>
-                <Dl width={1/2}>
-                  <Dt fontSize={2}>
-                    Combos with Parent Bg
-                  </Dt>
+                <Dl width={1 / 2}>
+                  <Dt fontSize={2}>Combos with Parent Bg</Dt>
                   <Dd fontSize={6} fontWeight={800} ml={0}>
                     {availableCombos.length * palette.length}
                   </Dd>
@@ -551,6 +560,7 @@ const Index = ({ router }) => {
                   color: null,
                   index: null
                 })
+                setCurrentComboProp(null)
               }}
             >
               <ColorPicker
@@ -559,7 +569,6 @@ const Index = ({ router }) => {
               />
             </OutsideClickHandler>
           )}
-
         </Div>
 
         <Form mt={3} px={3}>
@@ -610,27 +619,27 @@ const Index = ({ router }) => {
             </Flex>
           </Fieldset>
         </Form>
-          <Div mt={4} px={3}>
-            <Div>
-              <Label fontWeight={700} fontSize={2} mr={2}>
-                Border width
-              </Label>
-              <Input
-                value={borderWidth}
-                onChange={handleBorderWidthChange}
-                type="number"
-                py={2}
-                px={2}
-                fontSize={2}
-                fontWeight={600}
-                borderRadius={2}
-                border={"1px solid " + theme.colors.gray[8]}
-                min={0}
-                max={32}
-                step={1}
-              />
-            </Div>
+        <Div mt={4} px={3}>
+          <Div>
+            <Label fontWeight={700} fontSize={2} mr={2}>
+              Border width
+            </Label>
+            <Input
+              value={borderWidth}
+              onChange={handleBorderWidthChange}
+              type="number"
+              py={2}
+              px={2}
+              fontSize={2}
+              fontWeight={600}
+              borderRadius={2}
+              border={"1px solid " + theme.colors.gray[8]}
+              min={0}
+              max={32}
+              step={1}
+            />
           </Div>
+        </Div>
 
         <Div px={3}>
           <ColorBlindFilter
