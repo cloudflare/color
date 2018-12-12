@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { withRouter } from "next/router"
 import { get as getIdb, set as setIdb } from "idb-keyval"
 import palx from "palx"
+import OutsideClickHandler from "react-outside-click-handler"
 import useHistory from "../utils/useHistory"
 import useInterval from "../utils/useInterval"
 import queryString from "query-string"
@@ -11,16 +12,13 @@ import uniqWith from "lodash/uniqWith"
 import isEqual from "lodash/isEqual"
 import toNumber from "lodash/toNumber"
 import reduce from "lodash/reduce"
+import debounce from "lodash/debounce"
 import theme from "../theme"
 
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
 import getAllCombos from "../utils/getAllCombos"
-import ColorPicker from "../components/ColorPicker"
-
-import IconOutlineBlock from "../components/IconOutlineBlock"
-import CombinationTools from "../components/CombinationTools"
 
 const encodeCombination = currentCombination => {
   return queryString.stringify(currentCombination)
@@ -32,6 +30,14 @@ const resetPinned = {
   borderColor: false,
   parentBg: false
 }
+
+const debouncedUpdateCombos = debounce(
+  (updatedPalette, contrastRatio, setAvailableCombos) => {
+    const availableCombos = getAllCombos(updatedPalette, contrastRatio)
+    setAvailableCombos(availableCombos)
+  },
+  500
+)
 
 const Index = ({ router }) => {
   const [palette, setPalette] = useState(sortPalette(defaultPalette))
@@ -48,7 +54,10 @@ const Index = ({ router }) => {
   const [pinnedColors, setPinnedColors] = useState(resetPinned)
   const [borderWidth, setBorderWidth] = useState(0)
   const [palxColor, setPalxColor] = useState("#07c")
-  const [currentPickerColor, setPickerColor] = useState(null)
+  const [currentPickerColor, setPickerColor] = useState({
+    color: null,
+    index: null
+  })
   const [activeTab, setActiveTab] = useState("url")
   const { start, stop, isRunning } = useInterval({
     duration: 3000,
@@ -281,21 +290,21 @@ const Index = ({ router }) => {
     set(newCombo)
   }
 
-  const handlePaletteColorClick = (index, color) => {
-    setPickerColor({ index, color })
+  const handlePaletteColorClick = (color, index) => {
+    const currentColors = Object.values(currentCombination)
+    currentColors.includes(color) && stop()
+    setPickerColor({ color, index })
   }
 
   const handleSetEditColor = color => {
     isRunning && stop()
-    setPickerColor({ color })
 
-    // const updatedPalette = [...palette]
-    // updatedPalette[currentPickerColor.index] = color
+    setPickerColor({ color, index: currentPickerColor.index })
 
-    // setPalette(updatedPalette)
-    // const availableCombos = getAllCombos(updatedPalette, contrastRatio)
-    // setAvailableCombos(availableCombos)
-    // setPickerColor(prevPicker => ({ index: prevPicker.index, color }))
+    const updatedPalette = [...palette]
+    updatedPalette[currentPickerColor.index] = color
+    setPalette(updatedPalette)
+    debouncedUpdateCombos(updatedPalette, contrastRatio, setAvailableCombos)
   }
 
   const handleContrastRatioChange = e => {
@@ -527,6 +536,7 @@ const Index = ({ router }) => {
               </Flex>
               <Palette
                 palette={palette}
+                pickerColor={currentPickerColor}
                 activeColors={Object.values(currentCombination)}
                 onClick={handlePaletteColorClick}
                 onAddColor={handleAddColor}
@@ -537,13 +547,20 @@ const Index = ({ router }) => {
             </Div>
           </Div>
 
-          {currentPickerColor && (
-            <Div>
+          {currentPickerColor.color && (
+            <OutsideClickHandler
+              onOutsideClick={() => {
+                setPickerColor({
+                  color: null,
+                  index: null
+                })
+              }}
+            >
               <ColorPicker
                 currentColor={currentPickerColor.color}
                 onChange={handleSetEditColor}
               />
-            </Div>
+            </OutsideClickHandler>
           )}
 
         </Div>

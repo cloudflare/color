@@ -10,7 +10,6 @@
     "analyze": "BUNDLE_ANALYZE=both next build"
   },
   "dependencies": {
-    "chroma-js": "^1.4.1",
     "color": "^3.1.0",
     "cssstats": "^3.2.0",
     "emotion": "9.2.12",
@@ -20,7 +19,7 @@
     "idb-keyval": "^3.1.0",
     "lodash": "^4.17.11",
     "next": "^7.0.2",
-    "now": "^12.1.8",
+    "now": "^12.1.11",
     "palx": "^1.0.3",
     "query-string": "^6.2.0",
     "react": "^16.7.0-alpha.2",
@@ -30,8 +29,7 @@
     "react-outside-click-handler": "^1.2.2",
     "recharts": "^1.4.1",
     "styled-system": "^3.1.11",
-    "use-undo": "^0.1.1",
-    "webpack": "^4.26.1"
+    "webpack": "^4.27.1"
   },
   "devDependencies": {
     "babel-plugin-emotion": "9.2.11",

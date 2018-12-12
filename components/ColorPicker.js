@@ -105,6 +105,31 @@ const ColorPicker = ({ currentColor, onChange }) => {
     }
   }
 
+  const getContrastRatio = (currentColor, otherColor) => {
+    return Color(currentColor)
+      .contrast(Color(otherColor))
+      .toFixed(2)
+  }
+
+  const contrastForBlack = currentColor => {
+    return getContrastRatio(currentColor, "black")
+  }
+
+  const contrastForWhite = currentColor => {
+    return getContrastRatio(currentColor, "white")
+  }
+
+  const showContrastLevel = ratio => {
+    if (ratio > 3 && ratio < 4.5) {
+      return "AA large"
+    } else if (ratio >= 4.5 && ratio < 7) {
+      return "AA"
+    } else if (ratio >= 7) {
+      return "AAA"
+    }
+    return ""
+  }
+
   return (
     <Div
       px={4}
@@ -120,6 +145,39 @@ const ColorPicker = ({ currentColor, onChange }) => {
       display="flex"
       flexWrap="wrap"
     >
+      <Flex width={1}>
+        <Div width="auto" flex="1 0 auto">
+          <P m={0} fontSize={1} color="inherit" css={{ transition: "none" }}>
+            With Black:
+          </P>
+          <P
+            fontSize={5}
+            fontWeight={4}
+            m={0}
+            color="inherit"
+            css={{ transition: "none" }}
+          >
+            {contrastForBlack(currentColor)}
+
+            {showContrastLevel(contrastForBlack(currentColor))}
+          </P>
+        </Div>
+        <Div width="auto" flex="1 0 auto">
+          <P m={0} fontSize={1} color="inherit" css={{ transition: "none" }}>
+            With White:
+          </P>
+          <P
+            fontSize={5}
+            fontWeight={4}
+            m={0}
+            color="inherit"
+            css={{ transition: "none" }}
+          >
+            {contrastForWhite(currentColor)}
+            {showContrastLevel(contrastForWhite(currentColor))}
+          </P>
+        </Div>
+      </Flex>
       <TextInput
         width={1}
         color="inherit"
