@@ -1,14 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 
-const SingleColor = ({
-  color,
-  index,
-  onClick,
-  isActive,
-  isVisible,
-  ...props
-}) => {
-  const handleActiveUI = () => onClick(index, color)
+const SingleColor = ({ color, onClick, isActive, isVisible, index }) => {
+  const handleActiveUI = () => onClick(color, index)
 
   return (
     <Div
@@ -27,19 +20,17 @@ const SingleColor = ({
         transition: "transform 200ms ease-in"
       }}
       onClick={handleActiveUI}
-      {...props}
     />
   )
 }
 
-const Palette = ({ palette, onClick, activeColors, onAddColor }) => {
-  const [activeColor, updateActiveColor] = useState(null)
-
-  const handleClick = (index, color) => {
-    updateActiveColor(index)
-    onClick(index, color)
-  }
-
+const Palette = ({
+  palette,
+  onClick,
+  activeColors,
+  onAddColor,
+  pickerColor
+}) => {
   return (
     <Div
       display="flex"
@@ -55,12 +46,12 @@ const Palette = ({ palette, onClick, activeColors, onAddColor }) => {
     >
       {palette.map((color, i) => (
         <SingleColor
-          isActive={i === activeColor}
+          isActive={i === pickerColor.index}
           isVisible={activeColors.includes(color)}
           key={i}
-          color={color}
           index={i}
-          onClick={handleClick}
+          color={color}
+          onClick={onClick}
         />
       ))}
       <AddColor onAddColor={onAddColor} />
