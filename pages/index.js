@@ -45,6 +45,7 @@ const Index = ({ router }) => {
   const [availableCombos, setAvailableCombos] = useState(() =>
     getAllCombos(defaultPalette, 4.5)
   )
+  const [paletteModalIsOpen, togglePaletteModal] = useState(false)
   const [likes, updateLikes] = useState([])
   const [contrastRatio, setContrastRatio] = useState(4.5)
   const [colorFilter, setColorFilter] = useState("none")
@@ -666,6 +667,15 @@ const Index = ({ router }) => {
             onSelectLike={handleViewLike}
             onRemoveLike={handleRemoveLike}
           />
+          <Button onClick={() => togglePaletteModal(true)}>
+            Export Palette
+          </Button>
+          <PaletteModal
+            isOpen={paletteModalIsOpen}
+            togglePaletteModal={togglePaletteModal}
+            palette={palette}
+          />
+
           <Div
             display="flex"
             mt={2}
