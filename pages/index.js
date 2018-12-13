@@ -154,9 +154,13 @@ const Index = ({ router }) => {
     set(likes[index])
   }
 
-  const handleRemove = index => {
-    const alteredPalette = palette.filter((_, i) => index !== i)
+  const handleRemoveColor = color => {
+    const alteredPalette = palette.filter(c => c !== color)
     setPalette(alteredPalette)
+    setPickerColor({
+      color: null,
+      index: null
+    })
   }
 
   const handleAddColor = () => {
@@ -585,6 +589,7 @@ const Index = ({ router }) => {
               <ColorPicker
                 currentColor={currentPickerColor.color}
                 onChange={handleSetEditColor}
+                onRemoveColor={handleRemoveColor}
               />
             </OutsideClickHandler>
           )}

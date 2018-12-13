@@ -40,7 +40,7 @@ const getColorValues = val => {
   }
 }
 
-const ColorPicker = ({ currentColor, onChange }) => {
+const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
   const [colorValues, setColorValues] = useState(() =>
     getColorValues(currentColor)
   )
@@ -145,6 +145,9 @@ const ColorPicker = ({ currentColor, onChange }) => {
       display="flex"
       flexWrap="wrap"
     >
+      <TextButton onClick={() => onRemoveColor(currentColor)}>
+        Remove
+      </TextButton>
       <Flex width={1}>
         <Div width="auto" flex="1 0 auto">
           <P m={0} fontSize={1} color="inherit" css={{ transition: "none" }}>
