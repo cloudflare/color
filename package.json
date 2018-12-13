@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "deploy": "next build && next export && now ./out",
-    "analyze": "BUNDLE_ANALYZE=both next build"
+    "now-build": "next build && next export -o dist"
   },
   "dependencies": {
     "color": "^3.1.0",

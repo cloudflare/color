@@ -1,6 +1,6 @@
 {
   "version": 2,
   "alias": "color.cloudflare.design",
-  "builds": [{ "src": "next.config.js", "use": "@now/next" }],
-  "routes": [{ "src": "/.*", "dest": "https://color.cloudflare.design" }]
+  "builds": [{ "src": "package.json", "use": "@now/static-build" }],
+  "routes": []
 }
