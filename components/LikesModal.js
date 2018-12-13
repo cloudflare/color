@@ -6,7 +6,7 @@ import camelCase from "lodash/camelCase"
 import chunk from "lodash/chunk"
 import { js, css } from "js-beautify"
 
-const ExportModal = ({ likes, isOpen, toggleModal }) => {
+const LikesModal = ({ likes, isOpen, toggleModal }) => {
   const [data, setData] = useState([])
   const [activeTab, setActiveTab] = useState("json")
 
@@ -142,4 +142,4 @@ const ExportModal = ({ likes, isOpen, toggleModal }) => {
   ) : null
 }
 
-export default ExportModal
+export default LikesModal

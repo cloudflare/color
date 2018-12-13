@@ -53,7 +53,7 @@ const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
           >
             Export Likes
           </ButtonOutline>
-          <ExportModal
+          <LikesModal
             isOpen={modalOpen}
             likes={likes}
             toggleModal={toggleModal}

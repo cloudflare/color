@@ -159,8 +159,11 @@ const Index = ({ router }) => {
     setPalette(alteredPalette)
   }
 
-  const handleAddColor = newColor =>
-    newColor.length > 0 && setPalette(uniqWith([...palette, newColor], isEqual))
+  const handleAddColor = () => {
+    const newPalette = [...palette, "#000000"]
+    setPalette(newPalette)
+    setPickerColor({ color: "#000000", index: newPalette.length - 1 })
+  }
 
   const handleKeyPress = ({ key }) => {
     switch (key) {
