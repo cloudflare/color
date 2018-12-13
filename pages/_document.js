@@ -23,7 +23,6 @@ export default class MyDocument extends Document {
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
-          <title>Colors - Cloudflare.design</title>
         </Head>
         <body>
           <Main />
