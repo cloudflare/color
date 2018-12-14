@@ -1,6 +1,0 @@
-{
-  "version": 2,
-  "alias": "color.cloudflare.design",
-  "builds": [{ "src": "package.json", "use": "@now/static-build" }],
-  "routes": []
-}
