@@ -120,7 +120,9 @@ const ColorPicker = ({ currentColor, onChange }) => {
   }
 
   const showContrastLevel = ratio => {
-    if (ratio > 3 && ratio < 4.5) {
+    if (ratio < 3) {
+      return "Fail" 
+    } else if (ratio > 3 && ratio < 4.5) {
       return "AA large"
     } else if (ratio >= 4.5 && ratio < 7) {
       return "AA"
@@ -145,39 +147,7 @@ const ColorPicker = ({ currentColor, onChange }) => {
       display="flex"
       flexWrap="wrap"
     >
-      <Flex width={1}>
-        <Div width="auto" flex="1 0 auto">
-          <P m={0} fontSize={1} color="inherit" css={{ transition: "none" }}>
-            With Black:
-          </P>
-          <P
-            fontSize={5}
-            fontWeight={4}
-            m={0}
-            color="inherit"
-            css={{ transition: "none" }}
-          >
-            {contrastForBlack(currentColor)}
-
-            {showContrastLevel(contrastForBlack(currentColor))}
-          </P>
-        </Div>
-        <Div width="auto" flex="1 0 auto">
-          <P m={0} fontSize={1} color="inherit" css={{ transition: "none" }}>
-            With White:
-          </P>
-          <P
-            fontSize={5}
-            fontWeight={4}
-            m={0}
-            color="inherit"
-            css={{ transition: "none" }}
-          >
-            {contrastForWhite(currentColor)}
-            {showContrastLevel(contrastForWhite(currentColor))}
-          </P>
-        </Div>
-      </Flex>
+      
       <TextInput
         width={1}
         color="inherit"
@@ -190,9 +160,11 @@ const ColorPicker = ({ currentColor, onChange }) => {
         px={0}
         css={{ transition: "none" }}
       />
-      <Flex width={1 / 5} flexWrap="wrap">
+      <Flex mx={-4}>
+      <Flex flexWrap='wrap' width={1/2} px={4}>
+        <Flex flexWrap="wrap">
         <Label color="inherit" fontWeight={700} css={{ transition: "none" }}>
-          R
+          Red
         </Label>
         <TextInput
           type="number"
@@ -215,15 +187,15 @@ const ColorPicker = ({ currentColor, onChange }) => {
             min="0"
             max="255"
             step="1"
-            width={64}
+            width={1}
             value={colorValues.rgb.r}
             onChange={handleRGBChange}
           />
         </Div>
       </Flex>
-      <Flex width={1 / 5} flexWrap="wrap">
+      <Flex width={1} flexWrap="wrap">
         <Label fontWeight={700} color="inherit" css={{ transition: "none" }}>
-          G
+          Green
         </Label>
         <TextInput
           name="g"
@@ -232,7 +204,7 @@ const ColorPicker = ({ currentColor, onChange }) => {
           fontSize={3}
           bg="transparent"
           border={0}
-          width="auto"
+          width='auto'
           min="0"
           max="255"
           value={Math.floor(colorValues.rgb.g)}
@@ -243,7 +215,7 @@ const ColorPicker = ({ currentColor, onChange }) => {
           <Input
             name="g"
             type="range"
-            width={64}
+            width={1}
             min="0"
             max="255"
             step="1"
@@ -252,9 +224,9 @@ const ColorPicker = ({ currentColor, onChange }) => {
           />
         </Div>
       </Flex>
-      <Flex width={1 / 5} flexWrap="wrap">
+      <Flex width={1} flexWrap="wrap">
         <Label color="inherit" fontWeight={700} css={{ transition: "none" }}>
-          B
+          Blue
         </Label>
         <TextInput
           name="b"
@@ -277,14 +249,15 @@ const ColorPicker = ({ currentColor, onChange }) => {
             min="0"
             max="255"
             step="1"
-            width={64}
+            width={1}
             value={colorValues.rgb.b}
             onChange={handleRGBChange}
           />
         </Div>
       </Flex>
-      <Flex flexWrap="wrap">
-        <Flex width={1 / 5} flexWrap="wrap">
+      </Flex>
+      <Flex flexWrap="wrap" width={1/2} px={4}>
+        <Flex flexWrap="wrap">
           <Label fontWeight={700} color="inherit" css={{ transition: "none" }}>
             H
           </Label>
@@ -306,7 +279,7 @@ const ColorPicker = ({ currentColor, onChange }) => {
             <Input
               name="h"
               type="range"
-              width={64}
+              width={1}
               min="0"
               max="360"
               step="1"
@@ -315,7 +288,7 @@ const ColorPicker = ({ currentColor, onChange }) => {
             />
           </Div>
         </Flex>
-        <Flex width={1 / 5} flexWrap="wrap">
+        <Flex flexWrap="wrap">
           <Label fontWeight={700} color="inherit" css={{ transition: "none" }}>
             S
           </Label>
@@ -337,7 +310,7 @@ const ColorPicker = ({ currentColor, onChange }) => {
             <Input
               name="s"
               type="range"
-              width={64}
+              width={1}
               min="0"
               max="100"
               step="1"
@@ -346,7 +319,7 @@ const ColorPicker = ({ currentColor, onChange }) => {
             />
           </Div>
         </Flex>
-        <Flex flexWrap="wrap" width={1 / 5}>
+        <Flex flexWrap="wrap">
           <Label fontWeight={700} color="inherit" css={{ transition: "none" }}>
             L
           </Label>
@@ -368,7 +341,7 @@ const ColorPicker = ({ currentColor, onChange }) => {
             <Input
               name="l"
               type="range"
-              width={64}
+              width={1}
               min="0"
               max="100"
               step="1"
@@ -377,6 +350,43 @@ const ColorPicker = ({ currentColor, onChange }) => {
             />
           </Div>
         </Flex>
+      </Flex>
+    </Flex>
+<Flex width={1} mt={4} flexWrap='wrap'>
+  <Div width={1/2}>
+          <P m={0} fontSize={2} color="inherit" css={{ transition: "none" }}>
+            With black
+          </P>
+          <Div
+            display='flex'
+            alignItems='center'
+            fontSize={5}
+            fontWeight={700}
+            m={0}
+            color='inherit'
+            css={{ transition: "none" }}
+          >
+            <Span pr={2} fontWeight={700}> {contrastForBlack(currentColor)}</Span>
+            <Span fontWeight={700} fontSize={2} py={1} px={2} color={currentColor} bg='black' borderRadius={2}>{showContrastLevel(contrastForBlack(currentColor))}</Span>
+          </Div>
+        </Div>
+        <Div width={1/2} px={4}>
+          <P m={0} fontSize={2} color="inherit" css={{ transition: "none" }}>
+            With white
+          </P>
+          <Div
+            display='flex'
+            alignItems='center'
+            color='inherit'
+            fontSize={5}
+            fontWeight={4}
+            m={0}
+            css={{ transition: "none" }}
+          >
+            <Span pr={2} fontWeight={700}>{contrastForWhite(currentColor)}</Span>
+            <Span fontWeight={700} fontSize={2} color={currentColor} bg='white' borderRadius={2} py={1} px={2}>{showContrastLevel(contrastForWhite(currentColor))}</Span>
+          </Div>
+        </Div>
       </Flex>
     </Div>
   )
