@@ -9,6 +9,7 @@ import {
   lineHeight,
   textAlign,
   color,
+  borderRadius,
 } from 'styled-system'
 
 const Span = styled.span(
@@ -21,6 +22,7 @@ const Span = styled.span(
   lineHeight,
   textAlign,
   color,
+  borderRadius,
   {},
 )
 
