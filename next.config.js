@@ -15,6 +15,14 @@ const fetchFiles = async filePath => {
 }
 
 module.exports = {
+  exportPathMap: async (defaultPathMap, { dev, dir, outDir }) => {
+    if (dev) {
+      return defaultPathMap
+    }
+
+    await fs.copyFile(path.join(dir, "CNAME"), path.join(outDir, "CNAME"))
+    return defaultPathMap
+  },
   webpack: async (config, {}) => {
     const elements = await fetchFiles(path.join(__dirname, "elements"))
     const components = await fetchFiles(path.join(__dirname, "components"))
