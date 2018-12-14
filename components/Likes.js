@@ -1,13 +1,13 @@
-import React from "react"
-import TextButton from "./TextButton"
+import React, { useState } from "react"
 
 const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
+  const [modalOpen, toggleModal] = useState(false)
   const handleViewLike = i => () => onSelectLike(i)
   const handleRemoveLike = i => () => onRemoveLike(i)
 
-  const dataStr = `data:text/json;charset=utf-8,${encodeURIComponent(
-    JSON.stringify(likes)
-  )}`
+  const handleDisplayModal = () => {
+    toggleModal(true)
+  }
 
   return (
     likes.length > 0 && (
@@ -42,9 +42,6 @@ const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
           </Div>
         </Div>
 
-        <H4 mb={0} mt={4} fontSize={2}>
-          Export likes
-        </H4>
         <Div display="flex">
           <ButtonOutline
             mt={2}
@@ -52,11 +49,15 @@ const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
             bg="gray.8"
             color="gray.1"
             borderColor="gray.7"
-            download="likes.json"
-            href={dataStr}
+            onClick={handleDisplayModal}
           >
-            JSON
+            Export Likes
           </ButtonOutline>
+          <LikesModal
+            isOpen={modalOpen}
+            likes={likes}
+            toggleModal={toggleModal}
+          />
         </Div>
       </>
     )

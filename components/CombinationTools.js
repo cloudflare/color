@@ -7,10 +7,8 @@ const ComboColor = ({
   comboProperty,
   currentCombination,
   pinnedColors,
-  activeComboColor,
-  onComboColorUpdate,
   onPinColor,
-  handleActiveComboProp
+  onClick
 }) => {
   const contrastScore = getContrastScore(
     currentCombination[comboProperty],
@@ -25,6 +23,9 @@ const ComboColor = ({
     contrastScore < 1.5
       ? Color(currentCombination[comboProperty]).darken(0.125)
       : "white"
+
+  const onColorClick = () =>
+    onClick(currentCombination[comboProperty], comboProperty)
 
   return (
     <Div
@@ -63,10 +64,7 @@ const ComboColor = ({
         <Span display="block" fontWeight={700}>
           {name}:
         </Span>
-        <Code
-          css={{ cursor: "pointer" }}
-          onClick={handleActiveComboProp(comboProperty)}
-        >
+        <Code css={{ cursor: "pointer" }} onClick={onColorClick}>
           {currentCombination[comboProperty]}
         </Code>
       </Div>
@@ -80,19 +78,11 @@ const CombinationTools = ({
   onPrevious,
   onNext,
   onPinColor,
-  onShowEditTooltip,
   onLike,
   onAutoCycling,
   isRunning,
-  onComboColorUpdate
+  onColorClick
 }) => {
-  const [activeComboColor, setActiveComboColor] = useState(null)
-
-  const handleActiveColor = activeColor => () => {
-    onShowEditTooltip()
-    setActiveComboColor(activeColor)
-  }
-
   return (
     <Div width={3 / 4}>
       <Flex fontSize={1} justifyContent="center" bg="white">
@@ -111,10 +101,8 @@ const CombinationTools = ({
             comboProperty="parentBg"
             currentCombination={currentCombination}
             pinnedColors={pinnedColors}
-            activeComboColor={activeComboColor}
             onPinColor={onPinColor}
-            onComboColorUpdate={onComboColorUpdate}
-            handleActiveComboProp={handleActiveColor}
+            onClick={onColorClick}
           />
 
           <ComboColor
@@ -122,10 +110,8 @@ const CombinationTools = ({
             comboProperty="color"
             currentCombination={currentCombination}
             pinnedColors={pinnedColors}
-            activeComboColor={activeComboColor}
             onPinColor={onPinColor}
-            onComboColorUpdate={onComboColorUpdate}
-            handleActiveComboProp={handleActiveColor}
+            onClick={onColorClick}
           />
 
           <ComboColor
@@ -133,10 +119,8 @@ const CombinationTools = ({
             comboProperty="bg"
             currentCombination={currentCombination}
             pinnedColors={pinnedColors}
-            activeComboColor={activeComboColor}
             onPinColor={onPinColor}
-            onComboColorUpdate={onComboColorUpdate}
-            handleActiveComboProp={handleActiveColor}
+            onClick={onColorClick}
           />
 
           <ComboColor
@@ -144,10 +128,8 @@ const CombinationTools = ({
             comboProperty="borderColor"
             currentCombination={currentCombination}
             pinnedColors={pinnedColors}
-            activeComboColor={activeComboColor}
             onPinColor={onPinColor}
-            onComboColorUpdate={onComboColorUpdate}
-            handleActiveComboProp={handleActiveColor}
+            onClick={onColorClick}
           />
 
           <ButtonIcon

@@ -21,6 +21,8 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
         </Head>
         <body>
           <Main />
