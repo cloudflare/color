@@ -2,6 +2,8 @@ const path = require("path")
 const fs = require("fs-extra")
 const webpack = require("webpack")
 
+const isProd = process.env.NODE_ENV === "production"
+
 const fetchFiles = async filePath => {
   const files = await fs.readdir(filePath)
 
@@ -15,12 +17,16 @@ const fetchFiles = async filePath => {
 }
 
 module.exports = {
+  assetPrefix: isProd ? "https://cloudflare-design.github.io/color" : "",
   exportPathMap: async (defaultPathMap, { dev, dir, outDir }) => {
     if (dev) {
       return defaultPathMap
     }
 
-    await fs.copyFile(path.join(dir, "CNAME"), path.join(outDir, "CNAME"))
+    await fs.copyFile(
+      path.join(dir, ".nojekyll"),
+      path.join(outDir, ".nojekyll")
+    )
     return defaultPathMap
   },
   webpack: async (config, {}) => {
