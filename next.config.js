@@ -1,6 +1,7 @@
 const path = require("path")
 const fs = require("fs-extra")
 const webpack = require("webpack")
+const pkg = require("./package.json")
 
 const isProd = process.env.NODE_ENV === "production"
 
@@ -17,7 +18,7 @@ const fetchFiles = async filePath => {
 }
 
 module.exports = {
-  assetPrefix: isProd ? "https://cloudflare-design.github.io/color" : "",
+  assetPrefix: isProd ? `https://cloudflare-design.github.io/${pkg.name}` : "",
   exportPathMap: async (defaultPathMap, { dev, dir, outDir }) => {
     if (dev) {
       return defaultPathMap

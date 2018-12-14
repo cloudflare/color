@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "product-kit",
+  "name": "color",
   "version": "0.5.1",
   "scripts": {
     "dev": "next -p $(./node_modules/detect-port/bin/detect-port 3000)",
