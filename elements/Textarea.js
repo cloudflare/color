@@ -6,6 +6,7 @@ import {
   fontSize,
   color,
   borders,
+  borderColor,
   borderRadius,
 } from 'styled-system'
 
@@ -16,9 +17,11 @@ const Textarea = styled.textarea(
   fontSize,
   color,
   borders,
+  borderColor,
   borderRadius,
   {
     overflow: 'auto',
+    boxSizing: 'border-box',
   },
 )
 

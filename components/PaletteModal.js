@@ -55,28 +55,33 @@ const PaletteModal = ({ palette, togglePaletteModal, isOpen }) => {
   }
 
   return isOpen ? (
-    <Div
+    <Flex
       position="fixed"
       width={1}
       height="100vh"
       px={6}
       py={4}
+      justifyContent='center'
+      alignItems='center'
       css={{ backgroundColor: "rgba(0,0,0,0.4)", top: 0, left: 0, zIndex: 5 }}
     >
       <OutsideClickHandler onOutsideClick={() => togglePaletteModal(false)}>
-        <Flex position="absolute" bg="white" flexWrap="wrap" p={4}>
-          <Button onClick={() => togglePaletteModal(false)}>Close</Button>
-          <Div>
-            <Button onClick={handleActiveTab("json")}>JSON</Button>
-            <Button onClick={handleActiveTab("css")}>CSS variables</Button>
-            <Button onClick={handleActiveTab("sass")}>Sass variables</Button>
-            <Button onClick={handleActiveTab("js")}>JS theme file</Button>
-          </Div>
+        <Flex bg="white" flexWrap="wrap" p={4} borderRadius={2} maxWidth='60rem'>
+          <Flex width={1} mx={-3} mb={3}>
+            <TextButton px={3} onClick={handleActiveTab("json")}>JSON</TextButton>
+            <TextButton px={3} onClick={handleActiveTab("css")}>CSS variables</TextButton>
+            <TextButton px={3} onClick={handleActiveTab("sass")}>Sass variables</TextButton>
+            <TextButton px={3} onClick={handleActiveTab("js")}>JS theme file</TextButton>
+            <TextButton px={3} fontWeight={700} onClick={() => togglePaletteModal(false)} ml='auto'>Close</TextButton>
+          </Flex>
 
           {activeTab === "json" && (
-            <Div>
-              <P>JSON format</P>
+            <Div width={1} border='1px solid' borderColor='gray.7' borderRadius={2} style={{ overflow: 'hidden' }}>
               <Textarea
+                width={1}
+                bg='gray.9'
+                style={{minHeight: '16rem', height: '75vh', border: 0 }}
+                p={4}
                 onClick={handleSelectAll}
                 readOnly
                 value={formatAsJson()}
@@ -85,9 +90,12 @@ const PaletteModal = ({ palette, togglePaletteModal, isOpen }) => {
           )}
 
           {activeTab === "css" && (
-            <Div>
-              <P>CSS format</P>
+            <Div width={1} border='1px solid' borderColor='gray.8' borderRadius={2} style={{overflow: 'hidden' }}>
               <Textarea
+                width={1}
+                bg='gray.9'
+                style={{minHeight: '16rem', height: '75vh', border: 0 }}
+                p={4}
                 onClick={handleSelectAll}
                 readOnly
                 value={css(formatAsCSS())}
@@ -96,9 +104,12 @@ const PaletteModal = ({ palette, togglePaletteModal, isOpen }) => {
           )}
 
           {activeTab === "sass" && (
-            <Div>
-              <P>Sass format</P>
+            <Div width={1} border='1px solid' borderColor='gray.8' borderRadius={2} style={{overflow: 'hidden' }}>
               <Textarea
+                width={1}
+                bg='gray.9'
+                style={{minHeight: '16rem', height: '75vh', border: 0 }}
+                p={4}
                 onClick={handleSelectAll}
                 readOnly
                 value={css(formatAsSass())}
@@ -107,9 +118,12 @@ const PaletteModal = ({ palette, togglePaletteModal, isOpen }) => {
           )}
 
           {activeTab === "js" && (
-            <Div>
-              <P>JS format</P>
+            <Div width={1} border='1px solid' borderColor='gray.8' borderRadius={2} style={{overflow: 'hidden' }}>
               <Textarea
+                width={1}
+                bg='gray.9'
+                style={{minHeight: '16rem', height: '75vh', border: 0 }}
+                p={4}
                 onClick={handleSelectAll}
                 readOnly
                 value={js(formatAsJS())}
@@ -118,7 +132,7 @@ const PaletteModal = ({ palette, togglePaletteModal, isOpen }) => {
           )}
         </Flex>
       </OutsideClickHandler>
-    </Div>
+    </Flex>
   ) : null
 }
 

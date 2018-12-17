@@ -570,9 +570,19 @@ const Index = ({ router }) => {
                 onClick={handlePaletteColorClick}
                 onAddColor={handleAddColor}
               />
-              <TextButton mt={3} ml="auto" onClick={handleClearPalette}>
-                Clear palette
-              </TextButton>
+              <Flex mt={3}>
+                <TextButton fontSize={2} onClick={handleClearPalette}>
+                  Clear palette
+                </TextButton>
+                <TextButton fontWeight={700} fontSize={2} ml='auto' onClick={() => togglePaletteModal(true)}>
+                  Export palette
+                </TextButton>
+              </Flex>
+              <PaletteModal
+                isOpen={paletteModalIsOpen}
+                togglePaletteModal={togglePaletteModal}
+                palette={palette}
+              />
             </Div>
           </Div>
 
@@ -595,10 +605,10 @@ const Index = ({ router }) => {
           )}
         </Div>
 
-        <Form mt={3} px={3}>
+        <Form mt={3} px={3} pt={4}>
           <Fieldset border="0" p={0}>
             <Legend fontWeight={700} fontSize={3}>
-              Contrast Ratio
+              Contrast Ratio :1
             </Legend>
             <Flex mx={-3} py={2}>
               <Flex px={3}>
@@ -610,8 +620,9 @@ const Index = ({ router }) => {
                   checked={contrastRatio === 3}
                   mr={2}
                 />
-                <Label>
-                  <Span fontWeight={800}>3:1</Span> AA large
+                <Label style={{whiteSpace: 'nowrap'}}>
+                  <Span fontWeight={800}>3 </Span> 
+                  <Span fontSize={1}>AA large</Span>
                 </Label>
               </Flex>
               <Flex px={3}>
@@ -623,8 +634,9 @@ const Index = ({ router }) => {
                   checked={contrastRatio === 4.5}
                   mr={2}
                 />
-                <Label>
-                  <Span fontWeight={800}>4.5:1</Span> AA
+                <Label style={{whiteSpace: 'nowrap'}}>
+                  <Span fontWeight={800}>4.5 </Span> 
+                  <Span fontSize={1}>AA</Span>
                 </Label>
               </Flex>
               <Flex px={3}>
@@ -636,8 +648,9 @@ const Index = ({ router }) => {
                   checked={contrastRatio === 7}
                   mr={2}
                 />
-                <Label>
-                  <Span fontWeight={800}>7:1</Span> AAA
+                <Label style={{whiteSpace: 'nowrap'}}>
+                  <Span fontWeight={800}>7 </Span> 
+                  <Span fontSize={1}>AAA</Span>
                 </Label>
               </Flex>
             </Flex>
@@ -675,25 +688,20 @@ const Index = ({ router }) => {
             onSelectLike={handleViewLike}
             onRemoveLike={handleRemoveLike}
           />
-          <Button onClick={() => togglePaletteModal(true)}>
-            Export Palette
-          </Button>
-          <PaletteModal
-            isOpen={paletteModalIsOpen}
-            togglePaletteModal={togglePaletteModal}
-            palette={palette}
-          />
 
+        </Div>
           <Div
             display="flex"
-            mt={2}
-            borderTop="1px solid rgba(0,0,0,.2)"
+            mt={4}
             py={3}
+            px={3}
+            borderTop='1px solid rgba(0,0,0,.1)'
           >
             <A
               display="block"
               href="https://cloudflare.design"
               fontWeight={700}
+              fontSize={2}
             >
               Cloudflare Design
             </A>
@@ -708,7 +716,6 @@ const Index = ({ router }) => {
               GitHub
             </A>
           </Div>
-        </Div>
       </Div>
 
       {!isEmpty(currentCombination) && (

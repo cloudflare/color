@@ -43,16 +43,15 @@ const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
         </Div>
 
         <Div display="flex">
-          <ButtonOutline
+          <TextButton
             mt={2}
+            fontSize={2}
             width={1}
-            bg="gray.8"
             color="gray.1"
-            borderColor="gray.7"
             onClick={handleDisplayModal}
           >
-            Export Likes
-          </ButtonOutline>
+            Export likes
+          </TextButton>
           <LikesModal
             isOpen={modalOpen}
             likes={likes}
