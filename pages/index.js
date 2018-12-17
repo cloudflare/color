@@ -14,6 +14,7 @@ import toNumber from "lodash/toNumber"
 import reduce from "lodash/reduce"
 import findKey from "lodash/findKey"
 import debounce from "lodash/debounce"
+import copy from "clipboard-copy"
 import theme from "../theme"
 
 import defaultPalette from "../utils/defaultPalette"
@@ -80,7 +81,7 @@ const Index = ({ router }) => {
     getIdb("likes").then(likes => {
       likes && updateLikes(likes)
     })
-
+    !isEmpty(router.query) && stop()
     const starterCombination = isEmpty(router.query)
       ? generateRandomPalette(
           palette,
@@ -91,19 +92,6 @@ const Index = ({ router }) => {
       : router.query
     set(starterCombination)
   }, [])
-
-  useEffect(
-    () => {
-      const href = `${window.location.pathname}?${encodeCombination(
-        currentCombination
-      )}`
-
-      router.push(href, href, {
-        shallow: true
-      })
-    },
-    [currentCombination]
-  )
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress)
@@ -338,6 +326,15 @@ const Index = ({ router }) => {
     setCurrentComboProp(key)
     const paletteIndex = palette.findIndex(p => p === color)
     setPickerColor({ color, index: paletteIndex })
+  }
+
+  const handleLinkShare = () => {
+    const { protocol, hostname, pathname } = window.location
+    copy(
+      `${protocol}//${hostname}${pathname}?${encodeCombination(
+        currentCombination
+      )}`
+    )
   }
 
   return (
@@ -686,6 +683,8 @@ const Index = ({ router }) => {
             togglePaletteModal={togglePaletteModal}
             palette={palette}
           />
+
+          <Button onClick={handleLinkShare}>Share current combination</Button>
 
           <Div
             display="flex"

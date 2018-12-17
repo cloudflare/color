@@ -1583,6 +1583,11 @@ cli-cursor@^2.0.0:
   dependencies:
     restore-cursor "^2.0.0"
 
+clipboard-copy@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/clipboard-copy/-/clipboard-copy-2.0.1.tgz#25214db3aabc282109cfa3429ffd885b014fc8b3"
+  integrity sha512-/JBr7ryeWwl2w33SRMYGfOZU5SWPVNtpB9oTxUzFp7olKKd2HM+cnhSMeETblJMnjgqtL581ncI/pcZX7o7Big==
+
 code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"

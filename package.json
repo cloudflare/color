@@ -10,6 +10,7 @@
     "deploy:preview": "next build && next export -o dist && now"
   },
   "dependencies": {
+    "clipboard-copy": "^2.0.1",
     "color": "^3.1.0",
     "cssstats": "^3.2.0",
     "emotion": "9.2.12",
