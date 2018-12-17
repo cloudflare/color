@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { withRouter } from "next/router"
 import { get as getIdb, set as setIdb } from "idb-keyval"
 import palx from "palx"
 import OutsideClickHandler from "react-outside-click-handler"
 import useHistory from "../utils/useHistory"
 import useInterval from "../utils/useInterval"
-import queryString from "query-string"
 import isEmpty from "lodash/isEmpty"
 import isArray from "lodash/isArray"
 import uniqWith from "lodash/uniqWith"
@@ -14,17 +12,12 @@ import toNumber from "lodash/toNumber"
 import reduce from "lodash/reduce"
 import findKey from "lodash/findKey"
 import debounce from "lodash/debounce"
-import copy from "clipboard-copy"
 import theme from "../theme"
 
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
 import getAllCombos from "../utils/getAllCombos"
-
-const encodeCombination = currentCombination => {
-  return queryString.stringify(currentCombination)
-}
 
 const resetPinned = {
   color: false,
@@ -41,7 +34,7 @@ const debouncedUpdateCombos = debounce(
   500
 )
 
-const Index = ({ router }) => {
+const Index = () => {
   const [palette, setPalette] = useState(sortPalette(defaultPalette))
   const [availableCombos, setAvailableCombos] = useState(() =>
     getAllCombos(defaultPalette, 4.5)
@@ -81,15 +74,14 @@ const Index = ({ router }) => {
     getIdb("likes").then(likes => {
       likes && updateLikes(likes)
     })
-    !isEmpty(router.query) && stop()
-    const starterCombination = isEmpty(router.query)
-      ? generateRandomPalette(
-          palette,
-          pinnedColors,
-          currentCombination,
-          availableCombos
-        )
-      : router.query
+
+    const starterCombination = generateRandomPalette(
+      palette,
+      pinnedColors,
+      currentCombination,
+      availableCombos
+    )
+
     set(starterCombination)
   }, [])
 
@@ -326,15 +318,6 @@ const Index = ({ router }) => {
     setCurrentComboProp(key)
     const paletteIndex = palette.findIndex(p => p === color)
     setPickerColor({ color, index: paletteIndex })
-  }
-
-  const handleLinkShare = () => {
-    const { protocol, hostname, pathname } = window.location
-    copy(
-      `${protocol}//${hostname}${pathname}?${encodeCombination(
-        currentCombination
-      )}`
-    )
   }
 
   return (
@@ -684,8 +667,6 @@ const Index = ({ router }) => {
             palette={palette}
           />
 
-          <Button onClick={handleLinkShare}>Share current combination</Button>
-
           <Div
             display="flex"
             mt={2}
@@ -744,4 +725,4 @@ const Index = ({ router }) => {
   )
 }
 
-export default withRouter(Index)
+export default Index
