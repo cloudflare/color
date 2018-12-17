@@ -94,7 +94,10 @@ const Index = ({ router }) => {
 
   useEffect(
     () => {
-      const href = `${router.route}?${encodeCombination(currentCombination)}`
+      const href = `${window.location.pathname}?${encodeCombination(
+        currentCombination
+      )}`
+
       router.push(href, href, {
         shallow: true
       })
