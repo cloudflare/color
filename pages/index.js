@@ -554,10 +554,10 @@ const Index = () => {
                 onAddColor={handleAddColor}
               />
               <Flex mt={3}>
-                <TextButton fontSize={2} onClick={handleClearPalette}>
+                <TextButton bg='transparent' fontSize={2} onClick={handleClearPalette}>
                   Clear palette
                 </TextButton>
-                <TextButton fontWeight={700} fontSize={2} ml='auto' onClick={() => togglePaletteModal(true)}>
+                <TextButton bg='transparent' fontWeight={700} fontSize={2} ml='auto' onClick={() => togglePaletteModal(true)}>
                   Export palette
                 </TextButton>
               </Flex>
