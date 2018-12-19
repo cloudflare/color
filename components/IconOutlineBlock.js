@@ -102,8 +102,8 @@ const IconOutlineBlock = ({ currentCombination, borderWidth }) => {
         display="grid"
         style={{
           justifyItems: "center",
-          gridTemplateColumns: "repeat(12, 1fr)",
-          rowGap: "1em"
+          gridTemplateColumns: "repeat(auto-fill, minmax(24px,48px))",
+          rowGap: '16px'
         }}
       >
         <IconSolid
@@ -274,16 +274,6 @@ const IconOutlineBlock = ({ currentCombination, borderWidth }) => {
         >
           <Icon size={16} color={currentCombination.color} type="list" />
         </IconSolid>
-      </Div>
-      <Div
-        mt={4}
-        display="grid"
-        style={{
-          justifyItems: "center",
-          gridTemplateColumns: "repeat(12, 1fr)",
-          rowGap: "1em"
-        }}
-      >
         <IconOutline color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="mail" />
         </IconOutline>
