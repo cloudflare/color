@@ -19,14 +19,14 @@ const TextBlock = ({ currentCombination, borderWidth, boxPadding }) => {
       <Span fontSize={2} fontWeight={600}>
         Contrast
       </Span>
-      <Span fontSize={7} fontWeight={800} display="block" mb={3}>
+      <Span fontSize={[5,6,7]} fontWeight={800} display="block" mb={3}>
         {contrast}
       </Span>
-      <Span fontWeight={800} fontSize={[5, 6]}>
-        ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      <Span fontWeight={800} fontSize={[5, 6]} style={{ letterSpacing: '-.075em' }}>
+        A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
       </Span>
-      <Span fontWeight={600} fontSize={5} display="block" lineHeight={1.5}>
-        abcdefghijklmnopqrstuvwxyz 1234567890!@#$%^&*()
+      <Span fontWeight={600} fontSize={5} display="block" lineHeight={1.5} style={{letterSpacing: '-.1em'}}>
+        a b c d e f g h i j k l m n o p q r s t u v w x y z 1 2 3 4 5 6 7 8 9 0 ! @ # $ % ^ & * ()
       </Span>
       <Span lineHeight={1.5} display="block" mt={3}>
         Every perception of color is an illusion.. ..we do not see colors as
