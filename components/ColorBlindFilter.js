@@ -12,22 +12,8 @@ const filters = [
   { label: "Achromatomaly", value: "achromatomaly", population: "Unknown %" }
 ]
 
-const SingleRadio = ({
-  label,
-  value,
-  population,
-  onChange,
-  currentValue,
-  ...props
-}) => (
-  <Div
-    display="flex"
-    alignItems="flex-start"
-    width={1}
-    flexWrap="wrap"
-    mb={2}
-    {...props}
-  >
+const SingleRadio = ({ label, value, population, onChange, currentValue }) => (
+  <Div display="flex" alignItems="flex-start" width={1} flexWrap="wrap" mb={2}>
     <Div width="1rem" mr={1}>
       <Input
         type="radio"
