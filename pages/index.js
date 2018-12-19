@@ -412,6 +412,7 @@ const Index = () => {
             <Flex mt={3} mb={2} px={3}>
               <Div width={1 / 2}>
                 <Input
+                  id="imageUpload"
                   border="1px solid rgba(0,0,0,.1)"
                   py={3}
                   width={1}
@@ -420,25 +421,49 @@ const Index = () => {
                   type="file"
                   accept=".png, .jpg, .jpeg"
                   onChange={handleImageUpload}
+                  css={{ display: "none" }}
                 />
+                <Label
+                  display="flex"
+                  color="white"
+                  bg="gray.3"
+                  fontSize={2}
+                  borderRadius={2}
+                  py={2}
+                  px={3}
+                  width={"auto"}
+                  fontWeight={700}
+                  textAlign="center"
+                  css={{ cursor: "pointer" }}
+                  htmlFor="imageUpload"
+                >
+                  Upload Image
+                </Label>
+              </Div>
+              <Div width="auto" px={3} textAlign="center">
+                or
               </Div>
               <Div width={1 / 2} textAlign="right">
                 <Button
-                  bg="white"
-                  border="1px solid black"
-                  fontSize={1}
+                  color="white"
+                  bg="gray.3"
+                  fontSize={2}
                   borderRadius={2}
                   py={2}
                   px={3}
                   ml="auto"
                   display="flex"
-                  justifyContent="center"
                   width={"auto"}
-                  alignItems="center"
+                  border="none"
                   fontWeight={700}
+                  css={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    cursor: "pointer"
+                  }}
                   onClick={handleFetchFromUnsplash}
                 >
-                  <Icon viewBox="0 0 32 32" size={16} type="unsplash" />
+                  <Icon viewBox="0 0 123 123" size={16} type="unsplash" />
                   <Span pl={2}>Unsplash photo</Span>
                 </Button>
               </Div>
@@ -492,7 +517,11 @@ const Index = () => {
                 <Label mb={2} display="block">
                   Base Color
                 </Label>
-                <Flex>
+                <Flex
+                  overflow="hidden"
+                  borderRadius={2}
+                  css={{ overflow: "hidden" }}
+                >
                   <TextInput
                     width={48}
                     fontSize={2}
@@ -518,8 +547,8 @@ const Index = () => {
                   <Button
                     py={3}
                     width={1 / 4}
+                    bg="gray.3"
                     fontSize={2}
-                    bg="black"
                     color="white"
                     fontWeight={700}
                     border="none"
@@ -542,7 +571,7 @@ const Index = () => {
                 <Dl width={1 / 2}>
                   <Dt fontSize={2}>Combos with Parent Bg</Dt>
                   <Dd fontSize={6} fontWeight={800} ml={0}>
-                    {availableCombos.length * palette.length}
+                    {(availableCombos.length * palette.length).toLocaleString()}
                   </Dd>
                 </Dl>
               </Flex>
