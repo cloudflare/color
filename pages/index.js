@@ -419,7 +419,7 @@ const Index = () => {
         {activeTab === "image" && (
           <>
             <Flex mt={3} mb={2} px={3}>
-              <Div width={1 / 2}>
+              <Div>
                 <Input
                   id="imageUpload"
                   border="1px solid rgba(0,0,0,.1)"
@@ -433,26 +433,28 @@ const Index = () => {
                   css={{ display: "none" }}
                 />
                 <Label
-                  display="flex"
-                  color="white"
-                  bg="gray.3"
+                  display="block"
+                  color="gray.0"
+                  bg="gray.8"
                   fontSize={2}
                   borderRadius={2}
                   py={2}
                   px={3}
-                  width={"auto"}
+                  width="auto"
                   fontWeight={700}
                   textAlign="center"
-                  css={{ cursor: "pointer" }}
+                  css={{ whiteSpace: 'nowrap', cursor: "pointer" }}
                   htmlFor="imageUpload"
                 >
-                  Upload Image
+                  Upload image
                 </Label>
               </Div>
-              <Div width="auto" px={3} textAlign="center">
+              <Div>
+                <P textAlign='center'>
                 or
+                </P>
               </Div>
-              <Div width={1 / 2} textAlign="right">
+              <Div ml='auto'>
                 <Button
                   color="white"
                   bg="gray.3"
@@ -468,7 +470,8 @@ const Index = () => {
                   css={{
                     justifyContent: "center",
                     alignItems: "center",
-                    cursor: "pointer"
+                    cursor: "pointer",
+                    whiteSpace: 'nowrap'
                   }}
                   onClick={handleFetchFromUnsplash}
                 >
