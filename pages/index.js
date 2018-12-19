@@ -20,6 +20,7 @@ import sortPalette from "../utils/sortPalette"
 import getAllCombos from "../utils/getAllCombos"
 
 import Preview from "../components/Preview"
+import PlayerControls from "../components/PlayerControls"
 
 const resetPinned = {
   color: false,
@@ -344,23 +345,6 @@ const Index = () => {
             : `url(/static/filters.svg#${colorFilter})`
       }}
     >
-      <Div bg="white" display="flex" alignItems="center" width={1}>
-        <Div width={1 / 4} py={2} pl={3}>
-          <Logo />
-        </Div>
-        <CombinationTools
-          currentCombination={currentCombination}
-          pinnedColors={pinnedColors}
-          onPrevious={handlePrevious}
-          onNext={handleNext}
-          onPinColor={handlePinColor}
-          onLike={handleLike}
-          onAutoCycling={handleAutoCycling}
-          isRunning={isRunning}
-          onComboColorUpdate={handleComboColorUpdate}
-          onColorClick={handleColorClick}
-        />
-      </Div>
 
       <Div
         width={[1, 1 / 4]}
@@ -775,11 +759,27 @@ const Index = () => {
       </Div>
 
       {!isEmpty(currentCombination) && (
-        <Preview
-          borderWidth={borderWidth}
-          boxPadding={boxPadding}
-          currentCombination={currentCombination}
-        />
+        <Div width={[1,3/4]}>
+          <PlayerControls
+            currentCombination={currentCombination}
+            pinnedColors={pinnedColors}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+            onPinColor={handlePinColor}
+            onLike={handleLike}
+            onAutoCycling={handleAutoCycling}
+            isRunning={isRunning}
+            onComboColorUpdate={handleComboColorUpdate}
+            onColorClick={handleColorClick}
+          />
+        <Div maxWidth='48rem' mx='auto'>
+          <Preview
+            borderWidth={borderWidth}
+            boxPadding={boxPadding}
+            currentCombination={currentCombination}
+          />
+        </Div>
+        </Div>
       )}
     </Div>
   )

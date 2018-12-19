@@ -706,6 +706,18 @@ const Icon = ({ type, color, size, ...props }) => {
           fill={color}
         />
       )}
+      {type == "next" && (
+        <Path
+          fill={color}
+          d='M2 2 L12 7 V2 H14 V14 H12 V9 L2 14 z'
+        />
+      )}
+      {type == "previous" && (
+        <Path
+          fill={color}
+          d='M2 2 H4 V7 L14 2 V14 L4 8 V14 H2 z'
+        />
+      )}
     </Svg>
   )
 }
