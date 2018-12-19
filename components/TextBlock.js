@@ -1,7 +1,7 @@
 import React from "react"
 import Color from "color"
 
-const TextBlock = ({ currentCombination, borderWidth }) => {
+const TextBlock = ({ currentCombination, borderWidth, boxPadding }) => {
   const contrast = Color(currentCombination.bg)
     .contrast(Color(currentCombination.color))
     .toFixed(2)
@@ -11,7 +11,7 @@ const TextBlock = ({ currentCombination, borderWidth }) => {
       borderColor={currentCombination.borderColor}
       border={`${borderWidth}px solid`}
       py={[4, 5]}
-      px={[4, 5]}
+      px={boxPadding}
       color={currentCombination.color}
       bg={currentCombination.bg}
       textAlign="left"

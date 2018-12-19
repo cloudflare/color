@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled from "react-emotion"
 import {
   space,
   width,
@@ -9,7 +9,8 @@ import {
   lineHeight,
   textAlign,
   color,
-} from 'styled-system'
+  borderRadius
+} from "styled-system"
 
 const Label = styled.label(
   space,
@@ -21,7 +22,8 @@ const Label = styled.label(
   lineHeight,
   textAlign,
   color,
-  {},
+  borderRadius,
+  {}
 )
 
 Label.defaultProps = {}
