@@ -112,6 +112,11 @@ const Index = () => {
     await setIdb("likes", newLikes)
   }
 
+  const handleClearLikes = async () => {
+    updateLikes([])
+    await setIdb("likes", [])
+  }
+
   const handleNext = () => {
     if (canRedo) {
       return redo()
@@ -710,6 +715,7 @@ const Index = () => {
             likes={likes}
             onSelectLike={handleViewLike}
             onRemoveLike={handleRemoveLike}
+            onClearLikes={handleClearLikes}
           />
           <Button onClick={() => togglePaletteModal(true)}>
             Export Palette

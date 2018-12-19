@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
+const Likes = ({ likes, onSelectLike, onRemoveLike, onClearLikes }) => {
   const [modalOpen, toggleModal] = useState(false)
   const handleViewLike = i => () => onSelectLike(i)
   const handleRemoveLike = i => () => onRemoveLike(i)
@@ -13,9 +13,13 @@ const Likes = ({ likes, onSelectLike, onRemoveLike }) => {
     likes.length > 0 && (
       <>
         <Div width={1}>
-          <H4 mt={5} mb={2}>
-            Likes
-          </H4>
+          <Flex mt={5} mb={2}>
+            <H4>Likes</H4>
+
+            <TextButton px={2} onClick={onClearLikes} ml="auto">
+              Clear all
+            </TextButton>
+          </Flex>
 
           <Div>
             {likes.map((like, i) => {
