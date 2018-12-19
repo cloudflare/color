@@ -49,6 +49,7 @@ const Index = () => {
   const { present: currentCombination } = currentState
   const [pinnedColors, setPinnedColors] = useState(resetPinned)
   const [borderWidth, setBorderWidth] = useState(0)
+  const [boxPadding, setBoxPadding] = useState(64)
   const [palxColor, setPalxColor] = useState("#07c")
   const [currentPickerColor, setPickerColor] = useState({
     color: null,
@@ -109,6 +110,11 @@ const Index = () => {
     const newLikes = likes.filter((_, i) => index !== i)
     updateLikes(newLikes)
     await setIdb("likes", newLikes)
+  }
+
+  const handleClearLikes = async () => {
+    updateLikes([])
+    await setIdb("likes", [])
   }
 
   const handleNext = () => {
@@ -234,6 +240,7 @@ const Index = () => {
   }
 
   const handleBorderWidthChange = e => setBorderWidth(parseInt(e.target.value))
+  const handleBoxPaddingChange = e => setBoxPadding(parseInt(e.target.value))
 
   const handleFetchFromUnsplash = async () => {
     const res = await fetch("https://unsplash-palette.now.sh")
@@ -412,6 +419,7 @@ const Index = () => {
             <Flex mt={3} mb={2} px={3}>
               <Div width={1 / 2}>
                 <Input
+                  id="imageUpload"
                   border="1px solid rgba(0,0,0,.1)"
                   py={3}
                   width={1}
@@ -420,25 +428,49 @@ const Index = () => {
                   type="file"
                   accept=".png, .jpg, .jpeg"
                   onChange={handleImageUpload}
+                  css={{ display: "none" }}
                 />
+                <Label
+                  display="flex"
+                  color="white"
+                  bg="gray.3"
+                  fontSize={2}
+                  borderRadius={2}
+                  py={2}
+                  px={3}
+                  width={"auto"}
+                  fontWeight={700}
+                  textAlign="center"
+                  css={{ cursor: "pointer" }}
+                  htmlFor="imageUpload"
+                >
+                  Upload Image
+                </Label>
+              </Div>
+              <Div width="auto" px={3} textAlign="center">
+                or
               </Div>
               <Div width={1 / 2} textAlign="right">
                 <Button
-                  bg="white"
-                  border="1px solid black"
-                  fontSize={1}
+                  color="white"
+                  bg="gray.3"
+                  fontSize={2}
                   borderRadius={2}
                   py={2}
                   px={3}
                   ml="auto"
                   display="flex"
-                  justifyContent="center"
                   width={"auto"}
-                  alignItems="center"
+                  border="none"
                   fontWeight={700}
+                  css={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    cursor: "pointer"
+                  }}
                   onClick={handleFetchFromUnsplash}
                 >
-                  <Icon viewBox="0 0 32 32" size={16} type="unsplash" />
+                  <Icon viewBox="0 0 123 123" size={16} type="unsplash" />
                   <Span pl={2}>Unsplash photo</Span>
                 </Button>
               </Div>
@@ -492,7 +524,11 @@ const Index = () => {
                 <Label mb={2} display="block">
                   Base Color
                 </Label>
-                <Flex>
+                <Flex
+                  overflow="hidden"
+                  borderRadius={2}
+                  css={{ overflow: "hidden" }}
+                >
                   <TextInput
                     width={48}
                     fontSize={2}
@@ -518,8 +554,8 @@ const Index = () => {
                   <Button
                     py={3}
                     width={1 / 4}
+                    bg="gray.3"
                     fontSize={2}
-                    bg="black"
                     color="white"
                     fontWeight={700}
                     border="none"
@@ -542,7 +578,7 @@ const Index = () => {
                 <Dl width={1 / 2}>
                   <Dt fontSize={2}>Combos with Parent Bg</Dt>
                   <Dd fontSize={6} fontWeight={800} ml={0}>
-                    {availableCombos.length * palette.length}
+                    {(availableCombos.length * palette.length).toLocaleString()}
                   </Dd>
                 </Dl>
               </Flex>
@@ -554,10 +590,20 @@ const Index = () => {
                 onAddColor={handleAddColor}
               />
               <Flex mt={3}>
-                <TextButton bg='transparent' fontSize={2} onClick={handleClearPalette}>
+                <TextButton
+                  bg="transparent"
+                  fontSize={2}
+                  onClick={handleClearPalette}
+                >
                   Clear palette
                 </TextButton>
-                <TextButton bg='transparent' fontWeight={700} fontSize={2} ml='auto' onClick={() => togglePaletteModal(true)}>
+                <TextButton
+                  bg="transparent"
+                  fontWeight={700}
+                  fontSize={2}
+                  ml="auto"
+                  onClick={() => togglePaletteModal(true)}
+                >
                   Export palette
                 </TextButton>
               </Flex>
@@ -602,8 +648,8 @@ const Index = () => {
                   checked={contrastRatio === 3}
                   mr={2}
                 />
-                <Label style={{whiteSpace: 'nowrap'}}>
-                  <Span fontWeight={800}>3 </Span> 
+                <Label style={{ whiteSpace: "nowrap" }}>
+                  <Span fontWeight={800}>3 </Span>
                   <Span fontSize={1}>AA large</Span>
                 </Label>
               </Flex>
@@ -616,8 +662,8 @@ const Index = () => {
                   checked={contrastRatio === 4.5}
                   mr={2}
                 />
-                <Label style={{whiteSpace: 'nowrap'}}>
-                  <Span fontWeight={800}>4.5 </Span> 
+                <Label style={{ whiteSpace: "nowrap" }}>
+                  <Span fontWeight={800}>4.5 </Span>
                   <Span fontSize={1}>AA</Span>
                 </Label>
               </Flex>
@@ -630,8 +676,8 @@ const Index = () => {
                   checked={contrastRatio === 7}
                   mr={2}
                 />
-                <Label style={{whiteSpace: 'nowrap'}}>
-                  <Span fontWeight={800}>7 </Span> 
+                <Label style={{ whiteSpace: "nowrap" }}>
+                  <Span fontWeight={800}>7 </Span>
                   <Span fontSize={1}>AAA</Span>
                 </Label>
               </Flex>
@@ -660,6 +706,28 @@ const Index = () => {
           </Div>
         </Div>
 
+        <Div mt={2} px={3}>
+          <Div>
+            <Label fontWeight={700} fontSize={2} mr={2}>
+              Box Padding
+            </Label>
+            <Input
+              value={boxPadding}
+              onChange={handleBoxPaddingChange}
+              type="number"
+              py={2}
+              px={2}
+              fontSize={2}
+              fontWeight={600}
+              borderRadius={2}
+              border={"1px solid " + theme.colors.gray[8]}
+              min={0}
+              max={32}
+              step={1}
+            />
+          </Div>
+        </Div>
+
         <Div px={3}>
           <ColorBlindFilter
             onChange={handleColorBlindFilter}
@@ -669,35 +737,35 @@ const Index = () => {
             likes={likes}
             onSelectLike={handleViewLike}
             onRemoveLike={handleRemoveLike}
+            onClearLikes={handleClearLikes}
           />
-
         </Div>
-          <Div
-            display="flex"
-            mt={4}
-            py={3}
-            px={3}
-            borderTop='1px solid rgba(0,0,0,.1)'
+        <Div
+          display="flex"
+          mt={4}
+          py={3}
+          px={3}
+          borderTop="1px solid rgba(0,0,0,.1)"
+        >
+          <A
+            display="block"
+            href="https://cloudflare.design"
+            fontWeight={700}
+            fontSize={2}
           >
-            <A
-              display="block"
-              href="https://cloudflare.design"
-              fontWeight={700}
-              fontSize={2}
-            >
-              Cloudflare Design
-            </A>
-            <A
-              href="https://github.com/cloudflare-design"
-              ml="auto"
-              fontSize={2}
-              color="blue.4"
-              display="block"
-              fontWeight={700}
-            >
-              GitHub
-            </A>
-          </Div>
+            Cloudflare Design
+          </A>
+          <A
+            href="https://github.com/cloudflare-design"
+            ml="auto"
+            fontSize={2}
+            color="blue.4"
+            display="block"
+            fontWeight={700}
+          >
+            GitHub
+          </A>
+        </Div>
       </Div>
 
       {!isEmpty(currentCombination) && (
@@ -705,6 +773,7 @@ const Index = () => {
           <Div maxWidth="48em" mx="auto">
             <TextBlock
               borderWidth={borderWidth}
+              boxPadding={boxPadding}
               currentCombination={currentCombination}
             />
             <IconOutlineBlock
