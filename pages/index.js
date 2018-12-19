@@ -596,6 +596,19 @@ const Index = () => {
                   Export palette
                 </TextButton>
               </Flex>
+              <CombinationTools
+                currentCombination={currentCombination}
+                pinnedColors={pinnedColors}
+                onPrevious={handlePrevious}
+                onNext={handleNext}
+                onPinColor={handlePinColor}
+                onLike={handleLike}
+                onAutoCycling={handleAutoCycling}
+                isRunning={isRunning}
+                onComboColorUpdate={handleComboColorUpdate}
+                onColorClick={handleColorClick}
+              />
+
               <PaletteModal
                 isOpen={paletteModalIsOpen}
                 togglePaletteModal={togglePaletteModal}

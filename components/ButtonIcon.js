@@ -47,7 +47,7 @@ const ButtonIcon = ({ variant, icon, iconSize, ...props }) => {
     case 1:
       return (
         <Button {...props}>
-          <Icon color="black" size={iconSize} type={icon} />
+          <Icon color="inherit" size={iconSize} type={icon} />
         </Button>
       )
   }

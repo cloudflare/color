@@ -86,16 +86,6 @@ const CombinationTools = ({
   return (
     <Div width={3 / 4}>
       <Flex fontSize={1} justifyContent="center" bg="white">
-        <ButtonPrimary
-          mx={1}
-          alignItems="center"
-          onClick={onPrevious}
-          button="left"
-          bg="transparent"
-          color="black"
-          children="Previous"
-        />
-        <Flex>
           <ComboColor
             name="Parent Bg"
             comboProperty="parentBg"
@@ -131,35 +121,6 @@ const CombinationTools = ({
             onPinColor={onPinColor}
             onClick={onColorClick}
           />
-
-          <ButtonIcon
-            alignItems="center"
-            onClick={onLike}
-            icon="like"
-            bg="transparent"
-            color="black"
-            iconSize={16}
-          />
-          <ButtonIcon
-            alignItems="center"
-            onClick={onAutoCycling}
-            button={null}
-            color="#000000"
-            icon={isRunning ? "pause" : "play"}
-            iconSize={16}
-          />
-        </Flex>
-
-        <ButtonPrimary
-          mx={1}
-          alignItems="center"
-          onClick={onNext}
-          button="right"
-          align="right"
-          children="Next"
-          bg="transparent"
-          color="black"
-        />
       </Flex>
     </Div>
   )
