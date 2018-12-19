@@ -41,6 +41,44 @@ const getColorValues = val => {
   }
 }
 
+const RangeSlider = ({
+  name,
+  min,
+  max,
+  onChange,
+  value,
+  thumbColor,
+  trackColor
+}) => {
+  return (
+    <Input
+      name={name}
+      type="range"
+      min={min}
+      max={max}
+      step="1"
+      value={value}
+      onChange={onChange}
+      width={1}
+      css={{
+        appearance: "none",
+        borderRadius: "999px",
+        height: "6px",
+        outline: "none",
+        backgroundColor: trackColor,
+        "&::-webkit-slider-thumb": {
+          backgroundColor: thumbColor,
+          appearance: "none",
+          width: "16px",
+          height: "16px",
+          borderRadius: "50%",
+          cursor: "pointer"
+        }
+      }}
+    />
+  )
+}
+
 const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
   const [colorValues, setColorValues] = useState(() =>
     getColorValues(currentColor)
@@ -133,15 +171,16 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
     return ""
   }
 
+  const getColor = currentColor =>
+    Color(currentColor).isLight()
+      ? "rgba(0,0,0,0.75)"
+      : "rgba(255,255,255,0.85)"
+
   return (
     <Article
       px={4}
       py={4}
-      color={
-        Color(currentColor).isLight()
-          ? "rbga(0,0,0,.75)"
-          : "rgba(255,255,255,.85)"
-      }
+      color={getColor(currentColor)}
       bg={currentColor}
       mt={3}
       display="flex"
@@ -204,30 +243,14 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             Red
           </Label>
           <Div width={3 / 4}>
-            <Input
+            <RangeSlider
               name="r"
-              type="range"
               min="0"
               max="255"
-              step="1"
               value={colorValues.rgb.r}
               onChange={handleRGBChange}
-              width={1}
-              css={{
-                appearance: "none",
-                borderRadius: "999px",
-                height: "6px",
-                outline: "none",
-                opacity: 0.6,
-                "&::-webkit-slider-thumb": {
-                  backgroundColor: theme.colors.gray[4],
-                  appearance: "none",
-                  width: "16px",
-                  height: "16px",
-                  borderRadius: "50%",
-                  cursor: "pointer"
-                }
-              }}
+              trackColor={Color(currentColor).isLight() ? "#000" : "#fff"}
+              thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
             />
           </Div>
           <Div width={1 / 4} justifyContent="right">
@@ -262,30 +285,14 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
           Green
         </Label>
         <Div width={3 / 4}>
-          <Input
+          <RangeSlider
             name="g"
-            type="range"
-            width={1}
             min="0"
             max="255"
-            step="1"
             value={colorValues.rgb.g}
             onChange={handleRGBChange}
-            css={{
-              appearance: "none",
-              borderRadius: "999px",
-              height: "6px",
-              outline: "none",
-              opacity: 0.6,
-              "&::-webkit-slider-thumb": {
-                backgroundColor: theme.colors.gray[4],
-                appearance: "none",
-                width: "16px",
-                height: "16px",
-                borderRadius: "50%",
-                cursor: "pointer"
-              }
-            }}
+            trackColor={Color(currentColor).isLight() ? "#000" : "#fff"}
+            thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
           />
         </Div>
         <Div width={1 / 4} justifyContent="right">
@@ -319,30 +326,14 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
           Blue
         </Label>
         <Div width={3 / 4}>
-          <Input
+          <RangeSlider
             name="b"
-            type="range"
             min="0"
             max="255"
-            step="1"
-            width={1}
             value={colorValues.rgb.b}
             onChange={handleRGBChange}
-            css={{
-              appearance: "none",
-              borderRadius: "999px",
-              height: "6px",
-              outline: "none",
-              opacity: 0.6,
-              "&::-webkit-slider-thumb": {
-                backgroundColor: theme.colors.gray[4],
-                appearance: "none",
-                width: "16px",
-                height: "16px",
-                borderRadius: "50%",
-                cursor: "pointer"
-              }
-            }}
+            trackColor={Color(currentColor).isLight() ? "#000" : "#fff"}
+            thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
           />
         </Div>
         <Div width={1 / 4} justifyContent="right">
@@ -378,31 +369,14 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             Hue
           </Label>
           <Div width={3 / 4}>
-            <Input
-              width={1}
-              display="block"
+            <RangeSlider
               name="h"
-              type="range"
               min="0"
               max="360"
-              step="1"
               value={colorValues.hsl.h}
               onChange={handleHSLChange}
-              css={{
-                appearance: "none",
-                borderRadius: "999px",
-                height: "6px",
-                outline: "none",
-                opacity: 0.6,
-                "&::-webkit-slider-thumb": {
-                  backgroundColor: theme.colors.gray[4],
-                  appearance: "none",
-                  width: "16px",
-                  height: "16px",
-                  borderRadius: "50%",
-                  cursor: "pointer"
-                }
-              }}
+              trackColor={Color(currentColor).isLight() ? "#000" : "#fff"}
+              thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
             />
           </Div>
           <Div width={1 / 4} justifyContent="right">
@@ -436,30 +410,14 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             Saturation
           </Label>
           <Div width={3 / 4}>
-            <Input
+            <RangeSlider
               name="s"
-              type="range"
-              width={1}
               min="0"
-              max="100"
-              step="1"
+              max="360"
               value={colorValues.hsl.s}
               onChange={handleHSLChange}
-              css={{
-                appearance: "none",
-                borderRadius: "999px",
-                height: "6px",
-                outline: "none",
-                opacity: 0.6,
-                "&::-webkit-slider-thumb": {
-                  backgroundColor: theme.colors.gray[4],
-                  appearance: "none",
-                  width: "16px",
-                  height: "16px",
-                  borderRadius: "50%",
-                  cursor: "pointer"
-                }
-              }}
+              trackColor={Color(currentColor).isLight() ? "#000" : "#fff"}
+              thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
             />
           </Div>
           <Div width={1 / 4}>
@@ -493,30 +451,14 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             Lightness
           </Label>
           <Div width={3 / 4}>
-            <Input
+            <RangeSlider
               name="l"
-              type="range"
-              width={1}
               min="0"
               max="100"
-              step="1"
               value={colorValues.hsl.l}
               onChange={handleHSLChange}
-              css={{
-                appearance: "none",
-                borderRadius: "999px",
-                height: "6px",
-                outline: "none",
-                opacity: 0.6,
-                "&::-webkit-slider-thumb": {
-                  backgroundColor: theme.colors.gray[4],
-                  appearance: "none",
-                  width: "16px",
-                  height: "16px",
-                  borderRadius: "50%",
-                  cursor: "pointer"
-                }
-              }}
+              trackColor={Color(currentColor).isLight() ? "#000" : "#fff"}
+              thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
             />
           </Div>
           <Div width={1 / 4} justifyContent="right">
