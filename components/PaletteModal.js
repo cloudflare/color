@@ -4,7 +4,7 @@ import kebabCase from "lodash/kebabCase"
 import camelCase from "lodash/camelCase"
 import { js, css } from "js-beautify"
 
-const PaletteModal = ({ palette, togglePaletteModal, isOpen }) => {
+const PaletteModal = ({ palette, togglePaletteModal }) => {
   const [data, setData] = useState([])
   const [activeTab, setActiveTab] = useState("json")
 
@@ -54,7 +54,7 @@ const PaletteModal = ({ palette, togglePaletteModal, isOpen }) => {
     e.target.select()
   }
 
-  return isOpen ? (
+  return (
     <Flex
       position="fixed"
       width={1}
@@ -133,7 +133,7 @@ const PaletteModal = ({ palette, togglePaletteModal, isOpen }) => {
         </Flex>
       </OutsideClickHandler>
     </Flex>
-  ) : null
+  )
 }
 
 export default PaletteModal

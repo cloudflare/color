@@ -612,11 +612,12 @@ const Index = () => {
                   Export palette
                 </TextButton>
               </Flex>
+              {paletteModalIsOpen && 
               <PaletteModal
-                isOpen={paletteModalIsOpen}
                 togglePaletteModal={togglePaletteModal}
                 palette={palette}
               />
+            }
             </Div>
           </Div>
 
