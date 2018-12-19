@@ -133,10 +133,9 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
   }
 
   return (
-    <Div
+    <Article
       px={4}
-      py={4}
-      color={
+      py={4} color={
         Color(currentColor).isLight()
           ? "rbga(0,0,0,.75)"
           : "rgba(255,255,255,.85)"
@@ -171,7 +170,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             color={currentColor}
             css={{ transition: "none", whiteSpace: 'nowrap' }}
           >
-            <Span>{contrastForBlack(currentColor)} </Span>
+            <Span fontWeight={800}>{contrastForBlack(currentColor)} </Span>
 
             <Span>{showContrastLevel(contrastForBlack(currentColor))}</Span>
           </P>
@@ -186,64 +185,53 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             color={currentColor}
             css={{ transition: "none", whiteSpace: 'nowrap' }}
           >
-            <Span>{contrastForWhite(currentColor)}</Span>
+            <Span fontWeight={800}>{contrastForWhite(currentColor)} </Span>
             <Span>{showContrastLevel(contrastForWhite(currentColor))}</Span>
           </P>
         </Flex> 
       <Flex width={1}>
-        <Flex width={1/3}>
-          <Label color="inherit" fontWeight={700} css={{ transition: "none" }}>
+        <Flex flexWrap='wrap' width={1} mb={1}>
+          <Label fontSize={2} display='block' width={1} color="inherit" fontWeight={700} css={{ transition: "none" }}>
             Red
           </Label>
-          <TextInput
-            type="number"
-            border={0}
-            color="inherit"
-            bg="transparent"
-            width="auto"
-            min="0"
-            max="255"
-            fontSize={3}
-            name="r"
-            value={Math.floor(colorValues.rgb.r)}
-            onChange={handleRGBChange}
-            css={{ transition: "none" }}
-          />
+          <Div width={3/4}>
+            <Input
+              name="r"
+              type="range"
+              min="0"
+              max="255"
+              step="1"
+              value={colorValues.rgb.r}
+              onChange={handleRGBChange}
+              width={1}
+            />
+          </Div>
+          <Div width={1/4} justifyContent='right'>
+            <TextInput
+              px={0}
+              py={0}
+              type="number"
+              border={0}
+              color="inherit"
+              bg="transparent"
+              textAlign='right'
+              width={1}
+              min="0"
+              max="255"
+              fontSize={3}
+              name="r"
+              value={Math.floor(colorValues.rgb.r)}
+              onChange={handleRGBChange}
+              css={{ transition: "none" }}
+            />
+          </Div>
         </Flex>
-        <Div width={1}>
-          <Input
-            name="r"
-            type="range"
-            min="0"
-            max="255"
-            step="1"
-            value={colorValues.rgb.r}
-            onChange={handleRGBChange}
-            width={1}
-          />
-        </Div>
       </Flex>
-      <Flex width={1}>
-        <Flex width={1/3}>
-        <Label fontWeight={700} color="inherit" css={{ transition: "none" }}>
+      <Flex width={1} flexWrap='wrap' mb={1}>
+        <Label width={1} fontSize={2} fontWeight={700} color="inherit" css={{ transition: "none" }}>
           Green
         </Label>
-        <TextInput
-          name="g"
-          type="number"
-          color="inherit"
-          fontSize={3}
-          bg="transparent"
-          border={0}
-          width="auto"
-          min="0"
-          max="255"
-          value={Math.floor(colorValues.rgb.g)}
-          onChange={handleRGBChange}
-          css={{ transition: "none" }}
-        />
-        </Flex>
-        <Div width={2/3}>
+        <Div width={3/4}>
           <Input
             name="g"
             type="range"
@@ -255,28 +243,31 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             onChange={handleRGBChange}
           />
         </Div>
-      </Flex>
-      <Flex width={1}>
-        <Flex width={1/3}>
-          <Label color="inherit" fontWeight={700} css={{ transition: "none" }}>
-            Blue
-          </Label>
+        <Div width={1/4} justifyContent='right'>
           <TextInput
-            name="b"
+            px={0}
+            py={0}
+            name="g"
             type="number"
-            border={0}
+            color="inherit"
             fontSize={3}
             bg="transparent"
-            width="auto"
-            color="inherit"
+            border={0}
+            width={1}
+            textAlign='right'
             min="0"
             max="255"
-            value={Math.floor(colorValues.rgb.b)}
+            value={Math.floor(colorValues.rgb.g)}
             onChange={handleRGBChange}
             css={{ transition: "none" }}
           />
-        </Flex>
-        <Div width={1}>
+        </Div>
+      </Flex>
+      <Flex width={1} flexWrap='wrap'>
+        <Label fontSize={2} width={1} color="inherit" fontWeight={700} css={{ transition: "none" }}>
+          Blue
+        </Label>
+        <Div width={3/4}>
           <Input
             name="b"
             type="range"
@@ -288,29 +279,32 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             onChange={handleRGBChange}
           />
         </Div>
+        <Div width={1/4} justifyContent='right'> 
+          <TextInput
+            px={0}
+            py={0}
+            name="b"
+            type="number"
+            border={0}
+            fontSize={3}
+            bg="transparent"
+            textAlign='right'
+            width={1}
+            color="inherit"
+            min="0"
+            max="255"
+            value={Math.floor(colorValues.rgb.b)}
+            onChange={handleRGBChange}
+            css={{ transition: "none" }}
+          />
+        </Div>
       </Flex>
       <Flex flexWrap="wrap" mt={3}>
-        <Flex width={1}>
-          <Flex width={1/3} justifyContent='right'>
-            <Label fontWeight={700} color="inherit" css={{ transition: "none" }}>
+        <Flex width={1} flexWrap='wrap' mb={1}>
+            <Label width={1} fontSize={2} width={1} fontWeight={700} color="inherit" css={{ transition: "none" }}>
               Hue
             </Label>
-            <TextInput
-              name="h"
-              type="number"
-              bg="transparent"
-              color="inherit"
-              border={0}
-              fontSize={3}
-              width='auto'
-              min="0"
-              max="360"
-              onChange={handleHSLChange}
-              value={Math.floor(colorValues.hsl.h)}
-              css={{ transition: "none" }}
-            />
-          </Flex>
-          <Div width={2/3}>
+          <Div width={3/4}>
           <Input
             width={1}
             display='block'
@@ -322,28 +316,31 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             value={colorValues.hsl.h}
             onChange={handleHSLChange} />
         </Div>
+            <Div width={1/4} justifyContent='right'>
+            <TextInput
+            px={0}
+            py={0}
+              name="h"
+              type="number"
+              bg="transparent"
+              color="inherit"
+              border={0}
+              fontSize={3}
+              width={1}
+              textAlign='right'
+              min="0"
+              max="360"
+              onChange={handleHSLChange}
+              value={Math.floor(colorValues.hsl.h)}
+              css={{ transition: "none" }}
+            />
+          </Div>
         </Flex>
-        <Flex width={1}>
-          <Flex width={1/3}>
-          <Label fontWeight={700} color="inherit" css={{ transition: "none" }}>
+        <Flex width={1} flexWrap='wrap' mb={1}>
+          <Label width={1} fontSize={2} fontWeight={700} color="inherit" css={{ transition: "none" }}>
             Saturation
           </Label>
-          <TextInput
-            name="s"
-            type="number"
-            width="auto"
-            bg="transparent"
-            color="inherit"
-            border={0}
-            fontSize={3}
-            min="0"
-            max="100"
-            onChange={handleHSLChange}
-            value={Math.floor(colorValues.hsl.s)}
-            css={{ transition: "none" }}
-          />
-        </Flex>
-        <Div width={2/3}>
+          <Div width={3/4}>
             <Input
               name="s"
               type="range"
@@ -355,28 +352,31 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
               onChange={handleHSLChange}
             />
           </Div>
+          <Div width={1/4}>
+          <TextInput
+            px={0}
+            py={0}
+            name="s"
+            type="number"
+            width={1}
+            textAlign='right'
+            bg="transparent"
+            color="inherit"
+            border={0}
+            fontSize={3}
+            min="0"
+            max="100"
+            onChange={handleHSLChange}
+            value={Math.floor(colorValues.hsl.s)}
+            css={{ transition: "none" }}
+          />
+          </Div>
         </Flex>
-        <Flex width={1}>
-          <Flex width={1/3}>
-            <Label fontWeight={700} color="inherit" css={{ transition: "none" }}>
-              Lightness
-            </Label>
-            <TextInput
-              name="l"
-              type="number"
-              width="auto"
-              bg="transparent"
-              color="inherit"
-              border={0}
-              fontSize={3}
-              min="0"
-              max="100"
-              value={Math.floor(colorValues.hsl.l)}
-              onChange={handleHSLChange}
-              css={{ transition: "none" }}
-            />
-          </Flex>
-          <Div width={2/3}>
+        <Flex width={1} flexWrap='wrap'>
+          <Label width={1} fontSize={2} fontWeight={700} color="inherit" css={{ transition: "none" }}>
+            Lightness
+          </Label>
+          <Div width={3/4}>
             <Input
               name="l"
               type="range"
@@ -388,14 +388,33 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
               onChange={handleHSLChange}
             />
           </Div>
+          <Div width={1/4} justifyContent='right'>
+            <TextInput
+              px={0}
+              py={0}
+              name="l"
+              type="number"
+              width={1}
+              bg="transparent"
+              color="inherit"
+              border={0}
+              textAlign='right'
+              fontSize={3}
+              min="0"
+              max="100"
+              value={Math.floor(colorValues.hsl.l)}
+              onChange={handleHSLChange}
+              css={{ transition: "none" }}
+            />
+            </Div>
         </Flex>
       </Flex>
-      <Div textAlign='center' mt={3}>
+      <Div textAlign='center' mt={3} width={1}>
         <TextButton bg='transparent' color='inherit' onClick={() => onRemoveColor(currentColor)}>
           Remove
         </TextButton>
       </Div>
-    </Div>
+    </Article>
   )
 }
 

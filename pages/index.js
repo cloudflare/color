@@ -587,7 +587,6 @@ const Index = () => {
             </OutsideClickHandler>
           )}
         </Div>
-
         <Form mt={3} px={3} pt={4}>
           <Fieldset border="0" p={0}>
             <Legend fontWeight={700} fontSize={3}>
