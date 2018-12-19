@@ -108,6 +108,9 @@ const ChartsBlock = ({ borderWidth, currentCombination, ...props }) => {
       mt={4}
       flexWrap="wrap"
       py={5}
+      style={{
+        transition: 'all .25s ease-in'
+      }}
     >
       <Div px={5} width={[1]}>
         <ResponsiveContainer width="100%" height={128}>
