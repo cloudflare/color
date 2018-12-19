@@ -19,6 +19,8 @@ import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
 import getAllCombos from "../utils/getAllCombos"
 
+import Preview from "../components/Preview"
+
 const resetPinned = {
   color: false,
   bg: false,
@@ -769,32 +771,11 @@ const Index = () => {
       </Div>
 
       {!isEmpty(currentCombination) && (
-        <Div width={3 / 4} pb={5} pt={4} borderTop="1px solid rgba(0,0,0,.1)">
-          <Div maxWidth="48em" mx="auto">
-            <TextBlock
-              borderWidth={borderWidth}
-              boxPadding={boxPadding}
-              currentCombination={currentCombination}
-            />
-            <IconOutlineBlock
-              currentCombination={currentCombination}
-              borderWidth={borderWidth}
-            />
-
-            <IconBlock
-              currentCombination={currentCombination}
-              borderWidth={borderWidth}
-            />
-            <FormBlock
-              currentCombination={currentCombination}
-              borderWidth={borderWidth}
-            />
-            <ChartsBlock
-              currentCombination={currentCombination}
-              borderWidth={borderWidth}
-            />
-          </Div>
-        </Div>
+        <Preview
+          borderWidth={borderWidth}
+          boxPadding={boxPadding}
+          currentCombination={currentCombination}
+        />
       )}
     </Div>
   )
