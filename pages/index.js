@@ -49,6 +49,7 @@ const Index = () => {
   const { present: currentCombination } = currentState
   const [pinnedColors, setPinnedColors] = useState(resetPinned)
   const [borderWidth, setBorderWidth] = useState(0)
+  const [boxPadding, setBoxPadding] = useState(64)
   const [palxColor, setPalxColor] = useState("#07c")
   const [currentPickerColor, setPickerColor] = useState({
     color: null,
@@ -234,6 +235,7 @@ const Index = () => {
   }
 
   const handleBorderWidthChange = e => setBorderWidth(parseInt(e.target.value))
+  const handleBoxPaddingChange = e => setBoxPadding(parseInt(e.target.value))
 
   const handleFetchFromUnsplash = async () => {
     const res = await fetch("https://unsplash-palette.now.sh")
@@ -677,6 +679,28 @@ const Index = () => {
           </Div>
         </Div>
 
+        <Div mt={4} px={3}>
+          <Div>
+            <Label fontWeight={700} fontSize={2} mr={2}>
+              Box Padding
+            </Label>
+            <Input
+              value={boxPadding}
+              onChange={handleBoxPaddingChange}
+              type="number"
+              py={2}
+              px={2}
+              fontSize={2}
+              fontWeight={600}
+              borderRadius={2}
+              border={"1px solid " + theme.colors.gray[8]}
+              min={0}
+              max={32}
+              step={1}
+            />
+          </Div>
+        </Div>
+
         <Div px={3}>
           <ColorBlindFilter
             onChange={handleColorBlindFilter}
@@ -728,6 +752,7 @@ const Index = () => {
           <Div maxWidth="48em" mx="auto">
             <TextBlock
               borderWidth={borderWidth}
+              boxPadding={boxPadding}
               currentCombination={currentCombination}
             />
             <IconOutlineBlock
