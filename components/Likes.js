@@ -46,17 +46,23 @@ const Likes = ({ likes, onSelectLike, onRemoveLike, onClearLikes }) => {
           </Div>
         </Div>
 
-        <Div display="flex">
-          <ButtonOutline
+        <Div display="flex" mb={3}>
+          <Button
             mt={2}
             width={1}
-            bg="gray.8"
-            color="gray.1"
-            borderColor="gray.7"
+            bg="gray.3"
+            color="white"
+            border="none"
+            fontWeight={700}
+            px={3}
+            py={2}
+            borderRadius={2}
+            fontSize={2}
+            css={{ cursor: "pointer" }}
             onClick={handleDisplayModal}
           >
             Export Likes
-          </ButtonOutline>
+          </Button>
           <LikesModal
             isOpen={modalOpen}
             likes={likes}

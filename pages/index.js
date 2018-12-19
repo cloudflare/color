@@ -684,7 +684,7 @@ const Index = () => {
           </Div>
         </Div>
 
-        <Div mt={4} px={3}>
+        <Div mt={2} px={3}>
           <Div>
             <Label fontWeight={700} fontSize={2} mr={2}>
               Box Padding
@@ -717,7 +717,20 @@ const Index = () => {
             onRemoveLike={handleRemoveLike}
             onClearLikes={handleClearLikes}
           />
-          <Button onClick={() => togglePaletteModal(true)}>
+          <Button
+            bg="gray.3"
+            color="white"
+            border="none"
+            fontWeight={700}
+            borderRadius={2}
+            px={3}
+            fontSize={2}
+            py={2}
+            width={1}
+            textAlign="center"
+            css={{ cursor: "pointer" }}
+            onClick={() => togglePaletteModal(true)}
+          >
             Export Palette
           </Button>
           <PaletteModal
