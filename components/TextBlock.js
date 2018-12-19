@@ -11,6 +11,7 @@ const TextBlock = ({ currentCombination, borderWidth, boxPadding }) => {
       borderColor={currentCombination.borderColor}
       border={`${borderWidth}px solid`}
       p={boxPadding}
+      mt={0}
       color={currentCombination.color}
       bg={currentCombination.bg}
       textAlign="left"

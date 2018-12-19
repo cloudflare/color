@@ -5,8 +5,7 @@ export default memo(({
   borderWidth,
   currentCombination
 }) => (
-  <Div width={[1, 3 / 4]} px={[3,0]} pb={5} pt={4} borderTop="1px solid rgba(0,0,0,.1)">
-    <Div width={1} maxWidth="48em" mx="auto">
+  <Div>
       <TextBlock
         borderWidth={borderWidth}
         boxPadding={boxPadding}
@@ -30,5 +29,4 @@ export default memo(({
         borderWidth={borderWidth}
       />
     </Div>
-  </Div>
 ))
