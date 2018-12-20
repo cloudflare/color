@@ -59,14 +59,6 @@ const FormBlock = ({ borderWidth, currentCombination }) => {
             borderColor={currentCombination.borderColor}
             border={`${borderWidth}px solid`}
           />
-          <Div display="flex" alignItems="center" borderRadius={2} pl={3}>
-            <RadioButton name="group 1" color={radioColor} mr={3}>
-              Yes
-            </RadioButton>
-            <RadioButton name="group 1" color={radioColor} checked={true}>
-              No
-            </RadioButton>
-          </Div>
         </Div>
         <Div alignItems="center" display="flex" mt={3} bg={outlineBg} p={3}>
           <SingleComponent

@@ -17,36 +17,37 @@ const ComboColor = ({
 
   let lockColor =
     contrastScore < 4.5
-      ? Color(currentCombination[comboProperty]).darken(0.75)
-      : Color(currentCombination[comboProperty]).lighten(1.5)
+      ? Color(currentCombination[comboProperty]).darken(0.75).hex()
+      : Color(currentCombination[comboProperty]).lighten(1.5).hex()
   let outlineColor =
     contrastScore < 1.5
-      ? Color(currentCombination[comboProperty]).darken(0.125)
-      : "white"
+      ? Color(currentCombination[comboProperty]).lighten(0.125).hex()
+      : Color(currentCombination[comboProperty]).darken(0.125).hex()
 
   const onColorClick = () =>
     onClick(currentCombination[comboProperty], comboProperty)
 
+  console.log(lockColor)
+
   return (
     <Div
+      py={2}
       alignItems="center"
       display="flex"
-      width="auto"
       css={{ position: "relative" }}
+      bg={currentCombination[comboProperty]}
+      style={{outline: '1px solid ' + outlineColor }}
     >
       <Div
-        width={64}
-        bg={currentCombination[comboProperty]}
+        width={48}
         display="flex"
         alignItems="center"
         justifyContent="center"
         py={1}
-        mr={2}
         css={{
           cursor: "pointer",
           ":hover > svg": { opacity: 1 }
         }}
-        style={{ outline: "1px solid " + outlineColor }}
         onClick={onPinColor(comboProperty)}
       >
         <Icon
@@ -55,16 +56,17 @@ const ComboColor = ({
           size={16}
           mx="auto"
           css={{
-            opacity: pinnedColors[comboProperty] ? 1 : 0,
+            opacity: pinnedColors[comboProperty] ? 1 : .125,
             ":hover": { opacity: 1 }
           }}
         />
       </Div>
-      <Div>
-        <Span display="block" fontWeight={700}>
-          {name}:
+      <Div
+      >
+        <Span fontSize={1} color={lockColor} display={['block', 'inline-block']} fontWeight={500} pr={1}>
+          {name}: 
         </Span>
-        <Code css={{ cursor: "pointer" }} onClick={onColorClick}>
+        <Code fontSize={[1,2]} color={lockColor} css={{ cursor: "pointer" }} onClick={onColorClick}>
           {currentCombination[comboProperty]}
         </Code>
       </Div>
@@ -81,11 +83,11 @@ const CombinationTools = ({
   onLike,
   onAutoCycling,
   isRunning,
-  onColorClick
+  onColorClick,
+  ...props
 }) => {
   return (
-    <Div width={3 / 4}>
-      <Flex fontSize={1} justifyContent="center" bg="white">
+      <Flex fontSize={1} justifyContent="center" mb={2} {...props}>
           <ComboColor
             name="Parent Bg"
             comboProperty="parentBg"
@@ -94,7 +96,6 @@ const CombinationTools = ({
             onPinColor={onPinColor}
             onClick={onColorClick}
           />
-
           <ComboColor
             name="Color"
             comboProperty="color"
@@ -122,7 +123,6 @@ const CombinationTools = ({
             onClick={onColorClick}
           />
       </Flex>
-    </Div>
   )
 }
 

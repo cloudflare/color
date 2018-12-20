@@ -18,6 +18,7 @@ import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
 import sortPalette from "../utils/sortPalette"
 import getAllCombos from "../utils/getAllCombos"
+import getContrastScore from "../utils/getContrastScore"
 
 import Preview from "../components/Preview"
 import PlayerControls from "../components/PlayerControls"
@@ -330,6 +331,13 @@ const Index = () => {
     setPickerColor({ color, index: paletteIndex })
   }
 
+  const colorParentBgContrastValue = getContrastScore(
+    currentCombination.color,
+    currentCombination.parentBg
+  )
+
+  const controlColor = colorParentBgContrastValue < 4.5 ? currentCombination.bg : currentCombination.color
+
   return (
     <Div
       display="flex"
@@ -347,20 +355,14 @@ const Index = () => {
     >
 
       <Div
-        width={[1, 1 / 4]}
-        bg="rgba(255,255,255,1)"
-        borderTop="1px solid rgba(0,0,0,.1)"
-        borderRight="1px solid rgba(0,0,0,.1)"
-        color="black"
-        pb={4}
-        style={{ minHeight: "100vh" }}
+        width={[1]}
+        color={controlColor}
       >
         <Div
-          py={3}
+          pt={3}
           px={3}
-          bg="gray.9"
-          borderBottom="1px solid rgba(0,0,0,.1)"
           mb={3}
+          textAlign='center'
         >
           <TextButton
             onClick={handleActiveTab("url")}
@@ -368,7 +370,7 @@ const Index = () => {
             mr={3}
             fontWeight={700}
             fontSize={2}
-            color={activeTab === "url" ? "blue.4" : null}
+            color={activeTab === "url" ? "blue.4" : 'inherit'}
           >
             URL
           </TextButton>
@@ -378,7 +380,7 @@ const Index = () => {
             mr={3}
             fontWeight={700}
             fontSize={2}
-            color={activeTab === "image" ? "blue.4" : null}
+            color={activeTab === "image" ? "blue.4" : 'inherit'}
           >
             Image
           </TextButton>
@@ -388,14 +390,14 @@ const Index = () => {
             mr={3}
             fontWeight={700}
             fontSize={2}
-            color={activeTab === "generative" ? "blue.4" : null}
+            color={activeTab === "generative" ? "blue.4" : 'inherit'}
           >
             Generative
           </TextButton>
         </Div>
 
         {activeTab === "url" && (
-          <Div px={3}>
+          <Div px={3} mx='auto' maxWidth='32rem'>
             <SiteFetch onSubmit={handleSiteFetch} />
           </Div>
         )}
@@ -557,20 +559,6 @@ const Index = () => {
               </Form>
             )}
             <Div px={3}>
-              <Flex>
-                <Dl width={1 / 2}>
-                  <Dt fontSize={2}>Accessible Combos</Dt>
-                  <Dd fontSize={6} fontWeight={800} ml={0}>
-                    {availableCombos.length}
-                  </Dd>
-                </Dl>
-                <Dl width={1 / 2}>
-                  <Dt fontSize={2}>Combos with Parent Bg</Dt>
-                  <Dd fontSize={6} fontWeight={800} ml={0}>
-                    {(availableCombos.length * palette.length).toLocaleString()}
-                  </Dd>
-                </Dl>
-              </Flex>
               <Palette
                 palette={palette}
                 pickerColor={currentPickerColor}
@@ -596,18 +584,18 @@ const Index = () => {
                   Export palette
                 </TextButton>
               </Flex>
-              <CombinationTools
-                currentCombination={currentCombination}
-                pinnedColors={pinnedColors}
-                onPrevious={handlePrevious}
-                onNext={handleNext}
-                onPinColor={handlePinColor}
-                onLike={handleLike}
-                onAutoCycling={handleAutoCycling}
-                isRunning={isRunning}
-                onComboColorUpdate={handleComboColorUpdate}
-                onColorClick={handleColorClick}
-              />
+              <Dl display='flex' maxWidth='24rem' width={1} mb={0}>
+                <Dt fontSize={2} width={3/4}>Accessible Combinations</Dt>
+                <Dd fontSize={2} width={1/4} fontWeight={800} ml={0} textAlign='right'>
+                  {availableCombos.length}
+                </Dd>
+              </Dl>
+                <Dl display='flex' maxWidth='24rem' width={1} mb={0} pb={3}>
+                  <Dt fontSize={2} width={3/4}>Combos with Parent Bg</Dt>
+                  <Dd fontSize={2} width={1/4} fontWeight={800} ml={0} textAlign='right'>
+                    {(availableCombos.length * palette.length).toLocaleString()}
+                  </Dd>
+                </Dl>
 
               {paletteModalIsOpen && 
               <PaletteModal
@@ -636,10 +624,53 @@ const Index = () => {
             </OutsideClickHandler>
           )}
         </Div>
-        <Form mt={3} px={3} pt={4}>
+
+
+      </Div>
+
+      {!isEmpty(currentCombination) && (
+        <Div width={[1]}>
+        <Div borderTop='1px solid' borderColor={controlColor} style={{opacity: .2}}></Div>
+          <PlayerControls
+            currentCombination={currentCombination}
+            pinnedColors={pinnedColors}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+            onPinColor={handlePinColor}
+            onLike={handleLike}
+            onAutoCycling={handleAutoCycling}
+            isRunning={isRunning}
+            onComboColorUpdate={handleComboColorUpdate}
+            onColorClick={handleColorClick}
+          />
+        <Div maxWidth='48rem' mx='auto' pb={4}>
+              <CombinationTools
+                currentCombination={currentCombination}
+                pinnedColors={pinnedColors}
+                onPrevious={handlePrevious}
+                onNext={handleNext}
+                onPinColor={handlePinColor}
+                onLike={handleLike}
+                onAutoCycling={handleAutoCycling}
+                isRunning={isRunning}
+                onComboColorUpdate={handleComboColorUpdate}
+                onColorClick={handleColorClick}
+              />
+          <Preview
+            borderWidth={borderWidth}
+            boxPadding={boxPadding}
+            currentCombination={currentCombination}
+          />
+        </Div>
+        <Div color={controlColor} pb={3}>
+          <Div mb={4} borderTop='1px solid' borderColor={controlColor} style={{opacity: .175 }}></Div>
+        <Div px={4}>
+          <H4 fontSize={2}>Settings</H4>
+        </Div>
+        <Form pt={4} px={4}>
           <Fieldset border="0" p={0}>
             <Legend fontWeight={700} fontSize={3}>
-              Contrast Ratio :1
+              Contrast Ratio 
             </Legend>
             <Flex mx={-3} py={2}>
               <Flex px={3}>
@@ -653,7 +684,7 @@ const Index = () => {
                 />
                 <Label style={{ whiteSpace: "nowrap" }}>
                   <Span fontWeight={800}>3 </Span>
-                  <Span fontSize={1}>AA large</Span>
+                  <Span fontSize={3}>AA large</Span>
                 </Label>
               </Flex>
               <Flex px={3}>
@@ -667,7 +698,7 @@ const Index = () => {
                 />
                 <Label style={{ whiteSpace: "nowrap" }}>
                   <Span fontWeight={800}>4.5 </Span>
-                  <Span fontSize={1}>AA</Span>
+                  <Span fontSize={3}>AA</Span>
                 </Label>
               </Flex>
               <Flex px={3}>
@@ -680,14 +711,18 @@ const Index = () => {
                   mr={2}
                 />
                 <Label style={{ whiteSpace: "nowrap" }}>
-                  <Span fontWeight={800}>7 </Span>
-                  <Span fontSize={1}>AAA</Span>
+                  <Span fontWeight={800}>7:1 </Span>
+                  <Span fontSize={2}>AAA</Span>
                 </Label>
               </Flex>
             </Flex>
           </Fieldset>
         </Form>
-        <Div mt={4} px={3}>
+        <Div px={4}>
+          <ColorBlindFilter
+            onChange={handleColorBlindFilter}
+            currentValue={colorFilter}
+          />
           <Div>
             <Label fontWeight={700} fontSize={2} mr={2}>
               Border width
@@ -707,9 +742,6 @@ const Index = () => {
               step={1}
             />
           </Div>
-        </Div>
-
-        <Div mt={2} px={3}>
           <Div>
             <Label fontWeight={700} fontSize={2} mr={2}>
               Box Padding
@@ -730,12 +762,8 @@ const Index = () => {
             />
           </Div>
         </Div>
-
-        <Div px={3}>
-          <ColorBlindFilter
-            onChange={handleColorBlindFilter}
-            currentValue={colorFilter}
-          />
+        </Div>
+        <Div py={4} px={4} bg='white'>
           <Likes
             likes={likes}
             onSelectLike={handleViewLike}
@@ -744,8 +772,8 @@ const Index = () => {
           />
         </Div>
         <Div
+          bg='white'
           display="flex"
-          mt={4}
           py={3}
           px={3}
           borderTop="1px solid rgba(0,0,0,.1)"
@@ -768,29 +796,6 @@ const Index = () => {
           >
             GitHub
           </A>
-        </Div>
-      </Div>
-
-      {!isEmpty(currentCombination) && (
-        <Div width={[1,3/4]}>
-          <PlayerControls
-            currentCombination={currentCombination}
-            pinnedColors={pinnedColors}
-            onPrevious={handlePrevious}
-            onNext={handleNext}
-            onPinColor={handlePinColor}
-            onLike={handleLike}
-            onAutoCycling={handleAutoCycling}
-            isRunning={isRunning}
-            onComboColorUpdate={handleComboColorUpdate}
-            onColorClick={handleColorClick}
-          />
-        <Div maxWidth='48rem' mx='auto'>
-          <Preview
-            borderWidth={borderWidth}
-            boxPadding={boxPadding}
-            currentCombination={currentCombination}
-          />
         </Div>
         </Div>
       )}

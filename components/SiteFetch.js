@@ -51,17 +51,18 @@ const SiteFetch = ({ onSubmit }) => {
         fontWeight={700}
         py={3}
         px={3}
-        width={[3/4]}
         type="url"
         border="none"
         bg="#eeeeee"
         borderRadius={0}
         value={url}
         onChange={handleChange}
+        style={{ flexGrow: 1 }}
       />
       <Button
-        width={[1 / 4]}
+        width='auto'
         py={3}
+        px={4}
         fontSize={2}
         bg="gray.3"
         color="white"
