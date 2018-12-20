@@ -609,11 +609,12 @@ const Index = () => {
                 onColorClick={handleColorClick}
               />
 
+              {paletteModalIsOpen && 
               <PaletteModal
-                isOpen={paletteModalIsOpen}
                 togglePaletteModal={togglePaletteModal}
                 palette={palette}
               />
+            }
             </Div>
           </Div>
 
