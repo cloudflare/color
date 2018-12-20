@@ -27,8 +27,6 @@ const ComboColor = ({
   const onColorClick = () =>
     onClick(currentCombination[comboProperty], comboProperty)
 
-  console.log(lockColor)
-
   return (
     <Div
       py={2}
