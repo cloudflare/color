@@ -12,9 +12,16 @@ const filters = [
   { label: "Achromatomaly", value: "achromatomaly", population: "Unknown %" }
 ]
 
-const SingleRadio = ({ label, value, population, onChange, currentValue }) => (
+const SingleRadio = ({
+  label,
+  value,
+  population,
+  onChange,
+  currentValue,
+  controlColor
+}) => (
   <Div display="flex" alignItems="flex-start" width={1} flexWrap="wrap" mb={2}>
-    <Div width="1rem" mr={1}>
+    <Div color={controlColor} width="1rem" mr={1}>
       <Input
         type="radio"
         checked={currentValue === value}
@@ -24,19 +31,19 @@ const SingleRadio = ({ label, value, population, onChange, currentValue }) => (
         onChange={onChange}
       />
     </Div>
-    <Label pl={1} htmlFor={label}>
+    <Label color={controlColor} pl={1} htmlFor={label}>
       <Span>{label}</Span>
     </Label>
-    <Span ml="auto" fontSize={1} lineHeight={1.5}>
+    <Span color={controlColor} ml="auto" fontSize={1} lineHeight={1.5}>
       <b>{population}</b>
     </Span>
   </Div>
 )
 
-const ColorBlindFilter = ({ onChange, currentValue }) => {
+const ColorBlindFilter = ({ onChange, currentValue, controlColor }) => {
   return (
     <Div display="flex" flexWrap="wrap">
-      <H4 width={1} mb={2} mt={4} display="flex">
+      <H4 color={controlColor} width={1} mb={2} mt={4} display="flex">
         <Span>Color Blindness Filter</Span>
         <Span ml="auto" fontSize={1}>
           Population
@@ -45,6 +52,7 @@ const ColorBlindFilter = ({ onChange, currentValue }) => {
 
       {filters.map(f => (
         <SingleRadio
+          controlColor={controlColor}
           key={f.label}
           label={f.label}
           value={f.value}
