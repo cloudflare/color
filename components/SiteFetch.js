@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import extractSkins from "../utils/extract-skins"
 import sortPalette from "../utils/sortPalette"
+import LoadingBars from "./LoadingBars"
 
 const SiteFetch = ({ onSubmit }) => {
   const [url, setUrl] = useState("https://cloudflare.com")
@@ -45,36 +46,47 @@ const SiteFetch = ({ onSubmit }) => {
 
   return (
     <Div>
-    <Form onSubmit={handleSubmit} display="flex" width={1} style={{ overflow: 'hidden'}} borderRadius={2}>
-      <Input
-        fontSize={2}
-        fontWeight={700}
-        py={3}
-        px={3}
-        type="url"
-        border="none"
-        bg="#eeeeee"
-        borderRadius={0}
-        value={url}
-        onChange={handleChange}
-        style={{ flexGrow: 1 }}
-      />
-      <Button
-        width='auto'
-        py={3}
-        px={4}
-        fontSize={2}
-        bg="gray.3"
-        color="white"
-        fontWeight={700}
-        border="none"
-        style={{ cursor: "pointer" }}
-        disabled={isLoading}
+      <Form
+        onSubmit={handleSubmit}
+        display="flex"
+        width={1}
+        style={{ overflow: "hidden" }}
+        borderRadius={2}
       >
-        Go
-      </Button>
-    </Form>
-      {isLoading && <P width={1}>Fetching Palette</P>}
+        <Input
+          fontSize={2}
+          fontWeight={700}
+          py={3}
+          px={3}
+          type="url"
+          border="none"
+          bg="#eeeeee"
+          borderRadius={0}
+          value={url}
+          onChange={handleChange}
+          style={{ flexGrow: 1 }}
+        />
+        <Button
+          width="auto"
+          py={3}
+          px={4}
+          fontSize={2}
+          bg="gray.3"
+          color="white"
+          fontWeight={700}
+          border="none"
+          style={{ cursor: "pointer" }}
+          disabled={isLoading}
+        >
+          Go
+        </Button>
+      </Form>
+      {isLoading && (
+        <Flex width={1}>
+          <LoadingBars />
+          <P ml={2}>Fetching Palette</P>
+        </Flex>
+      )}
     </Div>
   )
 }
