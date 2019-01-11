@@ -469,13 +469,13 @@ const Index = () => {
 
             {paletteImage && (
               <>
-                <Flex px={3}>
-                  <TextButton ml="auto" onClick={handleClearPalette}>
-                    Clear Image
-                  </TextButton>
-                </Flex>
 
                 <Div p={2} border="1px solid rgba(0,0,0,.1)">
+                  <Flex>
+                    <TextButton ml="auto" onClick={handleClearPalette}>
+                      Clear image
+                    </TextButton>
+                  </Flex>
                   <Img src={paletteImage.url} />
                   {paletteImage.name && (
                     <P color="gray.5" fontSize={0}>
@@ -513,7 +513,7 @@ const Index = () => {
                 style={{ overflow: "hidden" }}
               >
                 <Label mb={2} display="block">
-                  Base Color
+                  Base color
                 </Label>
                 <Flex
                   overflow="hidden"
@@ -670,7 +670,7 @@ const Index = () => {
         <Form pt={4} px={4}>
           <Fieldset border="0" p={0}>
             <Legend fontWeight={700} fontSize={3}>
-              Contrast Ratio 
+              Contrast ratio 
             </Legend>
             <Flex mx={-3} py={2}>
               <Flex px={3}>
@@ -744,7 +744,7 @@ const Index = () => {
           </Div>
           <Div>
             <Label fontWeight={700} fontSize={2} mr={2}>
-              Box Padding
+              Box padding
             </Label>
             <Input
               value={boxPadding}
