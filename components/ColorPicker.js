@@ -185,6 +185,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
       mt={3}
       display="flex"
       flexWrap="wrap"
+      alignItems='flex-start'
     >
       <Flex width={1} mb={4}>
         <TextInput
@@ -230,54 +231,53 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
           <Span>{showContrastLevel(contrastForWhite(currentColor))}</Span>
         </P>
       </Flex>
-      <Flex width={1}>
-        <Flex flexWrap="wrap" width={1} mb={1}>
-          <Label
-            fontSize={2}
-            display="block"
-            width={1}
+      <Flex width={[1,1/2]} flexWrap='wrap'>
+      <Flex flexWrap="wrap" width={1} mb={1}>
+        <Label
+          fontSize={[1,2]}
+          display="block"
+          width={1}
+          color="inherit"
+          fontWeight={700}
+          css={{ transition: "none" }}
+        >
+          Red
+        </Label>
+        <Div width={3 / 4}>
+          <RangeSlider
+            name="r"
+            min="0"
+            max="255"
+            value={colorValues.rgb.r}
+            onChange={handleRGBChange}
+            trackColor={Color(currentColor).isLight() ? "#000" : "#fff"}
+            thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
+          />
+        </Div>
+        <Div width={1 / 4} justifyContent="right">
+          <TextInput
+            px={0}
+            py={0}
+            type="number"
+            border={0}
             color="inherit"
-            fontWeight={700}
+            bg="transparent"
+            textAlign="right"
+            width={1}
+            min="0"
+            max="255"
+            fontSize={[2,3]}
+            name="r"
+            value={Math.floor(colorValues.rgb.r)}
+            onChange={handleRGBChange}
             css={{ transition: "none" }}
-          >
-            Red
-          </Label>
-          <Div width={3 / 4}>
-            <RangeSlider
-              name="r"
-              min="0"
-              max="255"
-              value={colorValues.rgb.r}
-              onChange={handleRGBChange}
-              trackColor={Color(currentColor).isLight() ? "#000" : "#fff"}
-              thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
-            />
-          </Div>
-          <Div width={1 / 4} justifyContent="right">
-            <TextInput
-              px={0}
-              py={0}
-              type="number"
-              border={0}
-              color="inherit"
-              bg="transparent"
-              textAlign="right"
-              width={1}
-              min="0"
-              max="255"
-              fontSize={3}
-              name="r"
-              value={Math.floor(colorValues.rgb.r)}
-              onChange={handleRGBChange}
-              css={{ transition: "none" }}
-            />
-          </Div>
-        </Flex>
+          />
+        </Div>
       </Flex>
       <Flex width={1} flexWrap="wrap" mb={1}>
         <Label
           width={1}
-          fontSize={2}
+          fontSize={[1,2]}
           fontWeight={700}
           color="inherit"
           css={{ transition: "none" }}
@@ -302,7 +302,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             name="g"
             type="number"
             color="inherit"
-            fontSize={3}
+            fontSize={[2,3]}
             bg="transparent"
             border={0}
             width={1}
@@ -317,7 +317,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
       </Flex>
       <Flex width={1} flexWrap="wrap">
         <Label
-          fontSize={2}
+          fontSize={[1,2]}
           width={1}
           color="inherit"
           fontWeight={700}
@@ -343,7 +343,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             name="b"
             type="number"
             border={0}
-            fontSize={3}
+            fontSize={[2,3]}
             bg="transparent"
             textAlign="right"
             width={1}
@@ -356,11 +356,12 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
           />
         </Div>
       </Flex>
-      <Flex flexWrap="wrap" mt={3}>
+    </Flex>
+    <Flex width={[1,1/2]} flexWrap="wrap" mt={[3,0]}>
         <Flex width={1} flexWrap="wrap" mb={1}>
           <Label
             width={1}
-            fontSize={2}
+            fontSize={[1,2]}
             width={1}
             fontWeight={700}
             color="inherit"
@@ -388,7 +389,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
               bg="transparent"
               color="inherit"
               border={0}
-              fontSize={3}
+              fontSize={[2,3]}
               width={1}
               textAlign="right"
               min="0"
@@ -402,7 +403,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
         <Flex width={1} flexWrap="wrap" mb={1}>
           <Label
             width={1}
-            fontSize={2}
+            fontSize={[1,2]}
             fontWeight={700}
             color="inherit"
             css={{ transition: "none" }}
@@ -431,7 +432,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
               bg="transparent"
               color="inherit"
               border={0}
-              fontSize={3}
+              fontSize={[2,3]}
               min="0"
               max="100"
               onChange={handleHSLChange}
@@ -443,7 +444,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
         <Flex width={1} flexWrap="wrap">
           <Label
             width={1}
-            fontSize={2}
+            fontSize={[1,2]}
             fontWeight={700}
             color="inherit"
             css={{ transition: "none" }}
@@ -472,7 +473,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
               color="inherit"
               border={0}
               textAlign="right"
-              fontSize={3}
+              fontSize={[2,3]}
               min="0"
               max="100"
               value={Math.floor(colorValues.hsl.l)}
