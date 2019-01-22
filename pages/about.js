@@ -658,7 +658,6 @@ const About = () => {
       </Section>
 
       <Section
-        height="80vh"
         color="gray.0"
         px={5}
         py={6}
@@ -674,32 +673,113 @@ const About = () => {
             acessible with both black and white
           </H3>
 
-          <Flex
-            border="1px solid"
-            borderColor={theColor}
-            px={2}
-            py={3}
-            borderRadius="5px"
-          >
-            <Div
-              width={160}
-              bg={theColor}
-              mr={2}
-              css={`
-                height: 60px;
-              `}
-            />
-            <P
-              css={`
-                line-height: 1;
-              `}
-              color={theColor}
-              m={0}
-              fontSize={9}
-            >
-              Aa
-            </P>
+          <ColorSwatch color={theColor} />
+
+          <Flex flexWrap="wrap">
+            <Div width={1 / 4} pr={2}>
+              <P mb={0} fontWeight={700}>
+                Achromatopsia
+              </P>
+              <Div
+                css={`
+                  filter: url(/static/filters.svg#achromatopsia);
+                `}
+              >
+                <ColorSwatch color={theColor} />
+              </Div>
+            </Div>
+            <Div width={1 / 4} pr={2}>
+              <P mb={0} fontWeight={700}>
+                Protanopia
+              </P>
+              <Div
+                css={`
+                  filter: url(/static/filters.svg#protanopia);
+                `}
+              >
+                <ColorSwatch color={theColor} />
+              </Div>
+            </Div>
+
+            <Div width={1 / 4} pr={2}>
+              <P mb={0} fontWeight={700}>
+                Protanomaly
+              </P>
+              <Div
+                css={`
+                  filter: url(/static/filters.svg#protanomaly);
+                `}
+              >
+                <ColorSwatch color={theColor} />
+              </Div>
+            </Div>
+
+            <Div width={1 / 4}>
+              <P mb={0} fontWeight={700}>
+                Deuteranopia
+              </P>
+              <Div
+                css={`
+                  filter: url(/static/filters.svg#deuteranopia);
+                `}
+              >
+                <ColorSwatch color={theColor} />
+              </Div>
+            </Div>
+
+            <Div width={1 / 4} pr={2}>
+              <P mb={0} fontWeight={700}>
+                Deuteranomaly
+              </P>
+              <Div
+                css={`
+                  filter: url(/static/filters.svg#deuteranomaly);
+                `}
+              >
+                <ColorSwatch color={theColor} />
+              </Div>
+            </Div>
+
+            <Div width={1 / 4} pr={2}>
+              <P mb={0} fontWeight={700}>
+                Tritanopia
+              </P>
+              <Div
+                css={`
+                  filter: url(/static/filters.svg#tritanopia);
+                `}
+              >
+                <ColorSwatch color={theColor} />
+              </Div>
+            </Div>
+
+            <Div width={1 / 4} pr={2}>
+              <P mb={0} fontWeight={700}>
+                Tritanomaly
+              </P>
+              <Div
+                css={`
+                  filter: url(/static/filters.svg#tritanomaly);
+                `}
+              >
+                <ColorSwatch color={theColor} />
+              </Div>
+            </Div>
+
+            <Div width={1 / 4}>
+              <P mb={0} fontWeight={700}>
+                Achromatomaly
+              </P>
+              <Div
+                css={`
+                  filter: url(/static/filters.svg#achromatomaly);
+                `}
+              >
+                <ColorSwatch color={theColor} />
+              </Div>
+            </Div>
           </Flex>
+
           <P mt={2} mb={0} fontWeight={700} fontSize={4}>
             {colorName}
           </P>
