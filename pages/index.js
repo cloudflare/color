@@ -48,6 +48,7 @@ const Index = () => {
   const [contrastRatio, setContrastRatio] = useState(4.5)
   const [colorFilter, setColorFilter] = useState("none")
   const [paletteImage, setPaletteImage] = useState(null)
+  const [imageLoading, setImageLoading] = useState(false)
   const [imageName, setImageName] = useState("")
   const [currentState, { set, undo, redo, canRedo, canUndo }] = useHistory({})
   const { present: currentCombination } = currentState
@@ -218,6 +219,7 @@ const Index = () => {
   }
 
   const handleImageUpload = async e => {
+    setImageLoading(true)
     setPaletteImage({
       url: URL.createObjectURL(e.target.files[0]),
       name: null,
@@ -229,6 +231,8 @@ const Index = () => {
       body: e.target.files[0]
     })
     const palette = await res.json()
+
+    setImageLoading(false)
 
     setPalette(palette)
     setPinnedColors(resetPinned)
@@ -247,8 +251,10 @@ const Index = () => {
   const handleBoxPaddingChange = e => setBoxPadding(parseInt(e.target.value))
 
   const handleFetchFromUnsplash = async () => {
+    setImageLoading(true)
     const res = await fetch("https://unsplash-palette.now.sh")
     const { colors, url, name, username } = await res.json()
+    setImageLoading(false)
     setPalette(colors)
     setPinnedColors(resetPinned)
     const availableCombos = getAllCombos(colors, contrastRatio)
@@ -458,6 +464,13 @@ const Index = () => {
                 </Button>
               </Div>
             </Flex>
+
+            {imageLoading && (
+              <Flex width={1}>
+                <LoadingBars />
+                <P ml={2}>Fetching Palette</P>
+              </Flex>
+            )}
 
             {paletteImage && (
               <>
