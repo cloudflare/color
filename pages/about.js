@@ -13,6 +13,7 @@ const getColorName = async hex => {
 
 const About = () => {
   const [theColor, setTheColor] = useState("#f16975")
+  const [colorInput, setColorInput] = useState("#f16975")
   const [mouseX, setMouseX] = useState(null)
   const [colorName, setColorName] = useState("")
 
@@ -29,7 +30,13 @@ const About = () => {
   )
 
   const handleTheColor = e => {
-    setTheColor(e.target.value)
+    const colorValue = e.target.value
+    setColorInput(colorValue)
+
+    try {
+      Color(colorValue)
+      setTheColor(Color(colorValue).hex())
+    } catch (e) {}
   }
 
   const handleMouseMove = e => {
@@ -158,7 +165,7 @@ const About = () => {
           <Input
             fontSize={[6, 7, 8]}
             onChange={handleTheColor}
-            value={theColor}
+            value={colorInput}
             css={`
               background-color: transparent;
               border: none;
