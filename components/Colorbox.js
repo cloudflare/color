@@ -239,8 +239,9 @@ const Colorbox = ({ onAddPalette }) => {
       </Div>
 
       <Flex>
-        {palette.map(p => (
+        {palette.map((p, i) => (
           <Div
+            key={i}
             width={24}
             m={1}
             css={`
