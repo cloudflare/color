@@ -22,6 +22,7 @@ import getContrastScore from "../utils/getContrastScore"
 
 import Preview from "../components/Preview"
 import PlayerControls from "../components/PlayerControls"
+import Colorbox from "../components/Colorbox"
 
 const resetPinned = {
   color: false,
@@ -347,6 +348,10 @@ const Index = () => {
       ? currentCombination.bg
       : currentCombination.color
 
+  const handleColorBoxAdd = newPalette => {
+    setPalette(prev => [...prev, ...newPalette])
+  }
+
   return (
     <Div
       display="flex"
@@ -393,6 +398,17 @@ const Index = () => {
             color={activeTab === "generative" ? "blue.4" : "inherit"}
           >
             Generative
+          </TextButton>
+
+          <TextButton
+            onClick={handleActiveTab("colorbox")}
+            bg="transparent"
+            mr={3}
+            fontWeight={700}
+            fontSize={2}
+            color={activeTab === "colorbox" ? "blue.4" : "inherit"}
+          >
+            Colorbox
           </TextButton>
         </Div>
 
@@ -562,6 +578,10 @@ const Index = () => {
                   </Button>{" "}
                 </Flex>
               </Form>
+            )}
+
+            {activeTab === "colorbox" && (
+              <Colorbox onAddPalette={handleColorBoxAdd} />
             )}
             <Div px={3}>
               <Palette
