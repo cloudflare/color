@@ -428,14 +428,14 @@ const Index = () => {
             Image
           </TextButton>
           <TextButton
-            onClick={handleActiveTab("import")}
+            onClick={handleActiveTab("text")}
             bg="transparent"
             mr={3}
             fontWeight={700}
             fontSize={2}
-            color={activeTab === "import" ? "blue.4" : "inherit"}
+            color={activeTab === "text" ? "blue.4" : "inherit"}
           >
-            Import
+            Text
           </TextButton>
         </Div>
         <TextButton
@@ -624,7 +624,7 @@ const Index = () => {
               />
             )}
 
-            {activeTab === "import" && (
+            {activeTab === "text" && (
               <Div px={3} mx="auto" maxWidth="32rem">
                 {importError && (
                   <P color="marketing.red">
