@@ -15,14 +15,7 @@ const ComboColor = ({
     "#ffffff"
   )
 
-  let lockColor =
-    contrastScore < 4.5
-      ? Color(currentCombination[comboProperty]).darken(0.75).hex()
-      : Color(currentCombination[comboProperty]).lighten(1.5).hex()
-  let outlineColor =
-    contrastScore < 1.5
-      ? Color(currentCombination[comboProperty]).lighten(0.125).hex()
-      : Color(currentCombination[comboProperty]).darken(0.125).hex()
+  let outlineColor = 'rgba(0,0,0,.1)'
 
   const onColorClick = () =>
     onClick(currentCombination[comboProperty], comboProperty)
@@ -58,7 +51,7 @@ const ComboColor = ({
           }}
         />
       </Div>
-      <Div mr={2} width={64} bg={currentCombination[comboProperty]} css={{ cursor: "pointer", outline: '1px solid ' + outlineColor  }} onClick={onColorClick} py={3} 
+      <Div mr={2} width={64} bg={currentCombination[comboProperty]} css={{ cursor: "pointer", outline: '1px solid rgba(0,0,0,.1)'}} onClick={onColorClick} py={3} 
       />
         <Span fontSize={1} display={['block', 'inline-block']} fontWeight={500} pr={1}>
           {name}

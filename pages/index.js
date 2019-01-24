@@ -730,7 +730,7 @@ const Index = () => {
               borderColor={controlColor}
               style={{ opacity: 0.175 }}
             />
-            <Div maxWidth='48rem' mx='auto'>
+            <Div px={[3,4]} maxWidth='48rem' mx='auto'>
               <H4 fontSize={2}>
                 Settings
               </H4>
