@@ -862,6 +862,13 @@ const Index = () => {
             >
               Cloudflare Design
             </A>
+
+            <A
+              href="/combinations"
+              pageData={{ combinations: availableCombos }}
+            >
+              Test Data link
+            </A>
             <A
               href="https://github.com/cloudflare-design"
               ml="auto"

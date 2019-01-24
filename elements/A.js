@@ -1,4 +1,7 @@
 import styled from "react-emotion"
+import Router from "next/router"
+import { connect } from "unistore/react"
+
 import {
   space,
   width,
@@ -41,8 +44,25 @@ const A = styled.a(
 A.defaultProps = {
   display: "inline-block",
   bg: "transparent",
-  color: "gray.2",
-  href: "#0"
+  color: "gray.2"
 }
 
-export default A
+const actions = () => ({
+  setPageData: ({}, pageData) => ({ pageData })
+})
+
+export default connect(
+  [],
+  actions
+)(({ children, href, pageData, setPageData, ...props }) => {
+  const handleLinkClick = () => () => {
+    setPageData(pageData)
+    Router.push(href)
+  }
+
+  return (
+    <A onClick={handleLinkClick({ href, pageData })} {...props}>
+      {children}
+    </A>
+  )
+})

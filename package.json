@@ -32,6 +32,7 @@
     "react-outside-click-handler": "^1.2.2",
     "recharts": "^1.4.1",
     "styled-system": "^3.1.11",
+    "unistore": "^3.2.1",
     "webpack": "^4.27.1"
   },
   "devDependencies": {
