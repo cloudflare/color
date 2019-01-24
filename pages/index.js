@@ -350,6 +350,10 @@ const Index = () => {
     setPalette(prev => [...prev, ...newPalette])
   }
 
+  const handleColorBoxReplace = newPalette => {
+    setPalette(newPalette)
+  }
+
   const handlePaletteImport = () => {
     try {
       const newPalette = JSON.parse(importValue)
@@ -424,14 +428,14 @@ const Index = () => {
             Image
           </TextButton>
           <TextButton
-            onClick={handleActiveTab("import")}
+            onClick={handleActiveTab("text")}
             bg="transparent"
             mr={3}
             fontWeight={700}
             fontSize={2}
-            color={activeTab === "import" ? "blue.4" : "inherit"}
+            color={activeTab === "text" ? "blue.4" : "inherit"}
           >
-            Import
+            Text
           </TextButton>
         </Div>
         <TextButton
@@ -614,10 +618,13 @@ const Index = () => {
             )}
 
             {activeTab === "colorbox" && (
-              <Colorbox onAddPalette={handleColorBoxAdd} />
+              <Colorbox
+                onAddPalette={handleColorBoxAdd}
+                onReplacePalette={handleColorBoxReplace}
+              />
             )}
 
-            {activeTab === "import" && (
+            {activeTab === "text" && (
               <Div px={3} mx="auto" maxWidth="32rem">
                 {importError && (
                   <P color="marketing.red">
