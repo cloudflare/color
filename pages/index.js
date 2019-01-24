@@ -380,16 +380,6 @@ const Index = () => {
             URL
           </TextButton>
           <TextButton
-            onClick={handleActiveTab("image")}
-            bg="transparent"
-            mr={3}
-            fontWeight={700}
-            fontSize={2}
-            color={activeTab === "image" ? "blue.4" : "inherit"}
-          >
-            Image
-          </TextButton>
-          <TextButton
             onClick={handleActiveTab("palx")}
             bg="transparent"
             mr={3}
@@ -409,6 +399,16 @@ const Index = () => {
             color={activeTab === "colorbox" ? "blue.4" : "inherit"}
           >
             ColorBox
+          </TextButton>
+          <TextButton
+            onClick={handleActiveTab("image")}
+            bg="transparent"
+            mr={3}
+            fontWeight={700}
+            fontSize={2}
+            color={activeTab === "image" ? "blue.4" : "inherit"}
+          >
+            Image
           </TextButton>
 
         </Div>
@@ -433,7 +433,7 @@ const Index = () => {
 
         {activeTab === "image" && (
           <>
-            <Flex mt={3} mb={2} px={3}>
+            <Flex maxWidth='32rem' mx='auto' mt={3} mb={2} px={3}>
               <Div>
                 <Input
                   id="imageUpload"
@@ -540,15 +540,13 @@ const Index = () => {
           >
             {activeTab === "palx" && (
               <Form
-                width={1}
+                maxWidth='32rem'
+                mx='auto'
                 mb={4}
                 px={3}
                 borderRadius={2}
                 style={{ overflow: "hidden" }}
               >
-                <Label mb={2} display="block">
-                  Base Color
-                </Label>
                 <Flex
                   overflow="hidden"
                   borderRadius={2}
