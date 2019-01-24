@@ -13,11 +13,13 @@ const Combinations = ({ pageData }) => {
           borderColor: combo[1]
         }
         return (
-          <TextBlock
-            key={i}
-            boxPadding={64}
-            currentCombination={currentCombination}
-          />
+          <Div>
+            <TextBlock
+              key={i}
+              boxPadding={64}
+              currentCombination={currentCombination}
+            />
+          </Div>
         )
       })}
     </Container>

@@ -1,21 +1,26 @@
 import React from "react"
 import Color from "color"
 
-const TextBlock = ({ currentCombination, borderWidth, boxPadding }) => {
+const TextBlock = ({ currentCombination, borderWidth, boxPadding, ...props }) => {
   const contrast = Color(currentCombination.bg)
     .contrast(Color(currentCombination.color))
     .toFixed(2)
 
   return (
-    <Text
+    <Div
       borderColor={currentCombination.borderColor}
       border={`${borderWidth}px solid`}
       p={boxPadding}
-      mt={0}
       color={currentCombination.color}
       bg={currentCombination.bg}
       textAlign="left"
+      {...props}
     >
+      <Div>
+        Color: {currentCombination.color}<br />
+        Background: {currentCombination.bg}
+      </Div>
+    <Text my={0}>
       <Span fontSize={2} fontWeight={600}>
         Contrast
       </Span>
@@ -37,6 +42,7 @@ const TextBlock = ({ currentCombination, borderWidth, boxPadding }) => {
         medium in art.</Span>
       </Span>
     </Text>
+    </Div>
   )
 }
 
