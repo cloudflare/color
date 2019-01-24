@@ -3,7 +3,6 @@ import { connect } from "unistore/react"
 import isEmpty from "lodash/isEmpty"
 
 const Combinations = ({ pageData }) => {
-  console.log()
   return isEmpty(pageData) ? null : (
     <Container>
       {pageData.combinations.map((combo, i) => {
@@ -13,7 +12,7 @@ const Combinations = ({ pageData }) => {
           borderColor: combo[1]
         }
         return (
-          <Div>
+          <Div key={i}>
             <TextBlock
               key={i}
               boxPadding={64}

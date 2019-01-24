@@ -300,7 +300,7 @@ const Colorbox = ({ onAddPalette, onReplacePalette, ...props }) => {
       </Div>
       <Flex mt={3} px={[3, 5, 6]}>
         {palette.map((p, i) => (
-          <Div>
+          <Div key={i}>
             <Div key={i} height={32} bg={p.hex} />
           </Div>
         ))}
