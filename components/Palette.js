@@ -92,7 +92,7 @@ const Palette = ({
         />
         
       ))}
-      <AddColor style={{float: 'left' }} mt={1} ml={1} onAddColor={onAddColor} />
+      <AddColor style={{float: 'left' }} mt={2} ml={2} onAddColor={onAddColor} />
     </ClearFix>
   )
 }

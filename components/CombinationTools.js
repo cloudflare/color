@@ -29,15 +29,14 @@ const ComboColor = ({
 
   return (
     <Div
-      py={2}
+      py={1}
       alignItems="center"
       display="flex"
       css={{ position: "relative" }}
-      bg={currentCombination[comboProperty]}
-      style={{outline: '1px solid ' + outlineColor }}
+      bg='white'
     >
       <Div
-        width={48}
+        width={32}
         display="flex"
         alignItems="center"
         justifyContent="center"
@@ -50,24 +49,20 @@ const ComboColor = ({
       >
         <Icon
           type="lock"
-          color={lockColor}
+          color='gray.0'
           size={16}
           mx="auto"
           css={{
-            opacity: pinnedColors[comboProperty] ? 1 : .125,
+            opacity: pinnedColors[comboProperty] ? 1 : .25,
             ":hover": { opacity: 1 }
           }}
         />
       </Div>
-      <Div
-      >
-        <Span fontSize={1} color={lockColor} display={['block', 'inline-block']} fontWeight={500} pr={1}>
-          {name}: 
+      <Div mr={2} width={64} bg={currentCombination[comboProperty]} css={{ cursor: "pointer", outline: '1px solid ' + outlineColor  }} onClick={onColorClick} py={3} 
+      />
+        <Span fontSize={1} display={['block', 'inline-block']} fontWeight={500} pr={1}>
+          {name}
         </Span>
-        <Code fontSize={[1,2]} color={lockColor} css={{ cursor: "pointer" }} onClick={onColorClick}>
-          {currentCombination[comboProperty]}
-        </Code>
-      </Div>
     </Div>
   )
 }

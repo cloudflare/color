@@ -3,16 +3,15 @@ import React from "react"
 const AddColor = ({ onAddColor, ...props }) => {
   return (
     <Div
-      borderRadius="100%"
-      m={1}
-      height={24}
+      fontSize={1}
       width={24}
-      border="1px solid"
-      css={{ cursor: "pointer", display: "flex", position: "relative" }}
+      mt={1}
+      ml={2}
+      css={{ whiteSpace: 'nowrap', cursor: "pointer", display: "float", position: "relative" }}
       onClick={onAddColor}
       {...props}
     >
-      <Icon width="12px" height="12px" type="plus" css={{ margin: "auto" }} />
+      + Add color
     </Div>
   )
 }

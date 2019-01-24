@@ -606,13 +606,27 @@ const Index = () => {
               />
               <Div textAlign='center' my={3}>
                 <TextButton
+                  fontSize={1}
                   bg="transparent"
-                  fontSize={2}
                   onClick={handleClearPalette}
                 >
                   Clear palette
                 </TextButton>
               </Div>
+              <Div maxWidth='48rem' mx='auto'>
+            <CombinationTools
+              currentCombination={currentCombination}
+              pinnedColors={pinnedColors}
+              onPrevious={handlePrevious}
+              onNext={handleNext}
+              onPinColor={handlePinColor}
+              onLike={handleLike}
+              onAutoCycling={handleAutoCycling}
+              isRunning={isRunning}
+              onComboColorUpdate={handleComboColorUpdate}
+              onColorClick={handleColorClick}
+            />
+          </Div>
               <Div display='none' dataName='stats'>
               <Dl
                 color={controlColor}
@@ -705,42 +719,29 @@ const Index = () => {
             onColorClick={handleColorClick}
           />
           <Div maxWidth="48rem" mx="auto" pb={4}>
-            <CombinationTools
-              currentCombination={currentCombination}
-              pinnedColors={pinnedColors}
-              onPrevious={handlePrevious}
-              onNext={handleNext}
-              onPinColor={handlePinColor}
-              onLike={handleLike}
-              onAutoCycling={handleAutoCycling}
-              isRunning={isRunning}
-              onComboColorUpdate={handleComboColorUpdate}
-              onColorClick={handleColorClick}
-            />
             <Preview
               borderWidth={borderWidth}
               boxPadding={boxPadding}
               currentCombination={currentCombination}
             />
           </Div>
-          <Div color={controlColor} pb={3}>
+          <Div bg='white' color='gray.0' pb={3}>
             <Div
               mb={4}
               borderTop="1px solid"
               borderColor={controlColor}
               style={{ opacity: 0.175 }}
             />
-            <Div px={4}>
-              <H4 color={controlColor} fontSize={2}>
+            <Div maxWidth='48rem' mx='auto'>
+              <H4 fontSize={2}>
                 Settings
               </H4>
-            </Div>
-            <Form pt={4} px={4}>
+            <Form pt={4}>
               <Fieldset border="0" p={0}>
-                <Legend color={controlColor} fontWeight={700} fontSize={3}>
+                <Legend  fontWeight={700} fontSize={3}>
                   Contrast Ratio
                 </Legend>
-                <Flex color={controlColor} mx={-3} py={2}>
+                <Flex  mx={-3} py={2}>
                   <Flex px={3}>
                     <Input
                       type="radio"
@@ -786,15 +787,13 @@ const Index = () => {
                 </Flex>
               </Fieldset>
             </Form>
-            <Div px={4}>
+            <Div>
               <ColorBlindFilter
-                controlColor={controlColor}
                 onChange={handleColorBlindFilter}
                 currentValue={colorFilter}
               />
               <Div>
                 <Label
-                  color={controlColor}
                   fontWeight={700}
                   fontSize={2}
                   mr={2}
@@ -802,7 +801,6 @@ const Index = () => {
                   Border width
                 </Label>
                 <Input
-                  color={controlColor}
                   value={borderWidth}
                   onChange={handleBorderWidthChange}
                   type="number"
@@ -817,9 +815,8 @@ const Index = () => {
                   step={1}
                 />
               </Div>
-              <Div>
+              <Div mt={2}>
                 <Label
-                  color={controlColor}
                   fontWeight={700}
                   fontSize={2}
                   mr={2}
@@ -827,7 +824,6 @@ const Index = () => {
                   Box Padding
                 </Label>
                 <Input
-                  color={controlColor}
                   value={boxPadding}
                   onChange={handleBoxPaddingChange}
                   type="number"
@@ -843,14 +839,15 @@ const Index = () => {
                 />
               </Div>
             </Div>
-          </Div>
-          <Div py={4} px={4} bg="white">
+          <Div py={4} bg="white">
             <Likes
               likes={likes}
               onSelectLike={handleViewLike}
               onRemoveLike={handleRemoveLike}
               onClearLikes={handleClearLikes}
             />
+          </Div>
+          </Div>
           </Div>
           <Div
             bg="white"
