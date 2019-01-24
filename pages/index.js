@@ -23,6 +23,7 @@ import getContrastScore from "../utils/getContrastScore"
 import Preview from "../components/Preview"
 import PlayerControls from "../components/PlayerControls"
 import Colorbox from "../components/Colorbox"
+import isHex from "../utils/isHex"
 
 const resetPinned = {
   color: false,
@@ -63,6 +64,8 @@ const Index = () => {
   })
   const [currentComboProp, setCurrentComboProp] = useState(null)
   const [activeTab, setActiveTab] = useState("url")
+  const [importValue, setImportValue] = useState(JSON.stringify(palette))
+  const [importError, setImportError] = useState(false)
   const { start, stop, isRunning } = useInterval({
     duration: 3000,
     startImmediate: true,
@@ -347,6 +350,21 @@ const Index = () => {
     setPalette(prev => [...prev, ...newPalette])
   }
 
+  const handlePaletteImport = () => {
+    try {
+      const newPalette = JSON.parse(importValue)
+
+      newPalette.map(c => {
+        if (!isHex(c)) {
+          throw Error("Invalid Hex code provided")
+        }
+      })
+      setPalette(newPalette)
+    } catch (error) {
+      setImportError(true)
+    }
+  }
+
   return (
     <Div
       bg="white"
@@ -404,6 +422,16 @@ const Index = () => {
             color={activeTab === "image" ? "blue.4" : "inherit"}
           >
             Image
+          </TextButton>
+          <TextButton
+            onClick={handleActiveTab("import")}
+            bg="transparent"
+            mr={3}
+            fontWeight={700}
+            fontSize={2}
+            color={activeTab === "import" ? "blue.4" : "inherit"}
+          >
+            Import
           </TextButton>
         </Div>
         <TextButton
@@ -588,6 +616,29 @@ const Index = () => {
             {activeTab === "colorbox" && (
               <Colorbox onAddPalette={handleColorBoxAdd} />
             )}
+
+            {activeTab === "import" && (
+              <Div px={3} mx="auto" maxWidth="32rem">
+                {importError && (
+                  <P color="marketing.red">
+                    There is something wrong with the JSON provided
+                  </P>
+                )}
+                <Textarea
+                  border="1px solid"
+                  borderColor="black"
+                  width={1}
+                  value={importValue}
+                  css={`
+                    resize: vertical;
+                    min-height: 100px;
+                  `}
+                  onChange={e => setImportValue(e.target.value)}
+                />
+                <Button onClick={handlePaletteImport}>Import Palette</Button>
+              </Div>
+            )}
+
             <Div mt={3} px={[3, 5, 6]}>
               <Palette
                 palette={palette}
