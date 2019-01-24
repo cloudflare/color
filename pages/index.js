@@ -214,11 +214,6 @@ const Index = () => {
     setPinnedColors(prevState => ({ ...prevState, [key]: !prevState[key] }))
   }
 
-  const handleComboColorUpdate = (newColor, tooltipKey) => {
-    const newCombo = { ...currentCombination, [tooltipKey]: newColor }
-    set(newCombo)
-  }
-
   const handleImageUpload = async e => {
     setImageLoading(true)
     setPaletteImage({
@@ -354,7 +349,7 @@ const Index = () => {
 
   return (
     <Div
-      bg='white'
+      bg="white"
       display="flex"
       flexWrap="wrap"
       width={1}
@@ -367,7 +362,7 @@ const Index = () => {
             : `url(/static/filters.svg#${colorFilter})`
       }}
     >
-      <Div width={[1]} >
+      <Div width={[1]}>
         <Div pt={3} px={3} mb={3} textAlign="center">
           <TextButton
             onClick={handleActiveTab("url")}
@@ -410,20 +405,19 @@ const Index = () => {
           >
             Image
           </TextButton>
-
         </Div>
-          <TextButton
-            display={['none', 'block']}
-            position='absolute'
-            top={0}
-            right={0}
-            fontWeight={700}
-            fontSize={2}
-            p={3}
-            onClick={() => togglePaletteModal(true)}
-          >
-            Export palette
-          </TextButton>
+        <TextButton
+          display={["none", "block"]}
+          position="absolute"
+          top={0}
+          right={0}
+          fontWeight={700}
+          fontSize={2}
+          p={3}
+          onClick={() => togglePaletteModal(true)}
+        >
+          Export palette
+        </TextButton>
 
         {activeTab === "url" && (
           <Div px={3} mx="auto" maxWidth="32rem">
@@ -433,7 +427,7 @@ const Index = () => {
 
         {activeTab === "image" && (
           <>
-            <Flex maxWidth='32rem' mx='auto' mt={3} mb={2} px={3}>
+            <Flex maxWidth="32rem" mx="auto" mt={3} mb={2} px={3}>
               <Div>
                 <Input
                   id="imageUpload"
@@ -540,8 +534,8 @@ const Index = () => {
           >
             {activeTab === "palx" && (
               <Form
-                maxWidth='32rem'
-                mx='auto'
+                maxWidth="32rem"
+                mx="auto"
                 mb={4}
                 px={3}
                 borderRadius={2}
@@ -591,10 +585,10 @@ const Index = () => {
               </Form>
             )}
 
-              {activeTab === "colorbox" && (
-                <Colorbox onAddPalette={handleColorBoxAdd} />
-              )}
-            <Div mt={3} px={[3,5,6]}>
+            {activeTab === "colorbox" && (
+              <Colorbox onAddPalette={handleColorBoxAdd} />
+            )}
+            <Div mt={3} px={[3, 5, 6]}>
               <Palette
                 palette={palette}
                 pickerColor={currentPickerColor}
@@ -602,7 +596,7 @@ const Index = () => {
                 onClick={handlePaletteColorClick}
                 onAddColor={handleAddColor}
               />
-              <Div textAlign='center' my={3}>
+              <Div textAlign="center" my={3}>
                 <TextButton
                   fontSize={1}
                   bg="transparent"
@@ -611,63 +605,62 @@ const Index = () => {
                   Clear palette
                 </TextButton>
               </Div>
-              <Div maxWidth='48rem' mx='auto'>
-            <CombinationTools
-              currentCombination={currentCombination}
-              pinnedColors={pinnedColors}
-              onPrevious={handlePrevious}
-              onNext={handleNext}
-              onPinColor={handlePinColor}
-              onLike={handleLike}
-              onAutoCycling={handleAutoCycling}
-              isRunning={isRunning}
-              onComboColorUpdate={handleComboColorUpdate}
-              onColorClick={handleColorClick}
-            />
-          </Div>
-              <Div display='none' dataName='stats'>
-              <Dl
-                color={controlColor}
-                display="flex"
-                maxWidth="24rem"
-                width={1}
-                mb={0}
-              >
-                <Dt fontSize={2} width={3 / 4}>
-                  Accessible Combinations
-                </Dt>
-                <Dd
-                  fontSize={2}
-                  width={1 / 4}
-                  fontWeight={800}
-                  ml={0}
-                  textAlign="right"
+              <Div maxWidth="48rem" mx="auto">
+                <CombinationTools
+                  currentCombination={currentCombination}
+                  pinnedColors={pinnedColors}
+                  onPrevious={handlePrevious}
+                  onNext={handleNext}
+                  onPinColor={handlePinColor}
+                  onLike={handleLike}
+                  onAutoCycling={handleAutoCycling}
+                  isRunning={isRunning}
+                  onColorClick={handleColorClick}
+                />
+              </Div>
+              <Div display="none" dataName="stats">
+                <Dl
+                  color={controlColor}
+                  display="flex"
+                  maxWidth="24rem"
+                  width={1}
+                  mb={0}
                 >
-                  {availableCombos.length}
-                </Dd>
-              </Dl>
-              <Dl
-                color={controlColor}
-                display="flex"
-                maxWidth="24rem"
-                width={1}
-                mb={0}
-                pb={3}
-              >
-                <Dt fontSize={2} width={3 / 4}>
-                  Combos with Parent Bg
-                </Dt>
-                <Dd
-                  fontSize={2}
-                  width={1 / 4}
-                  fontWeight={800}
-                  ml={0}
-                  textAlign="right"
+                  <Dt fontSize={2} width={3 / 4}>
+                    Accessible Combinations
+                  </Dt>
+                  <Dd
+                    fontSize={2}
+                    width={1 / 4}
+                    fontWeight={800}
+                    ml={0}
+                    textAlign="right"
+                  >
+                    {availableCombos.length}
+                  </Dd>
+                </Dl>
+                <Dl
+                  color={controlColor}
+                  display="flex"
+                  maxWidth="24rem"
+                  width={1}
+                  mb={0}
+                  pb={3}
                 >
-                  {(availableCombos.length * palette.length).toLocaleString()}
-                </Dd>
-              </Dl>
-            </Div>
+                  <Dt fontSize={2} width={3 / 4}>
+                    Combos with Parent Bg
+                  </Dt>
+                  <Dd
+                    fontSize={2}
+                    width={1 / 4}
+                    fontWeight={800}
+                    ml={0}
+                    textAlign="right"
+                  >
+                    {(availableCombos.length * palette.length).toLocaleString()}
+                  </Dd>
+                </Dl>
+              </Div>
 
               {paletteModalIsOpen && (
                 <PaletteModal
@@ -713,7 +706,6 @@ const Index = () => {
             onLike={handleLike}
             onAutoCycling={handleAutoCycling}
             isRunning={isRunning}
-            onComboColorUpdate={handleComboColorUpdate}
             onColorClick={handleColorClick}
           />
           <Div maxWidth="48rem" mx="auto" pb={4}>
@@ -723,129 +715,119 @@ const Index = () => {
               currentCombination={currentCombination}
             />
           </Div>
-          <Div bg='white' color='gray.0' pb={3}>
+          <Div bg="white" color="gray.0" pb={3}>
             <Div
               mb={4}
               borderTop="1px solid"
               borderColor={controlColor}
               style={{ opacity: 0.175 }}
             />
-            <Div px={[3,4]} maxWidth='48rem' mx='auto'>
-              <H4 fontSize={2}>
-                Settings
-              </H4>
-            <Form pt={4}>
-              <Fieldset border="0" p={0}>
-                <Legend  fontWeight={700} fontSize={3}>
-                  Contrast Ratio
-                </Legend>
-                <Flex  mx={-3} py={2}>
-                  <Flex px={3}>
-                    <Input
-                      type="radio"
-                      name="contrastRatio"
-                      value={3}
-                      onChange={handleContrastRatioChange}
-                      checked={contrastRatio === 3}
-                      mr={2}
-                    />
-                    <Label style={{ whiteSpace: "nowrap" }}>
-                      <Span fontWeight={800}>3 </Span>
-                      <Span fontSize={3}>AA large</Span>
-                    </Label>
+            <Div px={[3, 4]} maxWidth="48rem" mx="auto">
+              <H4 fontSize={2}>Settings</H4>
+              <Form pt={4}>
+                <Fieldset border="0" p={0}>
+                  <Legend fontWeight={700} fontSize={3}>
+                    Contrast Ratio
+                  </Legend>
+                  <Flex mx={-3} py={2}>
+                    <Flex px={3}>
+                      <Input
+                        type="radio"
+                        name="contrastRatio"
+                        value={3}
+                        onChange={handleContrastRatioChange}
+                        checked={contrastRatio === 3}
+                        mr={2}
+                      />
+                      <Label style={{ whiteSpace: "nowrap" }}>
+                        <Span fontWeight={800}>3 </Span>
+                        <Span fontSize={3}>AA large</Span>
+                      </Label>
+                    </Flex>
+                    <Flex px={3}>
+                      <Input
+                        type="radio"
+                        name="contrastRatio"
+                        value={4.5}
+                        onChange={handleContrastRatioChange}
+                        checked={contrastRatio === 4.5}
+                        mr={2}
+                      />
+                      <Label style={{ whiteSpace: "nowrap" }}>
+                        <Span fontWeight={800}>4.5 </Span>
+                        <Span fontSize={3}>AA</Span>
+                      </Label>
+                    </Flex>
+                    <Flex px={3}>
+                      <Input
+                        type="radio"
+                        name="contrastRatio"
+                        value={7}
+                        onChange={handleContrastRatioChange}
+                        checked={contrastRatio === 7}
+                        mr={2}
+                      />
+                      <Label style={{ whiteSpace: "nowrap" }}>
+                        <Span fontWeight={800}>7:1 </Span>
+                        <Span fontSize={2}>AAA</Span>
+                      </Label>
+                    </Flex>
                   </Flex>
-                  <Flex px={3}>
-                    <Input
-                      type="radio"
-                      name="contrastRatio"
-                      value={4.5}
-                      onChange={handleContrastRatioChange}
-                      checked={contrastRatio === 4.5}
-                      mr={2}
-                    />
-                    <Label style={{ whiteSpace: "nowrap" }}>
-                      <Span fontWeight={800}>4.5 </Span>
-                      <Span fontSize={3}>AA</Span>
-                    </Label>
-                  </Flex>
-                  <Flex px={3}>
-                    <Input
-                      type="radio"
-                      name="contrastRatio"
-                      value={7}
-                      onChange={handleContrastRatioChange}
-                      checked={contrastRatio === 7}
-                      mr={2}
-                    />
-                    <Label style={{ whiteSpace: "nowrap" }}>
-                      <Span fontWeight={800}>7:1 </Span>
-                      <Span fontSize={2}>AAA</Span>
-                    </Label>
-                  </Flex>
-                </Flex>
-              </Fieldset>
-            </Form>
-            <Div>
-              <ColorBlindFilter
-                onChange={handleColorBlindFilter}
-                currentValue={colorFilter}
-              />
+                </Fieldset>
+              </Form>
               <Div>
-                <Label
-                  fontWeight={700}
-                  fontSize={2}
-                  mr={2}
-                >
-                  Border width
-                </Label>
-                <Input
-                  value={borderWidth}
-                  onChange={handleBorderWidthChange}
-                  type="number"
-                  py={2}
-                  px={2}
-                  fontSize={2}
-                  fontWeight={600}
-                  borderRadius={2}
-                  border={"1px solid " + theme.colors.gray[8]}
-                  min={0}
-                  max={32}
-                  step={1}
+                <ColorBlindFilter
+                  onChange={handleColorBlindFilter}
+                  currentValue={colorFilter}
                 />
+                <Div>
+                  <Label fontWeight={700} fontSize={2} mr={2}>
+                    Border width
+                  </Label>
+                  <Input
+                    value={borderWidth}
+                    onChange={handleBorderWidthChange}
+                    type="number"
+                    py={2}
+                    px={2}
+                    fontSize={2}
+                    fontWeight={600}
+                    borderRadius={2}
+                    border={"1px solid " + theme.colors.gray[8]}
+                    min={0}
+                    max={32}
+                    step={1}
+                  />
+                </Div>
+                <Div mt={2}>
+                  <Label fontWeight={700} fontSize={2} mr={2}>
+                    Box Padding
+                  </Label>
+                  <Input
+                    value={boxPadding}
+                    onChange={handleBoxPaddingChange}
+                    type="number"
+                    py={2}
+                    px={2}
+                    fontSize={2}
+                    fontWeight={600}
+                    borderRadius={2}
+                    border={"1px solid " + theme.colors.gray[8]}
+                    min={0}
+                    max={32}
+                    step={1}
+                  />
+                </Div>
               </Div>
-              <Div mt={2}>
-                <Label
-                  fontWeight={700}
-                  fontSize={2}
-                  mr={2}
-                >
-                  Box Padding
-                </Label>
-                <Input
-                  value={boxPadding}
-                  onChange={handleBoxPaddingChange}
-                  type="number"
-                  py={2}
-                  px={2}
-                  fontSize={2}
-                  fontWeight={600}
-                  borderRadius={2}
-                  border={"1px solid " + theme.colors.gray[8]}
-                  min={0}
-                  max={32}
-                  step={1}
+              <Div py={4} bg="white">
+                <Likes
+                  likes={likes}
+                  onSelectLike={handleViewLike}
+                  onRemoveLike={handleRemoveLike}
+                  onClearLikes={handleClearLikes}
                 />
               </Div>
             </Div>
-          <Div py={4} bg="white">
-            <Likes
-              likes={likes}
-              onSelectLike={handleViewLike}
-              onRemoveLike={handleRemoveLike}
-              onClearLikes={handleClearLikes}
-            />
-          </Div>
-          </Div>
           </Div>
           <Div
             bg="white"

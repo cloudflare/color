@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import Color from "color"
+import React from "react"
 import getContrastScore from "../utils/getContrastScore"
 
 const PlayerControls = ({
