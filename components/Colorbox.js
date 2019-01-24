@@ -58,7 +58,7 @@ const generateSpecs = ({
   }
 })
 
-const Colorbox = ({ onAddPalette, ...props }) => {
+const Colorbox = ({ onAddPalette, onReplacePalette, ...props }) => {
   const [form, setForm] = useState({
     steps: 11,
     hueStart: 34,
@@ -88,6 +88,11 @@ const Colorbox = ({ onAddPalette, ...props }) => {
     onAddPalette(paletteHexes)
   }
 
+  const handleReplacePalette = () => {
+    const paletteHexes = palette.map(p => p.hex)
+    onReplacePalette(paletteHexes)
+  }
+
   useEffect(
     () => {
       const specs = generateSpecs(form)
@@ -100,28 +105,41 @@ const Colorbox = ({ onAddPalette, ...props }) => {
 
   return (
     <Div {...props}>
-      <Div mx='auto' maxWidth='64rem'>
+      <Div mx="auto" maxWidth="64rem">
         <Header px={4}>
-          <H4><A href='https://colorbox.io' title="ColorBox by Lyft Design">ColorBox <Span fontSize={1} fontWeight={400}>by Lyft Design</Span></A></H4>
+          <H4>
+            <A href="https://colorbox.io" title="ColorBox by Lyft Design">
+              ColorBox{" "}
+              <Span fontSize={1} fontWeight={400}>
+                by Lyft Design
+              </Span>
+            </A>
+          </H4>
         </Header>
         <Flex mb={3} px={4}>
-          <Label fontWeight={700} mr={2} fontSize={2}>Steps</Label>
+          <Label fontWeight={700} mr={2} fontSize={2}>
+            Steps
+          </Label>
           <Input
             name="steps"
             type="range"
-            number='1'
+            number="1"
             value={form.steps}
             onChange={handleInput}
             width={1}
             min="3"
             max="128"
           />
-          <Span width={48} fontSize={2} textAlign='right'>{form.steps}</Span>
+          <Span width={48} fontSize={2} textAlign="right">
+            {form.steps}
+          </Span>
         </Flex>
-        <Flex flexWrap={['wrap', 'nowrap']}>
-          <Div fontSize={2} px={4} mb={[3,0]}>
-              <Label mb={2} display='block' fontWeight={700} fontSize={1}>Hue</Label>
-              <Div>
+        <Flex flexWrap={["wrap", "nowrap"]}>
+          <Div fontSize={2} px={4} mb={[3, 0]}>
+            <Label mb={2} display="block" fontWeight={700} fontSize={1}>
+              Hue
+            </Label>
+            <Div>
               <Flex mb={2}>
                 <Label width={48}>Start</Label>
                 <Input
@@ -129,48 +147,53 @@ const Colorbox = ({ onAddPalette, ...props }) => {
                   type="range"
                   value={form.hueStart}
                   onChange={handleInput}
-                  number='1'
+                  number="1"
                   min="0"
                   max="359"
-                width={1}
+                  width={1}
                 />
-                <Span pl={2} fontSize={2}>{form.hueStart}</Span>
+                <Span pl={2} fontSize={2}>
+                  {form.hueStart}
+                </Span>
               </Flex>
               <Flex mb={2}>
                 <Label width={48}>End</Label>
                 <Input
                   name="hueEnd"
                   type="range"
-                  number='1'
+                  number="1"
                   value={form.hueEnd}
                   onChange={handleInput}
                   min="0"
                   max="359"
-                width={1}
+                  width={1}
                 />
-                <Span fontSize={2} pl={2}>{form.hueEnd}</Span>
+                <Span fontSize={2} pl={2}>
+                  {form.hueEnd}
+                </Span>
               </Flex>
-            <Flex mb={2}>
-              <Label pr={2}>Curve</Label>
-              <Select
-                width={1}
-                name="hueCurve"
-                value={form.hueCurve}
-                onChange={handleInput}
-              >
-                {CURVES.map((c, i) => (
-                  <option key={i} value={c.value}>
-                    {c.label}
-                  </option>
-                ))}
-              </Select>
-            </Flex>
+              <Flex mb={2}>
+                <Label pr={2}>Curve</Label>
+                <Select
+                  width={1}
+                  name="hueCurve"
+                  value={form.hueCurve}
+                  onChange={handleInput}
+                >
+                  {CURVES.map((c, i) => (
+                    <option key={i} value={c.value}>
+                      {c.label}
+                    </option>
+                  ))}
+                </Select>
+              </Flex>
             </Div>
-
           </Div>
 
-          <Div fontSize={2} px={4} mb={[3,0]}>
-            <Label fontSize={1} fontWeight={700} display='block' mb={2}>Saturation</Label>
+          <Div fontSize={2} px={4} mb={[3, 0]}>
+            <Label fontSize={1} fontWeight={700} display="block" mb={2}>
+              Saturation
+            </Label>
             <Flex mb={2}>
               <Label width={48}>Start</Label>
               <Input
@@ -183,7 +206,9 @@ const Colorbox = ({ onAddPalette, ...props }) => {
                 max="100"
                 width={1}
               />
-              <Span width={48} textAlign='right'fontSize={2}>{form.satStart}</Span>
+              <Span width={48} textAlign="right" fontSize={2}>
+                {form.satStart}
+              </Span>
             </Flex>
             <Flex mb={2}>
               <Label width={48}>End</Label>
@@ -197,7 +222,9 @@ const Colorbox = ({ onAddPalette, ...props }) => {
                 max="100"
                 width={1}
               />
-              <Span width={48} fontSize={2} textAlign='right'>{form.satEnd}</Span>
+              <Span width={48} fontSize={2} textAlign="right">
+                {form.satEnd}
+              </Span>
             </Flex>
 
             <Flex mb={2}>
@@ -217,8 +244,10 @@ const Colorbox = ({ onAddPalette, ...props }) => {
             </Flex>
           </Div>
 
-          <Div fontSize={2} px={4} mb={[3,0]}>
-            <Label fontSize={1} fontWeight={700} mb={2} display='block'>Luminosity</Label>
+          <Div fontSize={2} px={4} mb={[3, 0]}>
+            <Label fontSize={1} fontWeight={700} mb={2} display="block">
+              Luminosity
+            </Label>
             <Flex mb={2}>
               <Label pr={2}>Start</Label>
               <Input
@@ -231,7 +260,9 @@ const Colorbox = ({ onAddPalette, ...props }) => {
                 min="0"
                 max="100"
               />
-              <Span width={48} textAlign='right'>{form.lumStart}</Span>
+              <Span width={48} textAlign="right">
+                {form.lumStart}
+              </Span>
             </Flex>
             <Flex mb={2}>
               <Label width={48}>End</Label>
@@ -245,7 +276,9 @@ const Colorbox = ({ onAddPalette, ...props }) => {
                 min="0"
                 max="100"
               />
-              <Span width={48} textAlign='right'>{form.lumEnd}</Span>
+              <Span width={48} textAlign="right">
+                {form.lumEnd}
+              </Span>
             </Flex>
             <Flex>
               <Label pr={2}>Curve</Label>
@@ -265,23 +298,44 @@ const Colorbox = ({ onAddPalette, ...props }) => {
           </Div>
         </Flex>
       </Div>
-          <Flex mt={3} px={[3,5,6]}>
-            {palette.map((p, i) => (
-              <Div>
-              <Div
-                key={i}
-                height={32}
-                bg={p.hex}
-              ></Div>
-              </Div>
-            ))}
-          </Flex>
-          <Div textAlign='center' mb={4}>
-
-        <ButtonPrimary mt={2} borderRadius={1} iconSize={12} fontSize={1} py={1} button='plus' bg='black' color='white' type="button" onClick={handleAddToPalette}>
+      <Flex mt={3} px={[3, 5, 6]}>
+        {palette.map((p, i) => (
+          <Div>
+            <Div key={i} height={32} bg={p.hex} />
+          </Div>
+        ))}
+      </Flex>
+      <Div textAlign="center" mb={4}>
+        <ButtonPrimary
+          mt={2}
+          borderRadius={1}
+          iconSize={12}
+          fontSize={1}
+          py={1}
+          button="plus"
+          bg="black"
+          color="white"
+          type="button"
+          onClick={handleAddToPalette}
+        >
           Add to palette
         </ButtonPrimary>
 
+        <ButtonPrimary
+          mt={2}
+          ml={2}
+          borderRadius={1}
+          iconSize={12}
+          fontSize={1}
+          py={1}
+          button="plus"
+          bg="black"
+          color="white"
+          type="button"
+          onClick={handleReplacePalette}
+        >
+          Replace Palette
+        </ButtonPrimary>
       </Div>
     </Div>
   )

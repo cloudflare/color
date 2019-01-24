@@ -350,6 +350,10 @@ const Index = () => {
     setPalette(prev => [...prev, ...newPalette])
   }
 
+  const handleColorBoxReplace = newPalette => {
+    setPalette(newPalette)
+  }
+
   const handlePaletteImport = () => {
     try {
       const newPalette = JSON.parse(importValue)
@@ -614,7 +618,10 @@ const Index = () => {
             )}
 
             {activeTab === "colorbox" && (
-              <Colorbox onAddPalette={handleColorBoxAdd} />
+              <Colorbox
+                onAddPalette={handleColorBoxAdd}
+                onReplacePalette={handleColorBoxReplace}
+              />
             )}
 
             {activeTab === "import" && (
