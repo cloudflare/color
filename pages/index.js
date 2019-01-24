@@ -651,10 +651,20 @@ const Index = () => {
                 <TextButton
                   fontSize={1}
                   bg="transparent"
+                  mx={2}
                   onClick={handleClearPalette}
                 >
                   Clear palette
                 </TextButton>
+              <A
+                href="/combinations"
+                mx={2}
+                fontSize={1} 
+                color='gray.0'
+                pageData={{ combinations: availableCombos }}
+              >
+                View all accessible combinations
+              </A>
               </Div>
               <Div maxWidth="48rem" mx="auto">
                 <CombinationTools
@@ -896,12 +906,6 @@ const Index = () => {
               Cloudflare Design
             </A>
 
-            <A
-              href="/combinations"
-              pageData={{ combinations: availableCombos }}
-            >
-              Test Data link
-            </A>
             <A
               href="https://github.com/cloudflare-design"
               ml="auto"
