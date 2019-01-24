@@ -30,10 +30,10 @@ TableCell.defaultProps = {
   fontSize: 3,
   textAlign: "left",
   borderBottom: "1px solid",
-  borderColor: "gray.8",
+  borderColor: "gray.9",
   lineHeight: 1.5,
   py: 2,
-  px: 4
+  px: 3
 }
 
 export default TableCell

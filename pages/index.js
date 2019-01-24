@@ -23,6 +23,7 @@ import getContrastScore from "../utils/getContrastScore"
 import Preview from "../components/Preview"
 import PlayerControls from "../components/PlayerControls"
 import Colorbox from "../components/Colorbox"
+import ColorTable from "../components/ColorTable"
 import isHex from "../utils/isHex"
 
 const resetPinned = {
@@ -790,6 +791,10 @@ const Index = () => {
               borderColor={controlColor}
               style={{ opacity: 0.175 }}
             />
+            <Div px={[3,4]} maxWidth='54rem' mx='auto' style={{overflowX: 'scroll'}}>
+              <H4 fontSize={2}>Docs</H4>
+              <ColorTable colors={palette} />
+            </Div>
             <Div px={[3, 4]} maxWidth="48rem" mx="auto">
               <H4 fontSize={2}>Settings</H4>
               <Form pt={4}>
