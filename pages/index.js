@@ -354,11 +354,11 @@ const Index = () => {
 
   return (
     <Div
+      bg='white'
       display="flex"
       flexWrap="wrap"
       width={1}
       position="relative"
-      bg={currentCombination.parentBg}
       style={{
         overflow: "hidden",
         filter:
@@ -367,8 +367,8 @@ const Index = () => {
             : `url(/static/filters.svg#${colorFilter})`
       }}
     >
-      <Div width={[1]} color={controlColor}>
-        <Div color={controlColor} pt={3} px={3} mb={3} textAlign="center">
+      <Div width={[1]} >
+        <Div pt={3} px={3} mb={3} textAlign="center">
           <TextButton
             onClick={handleActiveTab("url")}
             bg="transparent"
@@ -390,14 +390,14 @@ const Index = () => {
             Image
           </TextButton>
           <TextButton
-            onClick={handleActiveTab("generative")}
+            onClick={handleActiveTab("palx")}
             bg="transparent"
             mr={3}
             fontWeight={700}
             fontSize={2}
-            color={activeTab === "generative" ? "blue.4" : "inherit"}
+            color={activeTab === "palx" ? "blue.4" : "inherit"}
           >
-            Generative
+            Palx
           </TextButton>
 
           <TextButton
@@ -408,9 +408,22 @@ const Index = () => {
             fontSize={2}
             color={activeTab === "colorbox" ? "blue.4" : "inherit"}
           >
-            Colorbox
+            ColorBox
           </TextButton>
+
         </Div>
+          <TextButton
+            display={['none', 'block']}
+            position='absolute'
+            top={0}
+            right={0}
+            fontWeight={700}
+            fontSize={2}
+            p={3}
+            onClick={() => togglePaletteModal(true)}
+          >
+            Export palette
+          </TextButton>
 
         {activeTab === "url" && (
           <Div px={3} mx="auto" maxWidth="32rem">
@@ -525,7 +538,7 @@ const Index = () => {
             flexWrap="wrap"
             alignItems="center"
           >
-            {activeTab === "generative" && (
+            {activeTab === "palx" && (
               <Form
                 width={1}
                 mb={4}
@@ -580,10 +593,10 @@ const Index = () => {
               </Form>
             )}
 
-            {activeTab === "colorbox" && (
-              <Colorbox onAddPalette={handleColorBoxAdd} />
-            )}
-            <Div px={3}>
+              {activeTab === "colorbox" && (
+                <Colorbox onAddPalette={handleColorBoxAdd} />
+              )}
+            <Div mt={3} px={[3,5,6]}>
               <Palette
                 palette={palette}
                 pickerColor={currentPickerColor}
@@ -591,7 +604,7 @@ const Index = () => {
                 onClick={handlePaletteColorClick}
                 onAddColor={handleAddColor}
               />
-              <Flex mt={3}>
+              <Div textAlign='center' my={3}>
                 <TextButton
                   bg="transparent"
                   fontSize={2}
@@ -599,16 +612,8 @@ const Index = () => {
                 >
                   Clear palette
                 </TextButton>
-                <TextButton
-                  bg="transparent"
-                  fontWeight={700}
-                  fontSize={2}
-                  ml="auto"
-                  onClick={() => togglePaletteModal(true)}
-                >
-                  Export palette
-                </TextButton>
-              </Flex>
+              </Div>
+              <Div display='none' dataName='stats'>
               <Dl
                 color={controlColor}
                 display="flex"
@@ -650,6 +655,7 @@ const Index = () => {
                   {(availableCombos.length * palette.length).toLocaleString()}
                 </Dd>
               </Dl>
+            </Div>
 
               {paletteModalIsOpen && (
                 <PaletteModal
@@ -680,7 +686,7 @@ const Index = () => {
         </Div>
       </Div>
       {!isEmpty(currentCombination) && (
-        <Div width={[1]}>
+        <Div width={[1]} bg={currentCombination.parentBg}>
           <Div
             borderTop="1px solid"
             borderColor={controlColor}

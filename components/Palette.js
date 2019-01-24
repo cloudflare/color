@@ -1,23 +1,71 @@
 import React from "react"
+import styled from "react-emotion"
+
+import {
+  space,
+  width,
+  height,
+  maxWidth,
+  position,
+  display,
+  flexWrap,
+  flex,
+  alignItems,
+  justifyContent,
+  fontSize,
+  textAlign,
+  color,
+  borders,
+  borderColor,
+  borderRadius
+} from "styled-system"
+
+const ClearFix = styled.div(
+  space,
+  width,
+  height,
+  maxWidth,
+  position,
+  display,
+  flex,
+  flexWrap,
+  alignItems,
+  justifyContent,
+  fontSize,
+  textAlign,
+  color,
+  borders,
+  borderColor,
+  borderRadius,
+  {
+    boxSizing: 'border-box',
+    '::after': {
+      content: "' '",
+      display: 'table',
+      clear: 'both',
+      overflow: 'hidden',
+    }
+  }
+)
 
 const SingleColor = ({ color, onClick, isActive, isVisible, index }) => {
   const handleActiveUI = () => onClick(color, index)
 
   return (
     <Div
-      m={1}
       border="2px solid"
       borderColor={isActive ? "black" : "transparent"}
-      borderRadius="100%"
       bg={color}
-      height={24}
-      width={24}
+      height={32}
+      width={[1/16,1/32]}
       style={{
+        float: 'left',
         cursor: "pointer",
         position: "relative",
-        boxShadow: isVisible ? " 0 0 10px rgba(0,0,0,0.3)" : "none",
-        transform: isVisible ? "scale(1.5)" : "none",
-        transition: "transform 200ms ease-in"
+        boxShadow: isVisible ? " 0 0 12px rgba(0,0,0,0.5)" : "none",
+        transform: isVisible ? "scale(1.25)" : "none",
+        zIndex: isVisible ? 4 : 1,
+        transition: "transform 125ms ease-in-out",
       }}
       onClick={handleActiveUI}
     />
@@ -32,18 +80,7 @@ const Palette = ({
   pickerColor
 }) => {
   return (
-    <Div
-      display="flex"
-      mx={-1}
-      css={{
-        flexWrap: "wrap",
-        justifyContent: "space-between",
-        "&:after": {
-          content: '""',
-          flex: "auto"
-        }
-      }}
-    >
+    <ClearFix>
       {palette.map((color, i) => (
         <SingleColor
           isActive={i === pickerColor.index}
@@ -53,9 +90,10 @@ const Palette = ({
           color={color}
           onClick={onClick}
         />
+        
       ))}
-      <AddColor onAddColor={onAddColor} />
-    </Div>
+      <AddColor style={{float: 'left' }} mt={1} ml={1} onAddColor={onAddColor} />
+    </ClearFix>
   )
 }
 

@@ -58,7 +58,7 @@ const generateSpecs = ({
   }
 })
 
-const Colorbox = ({ onAddPalette }) => {
+const Colorbox = ({ onAddPalette, ...props }) => {
   const [form, setForm] = useState({
     steps: 11,
     hueStart: 34,
@@ -99,48 +99,61 @@ const Colorbox = ({ onAddPalette }) => {
   )
 
   return (
-    <Div>
-      <Div>
-        <Div>
-          <P>Steps</P>
+    <Div {...props}>
+      <Div mx='auto' maxWidth='64rem'>
+        <Header px={4}>
+          <H4><A href='https://colorbox.io' title="ColorBox by Lyft Design">ColorBox <Span fontSize={1} fontWeight={400}>by Lyft Design</Span></A></H4>
+        </Header>
+        <Flex mb={3} px={4}>
+          <Label fontWeight={700} mr={2} fontSize={2}>Steps</Label>
           <Input
             name="steps"
-            type="number"
+            type="range"
+            number='1'
             value={form.steps}
             onChange={handleInput}
+            width={1}
             min="3"
-            max="21"
+            max="128"
           />
-        </Div>
-        <Flex>
-          <Div>
-            <Div>
-              <P fontWeight={700}>Hue</P>
-              <P>Start</P>
-              <Input
-                name="hueStart"
-                type="number"
-                value={form.hueStart}
-                onChange={handleInput}
-                min="0"
-                max="359"
-              />
-            </Div>
-            <Div>
-              <P>End</P>
-              <Input
-                name="hueEnd"
-                type="number"
-                value={form.hueEnd}
-                onChange={handleInput}
-                min="0"
-                max="359"
-              />
-            </Div>
-
-            <Div>
-              <P>Curve</P>
+          <Span width={48} fontSize={2} textAlign='right'>{form.steps}</Span>
+        </Flex>
+        <Flex flexWrap={['wrap', 'nowrap']}>
+          <Div fontSize={2} px={4} mb={[3,0]}>
+              <Label mb={2} display='block' fontWeight={700} fontSize={1}>Hue</Label>
+              <Div>
+              <Flex mb={2}>
+                <Label width={48}>Start</Label>
+                <Input
+                  name="hueStart"
+                  type="range"
+                  value={form.hueStart}
+                  onChange={handleInput}
+                  number='1'
+                  min="0"
+                  max="359"
+                width={1}
+                />
+                <Span pl={2} fontSize={2}>{form.hueStart}</Span>
+              </Flex>
+              <Flex mb={2}>
+                <Label width={48}>End</Label>
+                <Input
+                  name="hueEnd"
+                  type="range"
+                  number='1'
+                  value={form.hueEnd}
+                  onChange={handleInput}
+                  min="0"
+                  max="359"
+                width={1}
+                />
+                <Span fontSize={2} pl={2}>{form.hueEnd}</Span>
+              </Flex>
+            <Flex mb={2}>
+              <Label pr={2}>Curve</Label>
               <Select
+                width={1}
                 name="hueCurve"
                 value={form.hueCurve}
                 onChange={handleInput}
@@ -151,37 +164,46 @@ const Colorbox = ({ onAddPalette }) => {
                   </option>
                 ))}
               </Select>
+            </Flex>
             </Div>
+
           </Div>
 
-          <Div>
-            <Div>
-              <P fontWeight={700}>Saturation</P>
-              <P>Start</P>
+          <Div fontSize={2} px={4} mb={[3,0]}>
+            <Label fontSize={1} fontWeight={700} display='block' mb={2}>Saturation</Label>
+            <Flex mb={2}>
+              <Label width={48}>Start</Label>
               <Input
                 name="satStart"
-                type="number"
+                type="range"
+                number="1"
                 value={form.satStart}
                 onChange={handleInput}
                 min="0"
                 max="100"
+                width={1}
               />
-            </Div>
-            <Div>
-              <P>End</P>
+              <Span width={48} textAlign='right'fontSize={2}>{form.satStart}</Span>
+            </Flex>
+            <Flex mb={2}>
+              <Label width={48}>End</Label>
               <Input
                 name="satEnd"
-                type="number"
+                type="range"
+                number="1"
                 value={form.satEnd}
                 onChange={handleInput}
                 min="0"
                 max="100"
+                width={1}
               />
-            </Div>
+              <Span width={48} fontSize={2} textAlign='right'>{form.satEnd}</Span>
+            </Flex>
 
-            <Div>
-              <P>Curve</P>
+            <Flex mb={2}>
+              <Label pr={2}>Curve</Label>
               <Select
+                width={1}
                 name="satCurve"
                 value={form.hueCurve}
                 onChange={handleInput}
@@ -192,38 +214,44 @@ const Colorbox = ({ onAddPalette }) => {
                   </option>
                 ))}
               </Select>
-            </Div>
+            </Flex>
           </Div>
 
-          <Div>
-            <Div>
-              <P fontWeight={700}>Luminosity</P>
-              <P>Start</P>
+          <Div fontSize={2} px={4} mb={[3,0]}>
+            <Label fontSize={1} fontWeight={700} mb={2} display='block'>Luminosity</Label>
+            <Flex mb={2}>
+              <Label pr={2}>Start</Label>
               <Input
-                name="satStart"
-                type="number"
+                name="lumStart"
+                type="range"
+                width={1}
+                number="1"
                 value={form.lumStart}
                 onChange={handleInput}
                 min="0"
                 max="100"
               />
-            </Div>
-            <Div>
-              <P>End</P>
+              <Span width={48} textAlign='right'>{form.lumStart}</Span>
+            </Flex>
+            <Flex mb={2}>
+              <Label width={48}>End</Label>
               <Input
-                name="satEnd"
-                type="number"
+                width={1}
+                name="lumEnd"
+                type="range"
+                number="1"
                 value={form.lumEnd}
                 onChange={handleInput}
                 min="0"
                 max="100"
               />
-            </Div>
-
-            <Div>
-              <P>Curve</P>
+              <Span width={48} textAlign='right'>{form.lumEnd}</Span>
+            </Flex>
+            <Flex>
+              <Label pr={2}>Curve</Label>
               <Select
-                name="satCurve"
+                width={1}
+                name="lumCurve"
                 value={form.lumCurve}
                 onChange={handleInput}
               >
@@ -233,29 +261,28 @@ const Colorbox = ({ onAddPalette }) => {
                   </option>
                 ))}
               </Select>
-            </Div>
+            </Flex>
           </Div>
         </Flex>
       </Div>
+          <Flex mt={3} px={[3,5,6]}>
+            {palette.map((p, i) => (
+              <Div>
+              <Div
+                key={i}
+                height={32}
+                bg={p.hex}
+              ></Div>
+              </Div>
+            ))}
+          </Flex>
+          <Div textAlign='center' mb={4}>
 
-      <Flex>
-        {palette.map((p, i) => (
-          <Div
-            key={i}
-            width={24}
-            m={1}
-            css={`
-              height: 24px;
-              border-radius: 50%;
-            `}
-            bg={p.hex}
-          />
-        ))}
-      </Flex>
+        <ButtonPrimary mt={2} borderRadius={1} iconSize={12} fontSize={1} py={1} button='plus' bg='black' color='white' type="button" onClick={handleAddToPalette}>
+          Add to palette
+        </ButtonPrimary>
 
-      <Button type="button" onClick={handleAddToPalette}>
-        Add to palette
-      </Button>
+      </Div>
     </Div>
   )
 }

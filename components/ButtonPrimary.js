@@ -59,7 +59,7 @@ const ButtonPrimary = ({ button, iconSize, ...props }) => {
   return (
     <Button {...props}>
       {props.align === "left" && <Icon size={iconSize} type={button} />}
-      <Span height={16} display="inline-block" px={1}>
+      <Span px={2}>
         {props.children}
       </Span>
       {props.align === "right" && <Icon size={16} type={button} />}
@@ -76,7 +76,9 @@ ButtonPrimary.defaultProps = {
   button: "left",
   children: "Click",
   align: "left",
-  iconSize: 16
+  iconSize: 16,
+  display: 'inline-flex',
+  alignItems: 'center',
 }
 
 export default ButtonPrimary

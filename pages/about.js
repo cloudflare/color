@@ -3,6 +3,7 @@ import Color from "color"
 import chroma from "chroma-js"
 import HexVis from "../components/HexVis"
 import ColorNames from "../components/ColorNames"
+import MiniColorSwatch from "../components/MiniColorSwatch"
 
 const getColorName = async hex => {
   const hexMinusHash = hex.replace("#", "")
@@ -60,13 +61,17 @@ const About = () => {
   const theColorWACAGBlack = Color(theColor).contrast(Color("black"))
 
   const theColorAccessibleWhite =
-    theColorWACAGWhite > 4.49 ? "Accessible" : "Inaccessible"
+    theColorWACAGWhite > 4.49 ? "Pass" : "Fail"
 
   const theColorAccessibleBlack =
-    theColorWACAGBlack > 4.49 ? "Accessible" : "Inaccessible"
+    theColorWACAGBlack > 4.49 ? "Pass" : "Fail"
 
   const theColorScaleTint = chroma
     .scale([theColor, "#ffffff"])
+    .mode("hsl")
+    .colors(8)
+  const theColorScaleShade = chroma
+    .scale([theColor, "#000000"])
     .mode("hsl")
     .colors(8)
 
@@ -161,7 +166,6 @@ const About = () => {
             The input
           </H3>
           <P fontSize={5}>This is a hex code</P>
-
           <Input
             fontSize={[6, 7, 8]}
             onChange={handleTheColor}
@@ -176,7 +180,6 @@ const About = () => {
           />
         </Div>
       </Section>
-
       <Section
         height="80vh"
         color="gray.0"
@@ -617,11 +620,11 @@ const About = () => {
           </P>
 
           <Flex
+            display='inline-flex'
             border="1px solid"
             borderColor={theColor}
-            px={2}
-            py={3}
-            borderRadius="5px"
+            p={3}
+            borderRadius={2}
           >
             <Div
               width={160}
@@ -642,18 +645,12 @@ const About = () => {
               Aa
             </P>
           </Flex>
-          <P mt={2} mb={0} fontWeight={700} fontSize={4}>
+          <P mt={2} mb={2} fontWeight={700} fontSize={4}>
             {colorName}
           </P>
-          <P my={0}>
-            <Code fontSize={4}>{theColor}</Code>
-          </P>
-          <P my={0}>
-            <Code fontSize={4}>{theColorRGB}</Code>
-          </P>
-          <P my={0}>
-            <Code fontSize={4}>{theColorHSL}</Code>
-          </P>
+            <Code pb={1} display='block' fontSize={3}>{theColor}</Code>
+            <Code pb={1} display='block' fontSize={3}>{theColorRGB}</Code>
+            <Code display='block' fontSize={3}>{theColorHSL}</Code>
         </Div>
       </Section>
 
@@ -668,147 +665,122 @@ const About = () => {
         borderColor="gray.8"
       >
         <Div>
-          <H3 fontSize={[6, 7, 8]} mb={2} mt={1}>
-            Accessibility is important. We can quickly check if the color is
-            acessible with both black and white
+          <H3 fontSize={[5, 7, 8]} mb={2} mt={1}>
+            Accessibility is important.  
           </H3>
+          <P fontSize={[4, 6]} fontWeight={600}>
+            We can automate checking if the color is
+            acessible with both black and white and simulating how a color will
+            be percieved by people that experience various types of color blindness.
+          </P>
 
-          <ColorSwatch color={theColor} />
-
-          <Flex flexWrap="wrap">
-            <Div width={1 / 4} pr={2}>
-              <P mb={0} fontWeight={700}>
-                Achromatopsia
+          <Flex flexWrap='wrap'>
+            <ColorSwatch width={[1,1/4, 1]} mb={2} color={theColor} />
+            <Flex flexWrap="wrap" px={1} width={[1,3/4, 1]} mt={[2,0]}>
+              <Div width={[1/2,1 / 4]} px={1} pb={1}>
+              <P fontSize={1} my={0} fontWeight={700}>
               </P>
               <Div
                 css={`
                   filter: url(/static/filters.svg#achromatopsia);
                 `}
               >
-                <ColorSwatch color={theColor} />
+                <MiniColorSwatch children='Achromatopsia' color={theColor} />
               </Div>
             </Div>
-            <Div width={1 / 4} pr={2}>
-              <P mb={0} fontWeight={700}>
-                Protanopia
-              </P>
+            <Div width={[1/2, 1 / 4]} px={1} pb={1}>
               <Div
                 css={`
                   filter: url(/static/filters.svg#protanopia);
                 `}
               >
-                <ColorSwatch color={theColor} />
+                <MiniColorSwatch children="Protanopia" color={theColor} />
               </Div>
             </Div>
 
-            <Div width={1 / 4} pr={2}>
-              <P mb={0} fontWeight={700}>
-                Protanomaly
-              </P>
+            <Div width={[1/2, 1 / 4]} px={1} pb={1}>
+                
               <Div
                 css={`
                   filter: url(/static/filters.svg#protanomaly);
                 `}
               >
-                <ColorSwatch color={theColor} />
+                <MiniColorSwatch children='Protanomaly' color={theColor} />
               </Div>
             </Div>
 
-            <Div width={1 / 4}>
-              <P mb={0} fontWeight={700}>
-                Deuteranopia
-              </P>
+            <Div width={[1/2, 1 / 4]} px={1} pb={1}>
               <Div
                 css={`
                   filter: url(/static/filters.svg#deuteranopia);
                 `}
               >
-                <ColorSwatch color={theColor} />
+                <MiniColorSwatch children="Deuteranopia" color={theColor} />
               </Div>
             </Div>
-
-            <Div width={1 / 4} pr={2}>
-              <P mb={0} fontWeight={700}>
-                Deuteranomaly
-              </P>
+            <Div width={[1/2, 1 / 4]} px={1} pb={1}>
               <Div
                 css={`
                   filter: url(/static/filters.svg#deuteranomaly);
                 `}
               >
-                <ColorSwatch color={theColor} />
+                <MiniColorSwatch children='Deuteranomaly' color={theColor} />
               </Div>
             </Div>
-
-            <Div width={1 / 4} pr={2}>
-              <P mb={0} fontWeight={700}>
-                Tritanopia
-              </P>
+            <Div width={[ 1/2, 1/4]} px={1} pb={1}>
               <Div
                 css={`
                   filter: url(/static/filters.svg#tritanopia);
                 `}
               >
-                <ColorSwatch color={theColor} />
+                <MiniColorSwatch children='Tritanopia' color={theColor} />
               </Div>
             </Div>
-
-            <Div width={1 / 4} pr={2}>
-              <P mb={0} fontWeight={700}>
-                Tritanomaly
-              </P>
+            <Div width={[1/2, 1 / 4]} px={1} pb={1}>
               <Div
                 css={`
                   filter: url(/static/filters.svg#tritanomaly);
                 `}
               >
-                <ColorSwatch color={theColor} />
+                <MiniColorSwatch children='Tritanomaly' color={theColor} />
               </Div>
             </Div>
-
-            <Div width={1 / 4}>
-              <P mb={0} fontWeight={700}>
-                Achromatomaly
-              </P>
+            <Div width={[1/2, 1 / 4]} px={1} pb={1}>
               <Div
                 css={`
                   filter: url(/static/filters.svg#achromatomaly);
                 `}
               >
-                <ColorSwatch color={theColor} />
+                <MiniColorSwatch children='Achromatomaly' color={theColor} />
               </Div>
             </Div>
           </Flex>
+        </Flex>
 
           <P mt={2} mb={0} fontWeight={700} fontSize={4}>
             {colorName}
           </P>
-          <P my={0}>
-            <Code fontSize={4}>{theColor}</Code>
-          </P>
-          <P my={0}>
-            <Code fontSize={4}>{theColorRGB}</Code>
-          </P>
-          <P mt={0} mb={3}>
-            <Code fontSize={4}>{theColorHSL}</Code>
-          </P>
+          <Code lineHeight={1.5} pr={4} style={{whiteSpace: 'nowrap'}} fontSize={2}>{theColor}</Code>
+          <Code lineHeight={1.5} pr={4} style={{whiteSpace: 'nowrap'}} fontSize={2}>{theColorRGB}</Code>
+          <Code lineHeight={1.5} pr={4} style={{whiteSpace: 'nowrap'}} fontSize={2}>{theColorHSL}</Code>
 
-          <P my={0}>
-            <Code fontSize={4}>
-              Contrast ratio with white: {theColorWACAGWhite.toFixed(2)}
+          <H4 mb={2} mt={4}>Contrast ratio</H4>
+          <P mt={0} mb={0} display='inline-block' mr={3}>
+            <Code fontSize={3} px={2} py={1} mr={1} bg={theColor} color='white'>
+              {theColorWACAGWhite.toFixed(2)}
             </Code>
-          </P>
-          <P mt={0} mb={3} fontSize={3}>
+          <Span mt={0} mb={3} fontSize={3}>
             {theColorAccessibleWhite}
+          </Span>
           </P>
 
-          <P my={0}>
-            <Code fontSize={4}>
-              Contrast ratio with black: {theColorWACAGBlack.toFixed(2)}
+          <P my={0} display='inline-block'>
+            <Code fontSize={3} mr={2} py={1} px={2} bg={theColor} color='black'>
+              {theColorWACAGBlack.toFixed(2)}
             </Code>
-          </P>
-          <P my={0} fontSize={3}>
-            {theColorAccessibleBlack}
+            <Span my={0} fontSize={3}>
+              {theColorAccessibleBlack}
+            </Span>
           </P>
         </Div>
       </Section>
@@ -826,7 +798,7 @@ const About = () => {
       >
         <Div>
           <H3 fontSize={[6, 7, 8]} mb={2} mt={1}>
-            So far, we have are showing 10 data points from 1 piece of input.
+            So far, we have are visualizing 16 data points from 1 piece of input.
           </H3>
         </Div>
       </Section>
@@ -841,9 +813,10 @@ const About = () => {
         alignItems="center"
         borderBottom="1px solid"
         borderColor="gray.8"
+        mx={-3}
       >
-        <Div>
-          <H3 fontSize={[6, 7, 8]} mb={2} mt={1}>
+        <Div width={1/2} px={3}>
+          <H3 fontSize={[5, 6, 7]} mb={4}>
             Adding white to a color creates a tint
           </H3>
 
@@ -854,7 +827,7 @@ const About = () => {
               </Div>
             ))}
           </Div>
-          <Flex mt={3}>
+          <Flex mt={3} display='none'>
             {theColorScaleTint.map(color => (
               <Div
                 mr={2}
@@ -868,7 +841,7 @@ const About = () => {
             ))}
           </Flex>
 
-          <Flex mt={3}>
+          <Flex mt={3} display='none'>
             {theColorScaleTint.map(color => (
               <Div
                 mr={2}
@@ -881,6 +854,19 @@ const About = () => {
               />
             ))}
           </Flex>
+        </Div>
+        <Div width={1/2} px={3}>
+          <H3 fontSize={[5, 6, 7]} mb={4}>
+            Adding black to a color creates a shade
+          </H3>
+
+          <Div>
+            {theColorScaleShade.map(color => (
+              <Div px={3} py={3} bg={color}>
+                {color}
+              </Div>
+            ))}
+          </Div>
         </Div>
       </Section>
 

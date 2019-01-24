@@ -1,6 +1,6 @@
 import React from "react"
 
-const AddColor = ({ onAddColor }) => {
+const AddColor = ({ onAddColor, ...props }) => {
   return (
     <Div
       borderRadius="100%"
@@ -10,6 +10,7 @@ const AddColor = ({ onAddColor }) => {
       border="1px solid"
       css={{ cursor: "pointer", display: "flex", position: "relative" }}
       onClick={onAddColor}
+      {...props}
     >
       <Icon width="12px" height="12px" type="plus" css={{ margin: "auto" }} />
     </Div>

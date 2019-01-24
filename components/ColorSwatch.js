@@ -1,21 +1,22 @@
 import React from "react"
 
-const ColorSwatch = ({ color }) => {
+const ColorSwatch = ({ color, ...props }) => {
   return (
     <Flex
+      display='inline-flex'
       border="1px solid"
       borderColor={color}
-      px={2}
-      py={3}
+      p={3}
       borderRadius="5px"
+      {...props}
     >
       <Div
-        width={160}
+        width={1}
         bg={color}
         mr={2}
-        css={`
-          height: 60px;
-        `}
+        borderRadius={1}
+        height={64}
+        width={64}
       />
       <P
         css={`
@@ -23,7 +24,7 @@ const ColorSwatch = ({ color }) => {
         `}
         color={color}
         m={0}
-        fontSize={9}
+        fontSize={8}
       >
         Aa
       </P>
