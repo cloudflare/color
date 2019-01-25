@@ -12,7 +12,7 @@ const Combinations = ({ pageData }) => {
           borderColor: combo[1]
         }
         return (
-          <Div width={[1/2, 1/3]} key={i}>
+          <Div width={[1, 1/2, 1/3]} key={i}>
             <MiniTextBlock
               key={i}
               boxPadding={64}
