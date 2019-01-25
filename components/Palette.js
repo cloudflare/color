@@ -39,6 +39,7 @@ const ClearFix = styled.div(
   borderRadius,
   {
     boxSizing: 'border-box',
+    width: 'auto',
     '::after': {
       content: "' '",
       display: 'table',

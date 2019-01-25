@@ -436,7 +436,7 @@ const Index = () => {
             fontSize={2}
             color={activeTab === "text" ? "blue.4" : "inherit"}
           >
-            Text
+            Json
           </TextButton>
         </Div>
         <TextButton
@@ -536,8 +536,8 @@ const Index = () => {
                   </TextButton>
                 </Flex>
 
-                <Div p={2} border="1px solid rgba(0,0,0,.1)">
-                  <Img src={paletteImage.url} />
+              <Div maxWidth={320} mx='auto'>
+                  <Img  src={paletteImage.url} />
                   {paletteImage.name && (
                     <P color="gray.5" fontSize={0}>
                       Photo by{" "}
@@ -632,18 +632,21 @@ const Index = () => {
                     There is something wrong with the JSON provided
                   </P>
                 )}
+
                 <Textarea
                   border="1px solid"
-                  borderColor="black"
+                  borderColor="gray.8"
+                  p={3}
                   width={1}
+                  borderRadius={1}
                   value={importValue}
                   css={`
                     resize: vertical;
-                    min-height: 100px;
+                    min-height: 128px;
                   `}
                   onChange={e => setImportValue(e.target.value)}
                 />
-                <Button onClick={handlePaletteImport}>Import Palette</Button>
+                <TextButton onClick={handlePaletteImport}>Import Palette</TextButton>
               </Div>
             )}
 
@@ -791,11 +794,11 @@ const Index = () => {
               borderColor={controlColor}
               style={{ opacity: 0.175 }}
             />
-            <Div px={[3,4]} maxWidth='54rem' mx='auto' style={{overflowX: 'scroll'}}>
+            <Div px={[3,4]} pt={4} maxWidth='54rem' mx='auto' style={{overflowX: 'scroll'}}>
               <H4 fontSize={2}>Docs</H4>
               <ColorTable colors={palette} />
             </Div>
-            <Div px={[3, 4]} maxWidth="48rem" mx="auto">
+            <Div px={[3, 4]} pt={5} maxWidth="48rem" mx="auto">
               <H4 fontSize={2}>Settings</H4>
               <Form pt={4}>
                 <Fieldset border="0" p={0}>

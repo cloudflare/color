@@ -328,7 +328,7 @@ const Colorbox = ({ onAddPalette, onReplacePalette, ...props }) => {
           iconSize={12}
           fontSize={1}
           py={1}
-          button="plus"
+          button=" "
           bg="black"
           color="white"
           type="button"

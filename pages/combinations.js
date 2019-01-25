@@ -13,7 +13,7 @@ const Combinations = ({ pageData }) => {
         }
         return (
           <Div key={i}>
-            <TextBlock
+            <MiniTextBlock
               key={i}
               boxPadding={64}
               currentCombination={currentCombination}

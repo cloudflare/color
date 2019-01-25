@@ -18,14 +18,14 @@ const Img = styled.img(
   borderColor,
   borderRadius,
   {
-    display: 'block',
-    maxWidth: '100%',
     borderStyle: 'none',
   },
 )
 
 Img.defaultProps = {
   width: 1,
+  display: 'block',
+  maxWidth: '100%'
 }
 
 export default Img

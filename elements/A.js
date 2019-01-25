@@ -35,8 +35,12 @@ const A = styled.a(
   {
     boxSizing: "border-box",
     textDecoration: "none",
+    transition: 'opacity .25s ease-in-out',
+    opacity: 1,
     ":hover": {
-      pointer: "cursor"
+      cursor: "pointer",
+      opacity: .75,
+      transition: 'opacity .25s ease-in-out'
     }
   }
 )
