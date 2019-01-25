@@ -42,11 +42,12 @@ const debouncedUpdateCombos = debounce(
 )
 
 const MainUI = ({
+  palette,
+  setPalette,
   availableCombos,
   setAvailableCombos,
   onShowCombinations
 }) => {
-  const [palette, setPalette] = useState(sortPalette(defaultPalette))
   const [paletteModalIsOpen, togglePaletteModal] = useState(false)
   const [likes, updateLikes] = useState([])
   const [contrastRatio, setContrastRatio] = useState(4.5)
@@ -947,6 +948,7 @@ const MainUI = ({
 }
 
 const Index = () => {
+  const [palette, setPalette] = useState(sortPalette(defaultPalette))
   const [availableCombos, setAvailableCombos] = useState(() =>
     getAllCombos(defaultPalette, 4.5)
   )
@@ -959,6 +961,8 @@ const Index = () => {
     />
   ) : (
     <MainUI
+      palette={palette}
+      setPalette={setPalette}
       availableCombos={availableCombos}
       setAvailableCombos={setAvailableCombos}
       onShowCombinations={() => toggleShowCombinations(true)}
