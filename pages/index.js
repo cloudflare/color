@@ -41,11 +41,13 @@ const debouncedUpdateCombos = debounce(
   500
 )
 
-const Index = () => {
-  const [palette, setPalette] = useState(sortPalette(defaultPalette))
-  const [availableCombos, setAvailableCombos] = useState(() =>
-    getAllCombos(defaultPalette, 4.5)
-  )
+const MainUI = ({
+  palette,
+  setPalette,
+  availableCombos,
+  setAvailableCombos,
+  onShowCombinations
+}) => {
   const [paletteModalIsOpen, togglePaletteModal] = useState(false)
   const [likes, updateLikes] = useState([])
   const [contrastRatio, setContrastRatio] = useState(4.5)
@@ -536,8 +538,8 @@ const Index = () => {
                   </TextButton>
                 </Flex>
 
-              <Div maxWidth={320} mx='auto'>
-                  <Img  src={paletteImage.url} />
+                <Div maxWidth={320} mx="auto">
+                  <Img src={paletteImage.url} />
                   {paletteImage.name && (
                     <P color="gray.5" fontSize={0}>
                       Photo by{" "}
@@ -646,7 +648,9 @@ const Index = () => {
                   `}
                   onChange={e => setImportValue(e.target.value)}
                 />
-                <TextButton onClick={handlePaletteImport}>Import Palette</TextButton>
+                <TextButton onClick={handlePaletteImport}>
+                  Import Palette
+                </TextButton>
               </Div>
             )}
 
@@ -667,15 +671,14 @@ const Index = () => {
                 >
                   Clear palette
                 </TextButton>
-              <A
-                href="/combinations"
-                mx={2}
-                fontSize={1} 
-                color='gray.0'
-                pageData={{ combinations: availableCombos }}
-              >
-                View all accessible combinations
-              </A>
+                <TextButton
+                  mx={2}
+                  fontSize={1}
+                  color="gray.0"
+                  onClick={onShowCombinations}
+                >
+                  View all accessible combinations
+                </TextButton>
               </Div>
               <Div maxWidth="48rem" mx="auto">
                 <CombinationTools
@@ -794,7 +797,13 @@ const Index = () => {
               borderColor={controlColor}
               style={{ opacity: 0.175 }}
             />
-            <Div px={[3,4]} pt={4} maxWidth='54rem' mx='auto' style={{overflowX: 'scroll'}}>
+            <Div
+              px={[3, 4]}
+              pt={4}
+              maxWidth="54rem"
+              mx="auto"
+              style={{ overflowX: "scroll" }}
+            >
               <H4 fontSize={2}>Docs</H4>
               <ColorTable colors={palette} />
             </Div>
@@ -935,6 +944,29 @@ const Index = () => {
         </Div>
       )}
     </Div>
+  )
+}
+
+const Index = () => {
+  const [palette, setPalette] = useState(sortPalette(defaultPalette))
+  const [availableCombos, setAvailableCombos] = useState(() =>
+    getAllCombos(defaultPalette, 4.5)
+  )
+
+  const [showCombinations, toggleShowCombinations] = useState(false)
+  return showCombinations ? (
+    <Combinations
+      availableCombos={availableCombos}
+      onHideCombinations={() => toggleShowCombinations(false)}
+    />
+  ) : (
+    <MainUI
+      palette={palette}
+      setPalette={setPalette}
+      availableCombos={availableCombos}
+      setAvailableCombos={setAvailableCombos}
+      onShowCombinations={() => toggleShowCombinations(true)}
+    />
   )
 }
 

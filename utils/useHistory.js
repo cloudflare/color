@@ -40,7 +40,7 @@ const reducer = (state, action) => {
         return state
       }
       return {
-        past: [...past.slice(-9, 10), present].filter(n => !isEmpty(n)),
+        past: [...past.slice(-19, 20), present].filter(n => !isEmpty(n)),
         present: newPresent,
         future: []
       }
