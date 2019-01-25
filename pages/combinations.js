@@ -4,7 +4,7 @@ import isEmpty from "lodash/isEmpty"
 
 const Combinations = ({ pageData }) => {
   return isEmpty(pageData) ? null : (
-    <Container>
+    <Div display='flex' flexWrap='wrap'>
       {pageData.combinations.map((combo, i) => {
         const currentCombination = {
           bg: combo[0],
@@ -12,7 +12,7 @@ const Combinations = ({ pageData }) => {
           borderColor: combo[1]
         }
         return (
-          <Div key={i}>
+          <Div width={[1/2, 1/3]} key={i}>
             <MiniTextBlock
               key={i}
               boxPadding={64}
@@ -21,7 +21,7 @@ const Combinations = ({ pageData }) => {
           </Div>
         )
       })}
-    </Container>
+    </Div>
   )
 }
 
