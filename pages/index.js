@@ -436,6 +436,7 @@ const MainUI = ({
             mr={3}
             fontWeight={700}
             fontSize={2}
+            display='none'
             color={activeTab === "text" ? "blue.4" : "inherit"}
           >
             Json
@@ -451,11 +452,11 @@ const MainUI = ({
           p={3}
           onClick={() => togglePaletteModal(true)}
         >
-          Export palette
+          Export 
         </TextButton>
 
         {activeTab === "url" && (
-          <Div px={3} mx="auto" maxWidth="32rem">
+          <Div px={3} py={0} mx="auto" maxWidth="32rem">
             <SiteFetch onSubmit={handleSiteFetch} />
           </Div>
         )}
@@ -571,7 +572,7 @@ const MainUI = ({
               <Form
                 maxWidth="32rem"
                 mx="auto"
-                mb={4}
+                mb={3}
                 px={3}
                 borderRadius={2}
                 style={{ overflow: "hidden" }}
@@ -630,7 +631,7 @@ const MainUI = ({
             {activeTab === "text" && (
               <Div px={3} mx="auto" maxWidth="32rem">
                 {importError && (
-                  <P color="marketing.red">
+                  <P color="red.4">
                     There is something wrong with the JSON provided
                   </P>
                 )}
@@ -654,7 +655,7 @@ const MainUI = ({
               </Div>
             )}
 
-            <Div mt={3} px={[3, 5, 6]}>
+            <Div px={[3, 5, 6]}>
               <Palette
                 palette={palette}
                 pickerColor={currentPickerColor}
@@ -677,7 +678,7 @@ const MainUI = ({
                   color="gray.0"
                   onClick={onShowCombinations}
                 >
-                  View all accessible combinations
+                  View {availableCombos.length} accessible combinations
                 </TextButton>
               </Div>
               <Div maxWidth="48rem" mx="auto">
@@ -806,6 +807,19 @@ const MainUI = ({
             >
               <H4 fontSize={2}>Docs</H4>
               <ColorTable colors={palette} />
+              <Div mt={3}textAlign='center'>
+                <TextButton
+                  fontWeight={700}
+                  fontSize={2}
+                  border='1px solid'
+                  borderColor='gray.0'
+                  borderRadius={2}
+                  p={3}
+                  onClick={() => togglePaletteModal(true)}
+                >
+                Export Palette
+              </TextButton>
+              </Div>
             </Div>
             <Div px={[3, 4]} pt={5} maxWidth="48rem" mx="auto">
               <H4 fontSize={2}>Settings</H4>

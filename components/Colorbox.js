@@ -106,16 +106,6 @@ const Colorbox = ({ onAddPalette, onReplacePalette, ...props }) => {
   return (
     <Div {...props}>
       <Div mx="auto" maxWidth="64rem">
-        <Header px={4}>
-          <H4>
-            <A href="https://colorbox.io" title="ColorBox by Lyft Design">
-              ColorBox{" "}
-              <Span fontSize={1} fontWeight={400}>
-                by Lyft Design
-              </Span>
-            </A>
-          </H4>
-        </Header>
         <Flex mb={3} px={4}>
           <Label fontWeight={700} mr={2} fontSize={2}>
             Steps

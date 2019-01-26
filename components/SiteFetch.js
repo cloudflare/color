@@ -3,7 +3,7 @@ import extractSkins from "../utils/extract-skins"
 import sortPalette from "../utils/sortPalette"
 import LoadingBars from "./LoadingBars"
 
-const SiteFetch = ({ onSubmit }) => {
+const SiteFetch = ({ onSubmit, ...props }) => {
   const [url, setUrl] = useState("https://cloudflare.com")
   const [isLoading, setLoading] = useState(false)
 
@@ -45,13 +45,14 @@ const SiteFetch = ({ onSubmit }) => {
   }
 
   return (
-    <Div>
+    <Div {...props}>
       <Form
         onSubmit={handleSubmit}
         display="flex"
         width={1}
         style={{ overflow: "hidden" }}
         borderRadius={2}
+        mb={0}
       >
         <Input
           fontSize={2}

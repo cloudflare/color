@@ -11,7 +11,7 @@ const Combinations = ({ availableCombos, onHideCombinations }) => {
         }
         return (
           <Div
-            width={[1 / 2, 1 / 3]}
+            width={[1, 1 / 2, 1 / 3]}
             key={i}
             css={`
               position: relative;
