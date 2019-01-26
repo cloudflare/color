@@ -4,14 +4,14 @@ import Color from "color"
 const IconBlock = ({ currentCombination, borderWidth }) => {
   return (
     <Div
-      mt={5}
       py={[4, 5]}
-      px={[3, 4, 5]}
+      px={[3, 4]}
       bg={currentCombination.bg}
       display="grid"
       style={{
         justifyItems: "center",
-        gridTemplateColumns: "repeat(auto-fill, minmax(24px,48px))",
+        justifyContent: "space-around",
+        gridTemplateColumns: "repeat(auto-fill, minmax(32px,64px))",
         rowGap: '16px'
       }}
       borderColor={currentCombination.borderColor}
