@@ -183,11 +183,20 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
       color={getColor(currentColor)}
       bg={currentColor}
       mt={3}
-      display="flex"
-      flexWrap="wrap"
-      alignItems='flex-start'
     >
-      <Flex width={1} mb={4}>
+      <Div
+        maxWidth='48rem'
+        mx='auto'
+      >
+        <Flex 
+        display="flex"
+        flexWrap="wrap"
+        alignItems='flex-start'
+        mx={-3}
+      >
+          
+
+      <Flex width={1} mb={4} px={3}>
         <TextInput
           color="inherit"
           bg="transparent"
@@ -231,8 +240,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
           <Span>{showContrastLevel(contrastForWhite(currentColor))}</Span>
         </P>
       </Flex>
-      <Flex width={[1,1/2]} flexWrap='wrap'>
-      <Flex flexWrap="wrap" width={1} mb={1}>
+      <Flex width={[1,1/2]} flexWrap='wrap' px={3}>
         <Label
           fontSize={[1,2]}
           display="block"
@@ -243,7 +251,8 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
         >
           Red
         </Label>
-        <Div width={3 / 4}>
+      <Flex width={1} mb={1}>
+        <Div width={1}>
           <RangeSlider
             name="r"
             min="0"
@@ -254,7 +263,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
           />
         </Div>
-        <Div width={1 / 4} justifyContent="right">
+        <Div width={64} justifyContent="right">
           <TextInput
             px={0}
             py={0}
@@ -274,17 +283,17 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
           />
         </Div>
       </Flex>
-      <Flex width={1} flexWrap="wrap" mb={1}>
-        <Label
-          width={1}
-          fontSize={[1,2]}
-          fontWeight={700}
-          color="inherit"
-          css={{ transition: "none" }}
-        >
-          Green
-        </Label>
-        <Div width={3 / 4}>
+      <Label
+        width={1}
+        fontSize={[1,2]}
+        fontWeight={700}
+        color="inherit"
+        css={{ transition: "none" }}
+      >
+        Green
+      </Label>
+      <Flex width={1}  mb={1}>
+        <Div width={1}>
           <RangeSlider
             name="g"
             min="0"
@@ -295,7 +304,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
           />
         </Div>
-        <Div width={1 / 4} justifyContent="right">
+        <Div width={64} justifyContent="right">
           <TextInput
             px={0}
             py={0}
@@ -315,7 +324,6 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
           />
         </Div>
       </Flex>
-      <Flex width={1} flexWrap="wrap">
         <Label
           fontSize={[1,2]}
           width={1}
@@ -325,7 +333,8 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
         >
           Blue
         </Label>
-        <Div width={3 / 4}>
+      <Flex width={1}>
+        <Div width={1}>
           <RangeSlider
             name="b"
             min="0"
@@ -336,7 +345,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
           />
         </Div>
-        <Div width={1 / 4} justifyContent="right">
+        <Div width={64} justifyContent="right">
           <TextInput
             px={0}
             py={0}
@@ -357,8 +366,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
         </Div>
       </Flex>
     </Flex>
-    <Flex width={[1,1/2]} flexWrap="wrap" mt={[3,0]}>
-        <Flex width={1} flexWrap="wrap" mb={1}>
+    <Flex width={[1,1/2]} flexWrap="wrap" mt={[3,0]} px={3}>
           <Label
             width={1}
             fontSize={[1,2]}
@@ -369,7 +377,8 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
           >
             Hue
           </Label>
-          <Div width={3 / 4}>
+        <Flex width={1} mb={1}>
+          <Div width={1}>
             <RangeSlider
               name="h"
               min="0"
@@ -380,7 +389,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
               thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
             />
           </Div>
-          <Div width={1 / 4} justifyContent="right">
+          <Div width={64} justifyContent="right">
             <TextInput
               px={0}
               py={0}
@@ -400,8 +409,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             />
           </Div>
         </Flex>
-        <Flex width={1} flexWrap="wrap" mb={1}>
-          <Label
+<Label
             width={1}
             fontSize={[1,2]}
             fontWeight={700}
@@ -410,7 +418,9 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
           >
             Saturation
           </Label>
-          <Div width={3 / 4}>
+        <Flex width={1}  mb={1}>
+          
+          <Div width={1}>
             <RangeSlider
               name="s"
               min="0"
@@ -421,7 +431,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
               thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
             />
           </Div>
-          <Div width={1 / 4}>
+          <Div width={64}>
             <TextInput
               px={0}
               py={0}
@@ -441,8 +451,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             />
           </Div>
         </Flex>
-        <Flex width={1} flexWrap="wrap">
-          <Label
+<Label
             width={1}
             fontSize={[1,2]}
             fontWeight={700}
@@ -451,7 +460,9 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
           >
             Lightness
           </Label>
-          <Div width={3 / 4}>
+        <Flex width={1} >
+          
+          <Div>
             <RangeSlider
               name="l"
               min="0"
@@ -462,7 +473,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
               thumbColor={Color(currentColor).isLight() ? "#fff" : "#000"}
             />
           </Div>
-          <Div width={1 / 4} justifyContent="right">
+          <Div width={64} justifyContent="right">
             <TextInput
               px={0}
               py={0}
@@ -492,6 +503,8 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
           Remove
         </TextButton>
       </Div>
+    </Flex>
+    </Div>
     </Article>
   )
 }

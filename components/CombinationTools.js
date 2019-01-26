@@ -6,7 +6,8 @@ const ComboColor = ({
   currentCombination,
   pinnedColors,
   onPinColor,
-  onClick
+  onClick,
+  ...props
 }) => {
   const onColorClick = () =>
     onClick(currentCombination[comboProperty], comboProperty)
@@ -18,6 +19,8 @@ const ComboColor = ({
       display="flex"
       css={{ position: "relative" }}
       bg="white"
+      maxWidth='100%'
+      {...props}
     >
       <Div
         width={32}
@@ -44,7 +47,7 @@ const ComboColor = ({
       </Div>
       <Div
         mr={2}
-        width={64}
+        width={[1, 64]}
         bg={currentCombination[comboProperty]}
         css={{ cursor: "pointer", outline: "1px solid rgba(0,0,0,.1)" }}
         onClick={onColorClick}
@@ -52,9 +55,11 @@ const ComboColor = ({
       />
       <Span
         fontSize={1}
+        width={[128, 'auto']}
         display={["block", "inline-block"]}
         fontWeight={500}
         pr={1}
+        style={{whiteSpace: 'nowrap'}}
       >
         {name}
       </Span>
@@ -75,7 +80,7 @@ const CombinationTools = ({
   ...props
 }) => {
   return (
-    <Flex fontSize={1} justifyContent="center" mb={2} {...props}>
+    <Flex  flexWrap={['wrap', 'nowrap']} fontSize={1} justifyContent="center" mb={2} {...props}>
       <ComboColor
         name="Parent Bg"
         comboProperty="parentBg"

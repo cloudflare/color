@@ -48,13 +48,11 @@ const useColorData = color => {
 }
 
 const Swatch = ({ color }) => (
-  <Flex height='100%'>
-    <Div borderColor={color} border='1px solid' p='4px' mr={2} display='flex' alignItems='center'>
-      <Div height='100%' px={3} py={2} bg={color} mr={2} />
-      <P my={0} fontWeight={2} color={color} py={0}>
-        Aa
-      </P>
-    </Div>
+  <Flex>
+    <Div height='100%' px={3} py={2} bg={color} mr={2} />
+    <P my={0} fontWeight={2} color={color} py={0}>
+      Aa
+    </P>
   </Flex>
 )
 
@@ -65,23 +63,23 @@ const ColorTableRow = ({ color, onClick }) => {
 
   return (
     <Tr>
-      <TableCell py={2} px={0} pr={2}>
+      <TableCell py={2} px={0} pr={2} borderColor={colorData.hex}>
         <Swatch color={colorData.hex} />
       </TableCell>
-      <TableCell fontSize={2}>{colorData.hue}</TableCell>
-      <TableCell>
+      <TableCell fontSize={2} borderColor={colorData.hex}>{colorData.hue}</TableCell>
+      <TableCell borderColor={colorData.hex}>
         <Code fontSize={1}>{colorData.hex}</Code>
       </TableCell>
-      <TableCell>
+      <TableCell borderColor={colorData.hex}>
         <Code fontSize={1}>{colorData.hsl}</Code>
       </TableCell>
-      <TableCell>
+      <TableCell borderColor={colorData.hex}>
         <Code fontSize={1}>{colorData.rgb}</Code>
       </TableCell>
-      <TableCell textAlign='right' fontSize={2} fontWeight={contrastBlack >4.49? 600 : 400} px={2}>
+      <TableCell borderColor={colorData.hex} textAlign='right' fontSize={2} fontWeight={contrastBlack >4.49? 600 : 400} px={2}>
         {contrastBlack}
       </TableCell>
-      <TableCell fontSize={2} fontWeight={contrastWhite >4.49? 600 : 400} px={2}>
+      <TableCell borderColor={colorData.hex} fontSize={2} fontWeight={contrastWhite >4.49? 600 : 400} px={2}>
         {contrastWhite}
       </TableCell>
     </Tr>
