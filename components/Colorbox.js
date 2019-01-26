@@ -167,6 +167,7 @@ const Colorbox = ({ onAddPalette, onReplacePalette, ...props }) => {
                 <Select
                   width={1}
                   name="hueCurve"
+                  aria-label="hue curve"
                   value={form.hueCurve}
                   onChange={handleInput}
                 >
@@ -222,6 +223,7 @@ const Colorbox = ({ onAddPalette, onReplacePalette, ...props }) => {
               <Select
                 width={1}
                 name="satCurve"
+                aria-label="saturation curve"
                 value={form.hueCurve}
                 onChange={handleInput}
               >
@@ -275,6 +277,7 @@ const Colorbox = ({ onAddPalette, onReplacePalette, ...props }) => {
               <Select
                 width={1}
                 name="lumCurve"
+                aria-label="luminosity curve"
                 value={form.lumCurve}
                 onChange={handleInput}
               >
