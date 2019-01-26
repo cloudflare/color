@@ -21,6 +21,7 @@ const Code = styled.code(
   borderRadius,
   {
     boxSizing: 'border-box',
+    display: 'block'
   },
 )
 

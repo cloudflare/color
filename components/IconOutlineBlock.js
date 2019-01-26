@@ -97,12 +97,13 @@ const IconOutlineBlock = ({ currentCombination, borderWidth }) => {
       ? currentCombination.bg
       : currentCombination.color
   return (
-    <Div mt={5} mb={5}>
+    <Div mt={5} mb={5} px={4}>
       <Div
         display="grid"
         style={{
+          justifyContent: 'space-around',
           justifyItems: "center",
-          gridTemplateColumns: "repeat(auto-fill, minmax(24px,48px))",
+          gridTemplateColumns: "repeat(auto-fill, minmax(32px,64px))",
           rowGap: '16px'
         }}
       >

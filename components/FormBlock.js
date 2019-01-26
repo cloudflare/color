@@ -17,6 +17,7 @@ const FormBlock = ({ borderWidth, currentCombination }) => {
   return (
     <>
       <Flex mt={2} px={[3, 4]} display="none">
+
         <TextInput
           py={3}
           px={4}
@@ -39,8 +40,89 @@ const FormBlock = ({ borderWidth, currentCombination }) => {
           children="Click Here"
         />
       </Flex>
+<Div bg={currentCombination.bg} p={5}>
+          <Form color={currentCombination.color} mb={3} >
+          <Progress 
+            color={currentCombination.color}
+            border='1px solid currentColor'
+            css={{ 
+              '&[value]::-webkit-progress-bar': {
+                backgroundColor: 'transparent',
+              },
+              '&[value]::-webkit-progress-value': {
+                backgroundColor: currentCombination.color,
+              },
+            }}
+          />
+          <Fieldset borderRadius={1} my={3} pt={0} borderColor={currentCombination.color} border='1px solid'>
+            <Legend fontWeight={600}>Name</Legend>
+            <Flex mx={-2}>
+            <Div px={2}>
+              <Label display='block'  mb={1} mt={3} fontWeight={600} fontSize={2}>First</Label>
+              <TextInput borderRadius={1} mb={2} bg='transparent' color='inherit' borderColor='currentColor' value='Example first name' />
+            </Div>
+            <Div px={2}>
+              <Label display='block' fontSize={2} fontWeight={600} mb={1} mt={3}>Last</Label>
+              <TextInput borderRadius={1} mb={2} bg='transparent' color='inherit' borderColor='currentColor' value='Example last name' />
+            </Div>
+          </Flex>
+          </Fieldset>
+            <Label display='block' fontWeight={600} mb={2} mt={3}>Boolean?</Label>
+<Div display="flex" alignItems="center">
+            <RadioButton name="group 1" color={currentCombination.color} mr={3}>
+              Yes
+            </RadioButton>
+            <RadioButton
+              name="group 1"
+              color={currentCombination.color}
+              checked={true}
+            >
+              No
+            </RadioButton>
+          </Div>
+          </Form>
+          <Flex mt={4}>
+          <SingleComponent
+            py={2}
+            px={4}
+            mr={3}
+            border="1px solid"
+            borderRadius={1}
+            color={currentCombination.color}
+            bg="transparent"
+            borderColor={currentCombination.color}
+            children="Secondary Click"
+            width="auto"
+          />
+          <BadgeOutline
+            borderColor={currentCombination.color}
+            color={currentCombination.color}
+            width="auto"
+          />
+          
+        </Flex>
+        </Div>
       <Div mt={4} textAlign="left">
-        <Div display="flex" alignItems="center" px={3}>
+        <Div px={5} mb={3}>
+          <Div py={2} px={2} color={currentCombination.color} bg={currentCombination.bg} mb={2} borderRadius={1}>
+            <Label fontSize={1} display='block' mb={1}> Address Line 1</Label>
+            <TextInput fontWeight={600} width='auto' px={0} py={0} bg='transparent' color={currentCombination.color} border='0' fontSize={3} value="6234 Spadina Avenue" /><br />
+          </Div>
+          <Div py={2} px={2} color={currentCombination.color} bg={currentCombination.bg} borderRadius={1} mb={3}>
+            <Label fontSize={1} display='block' mb={1}> Address Line 2</Label>
+            <TextInput fontWeight={600} width='auto' px={0} py={0} bg='transparent' color={currentCombination.color} border='0' fontSize={3} value="Suite 4201" /><br />
+          </Div>
+          <SingleComponent
+            py={2}
+            px={4}
+            borderRadius={1}
+            color={currentCombination.color}
+            bg={currentCombination.bg}
+            children="Primary Click"
+            width="auto"
+          />
+        </Div>
+        <Div display="none" alignItems="center" px={3}>
           <SingleComponent
             py={2}
             px={4}
@@ -60,37 +142,7 @@ const FormBlock = ({ borderWidth, currentCombination }) => {
             border={`${borderWidth}px solid`}
           />
         </Div>
-        <Div alignItems="center" display="flex" mt={3} bg={outlineBg} p={3}>
-          <SingleComponent
-            py={2}
-            px={4}
-            mr={3}
-            border="1px solid"
-            borderRadius={1}
-            color={currentCombination.color}
-            bg="transparent"
-            borderColor={currentCombination.color}
-            children="Secondary Click"
-            width="auto"
-          />
-          <BadgeOutline
-            borderColor={currentCombination.color}
-            color={currentCombination.color}
-            width="auto"
-          />
-          <Div display="flex" alignItems="center" borderRadius={2} pl={3}>
-            <RadioButton name="group 1" color={currentCombination.color} mr={3}>
-              Yes
-            </RadioButton>
-            <RadioButton
-              name="group 1"
-              color={currentCombination.color}
-              checked={true}
-            >
-              No
-            </RadioButton>
-          </Div>
-        </Div>
+        
       </Div>
     </>
   )

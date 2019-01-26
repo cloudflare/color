@@ -784,13 +784,11 @@ const MainUI = ({
             isRunning={isRunning}
             onColorClick={handleColorClick}
           />
-          <Div maxWidth="48rem" mx="auto" pb={4}>
-            <Preview
-              borderWidth={borderWidth}
-              boxPadding={boxPadding}
-              currentCombination={currentCombination}
-            />
-          </Div>
+          <Preview
+            borderWidth={borderWidth}
+            boxPadding={boxPadding}
+            currentCombination={currentCombination}
+          />
           <Div bg="white" color="gray.0" pb={3}>
             <Div
               mb={4}
