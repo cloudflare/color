@@ -6,14 +6,14 @@ export default memo(({
   currentCombination
 }) => (
   <Flex flexWrap='wrap' pb={4} alignItems='flex-start'>
-    <Div px={[3,0]} width={[1, 1/2, 1/3]} px={3}>
+    <Div px={[3,0]} width={[1, 1, 1/2, 1/3]} px={3}>
       <TextBlock
         borderWidth={borderWidth}
         boxPadding={boxPadding}
         currentCombination={currentCombination}
       />
     </Div>
-    <Div width={[1, 1/2, 1/3]} px={3}>
+    <Div width={[1, 1, 1/2, 1/3]} px={3}>
       <IconBlock
         currentCombination={currentCombination}
         borderWidth={borderWidth}
@@ -23,15 +23,15 @@ export default memo(({
         borderWidth={borderWidth}
       />
     </Div>
-    <Div width={[1, 1/2, 1/3]} px={3}>
+    <Div width={[1, 1, 1/2, 1/3]} px={3}>
       <FormBlock
         currentCombination={currentCombination}
         borderWidth={borderWidth}
       />
     </Div>
-    <Div width={[1, 1/2, 1/3]} px={3}>
+    <Div width={[1, 1, 1/2, 1/3]} px={3}>
     </Div>
-    <Div width={[1, 1/2, 1/3]} px={3} display='none'>
+    <Div width={[1, 1, 1/2, 1/3]} px={3} display='none'>
       <ChartsBlock
         currentCombination={currentCombination}
         borderWidth={borderWidth}

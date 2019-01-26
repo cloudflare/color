@@ -796,30 +796,30 @@ const MainUI = ({
               borderColor={controlColor}
               style={{ opacity: 0.175 }}
             />
-            <Div
+            <Flex
               px={[3, 4]}
               pt={4}
-              maxWidth="54rem"
-              mx="auto"
-              style={{ overflowX: "scroll" }}
+              alignItems='flex-start'
+              flexWrap='wrap'
             >
-              <H4 fontSize={2}>Docs</H4>
-              <ColorTable colors={palette} />
-              <Div mt={3}textAlign='center'>
-                <TextButton
-                  fontWeight={700}
-                  fontSize={2}
-                  border='1px solid'
-                  borderColor='gray.0'
-                  borderRadius={2}
-                  p={3}
-                  onClick={() => togglePaletteModal(true)}
-                >
-                Export Palette
-              </TextButton>
+              <Div width={[1,1/2]} order={[1,2]}>
+                <H4 fontSize={2}>Docs</H4>
+                <ColorTable colors={palette} />
+                <Div mt={3}textAlign='center'>
+                  <TextButton
+                    fontWeight={700}
+                    fontSize={2}
+                    border='1px solid'
+                    borderColor='gray.0'
+                    borderRadius={2}
+                    p={3}
+                    onClick={() => togglePaletteModal(true)}
+                  >
+                  Export Palette
+                </TextButton>
               </Div>
             </Div>
-            <Div px={[3, 4]} pt={5} maxWidth="48rem" mx="auto">
+            <Div width={[1,1/2]} order={[2,1]} px={[3, 4]}>
               <H4 fontSize={2}>Settings</H4>
               <Form pt={4}>
                 <Fieldset border="0" p={0}>
@@ -876,6 +876,7 @@ const MainUI = ({
                 <ColorBlindFilter
                   onChange={handleColorBlindFilter}
                   currentValue={colorFilter}
+                  maxWidth='24rem'
                 />
                 <Div>
                   <Label fontWeight={700} fontSize={2} mr={2} for="border-width">
@@ -918,7 +919,7 @@ const MainUI = ({
                   />
                 </Div>
               </Div>
-              <Div py={4} bg="white">
+              <Div py={4} bg="white" maxWidth='24rem'>
                 <Likes
                   likes={likes}
                   onSelectLike={handleViewLike}
@@ -927,34 +928,10 @@ const MainUI = ({
                 />
               </Div>
             </Div>
+          </Flex>
+            
           </Div>
-          <Div
-            bg="white"
-            display="flex"
-            py={3}
-            px={3}
-            borderTop="1px solid rgba(0,0,0,.1)"
-          >
-            <A
-              display="block"
-              href="https://cloudflare.design"
-              fontWeight={700}
-              fontSize={2}
-            >
-              Cloudflare Design
-            </A>
-
-            <A
-              href="https://github.com/cloudflare-design"
-              ml="auto"
-              fontSize={2}
-              color="blue.4"
-              display="block"
-              fontWeight={700}
-            >
-              GitHub
-            </A>
-          </Div>
+        <SiteFooter />
         </Div>
       )}
     </Div>

@@ -20,8 +20,7 @@ const SingleRadio = ({
   currentValue,
   controlColor
 }) => (
-  <Div display="flex" alignItems="flex-start" width={1} flexWrap="wrap" mb={2}>
-    <Div width="1rem" mr={1}>
+  <Div display="flex" alignItems="center" width={1} flexWrap="wrap" mb={2}>
       <Input
         type="radio"
         checked={currentValue === value}
@@ -30,8 +29,7 @@ const SingleRadio = ({
         value={value}
         onChange={onChange}
       />
-    </Div>
-    <Label  pl={1} htmlFor={label}>
+    <Label pl={1} htmlFor={label}>
       <Span>{label}</Span>
     </Label>
     <Span  ml="auto" fontSize={1} lineHeight={1.5}>
@@ -40,10 +38,10 @@ const SingleRadio = ({
   </Div>
 )
 
-const ColorBlindFilter = ({ onChange, currentValue, controlColor }) => {
+const ColorBlindFilter = ({ onChange, currentValue, controlColor, ...props }) => {
   return (
-    <Div display="flex" flexWrap="wrap">
-      <H4  width={1} mb={2} mt={4} display="flex">
+    <Div display="flex" flexWrap="wrap" {...props}>
+      <H4  width={1} mb={2} mt={4} display="flex" alignItems='flex-end'>
         <Span>Color Blindness Filter</Span>
         <Span ml="auto" fontSize={1}>
           Population

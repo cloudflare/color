@@ -104,6 +104,14 @@ const FormBlock = ({ borderWidth, currentCombination }) => {
         </Div>
       <Div mt={4} textAlign="left">
         <Div px={5} mb={3}>
+          <Div 
+            pt={3}
+            pb={3}
+            mb={3}
+            style={{
+              background: 'repeating-linear-gradient( 135deg, '+currentCombination.bg+','+ currentCombination.bg+' 1px, transparent 1px, transparent 6px)'
+            }} 
+          />
           <Div py={2} px={2} color={currentCombination.color} bg={currentCombination.bg} mb={2} borderRadius={1}>
             <Label fontSize={1} display='block' mb={1}> Address Line 1</Label>
             <TextInput fontWeight={600} width='auto' px={0} py={0} bg='transparent' color={currentCombination.color} border='0' fontSize={3} value="6234 Spadina Avenue" /><br />
