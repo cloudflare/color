@@ -878,10 +878,11 @@ const MainUI = ({
                   currentValue={colorFilter}
                 />
                 <Div>
-                  <Label fontWeight={700} fontSize={2} mr={2}>
+                  <Label fontWeight={700} fontSize={2} mr={2} for="border-width">
                     Border width
                   </Label>
                   <Input
+                    id="border-width"
                     value={borderWidth}
                     onChange={handleBorderWidthChange}
                     type="number"
@@ -897,10 +898,11 @@ const MainUI = ({
                   />
                 </Div>
                 <Div mt={2}>
-                  <Label fontWeight={700} fontSize={2} mr={2}>
+                  <Label fontWeight={700} fontSize={2} mr={2} for="box-padding">
                     Box Padding
                   </Label>
                   <Input
+                    id="box-padding"
                     value={boxPadding}
                     onChange={handleBoxPaddingChange}
                     type="number"

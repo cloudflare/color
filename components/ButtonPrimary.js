@@ -39,7 +39,8 @@ const Button = styled.button(
     webkitAppearance: "button",
     transition: "background-color .25s ease-in",
     ":hover": {
-      backgroundColor: "rgba(255,255,255,1)",
+      opacity: "0.7",
+      transition: "opacity 0.3s ease-in",
       cursor: "pointer"
     }
   }
