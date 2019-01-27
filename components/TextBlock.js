@@ -34,7 +34,7 @@ const TextBlock = ({ currentCombination, borderWidth, boxPadding, ...props }) =>
         Every perception of color is an illusion.. ..we do not see colors as
         they really are. <b>In our perception they alter one another.</b> <Span display={['none', 'inline']}>In order to
           use color effectively it is <i>necessary to recognize that color deceives
-            continually.</i> 
+            continually. </i> 
           
         </Span> 
         <Span>

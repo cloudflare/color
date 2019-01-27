@@ -525,8 +525,8 @@ const MainUI = ({
             </Flex>
 
             {imageLoading && (
-              <Flex width={1}>
-                <LoadingBars />
+              <Flex width={1} justifyContent="center">
+                <LoadingBars/>
                 <P ml={2}>Fetching Palette</P>
               </Flex>
             )}
