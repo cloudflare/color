@@ -162,6 +162,8 @@ const MainUI = ({
       color: null,
       index: null
     })
+    const availableCombos = getAllCombos(alteredPalette, contrastRatio)
+    setAvailableCombos(availableCombos)
   }
 
   const handleAddColor = () => {
@@ -349,25 +351,33 @@ const MainUI = ({
       ? currentCombination.bg
       : currentCombination.color
 
-  const handleColorBoxAdd = newPalette => {
-    setPalette(prev => [...prev, ...newPalette])
+  const handleColorBoxAdd = newColors => {
+    const newPalette = [...palette, ...newColors]
+    setPalette(newPalette)
+    const availableCombos = getAllCombos(newPalette, contrastRatio)
+    setAvailableCombos(availableCombos)
   }
 
   const handleColorBoxReplace = newPalette => {
     setPalette(newPalette)
+    const availableCombos = getAllCombos(newPalette, contrastRatio)
+    setAvailableCombos(availableCombos)
   }
 
   const handlePaletteImport = () => {
     try {
       const newPalette = JSON.parse(importValue)
+      console.log(newPalette)
 
       newPalette.map(c => {
         if (!isHex(c)) {
+          console.log(c)
           throw Error("Invalid Hex code provided")
         }
       })
       setPalette(newPalette)
     } catch (error) {
+      console.log(error)
       setImportError(true)
     }
   }
@@ -436,7 +446,6 @@ const MainUI = ({
             mr={3}
             fontWeight={700}
             fontSize={2}
-            display='none'
             color={activeTab === "text" ? "blue.4" : "inherit"}
           >
             Json
@@ -452,7 +461,7 @@ const MainUI = ({
           p={3}
           onClick={() => togglePaletteModal(true)}
         >
-          Export 
+          Export
         </TextButton>
 
         {activeTab === "url" && (
@@ -526,7 +535,7 @@ const MainUI = ({
 
             {imageLoading && (
               <Flex width={1} justifyContent="center">
-                <LoadingBars/>
+                <LoadingBars />
                 <P ml={2}>Fetching Palette</P>
               </Flex>
             )}
@@ -599,7 +608,6 @@ const MainUI = ({
                     py={3}
                     px={3}
                     width={[3 / 4]}
-                    type="url"
                     border="0"
                     bg="gray.8"
                     borderRadius={0}
@@ -612,6 +620,7 @@ const MainUI = ({
                     color="white"
                     fontWeight={700}
                     border="none"
+                    type="button"
                     style={{ cursor: "pointer", minWidth: 128 }}
                     onClick={handleUsePalx}
                   >
@@ -796,50 +805,50 @@ const MainUI = ({
               borderColor={controlColor}
               style={{ opacity: 0.175 }}
             />
-            <Flex
-              px={[3, 4]}
-              pt={4}
-              alignItems='flex-start'
-              flexWrap='wrap'
-            >
-              <Div width={[1,1/2]} order={[1,2]}>
-                <H4 fontSize={2} mb={3}>Docs</H4>
+            <Flex px={[3, 4]} pt={4} alignItems="flex-start" flexWrap="wrap">
+              <Div width={[1, 1 / 2]} order={[1, 2]}>
+                <H4 fontSize={2} mb={3}>
+                  Docs
+                </H4>
                 <Flex mb={3}>
-                  <SlabStat 
-                    term='Colors'
-                    description={palette.length}
-                    mr={5}
-                  />
-                  <SlabStat 
-                    term='Accessible Combinations'
+                  <SlabStat term="Colors" description={palette.length} mr={5} />
+                  <SlabStat
+                    term="Accessible Combinations"
                     description={availableCombos.length}
                     mr={5}
                   />
-                  <SlabStat 
-                    term='Accessible Combinations with Parent Background'
+                  <SlabStat
+                    term="Accessible Combinations with Parent Background"
                     description={availableCombos.length * palette.length}
                   />
                 </Flex>
-                
+
                 <ColorTable colors={palette} />
-                <Div mt={3}textAlign='center'>
+                <Div mt={3} textAlign="center">
                   <TextButton
                     fontWeight={700}
                     fontSize={2}
-                    border='1px solid'
-                    borderColor='gray.0'
+                    border="1px solid"
+                    borderColor="gray.0"
                     borderRadius={2}
                     p={3}
                     onClick={() => togglePaletteModal(true)}
                   >
-                  Export Palette
-                </TextButton>
+                    Export Palette
+                  </TextButton>
+                </Div>
               </Div>
-            </Div>
-            <Div width={[1,1/2]} order={[2,1]} px={[3, 4]}>
-              <H4 fontSize={2}>Settings</H4>
-<Div maxWidth='24rem'>
-                  <Label mt={4} display='block' fontWeight={700} fontSize={3} mr={2} for="border-width">
+              <Div width={[1, 1 / 2]} order={[2, 1]} px={[3, 4]}>
+                <H4 fontSize={2}>Settings</H4>
+                <Div maxWidth="24rem">
+                  <Label
+                    mt={4}
+                    display="block"
+                    fontWeight={700}
+                    fontSize={3}
+                    mr={2}
+                    for="border-width"
+                  >
                     Border width
                   </Label>
                   <Input
@@ -854,7 +863,12 @@ const MainUI = ({
                     max={64}
                     width={1}
                   />
-                  <Label display='block' fontWeight={700} fontSize={3} for="box-padding">
+                  <Label
+                    display="block"
+                    fontWeight={700}
+                    fontSize={3}
+                    for="box-padding"
+                  >
                     Box padding
                   </Label>
                   <Input
@@ -870,78 +884,76 @@ const MainUI = ({
                     width={1}
                   />
                 </Div>
-              <Form pt={4}>
-                <Fieldset border="0" p={0}>
-                  <Legend fontWeight={700} fontSize={3}>
-                    Contrast ratio
-                  </Legend>
-                  <Flex mx={-3} py={2}>
-                    <Flex px={3}>
-                      <Input
-                        type="radio"
-                        name="contrastRatio"
-                        value={3}
-                        onChange={handleContrastRatioChange}
-                        checked={contrastRatio === 3}
-                        mr={2}
-                      />
-                      <Label style={{ whiteSpace: "nowrap" }}>
-                        <Span fontWeight={800}>3 </Span>
-                        <Span fontSize={3}>AA large</Span>
-                      </Label>
+                <Form pt={4}>
+                  <Fieldset border="0" p={0}>
+                    <Legend fontWeight={700} fontSize={3}>
+                      Contrast ratio
+                    </Legend>
+                    <Flex mx={-3} py={2}>
+                      <Flex px={3}>
+                        <Input
+                          type="radio"
+                          name="contrastRatio"
+                          value={3}
+                          onChange={handleContrastRatioChange}
+                          checked={contrastRatio === 3}
+                          mr={2}
+                        />
+                        <Label style={{ whiteSpace: "nowrap" }}>
+                          <Span fontWeight={800}>3 </Span>
+                          <Span fontSize={3}>AA large</Span>
+                        </Label>
+                      </Flex>
+                      <Flex px={3}>
+                        <Input
+                          type="radio"
+                          name="contrastRatio"
+                          value={4.5}
+                          onChange={handleContrastRatioChange}
+                          checked={contrastRatio === 4.5}
+                          mr={2}
+                        />
+                        <Label style={{ whiteSpace: "nowrap" }}>
+                          <Span fontWeight={800}>4.5 </Span>
+                          <Span fontSize={3}>AA</Span>
+                        </Label>
+                      </Flex>
+                      <Flex px={3}>
+                        <Input
+                          type="radio"
+                          name="contrastRatio"
+                          value={7}
+                          onChange={handleContrastRatioChange}
+                          checked={contrastRatio === 7}
+                          mr={2}
+                        />
+                        <Label style={{ whiteSpace: "nowrap" }}>
+                          <Span fontWeight={800}>7:1 </Span>
+                          <Span fontSize={2}>AAA</Span>
+                        </Label>
+                      </Flex>
                     </Flex>
-                    <Flex px={3}>
-                      <Input
-                        type="radio"
-                        name="contrastRatio"
-                        value={4.5}
-                        onChange={handleContrastRatioChange}
-                        checked={contrastRatio === 4.5}
-                        mr={2}
-                      />
-                      <Label style={{ whiteSpace: "nowrap" }}>
-                        <Span fontWeight={800}>4.5 </Span>
-                        <Span fontSize={3}>AA</Span>
-                      </Label>
-                    </Flex>
-                    <Flex px={3}>
-                      <Input
-                        type="radio"
-                        name="contrastRatio"
-                        value={7}
-                        onChange={handleContrastRatioChange}
-                        checked={contrastRatio === 7}
-                        mr={2}
-                      />
-                      <Label style={{ whiteSpace: "nowrap" }}>
-                        <Span fontWeight={800}>7:1 </Span>
-                        <Span fontSize={2}>AAA</Span>
-                      </Label>
-                    </Flex>
-                  </Flex>
-                </Fieldset>
-              </Form>
-              <Div>
-                <ColorBlindFilter
-                  onChange={handleColorBlindFilter}
-                  currentValue={colorFilter}
-                  maxWidth='24rem'
-                />
-                
+                  </Fieldset>
+                </Form>
+                <Div>
+                  <ColorBlindFilter
+                    onChange={handleColorBlindFilter}
+                    currentValue={colorFilter}
+                    maxWidth="24rem"
+                  />
+                </Div>
+                <Div py={4} bg="white" maxWidth="24rem">
+                  <Likes
+                    likes={likes}
+                    onSelectLike={handleViewLike}
+                    onRemoveLike={handleRemoveLike}
+                    onClearLikes={handleClearLikes}
+                  />
+                </Div>
               </Div>
-              <Div py={4} bg="white" maxWidth='24rem'>
-                <Likes
-                  likes={likes}
-                  onSelectLike={handleViewLike}
-                  onRemoveLike={handleRemoveLike}
-                  onClearLikes={handleClearLikes}
-                />
-              </Div>
-            </Div>
-          </Flex>
-            
+            </Flex>
           </Div>
-        <SiteFooter />
+          <SiteFooter />
         </Div>
       )}
     </Div>

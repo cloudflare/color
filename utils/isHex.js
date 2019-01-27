@@ -1,5 +1,3 @@
 export default h => {
-  const hexMinusHash = h.replace("#", "")
-  const a = parseInt(hexMinusHash, 16)
-  return a.toString(16) === hexMinusHash.toLowerCase()
+  return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(h)
 }
