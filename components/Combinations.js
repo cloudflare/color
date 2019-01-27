@@ -11,7 +11,7 @@ const Combinations = ({ availableCombos, onHideCombinations }) => {
         }
         return (
           <Div
-            width={[1, 1 / 2, 1 / 3]}
+            width={[1, 1 / 2, 1 / 4]}
             key={i}
             css={`
               position: relative;
@@ -19,7 +19,6 @@ const Combinations = ({ availableCombos, onHideCombinations }) => {
           >
             <MiniTextBlock
               key={i}
-              boxPadding={64}
               currentCombination={currentCombination}
             />
             <Button

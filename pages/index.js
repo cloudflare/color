@@ -803,7 +803,24 @@ const MainUI = ({
               flexWrap='wrap'
             >
               <Div width={[1,1/2]} order={[1,2]}>
-                <H4 fontSize={2}>Docs</H4>
+                <H4 fontSize={2} mb={4}>Docs</H4>
+                <Flex>
+                  <SlabStat 
+                    term='Colors'
+                    description={palette.length}
+                    mr={4}
+                  />
+                  <SlabStat 
+                    term='Accessible Combinations'
+                    description={availableCombos.length}
+                    mr={4}
+                  />
+                  <SlabStat 
+                    term='Accessible Combinations with Parent Background'
+                    description={availableCombos.length * palette.length}
+                  />
+                </Flex>
+                
                 <ColorTable colors={palette} />
                 <Div mt={3}textAlign='center'>
                   <TextButton

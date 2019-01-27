@@ -8,42 +8,35 @@ const MiniTextBlock = ({ currentCombination, borderWidth, boxPadding, ...props }
 
   return (
     <Div
-      borderColor={currentCombination.borderColor}
-      border={`${borderWidth}px solid`}
-      p={boxPadding}
-      color={currentCombination.color}
-      bg={currentCombination.bg}
+      border='1px solid #eee' 
+      p={4}
+      bg='white'
+      color='gray.0'
       textAlign="left"
       {...props}
     >
       <Flex>
-      <Div>
-        <Span fontSize={2} fontWeight={600}>
-         Color
-        </Span>
-        <Span fontSize={[3,4]} fontWeight={600} display="block" mb={2}>
-          {currentCombination.color}
-        </Span>
-        <Span fontSize={2} fontWeight={600}>
-         Background
-        </Span>
-        <Span fontSize={[3,4 ]} fontWeight={600} display="block">
-          {currentCombination.bg}
-        </Span>
-      </Div>
-    <Div my={0}>
-      <Span fontSize={2} fontWeight={600}>
-        Contrast
-      </Span>
-      <Span fontSize={[6,7,8]} fontWeight={800} display="block">
-        {contrast}
-      </Span>
-    </Div>
+        <P my={0} px={4} fontWeight={700} fontSize={5} bg={currentCombination.bg} color={currentCombination.color}>
+          Aa 
+        </P>
+        <P my={0} px={4} fontWeight={700} fontSize={5} bg={currentCombination.color} color={currentCombination.bg}>
+          Aa
+        </P>
+        <Div>
+        <Code ml={3} style={{ textTransform: 'uppercase' }} fontSize={[2]}>
+          <Span display='inline-block' height={8} width={8} borderRadius={9999} bg={currentCombination.color}></Span> {currentCombination.color} <br /> 
+<Span display='inline-block' height={8} width={8} borderRadius={9999} bg={currentCombination.bg}></Span> {currentCombination.bg}
+        </Code>
+        </Div>
+        <Div my={0} ml='auto' width='auto'>
+          <Span fontSize={2} fontWeight={600}>
+            Contrast
+          </Span>
+          <Span fontSize={[5]} fontWeight={800} display="block">
+            {contrast}
+          </Span>
+        </Div>
     </Flex>
-      <Span lineHeight={1.5} display="block" mt={3}>
-        Every perception of color is an illusion.. ..we do not see colors as
-        they really are. In our perception they alter one another. 
-      </Span>
     </Div>
   )
 }
