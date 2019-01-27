@@ -846,7 +846,7 @@ const MainUI = ({
                     fontWeight={700}
                     fontSize={3}
                     mr={2}
-                    for="border-width"
+                    htmlFor="border-width"
                   >
                     Border width
                   </Label>
@@ -866,7 +866,7 @@ const MainUI = ({
                     display="block"
                     fontWeight={700}
                     fontSize={3}
-                    for="box-padding"
+                    htmlFor="box-padding"
                   >
                     Box padding
                   </Label>

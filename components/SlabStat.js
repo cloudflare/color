@@ -18,7 +18,7 @@ const SlabStat = ({ term, description, ...props }) => {
 
 SlabStat.propTypes = {
   term: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 }
 
 SlabStat.defaultProps = {
