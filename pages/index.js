@@ -367,17 +367,16 @@ const MainUI = ({
   const handlePaletteImport = () => {
     try {
       const newPalette = JSON.parse(importValue)
-      console.log(newPalette)
 
       newPalette.map(c => {
         if (!isHex(c)) {
-          console.log(c)
           throw Error("Invalid Hex code provided")
         }
       })
       setPalette(newPalette)
+      const availableCombos = getAllCombos(newPalette, contrastRatio)
+      setAvailableCombos(availableCombos)
     } catch (error) {
-      console.log(error)
       setImportError(true)
     }
   }
