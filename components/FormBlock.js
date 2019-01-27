@@ -1,7 +1,7 @@
 import React from "react"
 import getContrastScore from "../utils/getContrastScore"
 
-const FormBlock = ({ borderWidth, currentCombination }) => {
+const FormBlock = ({ boxPadding, borderWidth, currentCombination }) => {
   const colorParentBgContrastValue = getContrastScore(
     currentCombination.color,
     currentCombination.parentBg
@@ -16,7 +16,7 @@ const FormBlock = ({ borderWidth, currentCombination }) => {
 
   return (
     <>
-      <Flex mt={2} px={[3, 4]} display="none">
+      <Flex mt={2} px={[3, 4]} display="none" p={boxPadding}>
 
         <TextInput
           py={3}
@@ -40,7 +40,7 @@ const FormBlock = ({ borderWidth, currentCombination }) => {
           children="Click Here"
         />
       </Flex>
-<Div bg={currentCombination.bg} p={5}>
+      <Div bg={currentCombination.bg} p={boxPadding} borderColor={currentCombination.borderColor} border={`${borderWidth}px solid`}>
           <Form color={currentCombination.color} mb={3} >
           <Progress 
             color={currentCombination.color}
@@ -103,7 +103,7 @@ const FormBlock = ({ borderWidth, currentCombination }) => {
         </Flex>
         </Div>
       <Div mt={4} textAlign="left">
-        <Div px={5} mb={3}>
+        <Div px={boxPadding} mb={3}>
           <Div 
             pt={3}
             pb={3}
@@ -112,11 +112,17 @@ const FormBlock = ({ borderWidth, currentCombination }) => {
               background: 'repeating-linear-gradient( 135deg, '+currentCombination.bg+','+ currentCombination.bg+' 1px, transparent 1px, transparent 6px)'
             }} 
           />
-          <Div py={2} px={2} color={currentCombination.color} bg={currentCombination.bg} mb={2} borderRadius={1}>
+          <Div 
+            borderColor={currentCombination.borderColor}
+            border={`${borderWidth}px solid`}
+            py={2} px={2} color={currentCombination.color} bg={currentCombination.bg} mb={2} borderRadius={1}>
             <Label fontSize={1} display='block' mb={1}> Address Line 1</Label>
             <TextInput fontWeight={600} width='auto' px={0} py={0} bg='transparent' color={currentCombination.color} border='0' fontSize={3} value="6234 Spadina Avenue" /><br />
           </Div>
-          <Div py={2} px={2} color={currentCombination.color} bg={currentCombination.bg} borderRadius={1} mb={3}>
+          <Div 
+            borderColor={currentCombination.borderColor}
+            border={`${borderWidth}px solid`}
+            py={2} px={2} color={currentCombination.color} bg={currentCombination.bg} borderRadius={1} mb={3}>
             <Label fontSize={1} display='block' mb={1}> Address Line 2</Label>
             <TextInput fontWeight={600} width='auto' px={0} py={0} bg='transparent' color={currentCombination.color} border='0' fontSize={3} value="Suite 4201" /><br />
           </Div>
@@ -128,6 +134,8 @@ const FormBlock = ({ borderWidth, currentCombination }) => {
             bg={currentCombination.bg}
             children="Primary Click"
             width="auto"
+            borderColor={currentCombination.borderColor}
+            border={`${borderWidth}px solid`}
           />
         </Div>
         <Div display="none" alignItems="center" px={3}>

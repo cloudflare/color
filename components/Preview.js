@@ -16,15 +16,18 @@ export default memo(({
     <Div width={[1, 1, 1/2, 1/3]} px={3}>
       <IconBlock
         currentCombination={currentCombination}
+        boxPadding={boxPadding}
         borderWidth={borderWidth}
       />
       <IconOutlineBlock
         currentCombination={currentCombination}
+        boxPadding={boxPadding}
         borderWidth={borderWidth}
       />
     </Div>
     <Div width={[1, 1, 1/2, 1/3]} px={3}>
       <FormBlock
+        boxPadding={boxPadding}
         currentCombination={currentCombination}
         borderWidth={borderWidth}
       />

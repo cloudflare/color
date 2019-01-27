@@ -803,17 +803,17 @@ const MainUI = ({
               flexWrap='wrap'
             >
               <Div width={[1,1/2]} order={[1,2]}>
-                <H4 fontSize={2} mb={4}>Docs</H4>
-                <Flex>
+                <H4 fontSize={2} mb={3}>Docs</H4>
+                <Flex mb={3}>
                   <SlabStat 
                     term='Colors'
                     description={palette.length}
-                    mr={4}
+                    mr={5}
                   />
                   <SlabStat 
                     term='Accessible Combinations'
                     description={availableCombos.length}
-                    mr={4}
+                    mr={5}
                   />
                   <SlabStat 
                     term='Accessible Combinations with Parent Background'
@@ -838,10 +838,42 @@ const MainUI = ({
             </Div>
             <Div width={[1,1/2]} order={[2,1]} px={[3, 4]}>
               <H4 fontSize={2}>Settings</H4>
+<Div maxWidth='24rem'>
+                  <Label mt={4} display='block' fontWeight={700} fontSize={3} mr={2} for="border-width">
+                    Border width
+                  </Label>
+                  <Input
+                    id="border-width"
+                    value={borderWidth}
+                    onChange={handleBorderWidthChange}
+                    type="range"
+                    number="1"
+                    py={2}
+                    px={2}
+                    min={0}
+                    max={64}
+                    width={1}
+                  />
+                  <Label display='block' fontWeight={700} fontSize={3} for="box-padding">
+                    Box padding
+                  </Label>
+                  <Input
+                    id="box-padding"
+                    value={boxPadding}
+                    onChange={handleBoxPaddingChange}
+                    type="range"
+                    number={1}
+                    py={2}
+                    px={2}
+                    min={0}
+                    max={128}
+                    width={1}
+                  />
+                </Div>
               <Form pt={4}>
                 <Fieldset border="0" p={0}>
                   <Legend fontWeight={700} fontSize={3}>
-                    Contrast Ratio
+                    Contrast ratio
                   </Legend>
                   <Flex mx={-3} py={2}>
                     <Flex px={3}>
@@ -895,46 +927,7 @@ const MainUI = ({
                   currentValue={colorFilter}
                   maxWidth='24rem'
                 />
-                <Div>
-                  <Label fontWeight={700} fontSize={2} mr={2} for="border-width">
-                    Border width
-                  </Label>
-                  <Input
-                    id="border-width"
-                    value={borderWidth}
-                    onChange={handleBorderWidthChange}
-                    type="number"
-                    py={2}
-                    px={2}
-                    fontSize={2}
-                    fontWeight={600}
-                    borderRadius={2}
-                    border={"1px solid " + theme.colors.gray[8]}
-                    min={0}
-                    max={32}
-                    step={1}
-                  />
-                </Div>
-                <Div mt={2}>
-                  <Label fontWeight={700} fontSize={2} mr={2} for="box-padding">
-                    Box Padding
-                  </Label>
-                  <Input
-                    id="box-padding"
-                    value={boxPadding}
-                    onChange={handleBoxPaddingChange}
-                    type="number"
-                    py={2}
-                    px={2}
-                    fontSize={2}
-                    fontWeight={600}
-                    borderRadius={2}
-                    border={"1px solid " + theme.colors.gray[8]}
-                    min={0}
-                    max={32}
-                    step={1}
-                  />
-                </Div>
+                
               </Div>
               <Div py={4} bg="white" maxWidth='24rem'>
                 <Likes

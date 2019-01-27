@@ -2,7 +2,27 @@ import React from "react"
 
 const Combinations = ({ availableCombos, onHideCombinations }) => {
   return (
-    <Div display="flex" flexWrap="wrap">
+    <Div position='relative' display='block' bg='white'>
+      <Flex py={3}>
+            <ButtonIcon
+              onClick={onHideCombinations}
+              icon='left'
+              ml={3}
+              css={`
+                backface-visibility: hidden;
+              `}
+            />
+      <H4 my={0} width={1} display='block'  textAlign='center'>{availableCombos.length} Accessible Combinations</H4>
+            <ButtonIcon
+              onClick={onHideCombinations}
+              icon='remove'
+              mr={3}
+              css={`
+                backface-visibility: hidden;
+              `}
+            />
+          </Flex>
+      <Flex width={1} flexWrap='wrap'>
       {availableCombos.map((combo, i) => {
         const currentCombination = {
           bg: combo[0],
@@ -21,20 +41,11 @@ const Combinations = ({ availableCombos, onHideCombinations }) => {
               key={i}
               currentCombination={currentCombination}
             />
-            <Button
-              onClick={onHideCombinations}
-              css={`
-                position: fixed;
-                top: 0;
-                right: 0;
-                backface-visibility: hidden;
-              `}
-            >
-              Close
-            </Button>
           </Div>
         )
       })}
+    </Flex>
+              
     </Div>
   )
 }
