@@ -39,7 +39,6 @@ const IconSolid = styled.div(
   borderColor,
   borderRadius,
   {
-    boxSizing: "border-box",
     transition: "all .25s ease-in"
   }
 )
@@ -71,7 +70,6 @@ const IconOutline = styled.div(
   borderColor,
   borderRadius,
   {
-    boxSizing: "border-box",
     transition: "all .25s ease-in"
   }
 )
@@ -86,7 +84,7 @@ IconOutline.defaultProps = {
   justifyContent: "center"
 }
 
-const IconOutlineBlock = ({ currentCombination, borderWidth }) => {
+const IconOutlineBlock = ({ boxPadding, currentCombination, borderWidth }) => {
   const colorParentBgContrastValue = getContrastScore(
     currentCombination.color,
     currentCombination.parentBg
@@ -97,7 +95,7 @@ const IconOutlineBlock = ({ currentCombination, borderWidth }) => {
       ? currentCombination.bg
       : currentCombination.color
   return (
-    <Div mt={5} mb={5} px={4}>
+    <Div p={boxPadding}>
       <Div
         display="grid"
         style={{
@@ -275,76 +273,124 @@ const IconOutlineBlock = ({ currentCombination, borderWidth }) => {
         >
           <Icon size={16} color={currentCombination.color} type="list" />
         </IconSolid>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="mail" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="refresh" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="reorder" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="resizeHorizontal" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="minus" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="plus" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="okSign" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="activation" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="validator" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="safeOutline" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="safe" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="warningOutline" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="warning" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="stopOutline" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="stop" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="lock" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="time" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="quotes" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="signup" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="facebook" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="google" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="linkedin" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="download" />
         </IconOutline>
-        <IconOutline color={iconOutlineColor}>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
           <Icon size={16} color={iconOutlineColor} type="wrench" />
         </IconOutline>
       </Div>

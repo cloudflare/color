@@ -1,11 +1,10 @@
 import React from "react"
 import Color from "color"
 
-const IconBlock = ({ currentCombination, borderWidth }) => {
+const IconBlock = ({ boxPadding, currentCombination, borderWidth }) => {
   return (
     <Div
-      py={[4, 5]}
-      px={[3, 4]}
+      p={boxPadding}
       bg={currentCombination.bg}
       display="grid"
       style={{

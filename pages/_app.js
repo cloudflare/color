@@ -50,7 +50,7 @@ export default class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>Colors - Cloudflare.design</title>
+          <title>Color - Cloudflare Design</title>
         </Head>
         <ThemeProvider theme={theme}>
           <Provider store={store}>
