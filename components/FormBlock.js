@@ -59,11 +59,11 @@ const FormBlock = ({ boxPadding, borderWidth, currentCombination }) => {
             <Flex mx={-2}>
             <Div px={2}>
               <Label display='block'  mb={1} mt={3} fontWeight={600} fontSize={2}>First</Label>
-              <TextInput borderRadius={1} mb={2} bg='transparent' color='inherit' borderColor='currentColor' value='Example first name' />
+              <TextInput borderRadius={1} mb={2} bg='transparent' color='inherit' borderColor='currentColor' defaultValue='Example first name' />
             </Div>
             <Div px={2}>
               <Label display='block' fontSize={2} fontWeight={600} mb={1} mt={3}>Last</Label>
-              <TextInput borderRadius={1} mb={2} bg='transparent' color='inherit' borderColor='currentColor' value='Example last name' />
+              <TextInput borderRadius={1} mb={2} bg='transparent' color='inherit' borderColor='currentColor' defaultValue='Example last name' />
             </Div>
           </Flex>
           </Fieldset>
@@ -117,14 +117,14 @@ const FormBlock = ({ boxPadding, borderWidth, currentCombination }) => {
             border={`${borderWidth}px solid`}
             py={2} px={2} color={currentCombination.color} bg={currentCombination.bg} mb={2} borderRadius={1}>
             <Label fontSize={1} display='block' mb={1}> Address Line 1</Label>
-            <TextInput fontWeight={600} width='auto' px={0} py={0} bg='transparent' color={currentCombination.color} border='0' fontSize={3} value="6234 Spadina Avenue" /><br />
+            <TextInput fontWeight={600} width='auto' px={0} py={0} bg='transparent' color={currentCombination.color} border='0' fontSize={3} defaultValue="6234 Spadina Avenue" /><br />
           </Div>
           <Div 
             borderColor={currentCombination.borderColor}
             border={`${borderWidth}px solid`}
             py={2} px={2} color={currentCombination.color} bg={currentCombination.bg} borderRadius={1} mb={3}>
             <Label fontSize={1} display='block' mb={1}> Address Line 2</Label>
-            <TextInput fontWeight={600} width='auto' px={0} py={0} bg='transparent' color={currentCombination.color} border='0' fontSize={3} value="Suite 4201" /><br />
+            <TextInput fontWeight={600} width='auto' px={0} py={0} bg='transparent' color={currentCombination.color} border='0' fontSize={3} defaultValue="Suite 4201" /><br />
           </Div>
           <SingleComponent
             py={2}
