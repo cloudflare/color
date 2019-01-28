@@ -24,7 +24,7 @@ export default class MyDocument extends Document {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta property="og:image" content="https://cloudflare-assets.s3.amazonaws.com/color-card.jpg" />
+          <meta property="og:image" content="https://cloudflare-assets.s3.amazonaws.com/palette-card.jpg" />
           <meta property="og:url" content="https://cloudflare.design/color" />
           <meta name="twitter:site" content="@cloudflare" />
           <meta property="og:title" content="Color by Cloudflare Design" />
