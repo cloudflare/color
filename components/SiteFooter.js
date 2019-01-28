@@ -37,7 +37,7 @@ const SiteFooter = ({ variant, ...props }) => {
               <A py={1} lineHeight={1.5} fontSize={2} display='block' href='https://github.com/gka/chroma.js/' children="Chroma" />
               <A py={1} lineHeight={1.5} fontSize={2} display='block' href='https://github.com/jxnblk/colorable' children="Colorable" />
               <A py={1} lineHeight={1.5} fontSize={2} display='block' href='https://github.com/lyft/coloralgorithm' children="ColorBox" />
-              <A py={1} lineHeight={1.5} fontSize={2} display='block' href='https://github.com/cssstats/cssstats' children="Css Stats" />
+              <A py={1} lineHeight={1.5} fontSize={2} display='block' href='https://cssstats.com' children="Css Stats" />
               <A py={1} lineHeight={1.5} fontSize={2} display='block' href='https://github.com/jxnblk/palx' children="Palx" />
               <A py={1} lineHeight={1.5} fontSize={2} display='block' href='https://unsplash.com/developers' children="Unsplash" />
             </Div>
