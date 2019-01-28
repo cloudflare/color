@@ -53,15 +53,17 @@ const SiteFetch = ({ onSubmit, ...props }) => {
         style={{ overflow: "hidden" }}
         borderRadius={2}
         mb={0}
+        bg='gray.8'
       >
         <Input
           fontSize={2}
           fontWeight={700}
           py={3}
           px={3}
+          width={1}
           type="url"
-          border="none"
-          bg="#eeeeee"
+          border="0 solid transparent"
+          bg='gray.8'
           borderRadius={0}
           value={url}
           onChange={handleChange}
