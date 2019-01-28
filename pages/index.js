@@ -12,7 +12,6 @@ import toNumber from "lodash/toNumber"
 import reduce from "lodash/reduce"
 import findKey from "lodash/findKey"
 import debounce from "lodash/debounce"
-import theme from "../theme"
 
 import defaultPalette from "../utils/defaultPalette"
 import generateRandomPalette from "../utils/generateRandomPalette"
@@ -224,15 +223,16 @@ const MainUI = ({
 
   const handleImageUpload = async e => {
     setImageLoading(true)
+    const imageFile = e.target.files[0]
     setPaletteImage({
-      url: URL.createObjectURL(e.target.files[0]),
+      url: URL.createObjectURL(imageFile),
       name: null,
       username: null
     })
 
     const res = await fetch("https://image-palette.now.sh", {
       method: "POST",
-      body: e.target.files[0]
+      body: imageFile
     })
     const palette = await res.json()
 
