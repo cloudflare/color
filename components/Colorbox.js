@@ -224,7 +224,7 @@ const Colorbox = ({ onAddPalette, onReplacePalette, ...props }) => {
                 width={1}
                 name="satCurve"
                 aria-label="saturation curve"
-                value={form.hueCurve}
+                value={form.satCurve}
                 onChange={handleInput}
               >
                 {CURVES.map((c, i) => (

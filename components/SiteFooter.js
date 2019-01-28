@@ -29,7 +29,7 @@ const SiteFooter = ({ variant, ...props }) => {
               </A>
 
               <P fontSize={2} mt={2} mb={0}>
-                We're growing our teams in San Francisco, London, and Austin! If you're interested in joining us, checkout <A fontWeight={600} href='https://www.cloudflare.com/careers/departments/design/'>our open positions</A>. 
+                We're growing our teams in San Francisco, London, and Austin! We welcome applications from everyone and especiallyencourage underrepresented minorities to apply. If you're interested in joining us, checkout <A fontWeight={600} href='https://www.cloudflare.com/careers/departments/design/'>our open positions</A>. 
               </P>
             </Div>
             <Div width={[1,1/4]}>
