@@ -22,13 +22,19 @@ export default class MyDocument extends Document {
         <Head>
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+          <link rel="icon" type="image/x-icon" href="static/favicon.ico" />
           <meta name="twitter:card" content="summary_large_image" />
-          <meta property="og:image" content="https://cloudflare-assets.s3.amazonaws.com/palette-card.jpg" />
+          <meta
+            property="og:image"
+            content="https://cloudflare-assets.s3.amazonaws.com/palette-card.jpg"
+          />
           <meta property="og:url" content="https://cloudflare.design/color" />
           <meta name="twitter:site" content="@cloudflare" />
           <meta property="og:title" content="Color by Cloudflare Design" />
-          <meta property="og:description" content="A color palette tool for interface design" />
+          <meta
+            property="og:description"
+            content="A color palette tool for interface design"
+          />
         </Head>
         <body>
           <Main />
