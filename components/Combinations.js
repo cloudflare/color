@@ -59,10 +59,10 @@ const Combinations = ({ availableCombos, onHideCombinations }) => {
           )
         })}
         {combinationsLeftToView && (
-          <Div width={[1, 1 / 2, 1 / 4]}>
-            <Button type="button" onClick={handleLoadMore}>
-              Load more...
-            </Button>
+          <Div width={1} py={4} textAlign='center'>
+            <ButtonOutline color='gray.0' borderColor='gray.0' type="button" onClick={handleLoadMore}>
+              Load more combos
+            </ButtonOutline>
           </Div>
         )}
       </Flex>
