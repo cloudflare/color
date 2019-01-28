@@ -447,7 +447,7 @@ const MainUI = ({
             fontSize={2}
             color={activeTab === "text" ? "blue.4" : "inherit"}
           >
-            Json
+            JSON
           </TextButton>
         </Div>
         <TextButton
@@ -637,7 +637,7 @@ const MainUI = ({
             )}
 
             {activeTab === "text" && (
-              <Div px={3} mx="auto" maxWidth="32rem">
+              <Div px={3} mb={3} mx="auto" maxWidth="32rem">
                 {importError && (
                   <P color="red.4">
                     There is something wrong with the JSON provided
@@ -646,7 +646,7 @@ const MainUI = ({
 
                 <Textarea
                   border="1px solid"
-                  borderColor="gray.8"
+                  borderColor="gray.6"
                   p={3}
                   width={1}
                   borderRadius={1}
@@ -657,9 +657,11 @@ const MainUI = ({
                   `}
                   onChange={e => setImportValue(e.target.value)}
                 />
-                <TextButton onClick={handlePaletteImport}>
-                  Import Palette
-                </TextButton>
+                <Div textAlign='center' mt={2}>
+                  <ButtonOutline color='black' borderColor='black' onClick={handlePaletteImport}>
+                    Import JSON
+                  </ButtonOutline>
+                </Div>
               </Div>
             )}
 
