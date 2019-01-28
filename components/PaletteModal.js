@@ -3,6 +3,7 @@ import OutsideClickHandler from "react-outside-click-handler"
 import kebabCase from "lodash/kebabCase"
 import camelCase from "lodash/camelCase"
 import { js, css } from "js-beautify"
+import isHex from "../utils/isHex"
 
 const PaletteModal = ({ palette, togglePaletteModal }) => {
   const [data, setData] = useState([])
@@ -15,7 +16,8 @@ const PaletteModal = ({ palette, togglePaletteModal }) => {
   const handleActiveTab = tabName => () => setActiveTab(tabName)
 
   const fetchColorData = async palette => {
-    const paletteString = palette.map(p => p.substr(1)).join(",")
+    const validPalette = palette.filter(p => isHex(p))
+    const paletteString = validPalette.map(p => p.substr(1)).join(",")
 
     const res = await fetch(`https://api.color.pizza/v1/${paletteString}`)
     const { colors } = await res.json()
@@ -61,26 +63,53 @@ const PaletteModal = ({ palette, togglePaletteModal }) => {
       height="100vh"
       px={6}
       py={4}
-      justifyContent='center'
-      alignItems='center'
+      justifyContent="center"
+      alignItems="center"
       css={{ backgroundColor: "rgba(0,0,0,0.4)", top: 0, left: 0, zIndex: 5 }}
     >
       <OutsideClickHandler onOutsideClick={() => togglePaletteModal(false)}>
-        <Flex bg="white" flexWrap="wrap" p={4} borderRadius={2} maxWidth='60rem'>
+        <Flex
+          bg="white"
+          flexWrap="wrap"
+          p={4}
+          borderRadius={2}
+          maxWidth="60rem"
+        >
           <Flex width={1} mx={-3} mb={3}>
-            <TextButton px={3} onClick={handleActiveTab("json")}>JSON</TextButton>
-            <TextButton px={3} onClick={handleActiveTab("css")}>CSS variables</TextButton>
-            <TextButton px={3} onClick={handleActiveTab("sass")}>Sass variables</TextButton>
-            <TextButton px={3} onClick={handleActiveTab("js")}>JS theme file</TextButton>
-            <TextButton px={3} fontWeight={700} onClick={() => togglePaletteModal(false)} ml='auto'>Close</TextButton>
+            <TextButton px={3} onClick={handleActiveTab("json")}>
+              JSON
+            </TextButton>
+            <TextButton px={3} onClick={handleActiveTab("css")}>
+              CSS variables
+            </TextButton>
+            <TextButton px={3} onClick={handleActiveTab("sass")}>
+              Sass variables
+            </TextButton>
+            <TextButton px={3} onClick={handleActiveTab("js")}>
+              JS theme file
+            </TextButton>
+            <TextButton
+              px={3}
+              fontWeight={700}
+              onClick={() => togglePaletteModal(false)}
+              ml="auto"
+            >
+              Close
+            </TextButton>
           </Flex>
 
           {activeTab === "json" && (
-            <Div width={1} border='1px solid' borderColor='gray.7' borderRadius={2} style={{ overflow: 'hidden' }}>
+            <Div
+              width={1}
+              border="1px solid"
+              borderColor="gray.7"
+              borderRadius={2}
+              style={{ overflow: "hidden" }}
+            >
               <Textarea
                 width={1}
-                bg='gray.9'
-                style={{minHeight: '16rem', height: '75vh', border: 0 }}
+                bg="gray.9"
+                style={{ minHeight: "16rem", height: "75vh", border: 0 }}
                 p={4}
                 onClick={handleSelectAll}
                 readOnly
@@ -90,11 +119,17 @@ const PaletteModal = ({ palette, togglePaletteModal }) => {
           )}
 
           {activeTab === "css" && (
-            <Div width={1} border='1px solid' borderColor='gray.8' borderRadius={2} style={{overflow: 'hidden' }}>
+            <Div
+              width={1}
+              border="1px solid"
+              borderColor="gray.8"
+              borderRadius={2}
+              style={{ overflow: "hidden" }}
+            >
               <Textarea
                 width={1}
-                bg='gray.9'
-                style={{minHeight: '16rem', height: '75vh', border: 0 }}
+                bg="gray.9"
+                style={{ minHeight: "16rem", height: "75vh", border: 0 }}
                 p={4}
                 onClick={handleSelectAll}
                 readOnly
@@ -104,11 +139,17 @@ const PaletteModal = ({ palette, togglePaletteModal }) => {
           )}
 
           {activeTab === "sass" && (
-            <Div width={1} border='1px solid' borderColor='gray.8' borderRadius={2} style={{overflow: 'hidden' }}>
+            <Div
+              width={1}
+              border="1px solid"
+              borderColor="gray.8"
+              borderRadius={2}
+              style={{ overflow: "hidden" }}
+            >
               <Textarea
                 width={1}
-                bg='gray.9'
-                style={{minHeight: '16rem', height: '75vh', border: 0 }}
+                bg="gray.9"
+                style={{ minHeight: "16rem", height: "75vh", border: 0 }}
                 p={4}
                 onClick={handleSelectAll}
                 readOnly
@@ -118,11 +159,17 @@ const PaletteModal = ({ palette, togglePaletteModal }) => {
           )}
 
           {activeTab === "js" && (
-            <Div width={1} border='1px solid' borderColor='gray.8' borderRadius={2} style={{overflow: 'hidden' }}>
+            <Div
+              width={1}
+              border="1px solid"
+              borderColor="gray.8"
+              borderRadius={2}
+              style={{ overflow: "hidden" }}
+            >
               <Textarea
                 width={1}
-                bg='gray.9'
-                style={{minHeight: '16rem', height: '75vh', border: 0 }}
+                bg="gray.9"
+                style={{ minHeight: "16rem", height: "75vh", border: 0 }}
                 p={4}
                 onClick={handleSelectAll}
                 readOnly
