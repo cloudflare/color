@@ -53,7 +53,7 @@ const SiteFetch = ({ onSubmit, ...props }) => {
         style={{ overflow: "hidden" }}
         borderRadius={2}
         mb={0}
-        bg='gray.8'
+        bg="gray.8"
       >
         <Input
           fontSize={2}
@@ -63,9 +63,10 @@ const SiteFetch = ({ onSubmit, ...props }) => {
           width={1}
           type="url"
           border="0 solid transparent"
-          bg='gray.8'
+          bg="gray.8"
           borderRadius={0}
           value={url}
+          aria-label="site url"
           onChange={handleChange}
           style={{ flexGrow: 1 }}
         />

@@ -31,6 +31,7 @@ const PlayerControls = ({
         icon="previous"
         bg="transparent"
         color={controlColor}
+        aria-label="previous combination"
       />
       <ButtonIcon
         alignItems="center"
@@ -39,6 +40,7 @@ const PlayerControls = ({
         color={controlColor}
         icon={isRunning ? "pause" : "play"}
         iconSize={16}
+        aria-label="play/pause"
       />
       <ButtonIcon
         alignItems="center"
@@ -47,6 +49,7 @@ const PlayerControls = ({
         bg="transparent"
         color={controlColor}
         iconSize={16}
+        aria-label="like current combination"
       />
 
       <ButtonIcon
@@ -57,6 +60,7 @@ const PlayerControls = ({
         children=""
         bg="transparent"
         color={controlColor}
+        aria-label="next combination"
       />
     </Flex>
   )

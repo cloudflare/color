@@ -51,6 +51,10 @@ export default class MyApp extends App {
       <Container>
         <Head>
           <title>Color - Cloudflare Design</title>
+          <meta
+            name="description"
+            content="A color palette tool for interface design"
+          />
         </Head>
         <ThemeProvider theme={theme}>
           <Provider store={store}>

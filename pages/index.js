@@ -657,8 +657,12 @@ const MainUI = ({
                   `}
                   onChange={e => setImportValue(e.target.value)}
                 />
-                <Div textAlign='center' mt={2}>
-                  <ButtonOutline color='black' borderColor='black' onClick={handlePaletteImport}>
+                <Div textAlign="center" mt={2}>
+                  <ButtonOutline
+                    color="black"
+                    borderColor="black"
+                    onClick={handlePaletteImport}
+                  >
                     Import JSON
                   </ButtonOutline>
                 </Div>
@@ -899,6 +903,7 @@ const MainUI = ({
                           onChange={handleContrastRatioChange}
                           checked={contrastRatio === 3}
                           mr={2}
+                          aria-label="contrast ratio AA large"
                         />
                         <Label style={{ whiteSpace: "nowrap" }}>
                           <Span fontWeight={800}>3 </Span>
@@ -913,6 +918,7 @@ const MainUI = ({
                           onChange={handleContrastRatioChange}
                           checked={contrastRatio === 4.5}
                           mr={2}
+                          aria-label="contrast ratio AA"
                         />
                         <Label style={{ whiteSpace: "nowrap" }}>
                           <Span fontWeight={800}>4.5 </Span>
@@ -927,6 +933,7 @@ const MainUI = ({
                           onChange={handleContrastRatioChange}
                           checked={contrastRatio === 7}
                           mr={2}
+                          aria-label="contrast ratio AAA"
                         />
                         <Label style={{ whiteSpace: "nowrap" }}>
                           <Span fontWeight={800}>7:1 </Span>
