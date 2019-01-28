@@ -1,3 +1,3 @@
-# PRODUCT KIT
+# COLOR
 
-Demo built with product kit
+A tool for exploring and creating color palettes
