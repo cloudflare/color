@@ -26,8 +26,9 @@ export default class MyDocument extends Document {
           <meta name="twitter:card" content="summary" />
           <meta property="og:image" content="https://cloudflare-assets.s3.amazonaws.com/color-card.jpg" />
           <meta property="og:url" content="https://cloudflare.design/color" />
-          <meta property="og:title" content="Color" />
-          <meta property="og:description" content="A tool for creating, using, and documenting color palettes." />
+          <meta name="twitter:site" content="@cloudflare" />
+          <meta property="og:title" content="Color by Cloudflare Design" />
+          <meta property="og:description" content="A color palette tool for interface design" />
         </Head>
         <body>
           <Main />
