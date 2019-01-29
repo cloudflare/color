@@ -333,11 +333,6 @@ const IconOutlineBlock = ({ boxPadding, currentCombination, borderWidth }) => {
         <IconOutline 
           border={`${borderWidth + 2}px solid`}
           color={iconOutlineColor}>
-          <Icon title="retarget" size={16} color={iconOutlineColor} type="retarget" />
-        </IconOutline>
-        <IconOutline 
-          border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
           <Icon title="lightning bolt" size={16} color={iconOutlineColor} type="bolt" />
         </IconOutline>
         <IconOutline 
@@ -379,6 +374,11 @@ const IconOutlineBlock = ({ boxPadding, currentCombination, borderWidth }) => {
           border={`${borderWidth + 2}px solid`}
           color={iconOutlineColor}>
           <Icon title="quotes" size={16} color={iconOutlineColor} type="quotes" />
+        </IconOutline>
+        <IconOutline 
+          border={`${borderWidth + 2}px solid`}
+          color={iconOutlineColor}>
+          <Icon title="github" size={16} color={iconOutlineColor} type="github" />
         </IconOutline>
         <IconOutline 
           border={`${borderWidth + 2}px solid`}

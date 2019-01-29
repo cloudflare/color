@@ -50,7 +50,10 @@ const SiteFooter = ({ variant, ...props }) => {
               display="block"
               fontWeight={700}
             >
-              GitHub
+            <Flex>
+              <Icon title="github" color="gray.2" type="github" />
+              <P ml={2} mt={0} mb={0}>GitHub</P>
+            </Flex>
             </A>
           </Footer>
       )
