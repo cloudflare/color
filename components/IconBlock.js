@@ -16,54 +16,54 @@ const IconBlock = ({ boxPadding, currentCombination, borderWidth }) => {
       borderColor={currentCombination.borderColor}
       border={`${borderWidth}px solid`}
     >
-      <Icon size={24} color={currentCombination.color} type="remove" />
-      <Icon size={24} color={currentCombination.color} type="caretDown" />
-      <Icon size={24} color={currentCombination.color} type="caretRight" />
-      <Icon size={24} color={currentCombination.color} type="caretLeft" />
-      <Icon size={24} color={currentCombination.color} type="caretUp" />
-      <Icon size={24} color={currentCombination.color} type="pop" />
-      <Icon size={24} color={currentCombination.color} type="cost" />
-      <Icon size={24} color={currentCombination.color} type="creditCard" />
-      <Icon size={24} color={currentCombination.color} type="upload" />
-      <Icon size={24} color={currentCombination.color} type="exclamationOutline" />
-      <Icon size={24} color={currentCombination.color} type="exclamation" />
-      <Icon size={24} color={currentCombination.color} type="collapse" />
-      <Icon size={24} color={currentCombination.color} type="expand" />
-      <Icon size={24} color={currentCombination.color} type="file" />
-      <Icon size={24} color={currentCombination.color} type="forward" />
-      <Icon size={24} color={currentCombination.color} type="left" />
-      <Icon size={24} color={currentCombination.color} type="right" />
-      <Icon size={24} color={currentCombination.color} type="down" />
-      <Icon size={24} color={currentCombination.color} type="gear" />
-      <Icon size={24} color={currentCombination.color} type="generalInfo" />
-      <Icon size={24} color={currentCombination.color} type="hamburger" />
-      <Icon size={24} color={currentCombination.color} type="info" />
-      <Icon size={24} color={currentCombination.color} type="help" />
-      <Icon size={24} color={currentCombination.color} type="list" />
-      <Icon size={24} color={currentCombination.color} type="mail" />
-      <Icon size={24} color={currentCombination.color} type="refresh" />
-      <Icon size={24} color={currentCombination.color} type="reorder" />
-      <Icon size={24} color={currentCombination.color} type="resizeHorizontal" />
-      <Icon size={24} color={currentCombination.color} type="minus" />
-      <Icon size={24} color={currentCombination.color} type="plus" />
-      <Icon size={24} color={currentCombination.color} type="okSign" />
-      <Icon size={24} color={currentCombination.color} type="activation" />
-      <Icon size={24} color={currentCombination.color} type="validator" />
-      <Icon size={24} color={currentCombination.color} type="safeOutline" />
-      <Icon size={24} color={currentCombination.color} type="safe" />
-      <Icon size={24} color={currentCombination.color} type="warningOutline" />
-      <Icon size={24} color={currentCombination.color} type="warning" />
-      <Icon size={24} color={currentCombination.color} type="stopOutline" />
-      <Icon size={24} color={currentCombination.color} type="stop" />
-      <Icon size={24} color={currentCombination.color} type="lock" />
-      <Icon size={24} color={currentCombination.color} type="time" />
-      <Icon size={24} color={currentCombination.color} type="quotes" />
-      <Icon size={24} color={currentCombination.color} type="signup" />
-      <Icon size={24} color={currentCombination.color} type="facebook" />
-      <Icon size={24} color={currentCombination.color} type="google" />
-      <Icon size={24} color={currentCombination.color} type="linkedin" />
-      <Icon size={24} color={currentCombination.color} type="download" />
-      <Icon size={24} color={currentCombination.color} type="wrench" />
+      <Icon title="down caret" size={24} color={currentCombination.color} type="caretDown" />
+      <Icon title="right caret" size={24} color={currentCombination.color} type="caretRight" />
+      <Icon title="left caret" size={24} color={currentCombination.color} type="caretLeft" />
+      <Icon title="up caret" size={24} color={currentCombination.color} type="caretUp" />
+      <Icon title="backward" size={24} color={currentCombination.color} type="backward" />
+      <Icon title="forward" size={24} color={currentCombination.color} type="forward" />
+      <Icon title="left" size={24} color={currentCombination.color} type="left" />
+      <Icon title="right" size={24} color={currentCombination.color} type="right" />
+      <Icon title="reorder" size={24} color={currentCombination.color} type="reorder" />
+      <Icon title="horizontal resize" size={24} color={currentCombination.color} type="resizeHorizontal" />
+      <Icon title="minus" size={24} color={currentCombination.color} type="minus" />
+      <Icon title="plus" size={24} color={currentCombination.color} type="plus" />
+      <Icon title="remove" size={24} color={currentCombination.color} type="remove" />
+      <Icon title="hamburger menu" size={24} color={currentCombination.color} type="hamburger" />
+      <Icon title="refresh"  size={24} color={currentCombination.color} type="refresh" />
+      <Icon title="checkmark" size={24} color={currentCombination.color} type="ok" />
+      <Icon title="server rack" size={24} color={currentCombination.color} type="drive" />
+      <Icon title="download" size={24} color={currentCombination.color} type="download" />
+      <Icon title="wrench" size={24} color={currentCombination.color} type="wrench" />
+      <Icon title="location pin"size={24} color={currentCombination.color} type="network" />
+      <Icon title="speech bubble" size={24} color={currentCombination.color} type="speech" />
+      <Icon title="credit card" size={24} color={currentCombination.color} type="creditCard" />
+      <Icon title="upload" size={24} color={currentCombination.color} type="upload" />
+      <Icon title="pie chart" size={24} color={currentCombination.color} type="chart" />
+      <Icon title="collapse arrows" size={24} color={currentCombination.color} type="collapse" />
+      <Icon title="expand arrows" size={24} color={currentCombination.color} type="expand" />
+      <Icon title="file" size={24} color={currentCombination.color} type="file" />
+      <Icon title="filter" size={24} color={currentCombination.color} type="filter" />
+      <Icon title="gear" size={24} color={currentCombination.color} type="gear" />
+      <Icon title="shield" size={24} color={currentCombination.color} type="shield" />
+      <Icon title="info" size={24} color={currentCombination.color} type="info" />
+      <Icon title="mail envelope" size={24} color={currentCombination.color} type="mail" />
+      <Icon title="list" size={24} color={currentCombination.color} type="list" />
+      <Icon title="ok sign" size={24} color={currentCombination.color} type="okSign" />
+      <Icon title="pause" size={24} color={currentCombination.color} type="pause" />
+      <Icon title="retarget" size={24} color={currentCombination.color} type="retarget" />
+      <Icon title="lightning bolt" size={24} color={currentCombination.color} type="bolt" />
+      <Icon title="flow chart" size={24} color={currentCombination.color} type="flowchart" />
+      <Icon title="clipboard" size={24} color={currentCombination.color} type="clipboard" />
+      <Icon title="lock" size={24} color={currentCombination.color} type="lock" />
+      <Icon title="help" size={24} color={currentCombination.color} type="help" />
+      <Icon title="clock" size={24} color={currentCombination.color} type="time" />
+      <Icon title="door" size={24} color={currentCombination.color} type="door" />
+      <Icon title="user" size={24} color={currentCombination.color} type="user" />
+      <Icon title="quotes" size={24} color={currentCombination.color} type="quotes" />
+      <Icon title="linkedin" size={24} color={currentCombination.color} type="linkedin" />
+      <Icon title="facebook" size={24} color={currentCombination.color} type="facebook" />
+      <Icon title="twitter"size={24} color={currentCombination.color} type="twitter" />
     </Div>
   )
 }
