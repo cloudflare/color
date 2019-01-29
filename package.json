@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "deploy:gh": "next build && next export -o dist && gh-pages -d dist -t",
-    "deploy:preview": "next build && next export -o dist && now"
+    "deploy:preview": "now",
+    "now-build": "next build && next export -o dist"
   },
   "dependencies": {
     "bezier-easing": "^2.1.0",
