@@ -899,13 +899,13 @@ const MainUI = ({
                         <Input
                           type="radio"
                           name="contrastRatio"
+                          id="contrastRatio-AA-large"
                           value={3}
                           onChange={handleContrastRatioChange}
                           checked={contrastRatio === 3}
                           mr={2}
-                          aria-label="contrast ratio AA large"
                         />
-                        <Label style={{ whiteSpace: "nowrap" }}>
+                        <Label htmlFor="contrastRatio-AA-large" style={{ whiteSpace: "nowrap" }}>
                           <Span fontWeight={800}>3 </Span>
                           <Span fontSize={3}>AA large</Span>
                         </Label>
@@ -914,13 +914,13 @@ const MainUI = ({
                         <Input
                           type="radio"
                           name="contrastRatio"
+                          id="contrastRatio-AA"
                           value={4.5}
                           onChange={handleContrastRatioChange}
                           checked={contrastRatio === 4.5}
                           mr={2}
-                          aria-label="contrast ratio AA"
                         />
-                        <Label style={{ whiteSpace: "nowrap" }}>
+                        <Label htmlFor="contrastRatio-AA" style={{ whiteSpace: "nowrap" }}>
                           <Span fontWeight={800}>4.5 </Span>
                           <Span fontSize={3}>AA</Span>
                         </Label>
@@ -929,13 +929,13 @@ const MainUI = ({
                         <Input
                           type="radio"
                           name="contrastRatio"
+                          id="contrastRatio-AAA"
                           value={7}
                           onChange={handleContrastRatioChange}
                           checked={contrastRatio === 7}
                           mr={2}
-                          aria-label="contrast ratio AAA"
                         />
-                        <Label style={{ whiteSpace: "nowrap" }}>
+                        <Label htmlFor="contrastRatio-AAA" style={{ whiteSpace: "nowrap" }}>
                           <Span fontWeight={800}>7:1 </Span>
                           <Span fontSize={2}>AAA</Span>
                         </Label>
