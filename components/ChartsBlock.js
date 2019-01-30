@@ -19,14 +19,6 @@ import {
   ResponsiveContainer
 } from "recharts"
 
-import linedata from "../data/linechart"
-import bardata from "../data/barchart"
-
-import radialdata from "../data/radialchart"
-import radial2 from "../data/radial2"
-import radial3 from "../data/radial3"
-import radial4 from "../data/radial4"
-import radial5 from "../data/radial5"
 
 const data = [
   { name: "Group A", value: 400 },

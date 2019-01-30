@@ -32,13 +32,5 @@ export default memo(({
         borderWidth={borderWidth}
       />
     </Div>
-    <Div width={[1, 1, 1/2, 1/3]} px={3}>
-    </Div>
-    <Div width={[1, 1, 1/2, 1/3]} px={3} display='none'>
-      <ChartsBlock
-        currentCombination={currentCombination}
-        borderWidth={borderWidth}
-      />
-    </Div>
     </Flex>
 ))
