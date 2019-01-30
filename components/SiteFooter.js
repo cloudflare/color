@@ -50,7 +50,7 @@ const SiteFooter = ({ variant, ...props }) => {
               <A
                 href="https://github.com/cloudflare-design"
                 fontSize={2}
-                color="blue.4"
+                color="gray.0"
                 display="inline-flex"
                 alignItems='center'
                 fontWeight={700}
