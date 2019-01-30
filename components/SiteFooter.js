@@ -1,5 +1,4 @@
 import React from "react"
-import data from "../data"
 
 const SiteFooter = ({ variant, ...props }) => {
   switch (variant) {
@@ -15,7 +14,7 @@ const SiteFooter = ({ variant, ...props }) => {
             borderTop="1px solid rgba(0,0,0,.1)"
             {...props}
           >
-            <Div width={[1,1/2]}>
+            <Div width={[1,1/2]} pr={[0,5]}>
               <A
                 display="inline-flex"
                 alignItems="center"
@@ -29,7 +28,10 @@ const SiteFooter = ({ variant, ...props }) => {
               </A>
 
               <P fontSize={2} mt={2} mb={0}>
-                We're growing our teams in San Francisco, London, and Austin! We welcome applications from everyone and especially encourage underrepresented minorities to apply. If you're interested in joining us, checkout <A fontWeight={600} href='https://www.cloudflare.com/careers/departments/design/'>our open positions</A>. 
+                We're growing our teams in San Francisco, London, and Austin! We welcome applications from everyone and especially encourage underrepresented minorities to apply. 
+              </P>
+              <P fontSize={2}>
+                To apply, please email <A color='gray.0' fontWeight={600} href="mailto:designjobs@cloudflare.com">designjobs@cloudflare.com</A> with your portfolio and 3-5 sentences about why you're interested in joining our team.   
               </P>
             </Div>
             <Div width={[1,1/4]}>
