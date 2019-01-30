@@ -41,17 +41,19 @@ const SiteFooter = ({ variant, ...props }) => {
               <A py={1} lineHeight={1.5} fontSize={2} display='block' href='https://github.com/jxnblk/palx' children="Palx" />
               <A py={1} lineHeight={1.5} fontSize={2} display='block' href='https://unsplash.com/developers' children="Unsplash" />
             </Div>
-
-            <A
-              href="https://github.com/cloudflare-design"
-              ml="auto"
-              fontSize={2}
-              color="blue.4"
-              display="block"
-              fontWeight={700}
-            >
-              GitHub
-            </A>
+            <Div mt={[ 3,0 ]} width={[1,1/4]} textAlign={['left', 'right']}>
+              <A
+                href="https://github.com/cloudflare-design"
+                fontSize={2}
+                color="blue.4"
+                display="inline-flex"
+                alignItems='center'
+                fontWeight={700}
+              >
+                <Icon title="github" color="gray.2" size="20" type="github"/>
+                <Span ml={2}>GitHub</Span>
+              </A>
+            </Div>
           </Footer>
       )
   }

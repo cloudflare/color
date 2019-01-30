@@ -51,7 +51,6 @@ const IconBlock = ({ boxPadding, currentCombination, borderWidth }) => {
       <Icon title="list" size={24} color={currentCombination.color} type="list" />
       <Icon title="ok sign" size={24} color={currentCombination.color} type="okSign" />
       <Icon title="pause" size={24} color={currentCombination.color} type="pause" />
-      <Icon title="retarget" size={24} color={currentCombination.color} type="retarget" />
       <Icon title="lightning bolt" size={24} color={currentCombination.color} type="bolt" />
       <Icon title="flow chart" size={24} color={currentCombination.color} type="flowchart" />
       <Icon title="clipboard" size={24} color={currentCombination.color} type="clipboard" />
@@ -61,6 +60,7 @@ const IconBlock = ({ boxPadding, currentCombination, borderWidth }) => {
       <Icon title="door" size={24} color={currentCombination.color} type="door" />
       <Icon title="user" size={24} color={currentCombination.color} type="user" />
       <Icon title="quotes" size={24} color={currentCombination.color} type="quotes" />
+      <Icon title="github" size={24} color={currentCombination.color} type="github" />
       <Icon title="linkedin" size={24} color={currentCombination.color} type="linkedin" />
       <Icon title="facebook" size={24} color={currentCombination.color} type="facebook" />
       <Icon title="twitter"size={24} color={currentCombination.color} type="twitter" />
