@@ -424,7 +424,7 @@ const ColorPicker = ({ currentColor, onChange, onRemoveColor }) => {
             <RangeSlider
               name="s"
               min="0"
-              max="360"
+              max="100"
               value={colorValues.hsl.s}
               onChange={handleHSLChange}
               trackColor={Color(currentColor).isLight() ? "#000" : "#fff"}
