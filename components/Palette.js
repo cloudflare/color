@@ -38,35 +38,44 @@ const ClearFix = styled.div(
   borderColor,
   borderRadius,
   {
-    boxSizing: 'border-box',
-    width: 'auto',
-    '::after': {
+    boxSizing: "border-box",
+    width: "auto",
+    "::after": {
       content: "' '",
-      display: 'table',
-      clear: 'both',
-      overflow: 'hidden',
+      display: "table",
+      clear: "both",
+      overflow: "hidden"
     }
   }
 )
 
-const SingleColor = ({ color, onClick, isActive, isVisible, index }) => {
+const SingleColor = ({
+  color,
+  onClick,
+  onDrag,
+  isActive,
+  isVisible,
+  index
+}) => {
   const handleActiveUI = () => onClick(color, index)
 
   return (
     <Div
+      draggable
+      onDragStart={() => onDrag(color)}
       border="2px solid"
       borderColor={isActive ? "black" : "transparent"}
       bg={color}
       height={32}
-      width={[1/16,1/32]}
+      width={[1 / 16, 1 / 32]}
       style={{
-        float: 'left',
+        float: "left",
         cursor: "pointer",
         position: "relative",
         boxShadow: isVisible ? " 0 0 12px rgba(0,0,0,0.5)" : "none",
         transform: isVisible ? "scale(1.25)" : "none",
         zIndex: isVisible ? 4 : 1,
-        transition: "transform 125ms ease-in-out",
+        transition: "transform 125ms ease-in-out"
       }}
       onClick={handleActiveUI}
     />
@@ -76,6 +85,7 @@ const SingleColor = ({ color, onClick, isActive, isVisible, index }) => {
 const Palette = ({
   palette,
   onClick,
+  onDrag,
   activeColors,
   onAddColor,
   pickerColor
@@ -90,10 +100,15 @@ const Palette = ({
           index={i}
           color={color}
           onClick={onClick}
+          onDrag={onDrag}
         />
-        
       ))}
-      <AddColor style={{float: 'left' }} mt={2} ml={2} onAddColor={onAddColor} />
+      <AddColor
+        style={{ float: "left" }}
+        mt={2}
+        ml={2}
+        onAddColor={onAddColor}
+      />
     </ClearFix>
   )
 }
