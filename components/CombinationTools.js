@@ -7,19 +7,26 @@ const ComboColor = ({
   pinnedColors,
   onPinColor,
   onClick,
+  onDrop,
   ...props
 }) => {
   const onColorClick = () =>
     onClick(currentCombination[comboProperty], comboProperty)
 
+  const onDragOver = e => {
+    e.preventDefault()
+  }
+
   return (
     <Div
+      onDragOver={onDragOver}
+      onDrop={() => onDrop(comboProperty)}
       py={1}
       alignItems="center"
       display="flex"
       css={{ position: "relative" }}
       bg="white"
-      maxWidth='100%'
+      maxWidth="100%"
       {...props}
     >
       <Div
@@ -55,11 +62,11 @@ const ComboColor = ({
       />
       <Span
         fontSize={1}
-        width={[128, 'auto']}
+        width={[128, "auto"]}
         display={["block", "inline-block"]}
         fontWeight={500}
         pr={1}
-        style={{whiteSpace: 'nowrap'}}
+        style={{ whiteSpace: "nowrap" }}
       >
         {name}
       </Span>
@@ -77,10 +84,17 @@ const CombinationTools = ({
   onAutoCycling,
   isRunning,
   onColorClick,
+  onDrop,
   ...props
 }) => {
   return (
-    <Flex  flexWrap={['wrap', 'nowrap']} fontSize={1} justifyContent="center" mb={2} {...props}>
+    <Flex
+      flexWrap={["wrap", "nowrap"]}
+      fontSize={1}
+      justifyContent="center"
+      mb={2}
+      {...props}
+    >
       <ComboColor
         name="Parent Bg"
         comboProperty="parentBg"
@@ -88,6 +102,7 @@ const CombinationTools = ({
         pinnedColors={pinnedColors}
         onPinColor={onPinColor}
         onClick={onColorClick}
+        onDrop={onDrop}
       />
       <ComboColor
         name="Color"
@@ -96,6 +111,7 @@ const CombinationTools = ({
         pinnedColors={pinnedColors}
         onPinColor={onPinColor}
         onClick={onColorClick}
+        onDrop={onDrop}
       />
 
       <ComboColor
@@ -105,6 +121,7 @@ const CombinationTools = ({
         pinnedColors={pinnedColors}
         onPinColor={onPinColor}
         onClick={onColorClick}
+        onDrop={onDrop}
       />
 
       <ComboColor
@@ -114,6 +131,7 @@ const CombinationTools = ({
         pinnedColors={pinnedColors}
         onPinColor={onPinColor}
         onClick={onColorClick}
+        onDrop={onDrop}
       />
     </Flex>
   )

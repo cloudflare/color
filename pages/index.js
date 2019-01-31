@@ -68,6 +68,7 @@ const MainUI = ({
   const [activeTab, setActiveTab] = useState("url")
   const [importValue, setImportValue] = useState(JSON.stringify(palette))
   const [importError, setImportError] = useState(false)
+  const [dragColor, setDragColor] = useState(null)
   const { start, stop, isRunning } = useInterval({
     duration: 3000,
     startImmediate: true,
@@ -381,6 +382,16 @@ const MainUI = ({
     }
   }
 
+  const handleDragStart = color => {
+    isRunning && stop()
+    setDragColor(color)
+  }
+
+  const handleColorDrop = property => {
+    const newCombo = { ...currentCombination, [property]: dragColor }
+    set(newCombo)
+  }
+
   return (
     <Div
       bg="white"
@@ -675,6 +686,7 @@ const MainUI = ({
                 pickerColor={currentPickerColor}
                 activeColors={Object.values(currentCombination)}
                 onClick={handlePaletteColorClick}
+                onDrag={handleDragStart}
                 onAddColor={handleAddColor}
               />
               <Div textAlign="center" my={3}>
@@ -706,6 +718,7 @@ const MainUI = ({
                   onAutoCycling={handleAutoCycling}
                   isRunning={isRunning}
                   onColorClick={handleColorClick}
+                  onDrop={handleColorDrop}
                 />
               </Div>
               <Div display="none" dataName="stats">
