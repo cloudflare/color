@@ -18,7 +18,7 @@ import {
 
 const textShadow = style({
   prop: "textShadow",
-  cssTextroperty: "textShadow",
+  cssProperty: "textShadow",
   key: "textShadow",
   scale: ["1px 1px 2px pink ", "#f30 1px 0 10px", "red 2px 5px"]
 })
@@ -43,7 +43,7 @@ const Text = styled.p(
   }
 )
 
-Text.defaultTextrops = {
+Text.defaultProps = {
   fontWeight: 400,
   lineHeight: 1.5,
   fontSize: 3,
