@@ -18,7 +18,7 @@ const fetchFiles = async filePath => {
 }
 
 module.exports = {
-  assetPrefix: isProd ? `https://cloudflare-design.github.io/${pkg.name}` : "",
+  assetPrefix: isProd ? `https://cloudflare.design/${pkg.name}` : "",
   exportPathMap: async (defaultPathMap, { dev, dir, outDir }) => {
     if (dev) {
       return defaultPathMap
