@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import getConfig from "next/config"
 import { get as getIdb, set as setIdb } from "idb-keyval"
 import palx from "palx"
 import OutsideClickHandler from "react-outside-click-handler"
@@ -24,6 +25,8 @@ import PlayerControls from "../components/PlayerControls"
 import Colorbox from "../components/Colorbox"
 import ColorTable from "../components/ColorTable"
 import isHex from "../utils/isHex"
+
+const { publicRuntimeConfig } = getConfig()
 
 const resetPinned = {
   color: false,
@@ -404,7 +407,9 @@ const MainUI = ({
         filter:
           colorFilter === "none"
             ? "none"
-            : `url(/static/filters.svg#${colorFilter})`
+            : `url(${
+                publicRuntimeConfig.assetPrefix
+              }/static/filters.svg#${colorFilter})`
       }}
     >
       <Div width={[1]}>
@@ -918,7 +923,10 @@ const MainUI = ({
                           checked={contrastRatio === 3}
                           mr={2}
                         />
-                        <Label htmlFor="contrastRatio-AA-large" style={{ whiteSpace: "nowrap" }}>
+                        <Label
+                          htmlFor="contrastRatio-AA-large"
+                          style={{ whiteSpace: "nowrap" }}
+                        >
                           <Span fontWeight={800}>3 </Span>
                           <Span fontSize={3}>AA large</Span>
                         </Label>
@@ -933,7 +941,10 @@ const MainUI = ({
                           checked={contrastRatio === 4.5}
                           mr={2}
                         />
-                        <Label htmlFor="contrastRatio-AA" style={{ whiteSpace: "nowrap" }}>
+                        <Label
+                          htmlFor="contrastRatio-AA"
+                          style={{ whiteSpace: "nowrap" }}
+                        >
                           <Span fontWeight={800}>4.5 </Span>
                           <Span fontSize={3}>AA</Span>
                         </Label>
@@ -948,7 +959,10 @@ const MainUI = ({
                           checked={contrastRatio === 7}
                           mr={2}
                         />
-                        <Label htmlFor="contrastRatio-AAA" style={{ whiteSpace: "nowrap" }}>
+                        <Label
+                          htmlFor="contrastRatio-AAA"
+                          style={{ whiteSpace: "nowrap" }}
+                        >
                           <Span fontWeight={800}>7:1 </Span>
                           <Span fontSize={2}>AAA</Span>
                         </Label>
