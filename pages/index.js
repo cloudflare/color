@@ -26,7 +26,8 @@ import Colorbox from "../components/Colorbox"
 import ColorTable from "../components/ColorTable"
 import isHex from "../utils/isHex"
 
-const { publicRuntimeConfig } = getConfig()
+const { serverRuntimeConfig } = getConfig()
+const { assetPrefix } = serverRuntimeConfig
 
 const resetPinned = {
   color: false,
@@ -407,9 +408,7 @@ const MainUI = ({
         filter:
           colorFilter === "none"
             ? "none"
-            : `url(${
-                publicRuntimeConfig.assetPrefix
-              }/static/filters.svg#${colorFilter})`
+            : `url(${assetPrefix}/static/filters.svg#${colorFilter})`
       }}
     >
       <Div width={[1]}>

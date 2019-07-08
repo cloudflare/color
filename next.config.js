@@ -18,7 +18,7 @@ const fetchFiles = async filePath => {
 }
 
 module.exports = {
-  publicRuntimeConfig: {
+  serverRuntimeConfig: {
     assetPrefix: isProd ? `https://cloudflare.design/${pkg.name}` : ""
   },
   assetPrefix: isProd ? `https://cloudflare.design/${pkg.name}` : "",
