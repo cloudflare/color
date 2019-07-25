@@ -26,8 +26,8 @@ import Colorbox from "../components/Colorbox"
 import ColorTable from "../components/ColorTable"
 import isHex from "../utils/isHex"
 
-const { serverRuntimeConfig } = getConfig()
-const { assetPrefix } = serverRuntimeConfig
+const { publicRuntimeConfig } = getConfig()
+const { assetPrefix } = publicRuntimeConfig
 
 const resetPinned = {
   color: false,

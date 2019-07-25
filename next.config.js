@@ -18,10 +18,10 @@ const fetchFiles = async filePath => {
 }
 
 module.exports = {
-  serverRuntimeConfig: {
-    assetPrefix: isProd ? `https://cloudflare.design/${pkg.name}` : ""
+  publicRuntimeConfig: {
+    assetPrefix: isProd ? `https://${pkg.name}.cloudflare.design` : ""
   },
-  assetPrefix: isProd ? `https://cloudflare.design/${pkg.name}` : "",
+  assetPrefix: isProd ? `https://${pkg.name}.cloudflare.design` : "",
   exportPathMap: async (defaultPathMap, { dev, dir, outDir }) => {
     if (dev) {
       return defaultPathMap
