@@ -6,7 +6,6 @@
     "dev": "next -p $(./node_modules/detect-port/bin/detect-port 3000)",
     "build": "next build",
     "start": "next start",
-    "deploy:gh": "next build && next export -o dist && gh-pages -d dist -t",
     "deploy:preview": "now",
     "now-build": "next build && next export -o dist"
   },
