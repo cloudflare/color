@@ -68,7 +68,7 @@ export default class MyApp extends App {
                 body {
                   margin: 0;
                   font-family: ${theme.font.sansSerif};
-                  background-color: ${theme.colors.gray[9]};
+                  background-color: ${theme.colors.white};
                 }
               `}
             />

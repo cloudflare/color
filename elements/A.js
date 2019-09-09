@@ -34,7 +34,7 @@ const A = styled.a(
   borderRadius,
   {
     boxSizing: "border-box",
-    textDecoration: "none",
+    textDecoration: "underline",
     transition: "opacity .25s ease-in-out",
     opacity: 1,
     ":hover": {

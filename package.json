@@ -13,6 +13,9 @@
     "@emotion/babel-preset-css-prop": "^10.0.17",
     "@emotion/core": "^10.0.17",
     "@emotion/styled": "^10.0.17",
+    "@mdx-js/loader": "^1.4.4",
+    "@mdx-js/react": "^1.4.4",
+    "@next/mdx": "^9.0.5",
     "@styled-system/css": "^5.0.23",
     "bezier-easing": "^2.1.0",
     "chroma-js": "^2.0.6",
@@ -33,6 +36,7 @@
     "react-ga": "^2.6.0",
     "react-outside-click-handler": "^1.2.4",
     "recharts": "^1.7.1",
+    "remark-unwrap-images": "^1.0.0",
     "styled-system": "^5.1.1",
     "unistore": "^3.4.1",
     "webpack": "^4.39.3"

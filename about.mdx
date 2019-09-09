@@ -1,0 +1,204 @@
+# The Color Tool
+
+When we revisited our palette last year, we built some custom tooling to help us construct and preview palettes. We’ve begun to package up some of this work into a web app others can use to create or import a palette and preview multiple depths of accessible combinations against a set of UI elements.
+
+The goal is to make it easier for anyone to work seamlessly with color and build beautiful interfaces with accessible color contrasts.
+
+To help you make use of the tool, we’ve put together a little walk through of the following features
+
+- Importing palettes from a url, image, or js theme file
+- Generating palettes with Palx, or ColorBox
+- Preview accessible color combos against a collection of UI elements
+- Visualizing all accessible combinations with contrast scores
+- Simulate different types of color vision deficiencies
+- Rapidly cycle through available combinations
+- Add, remove, or edit any color in the palette
+
+## Getting started
+
+If you are working on a color palette you’re likely to be starting from scratch or modifying something that already exists. One of our initial priorities was to make it easy to import an existing color palette in a variety of formats.
+
+**URL**
+
+Using the CSS Stats API we pull colors in from your websites production code so you can start to augment your current palette without a lot of setup work. This will grab all style sheets, style tags, and inline styles and parse them for colors. You can also link directly to any hosted css file. Note if your css is malformed, importing colors with this method might fail.
+
+![Importing a color palette from a URL](/static/about/url-method.png)
+
+**JSON**
+
+You can also import your palette as an array of colors. This will also import the JSON export you get after constructing a palette. This way you can save things locally over time to load them back into the app.
+
+![Preview of JSON import interface](/static/about/json-method.png)
+
+**Image**
+
+Using the image tab you can import an image by uploading one, or loading a random photo from unsplash.com.
+
+![Palette creation from image import](/static/about/image-method.jpg)
+
+A palette is created from the top 10 most dominant colors in the image. You can try to generate stills from movies, photos, or screenshots of other palette collections like [colorlovers.com](https://colorlovers.com) or [color.adobe.com](https://color.adobe.com) and use them to start your palette.
+
+![Palette from color.adobe.com](/static/about/palette-from-adobe.png)
+
+![Palettes from colorlovers.com](/static/about/palette-from-colorlovers.png)
+
+## Creating a palette
+
+**Palx**
+
+There are a few ways to generate palettes within the tool. [Palx is an open source palette generator](https://palx.jxnblk.com) that creates a palette based on a single color. The generated palette will includes luminance-scaled variations of gray and 12 different hues.
+
+![Sample Palx palette from Rebass](/static/about/palette-palx.png)
+
+We’ve wired Palx up so you can quickly generate palettes and preview them. Enter in any hex code and click generate to get a new palette.
+
+![Palette generated from Palx with color #07c](/static/about/palette-from-07c.png)
+
+**ColorBox**
+
+Lyft built an [amazing](https://design.lyft.com/re-approaching-color-9e604ba22c88) [open source tool](https://design.lyft.com/re-approaching-color-9e604ba22c88) for generating palettes called [ColorBox.](https://colorbox.io) It allows you to fluidly iterate through different scales applied to hue, saturation, and lightness changes. You declare start and end values for each property as a set of constraints, and then select the easing function that will determine the curve.
+
+![https://colorbox.io](/static/about/colorbox.png)
+
+We’ve exposed the basic ColorBox controls for you to create and manipulate scales.
+
+![ColorBox controls](/static/about/colorbox-controls.png)
+
+Set how many steps (array length of colors) you want in the scale, and set **Start** and **End** points for **Hue**, **Saturation**, and **Luminosity**. Play around with using different curves for each property to see how they affect your scales.
+
+Try to create different scales for red, orange, yellow, green, teal, cyan, blue, indigo, violet, and gray. If you want to construct a palette from a number of different scales, click ‘Add to palette’ when you’re ready to add it. To start from scratch, you can click “Replace Palette” to remove all of the existing colors and replace them with your new scale.
+
+![Palette build with ColorBox](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562307284243_Screen+Shot+2019-07-05+at+2.11.56+AM.png)
+
+**Editing a color**
+
+To edit a color click on any swatch in the palette. A color editor will appear below. You can edit the hex code as text, or use the RGB or HSL sliders. In the top right, you’ll get instant feedback on the contrast ration between the color and black and white. Here we see this color is accessible with both at level AA.
+
+![Edit colors as Hex, RGB, or HSL](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562294831722_Screen+Shot+2019-07-04+at+10.46.32+PM.png)
+
+## Previewing a palette
+
+The larger swatches indicate that color is currently being used in the preview panel. Below the palette you’ll see the currently previewed colors collocated together with their respective labels.
+
+![Palette and currently previewed colors](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562300635617_Screen+Shot+2019-07-05+at+12.23.03+AM.png)
+
+To update one of the preview colors, drag any color from the palette onto this bottom row of previewed colors or click on the color to adjust it manually.
+
+Locking a color will leave it unchanged as you cycle through various options. You can lock several colors to constrain preview options. If you are working on a dark mode version of your UI, you may find it useful to pin the background color to black or dark gray.
+
+![How selected colors from the palette map to the preview panel](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562301738020_breakdown.png)
+
+![The next cycle with the parent background color locked](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562302508083_Screen+Shot+2019-07-05+at+12.54.58+AM.png)
+
+## Previewing options
+
+You can choose to autoplay through options by pressing the play button, or skipping forward or backward manually.
+
+![Preview controls](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562303481668_Screen+Shot+2019-07-05+at+1.07.29+AM.png)
+![View of controls during autoplay](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562303590531_Screen+Shot+2019-07-05+at+1.06.51+AM.png)
+
+If you discover a combination you like, tap or click the heart to save it for later. Find your likes below the preview panel on the left hand side. Click on any of the rows to reload in that combination.
+
+![History of saved palettes](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562303741128_Screen+Shot+2019-07-05+at+1.15.17+AM.png)
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562303797241_Screen+Shot+2019-07-05+at+1.16.24+AM.png)
+
+The preview panel represents color application to a variety of sizes and shapes to see the various ways the colors are relating to each other. This is not yet comprehensive and doesn’t represent a number of ways your palette could be applied to UI.In the future, we hope to allow for multiple preview modes with more components and configurability options. Ideally we’d have a full UI kit that would find the closest color for certain canonical UI themes (e.g. buttons for primary, secondary, and destructive actions) in addition to a suite of common data visualization patterns with heavy data sets to stress test the palette.
+
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562304194959_Screen+Shot+2019-07-04+at+9.17.07+PM.png)
+
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562304103497_Screen+Shot+2019-07-04+at+9.19.30+PM.png)
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562304093550_Screen+Shot+2019-07-04+at+9.20.35+PM.png)
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562304089323_Screen+Shot+2019-07-04+at+9.21.05+PM.png)
+
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562304544779_Screen+Shot+2019-07-04+at+9.16.04+PM.png)
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562304557042_Screen+Shot+2019-07-04+at+9.17.36+PM.png)
+
+## Color blindness filters
+
+To visualize the various ways colors are perceived by 12% of the population, colorblind filters will change the appearance of the entire page, allowing you to preview the docs or UI components. You can find this panel below the preview panel on the left side.
+
+![Filter selection](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562651239401_Screen+Shot+2019-07-08+at+4.57.30+PM.png)
+
+![Orange scale pre-viewed across 8 colorblind filters](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562651547353_Untitled-1.png)
+
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562651397169_Screen+Shot+2019-07-09+at+1.49.30+AM.png)
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562651404060_Screen+Shot+2019-07-09+at+1.49.21+AM.png)
+
+## Docs
+
+Below the preview panel you’ll also find a table of documentation with a few global stats about your palette and how many accessible combos there are.
+
+For each color in your palette, the documentation will show
+
+- Hue of the color (useful for colorblind developers and designers)
+- Preview of color as background, text and as a border
+- Color in hex, rgb, and hsl formats
+- Contrast ratio with both black and white. If it’s accessible it is bolded.
+
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562303937290_Screen+Shot+2019-07-05+at+1.18.41+AM.png)
+
+As you build your scales you can use this info to create optically balanced scales - where the middle step in your scale is accessible with both white and black. Normally the values for both will be around 4.5-4.6. It can be extremely helpful to have a color that can be used with both white and black, especially if it’s a predictable step across scales.
+
+Below the palette is a link to preview all of the accessible color combinations.
+
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562619887821_accessible-combo-link.jpg)
+
+Each color is visualized as both text and background with its accessible pair along with its corresponding contrast score. In the future we’d like to add filtering and sorting by color, hue, saturation, and contrast levels.
+
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562307780216_Screen+Shot+2019-07-05+at+2.22.10+AM.png)
+
+Even if you don’t want to change your palette, this tool can be useful to preview accessible color combinations available within your current production code. You can think of it as Css Stats + Colorable.
+
+**Export**
+
+At any point in time you can export your palette as JSON, CSS variables, Sass variables, or a JS theme file. Right now we automatically generate the names, but you can manually tweak them after exporting.
+
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562307565413_Screen+Shot+2019-07-05+at+2.18.24+AM.png)
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562307571691_Screen+Shot+2019-07-05+at+2.18.32+AM.png)
+![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562307568715_Screen+Shot+2019-07-05+at+2.18.45+AM.png)
+
+**Future Roadmap**
+
+While we’re excited about the beginning of this tool, we’re far from done. Here is a sample list of features we’d like to add in the future.
+
+- **More components -** The current component set is limited and could use additions to more accurately simulate how color is used in UI. Analytics and data visualization components, with large series counts, are a good way to stress test the accessibility and aesthetic quality of a palette.
+- **More import methods -** Allow for direct file upload of various filetypes: sass, less, stylus, theme-ui, or npm packages.
+- **More export methods - E**xtend exports to be able to handle exporting any UI library with a configured color theme e.g. Rebass, Material UI, Bootstrap, BassCss, Tachyons, Ant Design, Evergreen, Primer, etc.
+
+![Rebass themes](https://paper-attachments.dropbox.com/s_8449B8C361B814D33891A0A88CEB23B2A9D4E50B8A13496AD55731B4AE7CD26C_1562942604344_themed-ui.png)
+
+- **Live preview of site** with ability to cycle through applications of the existing palette, or cycle through accessible options with a new palette. Could potentially deploy a worker to apply design changes at the edge of our network. Below is a proof of concept Harley Turan put together.
+
+https://www.dropbox.com/s/hr36c57e463ikya/workers%20%281%29.mov?dl=0
+
+- **Syntax theme generator** - apply all possible accessible combinations of a palette to a code syntax theme. Allow export for all editors and environments.
+  ![Examples of multiple syntax themes generated from a single palette](https://paper-attachments.dropbox.com/s_8449B8C361B814D33891A0A88CEB23B2A9D4E50B8A13496AD55731B4AE7CD26C_1562694068104_code.png)
+
+- **Color migration tools -** Define inputs for a new and old palette. Visualize how to migrate from one palette to another with ability to drag and drop results for further customization. Outputs interactive and customizable migration documentation.
+  https://www.dropbox.com/s/3qzaw3wwx4n391w/importcolors%20%281%29.mov?dl=0
+
+* **Grid view for docs -** Currently there is only a list view of the documentation but should allow for switching between grid and list views.
+  ![](https://paper-attachments.dropbox.com/s_8449B8C361B814D33891A0A88CEB23B2A9D4E50B8A13496AD55731B4AE7CD26C_1562694254517_Screen+Shot+2019-07-09+at+1.43.52+PM.png)
+
+* **Open source components -** Open source palette visualization and docs components so you can configure the themes and use them in your own style guide.
+* **Flexible color application** - Currently we show 5 colors with strict mappings in the preview panel (border, background, color, parent background). Ideally you could apply colors as you see fit to the preview elements. For instance you might want some text inputs to have light backgrounds and some to have transparent backgrounds. Or maybe you want to see different color borders on the icons than on the text inputs. Ideally you could drag a color onto any part of an element to change its color mapping.
+* **Custom content** - Components and content could be 100% configurable. Allowing for mixing and matching components from various popular open source UI kits and libraries e.g. Rebass, Bootstrap, Material UI, Ant, as well as customizing text and image content.
+* **Fluid editing** - Ability to select multiple colors and edit them in a uniform manner (e.g. select all reds and desaturate by 8%) or apply an easing curve across any property.
+* **Named Groups in Palette** - Currently we export a flat array but in the future we’d like to allow for attempting to sort colors into groups that can be customized if needed. Additionally new groups could be added. Group names would be configurable.
+* **Configurable color names -** Auto name them but allow to override / customize names.
+* **Color sorting** - Add ability to sort by multiple parameters within a palette both in palette and docs.
+* **Single component view** - Currently we show one color combo previewed against a number of palettes. We’d like to add the ability to see a single component against a number of color combos.
+* **Configurable dominant color count -** Expose configuration \*\*\*\*for setting how many colors to grab from an image.
+* **3d Visualizations** - While color pickers often show color in 2d, it can be helpful to visualize a palette in 3D within a user declared color space. This can allow for more pattern recognition over time on the spatial relationship between colors. In addition you could visualize deltas between two palettes in 3D as an animated transition between two states.
+* **More properties -** Currently we are only showing color against backgrounds, borders, and text. Ideally we’d also allow for wiring up text-shadows and box-shadows as both incorporate color and can influence the perception of other colors in your UI.
+
+We want this tool to be useful for our community, so we welcome feedback on desired features. If you would like to add or upvote ideas, [become part of the discussion here](https://github.com/cloudflare-design/color)
+
+Big thanks to the following projects:
+
+chroma-js
+colorbox
+palx
+colorable
+css stats
+Unsplash
