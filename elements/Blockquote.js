@@ -1,4 +1,4 @@
-import styled from "react-emotion"
+import styled from "@emotion/styled"
 
 import {
   space,
@@ -37,7 +37,7 @@ const Blockquote = styled.blockquote(
   borderColor,
   borderRadius,
   {
-    boxSizing: "border-box",
+    boxSizing: "border-box"
   }
 )
 

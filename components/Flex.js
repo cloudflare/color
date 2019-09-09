@@ -1,13 +1,12 @@
 import React from "react"
 
-import styled from 'react-emotion'
+import styled from "@emotion/styled"
 import {
   space,
   width,
   maxWidth,
   height,
   size,
-  ratio,
   position,
   display,
   flex,
@@ -32,7 +31,6 @@ const Div = styled.div(
   maxWidth,
   height,
   size,
-  ratio,
   position,
   display,
   flex,

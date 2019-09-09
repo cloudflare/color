@@ -13,24 +13,28 @@ const ColorTable = ({ colors }) => {
   return (
     <>
       <ContrastModal handleClose={setColor} color={selectedColor} />
-      <Table>
-        <Thead>
-          <Tr>
-            <TableHeaderCell><Span display='none'>Swatch</Span></TableHeaderCell>
-            <TableHeaderCell>Hue</TableHeaderCell>
-            <TableHeaderCell>Hex</TableHeaderCell>
-            <TableHeaderCell>HSL</TableHeaderCell>
-            <TableHeaderCell>RGB</TableHeaderCell>
-            <TableHeaderCell px={2}>Contrast w/ Black</TableHeaderCell>
-            <TableHeaderCell px={2}>White</TableHeaderCell>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {colors.map(c => (
-            <ColorTableRow onClick={setColor} key={c} color={c} />
-          ))}
-        </Tbody>
-      </Table>
+      <Div css={{ overflowX: "scroll", "-webkit-overflow-scrolling": "touch" }}>
+        <Table>
+          <Thead>
+            <Tr>
+              <TableHeaderCell>
+                <Span display="none">Swatch</Span>
+              </TableHeaderCell>
+              <TableHeaderCell>Hue</TableHeaderCell>
+              <TableHeaderCell>Hex</TableHeaderCell>
+              <TableHeaderCell>HSL</TableHeaderCell>
+              <TableHeaderCell>RGB</TableHeaderCell>
+              <TableHeaderCell px={2}>Contrast w/ Black</TableHeaderCell>
+              <TableHeaderCell px={2}>White</TableHeaderCell>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {colors.map(c => (
+              <ColorTableRow onClick={setColor} key={c} color={c} />
+            ))}
+          </Tbody>
+        </Table>
+      </Div>
     </>
   )
 }

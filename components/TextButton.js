@@ -1,4 +1,4 @@
-import styled from "react-emotion"
+import styled from "@emotion/styled"
 
 import {
   space,
@@ -48,8 +48,7 @@ const TextButton = styled.button(
 TextButton.defaultProps = {
   border: 0,
   p: 0,
-  bg: 'transparent'
-
+  bg: "transparent"
 }
 
 export default TextButton

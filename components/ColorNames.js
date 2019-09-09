@@ -1,6 +1,7 @@
 import React from "react"
-import { keyframes } from "emotion"
-import styled from "react-emotion"
+import { keyframes } from "@emotion/core"
+import styled from "@emotion/styled"
+import css from "@styled-system/css"
 
 const exampleColorNames = [
   "dawn",
@@ -39,10 +40,10 @@ const ColorNames = ({ color }) => {
   return (
     <Div
       width={1 / 4}
-      css={`
-        overflow: hidden;
-        position: relative;
-      `}
+      css={css({
+        overflow: "hidden",
+        position: "relative"
+      })}
     >
       {exampleColorNames.map((name, i) => (
         <ColorName

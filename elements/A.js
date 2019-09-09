@@ -1,4 +1,4 @@
-import styled from "react-emotion"
+import styled from "@emotion/styled"
 import Router from "next/router"
 import { connect } from "unistore/react"
 
@@ -35,12 +35,12 @@ const A = styled.a(
   {
     boxSizing: "border-box",
     textDecoration: "none",
-    transition: 'opacity .25s ease-in-out',
+    transition: "opacity .25s ease-in-out",
     opacity: 1,
     ":hover": {
       cursor: "pointer",
-      opacity: .75,
-      transition: 'opacity .25s ease-in-out'
+      opacity: 0.75,
+      transition: "opacity .25s ease-in-out"
     }
   }
 )

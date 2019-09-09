@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import {space, width, maxWidth, fontSize, color} from 'styled-system'
 
 const layout = props => ({

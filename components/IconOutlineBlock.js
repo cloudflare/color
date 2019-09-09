@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "react-emotion"
+import styled from "@emotion/styled"
 import getContrastScore from "../utils/getContrastScore"
 
 import {
@@ -99,10 +99,10 @@ const IconOutlineBlock = ({ boxPadding, currentCombination, borderWidth }) => {
       <Div
         display="grid"
         style={{
-          justifyContent: 'space-around',
+          justifyContent: "space-around",
           justifyItems: "center",
           gridTemplateColumns: "repeat(auto-fill, minmax(32px,64px))",
-          rowGap: '16px'
+          rowGap: "16px"
         }}
       >
         <IconSolid
@@ -110,290 +110,498 @@ const IconOutlineBlock = ({ boxPadding, currentCombination, borderWidth }) => {
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="down caret" size={16} color={currentCombination.color} type="caretDown" />
+          <Icon
+            title="down caret"
+            size={16}
+            color={currentCombination.color}
+            type="caretDown"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="right caret" size={16} color={currentCombination.color} type="caretRight" />
+          <Icon
+            title="right caret"
+            size={16}
+            color={currentCombination.color}
+            type="caretRight"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="left caret" size={16} color={currentCombination.color} type="caretLeft" />
+          <Icon
+            title="left caret"
+            size={16}
+            color={currentCombination.color}
+            type="caretLeft"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="up caret" size={16} color={currentCombination.color} type="caretUp" />
+          <Icon
+            title="up caret"
+            size={16}
+            color={currentCombination.color}
+            type="caretUp"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="backward" size={16} color={currentCombination.color} type="backward" />
+          <Icon
+            title="backward"
+            size={16}
+            color={currentCombination.color}
+            type="backward"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="forward" size={16} color={currentCombination.color} type="forward" />
+          <Icon
+            title="forward"
+            size={16}
+            color={currentCombination.color}
+            type="forward"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="left" size={16} color={currentCombination.color} type="left" />
+          <Icon
+            title="left"
+            size={16}
+            color={currentCombination.color}
+            type="left"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="right" size={16} color={currentCombination.color} type="right" />
+          <Icon
+            title="right"
+            size={16}
+            color={currentCombination.color}
+            type="right"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="reorder" size={16} color={currentCombination.color} type="reorder" />
+          <Icon
+            title="reorder"
+            size={16}
+            color={currentCombination.color}
+            type="reorder"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="horizontal resize" size={16} color={currentCombination.color} type="resizeHorizontal" />
+          <Icon
+            title="horizontal resize"
+            size={16}
+            color={currentCombination.color}
+            type="resizeHorizontal"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="minus" size={16} color={currentCombination.color} type="minus" />
+          <Icon
+            title="minus"
+            size={16}
+            color={currentCombination.color}
+            type="minus"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="plus" size={16} color={currentCombination.color} type="plus" />
+          <Icon
+            title="plus"
+            size={16}
+            color={currentCombination.color}
+            type="plus"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="remove" size={16} color={currentCombination.color} type="remove" />
+          <Icon
+            title="remove"
+            size={16}
+            color={currentCombination.color}
+            type="remove"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="hamburger menu" size={16} color={currentCombination.color} type="hamburger" />
+          <Icon
+            title="hamburger menu"
+            size={16}
+            color={currentCombination.color}
+            type="hamburger"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="refresh" size={16} color={currentCombination.color} type="refresh" />
+          <Icon
+            title="refresh"
+            size={16}
+            color={currentCombination.color}
+            type="refresh"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="checkmark" size={16} color={currentCombination.color} type="ok" />
+          <Icon
+            title="checkmark"
+            size={16}
+            color={currentCombination.color}
+            type="ok"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="server rack" size={16} color={currentCombination.color} type="drive" />
+          <Icon
+            title="server rack"
+            size={16}
+            color={currentCombination.color}
+            type="drive"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="download" size={16} color={currentCombination.color} type="download" />
+          <Icon
+            title="download"
+            size={16}
+            color={currentCombination.color}
+            type="download"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="wrench" size={16} color={currentCombination.color} type="wrench" />
+          <Icon
+            title="wrench"
+            size={16}
+            color={currentCombination.color}
+            type="wrench"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="location pin" size={16} color={currentCombination.color} type="network" />
+          <Icon
+            title="location pin"
+            size={16}
+            color={currentCombination.color}
+            type="network"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="speech bubble" size={16} color={currentCombination.color} type="speech" />
+          <Icon
+            title="speech bubble"
+            size={16}
+            color={currentCombination.color}
+            type="speech"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="credit card" size={16} color={currentCombination.color} type="creditCard" />
+          <Icon
+            title="credit card"
+            size={16}
+            color={currentCombination.color}
+            type="creditCard"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="upload" size={16} color={currentCombination.color} type="upload" />
+          <Icon
+            title="upload"
+            size={16}
+            color={currentCombination.color}
+            type="upload"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="pie chart" size={16} color={currentCombination.color} type="chart" />
+          <Icon
+            title="pie chart"
+            size={16}
+            color={currentCombination.color}
+            type="chart"
+          />
         </IconSolid>
         <IconSolid
           bg={currentCombination.bg}
           borderColor={currentCombination.borderColor}
           border={`${borderWidth}px solid`}
         >
-          <Icon title="collapse arrows" size={16} color={currentCombination.color} type="collapse" />
+          <Icon
+            title="collapse arrows"
+            size={16}
+            color={currentCombination.color}
+            type="collapse"
+          />
         </IconSolid>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
-          <Icon title="expand arrows" size={16} color={iconOutlineColor} type="expand" />
+          color={iconOutlineColor}
+        >
+          <Icon
+            title="expand arrows"
+            size={16}
+            color={iconOutlineColor}
+            type="expand"
+          />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
+          color={iconOutlineColor}
+        >
           <Icon title="file" size={16} color={iconOutlineColor} type="file" />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
-          <Icon title="filter" size={16} color={iconOutlineColor} type="filter" />
+          color={iconOutlineColor}
+        >
+          <Icon
+            title="filter"
+            size={16}
+            color={iconOutlineColor}
+            type="filter"
+          />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
+          color={iconOutlineColor}
+        >
           <Icon title="gear" size={16} color={iconOutlineColor} type="gear" />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
-          <Icon title="shield" size={16} color={iconOutlineColor} type="shield" />
+          color={iconOutlineColor}
+        >
+          <Icon
+            title="shield"
+            size={16}
+            color={iconOutlineColor}
+            type="shield"
+          />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
+          color={iconOutlineColor}
+        >
           <Icon title="info" size={16} color={iconOutlineColor} type="info" />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
+          color={iconOutlineColor}
+        >
           <Icon title="mail" size={16} color={iconOutlineColor} type="mail" />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
+          color={iconOutlineColor}
+        >
           <Icon title="list" size={16} color={iconOutlineColor} type="list" />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
-          <Icon title="ok sign" size={16} color={iconOutlineColor} type="okSign" />
+          color={iconOutlineColor}
+        >
+          <Icon
+            title="ok sign"
+            size={16}
+            color={iconOutlineColor}
+            type="okSign"
+          />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
+          color={iconOutlineColor}
+        >
           <Icon title="pause" size={16} color={iconOutlineColor} type="pause" />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
-          <Icon title="lightning bolt" size={16} color={iconOutlineColor} type="bolt" />
+          color={iconOutlineColor}
+        >
+          <Icon
+            title="lightning bolt"
+            size={16}
+            color={iconOutlineColor}
+            type="bolt"
+          />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
-          <Icon title="flow chart" size={16} color={iconOutlineColor} type="flowchart" />
+          color={iconOutlineColor}
+        >
+          <Icon
+            title="flow chart"
+            size={16}
+            color={iconOutlineColor}
+            type="flowchart"
+          />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
-          <Icon title="clipboard" size={16} color={iconOutlineColor} type="clipboard" />
+          color={iconOutlineColor}
+        >
+          <Icon
+            title="clipboard"
+            size={16}
+            color={iconOutlineColor}
+            type="clipboard"
+          />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
+          color={iconOutlineColor}
+        >
           <Icon title="lock" size={16} color={iconOutlineColor} type="lock" />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
+          color={iconOutlineColor}
+        >
           <Icon title="help" size={16} color={iconOutlineColor} type="help" />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
+          color={iconOutlineColor}
+        >
           <Icon title="time" size={16} color={iconOutlineColor} type="time" />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
+          color={iconOutlineColor}
+        >
           <Icon title="door" size={16} color={iconOutlineColor} type="door" />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
+          color={iconOutlineColor}
+        >
           <Icon title="user" size={16} color={iconOutlineColor} type="user" />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
-          <Icon title="quotes" size={16} color={iconOutlineColor} type="quotes" />
+          color={iconOutlineColor}
+        >
+          <Icon
+            title="quotes"
+            size={16}
+            color={iconOutlineColor}
+            type="quotes"
+          />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
-          <Icon title="github" size={16} color={iconOutlineColor} type="github" />
+          color={iconOutlineColor}
+        >
+          <Icon
+            title="github"
+            size={16}
+            color={iconOutlineColor}
+            type="github"
+          />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
-          <Icon title="linkedin" size={16} color={iconOutlineColor} type="linkedin" />
+          color={iconOutlineColor}
+        >
+          <Icon
+            title="linkedin"
+            size={16}
+            color={iconOutlineColor}
+            type="linkedin"
+          />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
-          <Icon title="facebook" size={16} color={iconOutlineColor} type="facebook" />
+          color={iconOutlineColor}
+        >
+          <Icon
+            title="facebook"
+            size={16}
+            color={iconOutlineColor}
+            type="facebook"
+          />
         </IconOutline>
-        <IconOutline 
+        <IconOutline
           border={`${borderWidth + 2}px solid`}
-          color={iconOutlineColor}>
-          <Icon title="twitter" size={16} color={iconOutlineColor} type="twitter" />
+          color={iconOutlineColor}
+        >
+          <Icon
+            title="twitter"
+            size={16}
+            color={iconOutlineColor}
+            type="twitter"
+          />
         </IconOutline>
       </Div>
     </Div>

@@ -5,8 +5,8 @@ const pkg = require("./package.json")
 
 const isProd = process.env.NODE_ENV === "production"
 
-const fetchFiles = async filePath => {
-  const files = await fs.readdir(filePath)
+const fetchFiles = filePath => {
+  const files = fs.readdirSync(filePath)
 
   return files.reduce((acc, file) => {
     const elName = path.basename(file, ".js")
@@ -22,20 +22,9 @@ module.exports = {
     assetPrefix: isProd ? `https://${pkg.name}.cloudflare.design` : ""
   },
   assetPrefix: isProd ? `https://${pkg.name}.cloudflare.design` : "",
-  exportPathMap: async (defaultPathMap, { dev, dir, outDir }) => {
-    if (dev) {
-      return defaultPathMap
-    }
-
-    await fs.copyFile(
-      path.join(dir, ".nojekyll"),
-      path.join(outDir, ".nojekyll")
-    )
-    return defaultPathMap
-  },
-  webpack: async (config, {}) => {
-    const elements = await fetchFiles(path.join(__dirname, "elements"))
-    const components = await fetchFiles(path.join(__dirname, "components"))
+  webpack: (config, {}) => {
+    const elements = fetchFiles(path.join(__dirname, "elements"))
+    const components = fetchFiles(path.join(__dirname, "components"))
     config.plugins.push(
       new webpack.ProvidePlugin(elements),
       new webpack.ProvidePlugin(components)

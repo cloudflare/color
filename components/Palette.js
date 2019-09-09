@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "react-emotion"
+import styled from "@emotion/styled"
 
 import {
   space,
@@ -103,12 +103,7 @@ const Palette = ({
           onDrag={onDrag}
         />
       ))}
-      <AddColor
-        style={{ float: "left" }}
-        mt={2}
-        ml={2}
-        onAddColor={onAddColor}
-      />
+      <AddColor mt={2} ml={2} onAddColor={onAddColor} />
     </ClearFix>
   )
 }

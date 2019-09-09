@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { space, width, color, borders, borderColor } from "styled-system"
 
 const Hr = styled.hr(space, width, color, borders, borderColor, {
