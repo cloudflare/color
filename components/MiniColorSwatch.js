@@ -13,16 +13,16 @@ const MiniColorSwatch = ({ color, ...props }) => {
       <Div
         width={32}
         bg={color}
-        borderRadius='3px'
+        borderRadius="3px"
         mr={2}
-        css={`
-          height: 16px;
-        `}
+        css={{
+          height: "16px"
+        }}
       />
       <P
-        css={`
-          line-height: 1;
-        `}
+        css={{
+          lineHeight: 1
+        }}
         color={color}
         m={0}
         fontSize={1}
@@ -34,7 +34,7 @@ const MiniColorSwatch = ({ color, ...props }) => {
 }
 
 MiniColorSwatch.defaultProps = {
-  children: 'Aa'
+  children: "Aa"
 }
 
 export default MiniColorSwatch

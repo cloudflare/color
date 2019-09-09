@@ -3,7 +3,7 @@ import React from "react"
 const ColorSwatch = ({ color, ...props }) => {
   return (
     <Flex
-      display='inline-flex'
+      display="inline-flex"
       border="1px solid"
       borderColor={color}
       p={3}
@@ -19,9 +19,9 @@ const ColorSwatch = ({ color, ...props }) => {
         width={64}
       />
       <P
-        css={`
-          line-height: 1;
-        `}
+        css={{
+          lineHeight: 1
+        }}
         color={color}
         m={0}
         fontSize={8}

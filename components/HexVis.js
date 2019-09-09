@@ -52,9 +52,9 @@ export default ({ hexCode }) => {
                   <Br />+ {parseInt(hexChannel[1], 16)} × 16<Sup>1</Sup>
                   <Br />
                   <Div
-                    css={`
-                      height: 1px;
-                    `}
+                    css={{
+                      height: "1px"
+                    }}
                     bg="dust"
                     my={2}
                   />

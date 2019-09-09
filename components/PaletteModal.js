@@ -89,7 +89,7 @@ const PaletteModal = ({ palette, togglePaletteModal }) => {
               JS theme file
             </TextButton>
             <TextButton
-              px={3}
+              p={0}
               fontWeight={700}
               onClick={() => togglePaletteModal(false)}
               ml="auto"

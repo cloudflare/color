@@ -47,7 +47,6 @@ const TextButton = styled.button(
 
 TextButton.defaultProps = {
   border: 0,
-  p: 0,
   bg: "transparent"
 }
 

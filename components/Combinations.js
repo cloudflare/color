@@ -23,9 +23,9 @@ const Combinations = ({ availableCombos, onHideCombinations }) => {
           onClick={onHideCombinations}
           icon="left"
           ml={3}
-          css={`
-            backface-visibility: hidden;
-          `}
+          css={{
+            backfaceVisibility: "hidden"
+          }}
         />
         <H4 my={0} width={1} display="block" textAlign="center">
           {availableCombos.length} Accessible Combinations
@@ -34,9 +34,9 @@ const Combinations = ({ availableCombos, onHideCombinations }) => {
           onClick={onHideCombinations}
           icon="remove"
           mr={3}
-          css={`
-            backface-visibility: hidden;
-          `}
+          css={{
+            backfaceVisibility: "hidden"
+          }}
         />
       </Flex>
       <Flex width={1} flexWrap="wrap">
@@ -50,17 +50,22 @@ const Combinations = ({ availableCombos, onHideCombinations }) => {
             <Div
               width={[1, 1 / 2, 1 / 4]}
               key={i}
-              css={`
-                position: relative;
-              `}
+              css={{
+                position: "relative"
+              }}
             >
               <MiniTextBlock key={i} currentCombination={currentCombination} />
             </Div>
           )
         })}
         {combinationsLeftToView && (
-          <Div width={1} py={4} textAlign='center'>
-            <ButtonOutline color='gray.0' borderColor='gray.0' type="button" onClick={handleLoadMore}>
+          <Div width={1} py={4} textAlign="center">
+            <ButtonOutline
+              color="gray.0"
+              borderColor="gray.0"
+              type="button"
+              onClick={handleLoadMore}
+            >
               Load more combos
             </ButtonOutline>
           </Div>

@@ -666,10 +666,10 @@ const MainUI = ({
                   width={1}
                   borderRadius={1}
                   value={importValue}
-                  css={`
-                    resize: vertical;
-                    min-height: 128px;
-                  `}
+                  css={{
+                    resize: "vertical",
+                    minHeight: "128px"
+                  }}
                   onChange={e => setImportValue(e.target.value)}
                 />
                 <Div textAlign="center" mt={2}>
