@@ -5,15 +5,16 @@ import Div from "../elements/Div"
 
 const CustomH1 = props => <H1 fontSize={[5, 6, 9]} {...props} />
 const CustomH2 = props => <H2 fontSize={[4, 5, 6]} {...props} />
-const CustomLi = props => <Li mb={2} {...props} />
-const Wrapper = props => <Div px={[3, 5, 6]} {...props} />
+const CustomLi = props => <Li mb={2} css={{ lineHeight: 1.5 }} {...props} />
+const Wrapper = props => <Div px={[3, 5, 6]} py={[2, 4]} {...props} />
 const CustomImg = props => (
   <Figure m={0} my={5} px={4}>
     <Img
       css={{ display: "block" }}
       mx="auto"
       width={3 / 4}
-      src={props.src}
+      loading="lazy"
+      src={`${process.env.assetPrefix}${props.src}`}
       alt={props.alt}
     />
     <Figcaption textAlign="center" fontSize={1} pt={2} color="gray.2">
@@ -27,6 +28,7 @@ const MDXComponents = {
   li: CustomLi,
   h2: CustomH2,
   img: CustomImg,
+  a: A,
   p: P,
   wrapper: Wrapper
 }

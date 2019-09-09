@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import getConfig from "next/config"
 import { get as getIdb, set as setIdb } from "idb-keyval"
 import palx from "palx"
 import OutsideClickHandler from "react-outside-click-handler"
@@ -25,9 +24,6 @@ import PlayerControls from "../components/PlayerControls"
 import Colorbox from "../components/Colorbox"
 import ColorTable from "../components/ColorTable"
 import isHex from "../utils/isHex"
-
-const { publicRuntimeConfig } = getConfig()
-const { assetPrefix } = publicRuntimeConfig
 
 const resetPinned = {
   color: false,
@@ -408,7 +404,7 @@ const MainUI = ({
         filter:
           colorFilter === "none"
             ? "none"
-            : `url(${assetPrefix}/static/filters.svg#${colorFilter})`
+            : `url(${process.env.assetPrefix}/static/filters.svg#${colorFilter})`
       }}
     >
       <Div width={[1]}>

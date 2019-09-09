@@ -1,11 +1,12 @@
 import React from "react"
 import MDXWrapper from "../components/MDXWrapper"
-import AboutPost from "../about.mdx"
+import Post from "../about.mdx"
 
 const About = () => {
   return (
     <MDXWrapper>
-      <AboutPost />
+      <Post />
+      <SiteFooter />
     </MDXWrapper>
   )
 }

@@ -24,7 +24,8 @@ const fetchFiles = filePath => {
 }
 
 module.exports = withMDX({
-  publicRuntimeConfig: {
+  target: "serverless",
+  env: {
     assetPrefix: isProd ? `https://${pkg.name}.cloudflare.design` : ""
   },
   assetPrefix: isProd ? `https://${pkg.name}.cloudflare.design` : "",

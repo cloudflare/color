@@ -1,5 +1,4 @@
 {
   "version": 2,
-  "name": "color",
-  "builds": [{ "src": "package.json", "use": "@now/static-build" }]
+  "name": "color"
 }

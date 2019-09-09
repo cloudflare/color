@@ -6,15 +6,14 @@
     "dev": "next -p $(./node_modules/detect-port/bin/detect-port 3000)",
     "build": "next build",
     "start": "next start",
-    "deploy:preview": "now",
-    "now-build": "next build && next export -o dist"
+    "deploy:preview": "now"
   },
   "dependencies": {
     "@emotion/babel-preset-css-prop": "^10.0.17",
     "@emotion/core": "^10.0.17",
     "@emotion/styled": "^10.0.17",
-    "@mdx-js/loader": "^1.4.4",
-    "@mdx-js/react": "^1.4.4",
+    "@mdx-js/loader": "^1.4.5",
+    "@mdx-js/react": "^1.4.5",
     "@next/mdx": "^9.0.5",
     "@styled-system/css": "^5.0.23",
     "bezier-easing": "^2.1.0",
