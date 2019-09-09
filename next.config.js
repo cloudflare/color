@@ -31,6 +31,7 @@ module.exports = {
     )
     config.resolve = {
       alias: {
+        ...(config.resolve.alias || {}),
         elements: path.resolve(__dirname, "elements/"),
         components: path.resolve(__dirname, "components/")
       }
