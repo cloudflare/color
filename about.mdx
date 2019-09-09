@@ -173,7 +173,10 @@ While we’re excited about the beginning of this tool, we’re far from done. H
 - **Live preview of site** - with ability to cycle through applications of the existing palette, or cycle through accessible options with a new palette. Could potentially deploy a worker to apply design changes at the edge of our network. Below is a proof of concept Harley Turan put together.
 
 <video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
-  <source src="/static/about/workers.mp4" type="video/mp4" />
+  <source
+    src={`${process.env.assetPrefix}/static/about/workers.mp4`}
+    type="video/mp4"
+  />
 </video>
 
 - **Syntax theme generator** - apply all possible accessible combinations of a palette to a code syntax theme. Allow export for all editors and environments.
@@ -183,14 +186,19 @@ While we’re excited about the beginning of this tool, we’re far from done. H
 - **Color migration tools** - define inputs for a new and old palette. Visualize how to migrate from one palette to another with ability to drag and drop results for further customization. Outputs interactive and customizable migration documentation.
 
 <video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
-  <source src="/static/about/importcolors.mp4" type="video/mp4" />
+  <source
+    src={`${process.env.assetPrefix}/static/about/importcolors.mp4`}
+    type="video/mp4"
+  />
 </video>
 
 - **Grid view for docs** - Currently there is only a list view of the documentation but should allow for switching between grid and list views.
   ![](/static/about/grid-view.png)
 
 - **Open source components** - Open source palette visualization and docs components so you can configure the themes and use them in your own style guide.
+
 - **Flexible color application** - Currently we show 5 colors with strict mappings in the preview panel (border, background, color, parent background). Ideally you could apply colors as you see fit to the preview elements. For instance you might want some text inputs to have light backgrounds and some to have transparent backgrounds. Or maybe you want to see different color borders on the icons than on the text inputs. Ideally you could drag a color onto any part of an element to change its color mapping.
+
 - **Custom content** - Components and content could be 100% configurable. Allowing for mixing and matching components from various popular open source UI kits and libraries e.g. Rebass, Bootstrap, Material UI, Ant, as well as customizing text and image content.
 - **Fluid editing** - Ability to select multiple colors and edit them in a uniform manner (e.g. select all reds and desaturate by 8%) or apply an easing curve across any property.
 - **Named Groups in Palette** - Currently we export a flat array but in the future we’d like to allow for attempting to sort colors into groups that can be customized if needed. Additionally new groups could be added. Group names would be configurable.
