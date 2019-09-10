@@ -2,7 +2,7 @@
 
 > **Color is my day-long obsession, joy and torment -** Claude Monet
 
-![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562304914520_16777216colors.png)
+![](/static/thinking/colorspace.png)
 
 Over the last two years we’ve tried to improve our usage of color at Cloudflare. There were a number of forcing functions that made this work a priority. As a small team of designers and engineers we had inherited a bunch of design work that was a mix of values built by multiple teams. As a result it was difficult and unnecessarily time consuming to add new colors when building new components.
 
@@ -10,31 +10,31 @@ We also wanted to improve our accessibility. While we were doing pretty well, we
 
 Cloudflare had also undergone a rebrand around 2016 and while our marketing site had rolled out an updated set of visuals, our product ui as well as a number of existing web properties were still using various versions of our old palette.
 
-![Cloudflare.com in 2016](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562297279577_Screen+Shot+2019-07-04+at+11.27.08+PM.png)
+![Cloudflare.com in 2016](/static/thinking/cf-2016.png)
 
-![Cloudflare.com in 2019](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562297286026_Screen+Shot+2019-07-04+at+11.27.16+PM.png)
+![Cloudflare.com in 2019](/static/thinking/cf-2019.png)
 
 Our product palette wasn’t well balanced by itself. Many colors had been chosen one or two at a time. You can see how we chose blueberry, ice, and water at a different point in time than marine and thunder.
 
-![The color section of our theme file was partially ordered chronologically](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562707722087_Screen+Shot+2018-04-26+at+6.23.46+PM.png)
+![The color section of our theme file was partially ordered chronologically](/static/thinking/cf-color-palette.png)
 
 Lacking visual cohesion within our own product, we definitely weren’t providing a cohesive visual experience between our product and our site for our customers. The transition from the nice blues, purples, with a nice accent color to our green CTAs wasn’t the streamlined experience we wanted to afford our users.
 
-![Cloudflare.com 2017](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562298594604_Screen+Shot+2019-07-04+at+11.49.23+PM.png)
-![Sign in page 2017](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562708037911_Screen+Shot+2017-10-09+at+3.03.15+PM.png)
-![Our app dashboard in 2017](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562298395971_Screen+Shot+2018-05-09+at+6.12.39+PM-2.png)
+![Cloudflare.com 2017](/static/thinking/cf-2017.png)
+![Sign in page 2017](/static/thinking/cf-login-2017.png)
+![Our app dashboard in 2017](/static/thinking/cf-dash-2017.png)
 
-# Reworking our Palette
+## Reworking our Palette
 
 Our first step was to audit what we already had. Cloudflare has been around long enough to have more than one website. Beyond cloudflare.com we, like many companies have dozens of web properties that are publicly accessible. From our community forums, support docs, blog, status page, to numerous micro sites.
 
 All in all we have dozens of front-end codebases that each represent one more chance to introduce design entropy to our system. So we were curious to answer the question - what colors were we currently using? Were there consistent patterns we could document for further reuse? Could we build a living style guide that didn’t cover just one site, but all of them?
 
-![Screenshots of pages from cloudflare.com contrasted with screenshots from our product](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562717202591_pages.png)
+![Screenshots of pages from cloudflare.com contrasted with screenshots from our product](/static/thinking/cf-screenshots.png)
 
 Our curiosity got the best of us and we went about exploring ways we could visualize our design language across all of our sites.
 
-![Above - our product palette. Below - our marketing palette aligned by hue](https://cloudflare-assets.s3.amazonaws.com/color-sort.png)
+![Above - our product palette. Below - our marketing palette aligned by hue](/static/thinking/color-sort.png)
 
 **A time machine for color**
 
@@ -42,17 +42,22 @@ As we first started to identify the scale of our color problems, we tried to thi
 
 Below is a visualization of palettes from 9 different websites changing over a period of 6 years. Above the palettes is a component that spits out common colors, across all of these sites. The only two common colors across all properties (appearing for only a brief flash) were #fff and transparent. Over time we haven’t been very consistent with ourselves.
 
-![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562295036104_colors-time.gif)
+![](/static/thinking/palette-over-time.gif)
 
 If we drill in to look at our marketing site compared to our dashboard app - it looks like the video below. We see a bit more overlap at first and then a significant divergence at the 16 second mark when our product palette grew significantly. At the 22 second mark you can see the marketing palette completely change as a result of the rebrand while our product palette stays the same. As time goes on you can see us becoming more and more inconsistent across the two code bases.
 
-https://www.dropbox.com/s/r0lncktpb0tgjex/comparison-over-time.mp4?dl=0
+<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
+  <source
+    src={`${process.env.assetPrefix}/static/thinking/comparison-over-time.mp4`}
+    type="video/mp4"
+  />
+</video>
 
 As a product team we had some catching up to do improve our usage of color and to align ourselves with the company brand. The good news was, there was no where to go but up.
 
 This style of historical audit gives us a visual indication with real data. We can visualize for stakeholders how consistent and similar our usage of color is across products and if we are getting better or worse over time. Having this type of feedback loop was invaluable for us - as auditing this manually is incredibly time consuming so it often doesn’t get done. Hopefully in the future as it’s standard to track various performance metrics over time at a company it will be standard to be able to visualize your current levels of design entropy.
 
-# Picking colors
+## Picking colors
 
 After our initial audit revealed there wasn’t a lot of consistency across sites, we went to work to try and construct a color palette that could potentially be used for sites the product team owned. It was time to get our hands dirty and start “picking colors”.
 
@@ -60,46 +65,57 @@ Hindsight is always 20/20. We didn’t start out on day one trying to generate s
 
 Our logo is made up of two oranges. Both of these seemed like prime candidates to generate a palette from.
 
-![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562717933838_Screen+Shot+2019-07-09+at+8.18.35+PM.png)
+![](/static/thinking/logo.png)
 
 We played around with a number of algorithms that took a single color and created a palette. From the initial color we generated an array scales for each hue. Initial attempts found us applying the exact same curves for luminosity to each hue, but as visual perception of hues is so different, this resulted in wildly different contrasts at each step of the scale.
 
 Below are a few of our initial attempts at palette generation. [Jeeyoung Jung](https://uxplanet.org/@Jeeyoungjung) did a brilliantly fabulous writeup around this last year. - https://uxplanet.org/designing-systematic-colors-b5d2605b15c
 
-![Visualizing the peaks of color intensity](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562308339009_Screen+Shot+2017-09-06+at+4.32.18+PM.png)
+![Visualizing the peaks of color intensity](/static/thinking/peaks-of-color.png)
 
 We can see the intensity of the colors change across hue in peaks, with yellow and green being the most dominant. One of the downsides of this, is when you are rapidly iterating through theming options, the inconsistent relationships between steps across hues can make it time consuming to keep visual harmony in your interface.
 
 The video below is another way to visualize this phenomenon. The dividing line in the color picker indicates which part of the palette will be accessible with black and white. Notice how drastically the line changes around green and yellow. And then look back at the charts above.
 
-https://www.dropbox.com/s/to8ref95pcxti1u/colors.mov?dl=0
+<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
+  <source
+    src={`${process.env.assetPrefix}/static/thinking/colors.mp4`}
+    type="video/mp4"
+  />
+</video>
 
 Demo of https://kevingutowski.github.io/color.html
 
 After fiddling with a few different generative algorithms (we made a lot of ugly palettes… really quite a lot) we decided to try a more manual approach. We pursued creating custom curves for each hue in an effort to keep the contrast scales as optically balanced as possible.
 
-https://www.dropbox.com/s/5zwaxuil3wpsifc/palette-generator.mp4?dl=0
+<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
+  <source
+    src={`${process.env.assetPrefix}/static/thinking/palette-generator.mp4`}
+    type="video/mp4"
+  />
+</video>
 
-![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562727295128_Screen+Shot+2018-01-27+at+10.14.32+PM.png)
-![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562727322231_Screen+Shot+2018-05-09+at+3.04.54+PM.png)
+![](/static/thinking/generative-palette.png)
+![](/static/thinking/cf-palette.png)
 
-![Palette generator concept](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309951738_Screen+Shot+2017-07-11+at+11.59.18+AM.png)
-![Heavily muted palette](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309960625_Screen+Shot+2017-08-23+at+5.40.12+PM.png)
+![Palette generator concept](/static/thinking/palette-generator-concept.png)
+![Heavily muted palette](/static/thinking/muted-palette.png)
 
-![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562727412215_Screen+Shot+2018-03-18+at+7.47.48+PM.png)
+![](/static/thinking/palette-view-concept.png)
 
 Generating different color palettes makes you confront a basic question. How do you tell if a palette is good? Are some palettes better than others? In an effort to answer this question we constructed various feedback loops to help us evaluate palettes as quickly as possible. We tried a few methods to stress test a palette. At first we attempted to grab the “nearest color” for a bunch of our common UI colors. This wasn't always helpful as sometimes you actually want the step above or below the closest existing color. But it was helpful to visualize for a few reasons.
 
-![Generated palette above a set of components previewing the old and new palette for comparison](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309980698_Screen+Shot+2017-09-07+at+5.06.16+PM.png)
+![Generated palette above a set of components previewing the old and new palette for comparison](/static/thinking/old-vs-new.png)
 
 Sometime during our exploration in this space, [we stumbled across this tweet thread](https://twitter.com/paniq/status/1036299654378467329) about building a palette for pixel art. There are a lot of places web and product designers can draw inspiration from game designers. Here are some screenshots of @paniq developing a 16 color palette.
 
-![Two color palettes visualized to create 3d objects https://twitter.com/paniq/status/1036299654378467329](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562286663289_IMG_7633+2.JPG)
-![A color palette applied in a few different contexts https://twitter.com/paniq/status/1037406840999567360](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562286671785_IMG_7634.JPG)
+![Two color palettes visualized to create 3d objects https://twitter.com/paniq/status/1036299654378467329](/static/thinking/palettes-for-pixel-art.jpeg)
+
+![A color palette applied in a few different contexts https://twitter.com/paniq/status/1037406840999567360](/static/thinking/pixel-art-palette-concept.jpeg)
 
 Here we see a similar concept where a number of different palettes are applied to the same component. This view shows us two things, the different ways a single palette can be applied to a sphere, and also the different aesthetics across color palettes.
 
-![Different color palettes previewed against a common component https://twitter.com/JstFredrik/status/1145753143852064768](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562286906595_D-aIQl9XkAQRPPm.png-large.png)
+![Different color palettes previewed against a common component https://twitter.com/JstFredrik/status/1145753143852064768](/static/thinking/multiple-palettes-applied.png)
 
 It’s almost surprising that the default way to construct a color palette for apps and sites isn’t to build it while previewing its application against the most common UI patterns. As designers, there are a lot of consistent uses of color we could have baselines for. Many enterprise apps are centered around white background with blue as the primary color with mixtures of grays to add depth around cards and page sections. Red is often used for destructive actions like deleting some type of record. Gray for secondary actions. Maybe it’s an outline button with the primary color for secondary actions. Either way - the margins between the patterns aren’t that large in the grand scheme of things.
 
@@ -107,22 +123,30 @@ Consider the use case of designing UI while the palette or usage of color hasn't
 
 How do we visualize the various ways a palette will look when applied to an interface? Here are examples of how palettes are shown on a palette list for pixel artists.
 
-![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562700231374_Screen+Shot+2019-07-09+at+3.13.02+PM.png)
-![https://lospec.com/palette-list/sweetie-16](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562700326574_sweetie-16-palette-example-palette-example-by-grafxkid.png)
-![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562700334121_sweetie-16-palette-example-palette-example-2-by-grafxkid.png)
+![](/static/thinking/random-palette.png)
 
-![https://lospec.com/palette-list/vines-flexible-linear-ramps](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562700430468_Screen+Shot+2019-07-09+at+3.25.00+PM.png)
-![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562700405138_vines-flexible-linear-ramps-palette-example-palette-usage-example-by-vine2d-2.png)
+![https://lospec.com/palette-list/sweetie-16](/static/thinking/example-palette-for-pixel-art.png)
+
+![](/static/thinking/palette-used-in-scene.png)
+
+![https://lospec.com/palette-list/vines-flexible-linear-ramps](/static/thinking/random-palette-1.png)
+
+![](/static/thinking/pixel-art-palette.png)
 
 One method of visualization is to define a common set of primitive ui elements and show each one of them with a single set of colors applied. In isolation this can be helpful. This mode would make it easy to vet a single combination of colors and which ui elements it might be best applied to.
 
 Alternatively we might want to see a composed interface with the closest colors from the palette applied. Consider a set of buttons that includes red, green, blue, and gray button styles. Seeing all of these together can help us visualize the relative nature of these buttons side by side. Given a baseline palette for common UI, we could swap to a new palette and replace each color with the "closest" color. This isn't always a full-proof solution as there are many edge cases to cover. e.g. what happens when replacing a palette of 134 colors with a palette of 24 colors? Even still, this could allow us to quickly take a stab at automating how existing interfaces would change their appearance given a change to the underlying system. Whether locally or against a live site, this mode of working would allow for designers to view a color in multiple contets to truly asses its quality.
 
-https://www.dropbox.com/s/z0ub2t0831wfvpp/cloudflare-demo.mp4?dl=0
+<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
+  <source
+    src={`${process.env.assetPrefix}/static/thinking/cloudflare-demo.mp4`}
+    type="video/mp4"
+  />
+</video>
 
 After moving on from the idea of generating a palette from a single color, we attempted to use our logo colors as well as our primary brand colors to drive the construction of modular scales. Our goal was to create a palette that would improve contrast for accessibility, stay true to our visual brand, work predictably for developers, work for data visualizations, and provide the ability to design visually balanced and attractive interfaces. No sweat.
 
-![Brand colors showing Hue and Saturation level](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562308924697_Screen+Shot+2019-07-05+at+2.41.26+AM.png)
+![Brand colors showing Hue and Saturation level](/static/thinking/hue-and-sat-palette.png)
 
 While we knew going in we might not use every step in every hue, we wanted full coverage across the spectrum so that each hue had a consistent optical difference between each step. We also had no idea which steps across which hues we were going to need just yet. As they would just be variables in a theme file it didn’t add any significant code footprint to expose the full generated palette either.
 
@@ -132,96 +156,110 @@ In the future if when we did need to augment the available colors, we could edit
 
 The first interface we built for this work was to output all of the scales vertically, with their contrast scores with both white and black on the right hand side. To aid scannability we bolded the values that were above the 4.5 threshold. As we edited the curves, we could see how the contrast ratios were affected at each step. Below you can see an early starting point before the scales were balanced. Red has 6 accessible combos with white, while yellow only has 1. We initially explored having the gray scale be larger than the others.
 
-![Early iteration of palette preview during development](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562308614819_Screen+Shot+2018-01-24+at+6.07.27+PM.png)
+![Early iteration of palette preview during development](/static/thinking/early-palette-preview.png)
 
 As both screen luminosity and ambient light can affect perception of color we developed on two monitors, one set to maximum and one set to minimum brightness levels. We also replicated the color scales with a grayscale filter immediately below to help illustrate visual contrast between steps AND across hues. Bouncing back and forth between the grayscale and saturated version of the scale serves as a great baseline reference. We found that going beyond 10 steps made it difficult to keep enough contrast between each step to keep them distinguishable from one another.
 
-![Monitors set to different luminosity](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562308536989_IMG_2771.JPG)
+![Monitors set to different luminosity](/static/thinking/lum-vs-lum.jpeg)
 
-![Close up of visual difference](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562308557638_IMG_7195.JPG)
+![Close up of visual difference](/static/thinking/lum-vs-lum-upclose.jpeg)
 
 Taking a page from our game design friends - as we were balancing the scales and exploring how many steps we wanted in the scales, we were also stress testing the generated colors against various analytics components from our component library.
 
 Our slightly random collection of grays had been a particular pain point as they appeared muddy in a number of places within our interface. For our new palette we used the slightest hint of blue to keep our grays consistent and just a bit off from being purely neutral.
 
-![Optically balanced scales](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562727438921_Screen+Shot+2018-04-26+at+4.45.58+PM.png)
+![Optically balanced scales](/static/thinking/balanced-palette.png)
 
 With a palette consisting of 90 colors, the amount of combinations and permutations that can be applied to data visualizations is vast and can result in a wide variety of aesthetic directions. The same palette applied to both line and bar charts with different data sets can look substantially different, enough that they might not be distinguishable as being the exact same palette. Working with some of our engineering counterparts, we built a pipeline that would put up the same components rendered against different data sets, to simulate the various shapes and sizes the graph elements would appear in. This allowed us to rapidly test the appearance of different palettes. This workflow gave us amazing insights into how a palette would look in our interface. No matter how many hours we spent staring at a palette, we couldn't get an accurate sense of how the colors would look when composed within an interface.
 
-![Full theme minus green](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309332132_Screen+Shot+2018-01-25+at+4.04.14+PM.png)
-![Blues and Oranges](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309337573_Screen+Shot+2018-01-25+at+5.32.47+PM.png)
+![Full theme minus green](/static/thinking/theme-minus-green.png)
 
-![Grayscale example](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309404398_Screen+Shot+2018-01-25+at+5.42.36+PM.png)
-![Monochromatic Indigo](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309412223_Screen+Shot+2018-01-25+at+5.43.22+PM.png)
+![Blues and Oranges](/static/thinking/theme-blues-oranges.png)
 
-![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309432788_Screen+Shot+2018-04-04+at+9.15.40+PM.png)
-![](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309427760_Screen+Shot+2018-03-22+at+5.25.13+PM.png)
+![Grayscale example](/static/thinking/theme-grayscale.png)
 
-![Analytics charts with blues and purples](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309481053_Screen+Shot+2018-04-26+at+6.22.59+PM.png)
-![Analytics charts with blues and greens](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309492337_Screen+Shot+2018-04-26+at+6.42.23+PM.png)
+![Monochromatic Indigo](/static/thinking/theme-indigo.png)
 
-![Analytics charts with a blues and oranges. Telling the colors of the lines apart is a different visual experience than separating out the dots in sequential order as they appear in the legend.](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309505727_Screen+Shot+2018-04-26+at+6.36.20+PM+copy.png)
+![](/static/thinking/chart-blue.png)
+
+![](/static/thinking/chart-blue-1.png)
+
+![Analytics charts with blues and purples](/static/thinking/charts-with-blue-purple.png)
+
+![Analytics charts with blues and greens](/static/thinking/charts-blue-green.png)
+
+![Analytics charts with a blues and oranges. Telling the colors of the lines apart is a different visual experience than separating out the dots in sequential order as they appear in the legend.](/static/thinking/charts-blue-oranges.png)
 
 We experimented with a number of ideas on visualizing different sizes and shapes of colors and how they affected our perception of how much a color was changing element to element. In the first frame it is most difficult to tell the values at 2% and 6% apart given the size and shape of the elements.
 
-https://www.dropbox.com/s/awxg9f5mhqnxl6b/generative-charts.mov?dl=0
+<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
+  <source
+    src={`${process.env.assetPrefix}/static/thinking/generative-charts.mp4`}
+    type="video/mp4"
+  />
+</video>
 
 In an effort to make sure everything we are building will be visually accessible - we built a react component that will preview how a design would look if you were colorblind. The component applies svg filters to it to simulate alternate ways someone can perceive color.
 
-![Analytics component previewed against 8 different types of color blindness](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309737737_Screen+Shot+2019-07-03+at+1.19.57+PM.png)
+![Analytics component previewed against 8 different types of color blindness](/static/thinking/charts-previewed.png)
 
 While this is previewing an analytics component, really any component or page can be previewed with this method. We’ve also released a Figma plugin that simulates this visualization for a component as well.
 
-    import React from "react"
+```
+import React from "react"
 
-    const filters = [
-      'achromatopsia',
-      'protanomaly',
-      'protanopia',
-      'deuteranomaly',
-      'deuteranopia',
-      'tritanomaly',
-      'tritanopia',
-      'achromatomaly',
-    ]
+const filters = [
+  'achromatopsia',
+  'protanomaly',
+  'protanopia',
+  'deuteranomaly',
+  'deuteranopia',
+  'tritanomaly',
+  'tritanopia',
+  'achromatomaly',
+]
 
-    const ColorBlindFilter = ({itemPadding, itemWidth, ...props }) => {
-      return (
-          <div  {...props}>
-            {filters.map((filter, i) => (
-              <div
-                style={{filter: 'url(/filters.svg#'+filter+')'}}
-                width={itemWidth}
-                px={itemPadding}
-                key={i+filter}
-              >
-                {props.children}
-              </div>
-            ))}
+const ColorBlindFilter = ({itemPadding, itemWidth, ...props }) => {
+  return (
+      <div  {...props}>
+        {filters.map((filter, i) => (
+          <div
+            style={{filter: 'url(/filters.svg#'+filter+')'}}
+            width={itemWidth}
+            px={itemPadding}
+            key={i+filter}
+          >
+            {props.children}
           </div>
-      )
-    }
+        ))}
+      </div>
+  )
+}
 
-    ColorBlindFilter.defaultProps = {
-      display: 'flex',
-      justifyContent: 'space-around',
-      flexWrap: 'wrap',
-      width: 1,
-      itemWidth: 1/4
-    }
+ColorBlindFilter.defaultProps = {
+  display: 'flex',
+  justifyContent: 'space-around',
+  flexWrap: 'wrap',
+  width: 1,
+  itemWidth: 1/4
+}
 
-    export default ColorBlindFilter
+export default ColorBlindFilter
+```
 
 After quite a few iterations, we had come up with a color palette. Each scale was optically aligned with our brand colors. The 5th step in each scale is the closest to the original brand colors but is slightly adjusted so it’s accessible with both white and black.
 
-![Optically balanced scale](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562309190732_Screen+Shot+2018-04-26+at+4.50.27+PM.png)
-![Palette preview as both fully saturated and desaturated](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562308856308_Screen+Shot+2019-07-05+at+2.40.19+AM.png)
+![Optically balanced scale](/static/thinking/contrast-score.png)
 
-[Lyft’s writeup](https://design.lyft.com/re-approaching-color-9e604ba22c88and) [**“Re-approaching color”**](https://design.lyft.com/re-approaching-color-9e604ba22c88and) and [Jeeyoung Jung’s “](https://uxplanet.org/designing-systematic-colors-b5d2605b15c)[**Designing Systematic Colors**](https://uxplanet.org/designing-systematic-colors-b5d2605b15c)[”](https://uxplanet.org/designing-systematic-colors-b5d2605b15c) are some of the best write-ups on how to work with color at scale you can find.
+![Palette preview as both fully saturated and desaturated](/static/thinking/palette-desaturated.png)
 
-# Color migrations
+[Lyft’s writeup](https://design.lyft.com/re-approaching-color-9e604ba22c88and)
 
-![A visual representation of how the legacy palette colors would translate to the new scales.](https://cloudflare-assets.s3.amazonaws.com/migration.png)
+[**“Re-approaching color”**](https://design.lyft.com/re-approaching-color-9e604ba22c88and) and [Jeeyoung Jung’s “](https://uxplanet.org/designing-systematic-colors-b5d2605b15c)[**Designing Systematic Colors**](https://uxplanet.org/designing-systematic-colors-b5d2605b15c)[”](https://uxplanet.org/designing-systematic-colors-b5d2605b15c) are some of the best write-ups on how to work with color at scale you can find.
+
+## Color migrations
+
+![A visual representation of how the legacy palette colors would translate to the new scales.](/static/thinking/palette-migration.png)
 
 Getting a team of people to agree on a new color palette is a journey in and of itself. By the time you get everyone to consensus it’s tempting to just collapse into a heap and never think about colors ever again. Unfortunately the work doesn’t stop at this point. Now that we’ve picked our palette, it’s time to get it implemented so this bike shed is painted once and for all.
 
@@ -231,44 +269,57 @@ We found it was more common than expected that engineers and designers wanted to
 
 There are times when migrating colors, the closest color isn't actually what you want. Given the scenario where your brand color has changed from blue to purple, you might want to be porting all blues to the closest purple within the palette, not the closest blues which might still exist in your palette. To help visualize migrations as well as get suggestions on how to consolidate values within the old scale, we of course built a little tool. Here we can define those translations and import a color palette from a URL import. As we still have. a number of web properties to update to our palette, this simple tool has continued to prove useful.
 
-https://www.dropbox.com/s/456m28cdx2q90mf/importcolors.mov?dl=0
+<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
+  <source
+    src={`${process.env.assetPrefix}/static/thinking/fetch-palette.mp4`}
+    type="video/mp4"
+  />
+</video>
 
 We wanted to be as gentle as possible in transitioning to the new palette in usage. While the developers found string names for colors brittle and unpredictable, it was still a more familiar system for some than this new one. We first just added in our new palette to the existing theme for usage moving forward. Then we started to port colors for existing components and pages.
 
 For our colleagues, we wrote out desired translations and offered warnings in the console that a color was deprecated, with a reference to the new theme value to use.
 
-https://www.dropbox.com/s/ken9fockow7wfrs/pasted-image.tiff?dl=0
+<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
+  <source
+    src={`${process.env.assetPrefix}/static/thinking/fetch-palette.mp4`}
+    type="video/mp4"
+  />
+</video>
 
-![Example of how to check for usage of deprecated values](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562310323443_Screen+Shot+2018-05-02+at+11.14.07.png)
+![Example of console warning when using deprecated color](/static/thinking/invalid-colors.png)
+
+![Example of how to check for usage of deprecated values](/static/thinking/invalid-colors-code.png)
 
 While we had a few bugs along the way, the team was supportive and helped us fix bugs almost as quickly as we could find them.
 
 We’re still in the process of updating our web properties with our new palette, largely prioritizing accessibility first while trying to create a more consistent visual brand as a nice by-product of the work. A small example of this is our system status page. In the first image, the blue links in the header, the green status bar, and the about copy, were all inaccessible against their backgrounds.
 
-![cloudflarestatus.com in 2017](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562708952187_Screen+Shot+2019-07-09+at+5.48.13+PM.png)
-![cloudflarestatus.com in 2019 with an accessible green](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562708924088_Screen+Shot+2019-07-09+at+5.46.51+PM.png)
+![cloudflarestatus.com in 2017](/static/thinking/cloudflare-status-2017.png)
+
+![cloudflarestatus.com in 2019 with an accessible green](/static/thinking/cloudflare-status-2019.png)
 
 A lot of the changes have been subtle - most notably the green we use in the dashboard is a lot more inline with our brand colors than before. In addition we’ve also been able to add visual balance by not just using straight black text on background colors. Here we added one of the darker steps from the corresponding scale, to give it a bit more visual balance.
 
-![Notifications 2017 - Black text](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562769344467_Screen+Shot+2018-05-30+at+12.43.58+PM.png)
+![Notifications 2017 - Black text](/static/thinking/cf-notifications-2017.png)
 
-![Notifications 2018 - Updated palette. Text is set to 1st step in corresponding scale of background color.](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562769349253_Screen+Shot+2018-05-30+at+12.44.04+PM.png)
+![Notifications 2018 - Updated palette. Text is set to 1st step in corresponding scale of background color.](/static/thinking/cf-notifications-2018.png)
 
-![Example page within our Dashboard in 2017 vs 2019](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562703082933_dashboard-2017-2019.png)
+![Example page within our Dashboard in 2017 vs 2019](/static/thinking/2017-2019.png)
 
 While we aren’t perfect yet, we’re making progress towards more visual cohesion across our marketing materials and products.
 
 **2017**
 
-![Cloudflare.com 2017](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562298594604_Screen+Shot+2019-07-04+at+11.49.23+PM.png)
-![Sign in page 2017](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562708037911_Screen+Shot+2017-10-09+at+3.03.15+PM.png)
-![Our app dashboard in 2017](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562298395971_Screen+Shot+2018-05-09+at+6.12.39+PM-2.png)
+![Cloudflare.com 2017](/static/thinking/cf-2017.png)
+![Sign in page 2017](/static/thinking/cf-login-2017.png)
+![Our app dashboard in 2017](/static/thinking/cf-dash-2017.png)
 
 **2019**
 
-![Cloudflare homepage](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562708432919_Screen+Shot+2019-07-09+at+5.39.28+PM.png)
-![Updated Account Dashboard](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562708302430_Screen+Shot+2019-07-09+at+5.36.10+PM.png)
-![Updated Site Dashboard](https://paper-attachments.dropbox.com/s_9A96D19128AB844D8D1AD48F164EA58215FA019EB8308444196CFF5FC7DAF26E_1562708308182_Screen+Shot+2019-07-09+at+5.36.23+PM.png)
+![Cloudflare homepage](/static/thinking/cf-home-2019.png)
+![Updated Account Dashboard](/static/thinking/cf-accounts-2019.png)
+![Updated Site Dashboard](/static/thinking/cf-dash-2019.png)
 
 ## Next steps
 
