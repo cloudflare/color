@@ -1,3 +1,5 @@
+import Video from "./components/Video"
+
 # Thinking about color
 
 > **Color is my day-long obsession, joy and torment -** Claude Monet
@@ -46,12 +48,7 @@ Below is a visualization of palettes from 9 different websites changing over a p
 
 If we drill in to look at our marketing site compared to our dashboard app - it looks like the video below. We see a bit more overlap at first and then a significant divergence at the 16 second mark when our product palette grew significantly. At the 22 second mark you can see the marketing palette completely change as a result of the rebrand while our product palette stays the same. As time goes on you can see us becoming more and more inconsistent across the two code bases.
 
-<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
-  <source
-    src={`${process.env.assetPrefix}/static/thinking/comparison-over-time.mp4`}
-    type="video/mp4"
-  />
-</video>
+<Video src="/static/thinking/comparison-over-time.mp4" />
 
 As a product team we had some catching up to do improve our usage of color and to align ourselves with the company brand. The good news was, there was no where to go but up.
 
@@ -77,23 +74,13 @@ We can see the intensity of the colors change across hue in peaks, with yellow a
 
 The video below is another way to visualize this phenomenon. The dividing line in the color picker indicates which part of the palette will be accessible with black and white. Notice how drastically the line changes around green and yellow. And then look back at the charts above.
 
-<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
-  <source
-    src={`${process.env.assetPrefix}/static/thinking/colors.mp4`}
-    type="video/mp4"
-  />
-</video>
+<Video src="/static/thinking/colors.mp4" />
 
 Demo of https://kevingutowski.github.io/color.html
 
 After fiddling with a few different generative algorithms (we made a lot of ugly palettes… really quite a lot) we decided to try a more manual approach. We pursued creating custom curves for each hue in an effort to keep the contrast scales as optically balanced as possible.
 
-<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
-  <source
-    src={`${process.env.assetPrefix}/static/thinking/palette-generator.mp4`}
-    type="video/mp4"
-  />
-</video>
+<Video src="/static/thinking/palette-generator.mp4" />
 
 ![](/static/thinking/generative-palette.png)
 ![](/static/thinking/cf-palette.png)
@@ -137,12 +124,7 @@ One method of visualization is to define a common set of primitive ui elements a
 
 Alternatively we might want to see a composed interface with the closest colors from the palette applied. Consider a set of buttons that includes red, green, blue, and gray button styles. Seeing all of these together can help us visualize the relative nature of these buttons side by side. Given a baseline palette for common UI, we could swap to a new palette and replace each color with the "closest" color. This isn't always a full-proof solution as there are many edge cases to cover. e.g. what happens when replacing a palette of 134 colors with a palette of 24 colors? Even still, this could allow us to quickly take a stab at automating how existing interfaces would change their appearance given a change to the underlying system. Whether locally or against a live site, this mode of working would allow for designers to view a color in multiple contets to truly asses its quality.
 
-<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
-  <source
-    src={`${process.env.assetPrefix}/static/thinking/cloudflare-demo.mp4`}
-    type="video/mp4"
-  />
-</video>
+<Video src="/static/thinking/cloudflare-demo.mp4" />
 
 After moving on from the idea of generating a palette from a single color, we attempted to use our logo colors as well as our primary brand colors to drive the construction of modular scales. Our goal was to create a palette that would improve contrast for accessibility, stay true to our visual brand, work predictably for developers, work for data visualizations, and provide the ability to design visually balanced and attractive interfaces. No sweat.
 
@@ -192,12 +174,7 @@ With a palette consisting of 90 colors, the amount of combinations and permutati
 
 We experimented with a number of ideas on visualizing different sizes and shapes of colors and how they affected our perception of how much a color was changing element to element. In the first frame it is most difficult to tell the values at 2% and 6% apart given the size and shape of the elements.
 
-<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
-  <source
-    src={`${process.env.assetPrefix}/static/thinking/generative-charts.mp4`}
-    type="video/mp4"
-  />
-</video>
+<Video src="/static/thinking/generative-charts.mp4" />
 
 In an effort to make sure everything we are building will be visually accessible - we built a react component that will preview how a design would look if you were colorblind. The component applies svg filters to it to simulate alternate ways someone can perceive color.
 
@@ -269,23 +246,11 @@ We found it was more common than expected that engineers and designers wanted to
 
 There are times when migrating colors, the closest color isn't actually what you want. Given the scenario where your brand color has changed from blue to purple, you might want to be porting all blues to the closest purple within the palette, not the closest blues which might still exist in your palette. To help visualize migrations as well as get suggestions on how to consolidate values within the old scale, we of course built a little tool. Here we can define those translations and import a color palette from a URL import. As we still have. a number of web properties to update to our palette, this simple tool has continued to prove useful.
 
-<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
-  <source
-    src={`${process.env.assetPrefix}/static/thinking/fetch-palette.mp4`}
-    type="video/mp4"
-  />
-</video>
+<Video src="/static/thinking/fetch-palette.mp4" />
 
 We wanted to be as gentle as possible in transitioning to the new palette in usage. While the developers found string names for colors brittle and unpredictable, it was still a more familiar system for some than this new one. We first just added in our new palette to the existing theme for usage moving forward. Then we started to port colors for existing components and pages.
 
 For our colleagues, we wrote out desired translations and offered warnings in the console that a color was deprecated, with a reference to the new theme value to use.
-
-<video style={{ maxWidth: "100%" }} autoPlay loop muted playsInline>
-  <source
-    src={`${process.env.assetPrefix}/static/thinking/fetch-palette.mp4`}
-    type="video/mp4"
-  />
-</video>
 
 ![Example of console warning when using deprecated color](/static/thinking/invalid-colors.png)
 
