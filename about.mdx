@@ -1,4 +1,6 @@
 import Video from "./components/Video"
+import Flex from "./components/Flex"
+import Img from "./elements/Img"
 
 # The Color Tool
 
@@ -41,7 +43,6 @@ Using the image tab you can import an image by uploading one, or loading a rando
 A palette is created from the top 10 most dominant colors in the image. You can try to generate stills from movies, photos, or screenshots of other palette collections like [colorlovers.com](https://colorlovers.com) or [color.adobe.com](https://color.adobe.com) and use them to start your palette.
 
 ![Palette from color.adobe.com](/static/about/palette-from-adobe.png)
-
 ![Palettes from colorlovers.com](/static/about/palette-from-colorlovers.png)
 
 ## Creating a palette
@@ -106,17 +107,44 @@ If you discover a combination you like, tap or click the heart to save it for la
 
 The preview panel represents color application to a variety of sizes and shapes to see the various ways the colors are relating to each other. This is not yet comprehensive and doesn’t represent a number of ways your palette could be applied to UI.In the future, we hope to allow for multiple preview modes with more components and configurability options. Ideally we’d have a full UI kit that would find the closest color for certain canonical UI themes (e.g. buttons for primary, secondary, and destructive actions) in addition to a suite of common data visualization patterns with heavy data sets to stress test the palette.
 
-![](/static/about/preview-panel-1.png)
-
-![](/static/about/preview-panel-2.png)
-
-![](/static/about/preview-panel-3.png)
-
-![](/static/about/preview-panel-4.png)
-
-![](/static/about/preview-panel-5.png)
-
-![](/static/about/preview-panel-6.png)
+<Flex css={{ overflowX: "scroll", WebkitOverflowScrolling: "touch" }}>
+  <Img
+    maxWidth="33%"
+    pr={2}
+    css={{ objectFit: "contain" }}
+    src="/static/about/preview-panel-1.png"
+  />
+  <Img
+    maxWidth="33%"
+    pr={2}
+    css={{ objectFit: "contain" }}
+    src="/static/about/preview-panel-2.png"
+  />
+  <Img
+    maxWidth="33%"
+    pr={2}
+    css={{ objectFit: "contain" }}
+    src="/static/about/preview-panel-3.png"
+  />
+  <Img
+    maxWidth="33%"
+    pr={2}
+    css={{ objectFit: "contain" }}
+    src="/static/about/preview-panel-4.png"
+  />
+  <Img
+    maxWidth="33%"
+    pr={2}
+    css={{ objectFit: "contain" }}
+    src="/static/about/preview-panel-5.png"
+  />
+  <Img
+    maxWidth="33%"
+    pr={2}
+    css={{ objectFit: "contain" }}
+    src="/static/about/preview-panel-6.png"
+  />
+</Flex>
 
 ## Color blindness filters
 
