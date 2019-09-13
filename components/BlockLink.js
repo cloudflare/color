@@ -34,21 +34,23 @@ const A = styled.a(
   borderRadius,
   {
     boxSizing: "border-box",
-    textDecoration: "underline",
+    textDecoration: "none",
     transition: "opacity .25s ease-in-out",
     opacity: 1,
     ":hover": {
       cursor: "pointer",
-      opacity: 0.75,
+      opacity: 0.8,
       transition: "opacity .25s ease-in-out"
     }
   }
 )
 
 A.defaultProps = {
-  display: "inline-block",
+  display: "block",
+  lineHeight: "1.5",
   bg: "transparent",
-  color: "gray.2"
+  color: "gray.2",
+  fontWeight: 700
 }
 
 const actions = () => ({

@@ -1,8 +1,12 @@
 import Video from "./components/Video"
 import Flex from "./components/Flex"
 import Img from "./elements/Img"
+import Div from "./elements/Div"
+import BlockLink from "./components/BlockLink"
+import Logo from "./components/Logo"
+import Span from "./elements/Span"
 
-# The Color Tool
+# About
 
 When we revisited our palette last year, we built some custom tooling to help us construct and preview palettes. We’ve begun to package up some of this work into a web app others can use to create or import a palette and preview multiple depths of accessible combinations against a set of UI elements.
 
@@ -40,7 +44,7 @@ Using the image tab you can import an image by uploading one, or loading a rando
 
 ![Palette creation from image import](/static/about/image-method.jpg)
 
-A palette is created from the top 10 most dominant colors in the image. You can try to generate stills from movies, photos, or screenshots of other palette collections like [colorlovers.com](https://colorlovers.com) or [color.adobe.com](https://color.adobe.com) and use them to start your palette.
+A palette is created from the top 10 most dominant colors in the image. You can try to generate stills from movies, photos, or screenshots of other palette collections like [colorlovers.com](https://www.colourlovers.com) or [color.adobe.com](https://color.adobe.com) and use them to start your palette.
 
 ![Palette from color.adobe.com](/static/about/palette-from-adobe.png)
 ![Palettes from colorlovers.com](/static/about/palette-from-colorlovers.png)
@@ -100,50 +104,58 @@ You can choose to autoplay through options by pressing the play button, or skipp
 ![Preview controls](/static/about/controls.png)
 ![View of controls during autoplay](/static/about/autoplay-enabled.png)
 
-If you discover a combination you like, tap or click the heart to save it for later. Find your likes below the preview panel on the left hand side. Click on any of the rows to reload in that combination.
+If you discover a combination you like, tap or click the heart to save it for later. Find your likes below the preview panel on the left hand side. Click on any row to preview that combination.
 
 ![History of saved palettes](/static/about/saved-likes.png)
-![](/static/about/preview-panel.png)
 
-The preview panel represents color application to a variety of sizes and shapes to see the various ways the colors are relating to each other. This is not yet comprehensive and doesn’t represent a number of ways your palette could be applied to UI.In the future, we hope to allow for multiple preview modes with more components and configurability options. Ideally we’d have a full UI kit that would find the closest color for certain canonical UI themes (e.g. buttons for primary, secondary, and destructive actions) in addition to a suite of common data visualization patterns with heavy data sets to stress test the palette.
+The preview panel shows the application of a color set to a variety of shapes at different sizes to see the various ways the colors relate to each other. This is not yet comprehensive and doesn’t represent the full generative space of how your palette could be applied to UI. In the future, we hope to allow for multiple preview modes with more components and configurability options. Ideally we’d have a full UI kit that would find the closest color for certain canonical UI themes (e.g. buttons for primary, secondary, and destructive actions) in addition to a suite of common data visualization patterns with heavy data sets to stress test the palette.
 
-<Flex css={{ overflowX: "scroll", WebkitOverflowScrolling: "touch" }}>
+<Flex
+  mb={4}
+  mx="auto"
+  width="100%"
+  fontSize={[3, 4, 4]}
+  maxWidth="64em"
+  flexWrap="wrap"
+>
   <Img
-    maxWidth="33%"
-    pr={2}
     css={{ objectFit: "contain" }}
     src={`${process.env.assetPrefix}/static/about/preview-panel-1.png`}
   />
-  <Img
-    maxWidth="33%"
-    pr={2}
-    css={{ objectFit: "contain" }}
-    src={`${process.env.assetPrefix}/static/about/preview-panel-2.png`}
-  />
-  <Img
-    maxWidth="33%"
-    pr={2}
-    css={{ objectFit: "contain" }}
-    src={`${process.env.assetPrefix}/static/about/preview-panel-3.png`}
-  />
-  <Img
-    maxWidth="33%"
-    pr={2}
-    css={{ objectFit: "contain" }}
-    src={`${process.env.assetPrefix}/static/about/preview-panel-4.png`}
-  />
-  <Img
-    maxWidth="33%"
-    pr={2}
-    css={{ objectFit: "contain" }}
-    src={`${process.env.assetPrefix}/static/about/preview-panel-5.png`}
-  />
-  <Img
-    maxWidth="33%"
-    pr={2}
-    css={{ objectFit: "contain" }}
-    src={`${process.env.assetPrefix}/static/about/preview-panel-6.png`}
-  />
+  <Flex width={1} flexWrap="nowrap">
+    <Div width={1 / 3}>
+      <Img
+        css={{ objectFit: "contain" }}
+        src={`${process.env.assetPrefix}/static/about/preview-panel-2.png`}
+      />
+    </Div>
+    <Div width={1 / 3}>
+      <Img
+        css={{ objectFit: "contain" }}
+        src={`${process.env.assetPrefix}/static/about/preview-panel-3.png`}
+      />
+    </Div>
+    <Div width={1 / 3}>
+      <Img
+        css={{ objectFit: "contain" }}
+        src={`${process.env.assetPrefix}/static/about/preview-panel-4.png`}
+      />
+    </Div>
+  </Flex>
+  <Flex>
+    <Div width={1 / 2}>
+      <Img
+        css={{ objectFit: "contain" }}
+        src={`${process.env.assetPrefix}/static/about/preview-panel-5.png`}
+      />
+    </Div>
+    <Div width={1 / 2}>
+      <Img
+        css={{ objectFit: "contain" }}
+        src={`${process.env.assetPrefix}/static/about/preview-panel-6.png`}
+      />
+    </Div>
+  </Flex>
 </Flex>
 
 ## Color blindness filters
@@ -154,8 +166,18 @@ To visualize the various ways colors are perceived by 12% of the population, col
 
 ![Orange scale pre-viewed across 8 colorblind filters](/static/about/color-filter-palette.png)
 
+<Flex maxWidth='64em' mx='auto'>
+<Div width={1/2}>
+
 ![](/static/about/interface-with-filter.png)
+
+</Div>
+<Div width={1/2}>
+
 ![](/static/about/interface-with-filter-2.png)
+
+</Div>
+</Flex>
 
 ## Docs
 
@@ -186,9 +208,23 @@ Even if you don’t want to change your palette, this tool can be useful to prev
 
 At any point in time you can export your palette as JSON, CSS variables, Sass variables, or a JS theme file. Right now we automatically generate the names, but you can manually tweak them after exporting.
 
+<Flex alignItems='flex-start' mx='auto' maxWidth='42em' fontSize={[3,4,4]}>
+<Div width={1/3}>
+
 ![](/static/about/json-export.png)
+
+</Div>
+<Div width={1/3}>
+
 ![](/static/about/css-vars-export.png)
+
+</Div>
+<Div width={1/3}>
+
 ![](/static/about/js-theme-export.png)
+
+</Div>
+</Flex>
 
 **Future Roadmap**
 
@@ -214,7 +250,9 @@ While we’re excited about the beginning of this tool, we’re far from done. H
 
 - **Grid view for docs** - Currently there is only a list view of the documentation but should allow for switching between grid and list views.
 
-![](/static/about/grid-view.png)
+<Div mx="auto" maxWidth="34em" fontSize={[3, 4, 4]}>
+  <Img src="/static/about/grid-view.png" />
+</Div>
 
 - **Open source components** - Open source palette visualization and docs components so you can configure the themes and use them in your own style guide.
 
@@ -238,13 +276,27 @@ While we’re excited about the beginning of this tool, we’re far from done. H
 
 - **More properties** - Currently we are only showing color against backgrounds, borders, and text. Ideally we’d also allow for wiring up text-shadows and box-shadows as both incorporate color and can influence the perception of other colors in your UI.
 
-We want this tool to be useful for our community, so we welcome feedback on desired features. If you would like to add or upvote ideas, [become part of the discussion here](https://github.com/cloudflare-design/color)
+We want this tool to be useful for our community, so we welcome feedback on desired features. If you would like to add or upvote ideas, [become part of the discussion here](https://github.com/cloudflare/color)
 
 Big thanks to the following projects:
 
-[chroma-js](https://vis4.net/chromajs/)
-[colorbox](https://www.colorbox.io/)
-[palx](https://palx.jxnblk.com/)
-[colorable](https://colorable.jxnblk.com/)
-[css stats](https://cssstats.com/)
-[Unsplash](https://unsplash.com/)
+<Div mx="auto" maxWidth="34em" fontSize={[3, 4, 4]} pb={[4, 5, 5]}>
+  <BlockLink mb={2} href="https://vis4.net/chromajs/">
+    Chroma JS
+  </BlockLink>
+  <BlockLink mb={2} href="https://www.colorbox.io">
+    ColorBox
+  </BlockLink>
+  <BlockLink mb={2} href="https://palx.jxnblk.com">
+    Palx
+  </BlockLink>
+  <BlockLink mb={2} href="https://colorable.jxnblk.com">
+    Colorable
+  </BlockLink>
+  <BlockLink mb={2} href="https://cssstats.com">
+    Css Stats
+  </BlockLink>
+  <BlockLink mb={2} href="https://unsplash.com">
+    Unsplash
+  </BlockLink>
+</Div>

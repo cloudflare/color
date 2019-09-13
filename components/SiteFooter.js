@@ -108,17 +108,35 @@ const SiteFooter = ({ variant, ...props }) => {
               children="Unsplash"
             />
           </Div>
-          <Div mt={[3, 0]} width={[1, 1 / 4]} textAlign={["left", "right"]}>
+          <Div
+            display="flex"
+            mt={[3, 0]}
+            width={[1, 1 / 4]}
+            textAlign={["left", "right"]}
+            css={{ alignItems: "flex-start" }}
+          >
             <A
-              href="https://github.com/cloudflare/color"
+              href="https://cloudflare.design/color/about"
               fontSize={2}
               color="gray.0"
               display="inline-flex"
               alignItems="center"
               fontWeight={700}
+              ml="auto"
+              mr={3}
+            >
+              About
+            </A>
+            <A
+              href="https://github.com/cloudflare/color"
+              fontSize={2}
+              color="gray.0"
+              display="inline-flex"
+              alignItems="flex-start"
+              fontWeight={700}
             >
               <Icon title="github" color="gray.2" size="20" type="github" />
-              <Span ml={2}>GitHub</Span>
+              <Span ml={1}>GitHub</Span>
             </A>
           </Div>
         </Footer>
