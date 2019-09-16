@@ -21,10 +21,15 @@ const Thinking = () => {
         >
           <Logo variant="mark" width="3em" />
         </BlockLink>
+
         <Link passHref href="about">
           <BlockLink px={4} ml="auto">
             About
           </BlockLink>
+        </Link>
+
+        <Link passHref href="thinking">
+          <BlockLink px={4}>Thinking</BlockLink>
         </Link>
       </Flex>
       <Div px={3}>
