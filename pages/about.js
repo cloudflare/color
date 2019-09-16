@@ -1,4 +1,5 @@
 import React from "react"
+import Link from "next/link"
 import MDXWrapper from "../components/MDXWrapper"
 import Post from "../about.mdx"
 import Logo from "../components/Logo"
@@ -20,9 +21,11 @@ const About = () => {
         >
           <Logo variant="mark" width="3em" />
         </BlockLink>
-        <BlockLink px={4} href="about" ml="auto">
-          About
-        </BlockLink>
+        <Link href="about">
+          <BlockLink px={4} ml="auto">
+            About
+          </BlockLink>
+        </Link>
       </Flex>
       <Div px={3}>
         <Post />

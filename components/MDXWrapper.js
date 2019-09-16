@@ -2,6 +2,7 @@ import React from "react"
 import { MDXProvider } from "@mdx-js/react"
 import H1 from "../elements/H1"
 import Div from "../elements/Div"
+import Pre from "../elements/Pre"
 
 const CustomH1 = props => (
   <Div mx="auto" fontSize={[3, 4, 4]} maxWidth="34em">
@@ -47,6 +48,13 @@ const CustomImg = props => (
   </Figure>
 )
 
+const CustomPre = props => (
+  <Pre
+    {...props}
+    css={{ maxWidth: "34em", marginLeft: "auto", marginRight: "auto" }}
+  />
+)
+
 const MDXComponents = {
   h1: CustomH1,
   li: CustomLi,
@@ -54,7 +62,8 @@ const MDXComponents = {
   img: CustomImg,
   a: A,
   p: CustomP,
-  wrapper: Wrapper
+  wrapper: Wrapper,
+  pre: CustomPre
 }
 
 export default ({ children }) => (
