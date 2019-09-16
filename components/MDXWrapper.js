@@ -3,6 +3,7 @@ import { MDXProvider } from "@mdx-js/react"
 import H1 from "../elements/H1"
 import Div from "../elements/Div"
 import Pre from "../elements/Pre"
+import Blockquote from "../elements/Blockquote"
 
 const CustomH1 = props => (
   <Div mx="auto" fontSize={[3, 4, 4]} maxWidth="34em">
@@ -30,7 +31,7 @@ const Wrapper = props => <Div px={[2, 4]} py={[2, 4]} {...props} />
 const CustomImg = props => (
   <Figure
     m={0}
-    my={5}
+    my={[3, 5]}
     mx="auto"
     fontSize={[3, 4, 4]}
     css={{ width: "100%", maxWidth: "34em" }}
@@ -48,12 +49,40 @@ const CustomImg = props => (
   </Figure>
 )
 
+export const FigureLink = ({ href, src, caption }) => (
+  <Figure
+    m={0}
+    my={5}
+    mx="auto"
+    fontSize={[3, 4, 4]}
+    css={{ width: "100%", maxWidth: "34em" }}
+  >
+    <Img
+      css={{ display: "block" }}
+      mx="auto"
+      loading="lazy"
+      src={`${process.env.assetPrefix}${src}`}
+      alt={caption}
+    />
+    <Figcaption textAlign="center" fontSize={2} pt={2} color="gray.2">
+      <A href={href}>{caption}</A>
+    </Figcaption>
+  </Figure>
+)
+
 const CustomPre = props => (
   <Pre
     {...props}
-    css={{ maxWidth: "34em", marginLeft: "auto", marginRight: "auto" }}
+    css={{
+      maxWidth: "34em",
+      marginLeft: "auto",
+      marginRight: "auto",
+      overflowX: "scroll"
+    }}
   />
 )
+
+const CustomBlockquote = props => <Blockquote mx={0} {...props} />
 
 const MDXComponents = {
   h1: CustomH1,
@@ -63,7 +92,8 @@ const MDXComponents = {
   a: A,
   p: CustomP,
   wrapper: Wrapper,
-  pre: CustomPre
+  pre: CustomPre,
+  blockquote: CustomBlockquote
 }
 
 export default ({ children }) => (

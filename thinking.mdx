@@ -5,6 +5,7 @@ import Div from "./elements/Div"
 import BlockLink from "./components/BlockLink"
 import Logo from "./components/Logo"
 import Span from "./elements/Span"
+import { FigureLink } from "./components/MDXWrapper"
 
 # Thinking about color
 
@@ -144,13 +145,25 @@ Generating different color palettes makes you confront a basic question. How do 
 
 Sometime during our exploration in this space, [we stumbled across this tweet thread](https://twitter.com/paniq/status/1036299654378467329) about building a palette for pixel art. There are a lot of places web and product designers can draw inspiration from game designers. Here are some screenshots of @paniq developing a 16 color palette.
 
-![Two color palettes visualized to create 3d objects https://twitter.com/paniq/status/1036299654378467329](/static/thinking/palettes-for-pixel-art.jpeg)
+<FigureLink
+  src="/static/thinking/palettes-for-pixel-art.jpeg"
+  caption="Two color palettes visualized to create 3d objects"
+  href="https://twitter.com/paniq/status/1036299654378467329"
+/>
 
-![A color palette applied in a few different contexts https://twitter.com/paniq/status/1037406840999567360](/static/thinking/pixel-art-palette-concept.jpeg)
+<FigureLink
+  src="/static/thinking/pixel-art-palette-concept.jpeg"
+  caption="A color palette applied in a few different contexts"
+  href="https://twitter.com/paniq/status/1037406840999567360"
+/>
 
 Here we see a similar concept where a number of different palettes are applied to the same component. This view shows us two things, the different ways a single palette can be applied to a sphere, and also the different aesthetics across color palettes.
 
-![Different color palettes previewed against a common component https://twitter.com/JstFredrik/status/1145753143852064768](/static/thinking/multiple-palettes-applied.png)
+<FigureLink
+  src="/static/thinking/multiple-palettes-applied.png"
+  caption="Different color palettes previewed against a common component"
+  href="https://twitter.com/JstFredrik/status/1145753143852064768"
+/>
 
 It’s almost surprising that the default way to construct a color palette for apps and sites isn’t to build it while previewing its application against the most common UI patterns. As designers, there are a lot of consistent uses of color we could have baselines for. Many enterprise apps are centered around white background with blue as the primary color with mixtures of grays to add depth around cards and page sections. Red is often used for destructive actions like deleting some type of record. Gray for secondary actions. Maybe it’s an outline button with the primary color for secondary actions. Either way - the margins between the patterns aren’t that large in the grand scheme of things.
 
@@ -168,7 +181,11 @@ How do we visualize the various ways a palette will look when applied to an inte
 </Div>
 <Div width={1/3} px={1}>
 
-![https://lospec.com/palette-list/sweetie-16](/static/thinking/example-palette-for-pixel-art.png)
+<FigureLink
+  src="/static/thinking/example-palette-for-pixel-art.png"
+  caption="https://lospec.com/palette-list/sweetie-16"
+  href="https://lospec.com/palette-list/sweetie-16"
+/>
 
 </Div>
 
@@ -179,7 +196,11 @@ How do we visualize the various ways a palette will look when applied to an inte
 </Div>
 </Flex>
 
-![https://lospec.com/palette-list/vines-flexible-linear-ramps](/static/thinking/random-palette-1.png)
+<FigureLink
+  src="/static/thinking/random-palette-1.png"
+  caption="https://lospec.com/palette-list/vines-flexible-linear-ramps"
+  href="https://lospec.com/palette-list/vines-flexible-linear-ramps"
+/>
 
 One method of visualization is to define a common set of primitive ui elements and show each one of them with a single set of colors applied. In isolation this can be helpful. This mode would make it easy to vet a single combination of colors and which ui elements it might be best applied to.
 
