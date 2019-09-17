@@ -26,6 +26,9 @@ const About = () => {
             About
           </BlockLink>
         </Link>
+        <Link href="thinking">
+          <BlockLink px={4}>Thinking</BlockLink>
+        </Link>
       </Flex>
       <Div px={3}>
         <Post />

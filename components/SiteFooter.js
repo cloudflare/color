@@ -123,9 +123,20 @@ const SiteFooter = ({ variant, ...props }) => {
               alignItems="center"
               fontWeight={700}
               ml="auto"
-              mr={3}
             >
               About
+            </A>
+            <A
+              href="https://cloudflare.design/color/thinking"
+              fontSize={2}
+              color="gray.0"
+              display="inline-flex"
+              alignItems="center"
+              fontWeight={700}
+              ml={3}
+              mr={3}
+            >
+              Thinking
             </A>
             <A
               href="https://github.com/cloudflare/color"
