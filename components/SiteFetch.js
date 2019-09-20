@@ -11,7 +11,7 @@ const SiteFetch = ({ onSubmit, ...props }) => {
   const handleSubmit = async e => {
     e.preventDefault()
     setLoading(true)
-    const fullUrl = `https://api.cssstats.com/stats/?url=${url}`
+    const fullUrl = `https://cssstats.com/api/stats/?url=${url}`
 
     const res = await fetch(fullUrl)
 
