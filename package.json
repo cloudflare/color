@@ -6,6 +6,7 @@
     "dev": "next -p $(./node_modules/detect-port/bin/detect-port 3000)",
     "build": "next build",
     "start": "next start",
+    "export": "next build && next export",
     "deploy:preview": "now"
   },
   "dependencies": {

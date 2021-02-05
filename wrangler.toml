@@ -1,0 +1,10 @@
+name = "color"
+type = "webpack"
+account_id = "998c66447b7b4c67497c499a9ab1b7dd"
+workers_dev = true
+route = ""
+zone_id = ""
+
+[site]
+bucket = "./out"
+entry-point = "workers-site"
