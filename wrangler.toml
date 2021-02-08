@@ -8,3 +8,10 @@ zone_id = ""
 [site]
 bucket = "./out"
 entry-point = "workers-site"
+
+[env.production]
+# The ID of the domain to deploying to
+zone_id = "e878d49a02187283ffcfa2e254f04540"
+
+# The route pattern your Workers application will be served at
+route = "color.cloudflare.design/*"

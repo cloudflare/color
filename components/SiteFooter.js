@@ -116,7 +116,7 @@ const SiteFooter = ({ variant, ...props }) => {
             css={{ alignItems: "flex-start" }}
           >
             <A
-              href="https://cloudflare.design/color/about"
+              href="https://color.cloudflare.design/about"
               fontSize={2}
               color="gray.0"
               display="inline-flex"
@@ -127,7 +127,7 @@ const SiteFooter = ({ variant, ...props }) => {
               About
             </A>
             <A
-              href="https://cloudflare.design/color/thinking"
+              href="https://color.cloudflare.design/thinking"
               fontSize={2}
               color="gray.0"
               display="inline-flex"
@@ -156,7 +156,7 @@ const SiteFooter = ({ variant, ...props }) => {
 }
 
 SiteFooter.defaultProps = {
-  variant: 1
+  variant: 1,
 }
 
 export default SiteFooter
