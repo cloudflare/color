@@ -1,4 +1,4 @@
-import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
+import { getAssetFromKV, mapRequestToAsset } from "@cloudflare/kv-asset-handler"
 
 /**
  * The DEBUG flag will do two things that help during development:
@@ -9,7 +9,7 @@ import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
  */
 const DEBUG = false
 
-addEventListener('fetch', event => {
+addEventListener("fetch", (event) => {
   try {
     event.respondWith(handleEvent(event))
   } catch (e) {
@@ -17,10 +17,10 @@ addEventListener('fetch', event => {
       return event.respondWith(
         new Response(e.message || e.toString(), {
           status: 500,
-        }),
+        })
       )
     }
-    event.respondWith(new Response('Internal Error', { status: 500 }))
+    event.respondWith(new Response("Internal Error", { status: 500 }))
   }
 })
 
@@ -32,7 +32,18 @@ async function handleEvent(event) {
    * You can add custom logic to how we fetch your assets
    * by configuring the function `mapRequestToAsset`
    */
-  // options.mapRequestToAsset = handlePrefix(/^\/docs/)
+  console.log(["/about", "/thinking"].includes(url.pathname))
+
+  if (["/about", "/thinking"].includes(url.pathname)) {
+    options.mapRequestToAsset = handleExtension()
+  }
+
+  // if (["/about", "/thinking"].includes(url.pathname)) {
+
+  //   // strip the prefix from the path for lookup
+  //   url.pathname = url.pathname.replace(, "/")
+  //   return await getAssetFromKV(event, options)
+  // }
 
   try {
     if (DEBUG) {
@@ -47,10 +58,14 @@ async function handleEvent(event) {
     if (!DEBUG) {
       try {
         let notFoundResponse = await getAssetFromKV(event, {
-          mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/404.html`, req),
+          mapRequestToAsset: (req) =>
+            new Request(`${new URL(req.url).origin}/404.html`, req),
         })
 
-        return new Response(notFoundResponse.body, { ...notFoundResponse, status: 404 })
+        return new Response(notFoundResponse.body, {
+          ...notFoundResponse,
+          status: 404,
+        })
       } catch (e) {}
     }
 
@@ -58,23 +73,11 @@ async function handleEvent(event) {
   }
 }
 
-/**
- * Here's one example of how to modify a request to
- * remove a specific prefix, in this case `/docs` from
- * the url. This can be useful if you are deploying to a
- * route on a zone, or if you only want your static content
- * to exist at a specific path.
- */
-function handlePrefix(prefix) {
-  return request => {
-    // compute the default (e.g. / -> index.html)
-    let defaultAssetKey = mapRequestToAsset(request)
-    let url = new URL(defaultAssetKey.url)
+function handleExtension() {
+  return (request) => {
+    let url = new URL(request.url)
+    url.pathname = `${url.pathname}.html`
 
-    // strip the prefix from the path for lookup
-    url.pathname = url.pathname.replace(prefix, '/')
-
-    // inherit all other props from the default request
-    return new Request(url.toString(), defaultAssetKey)
+    return new Request(url.toString(), request)
   }
 }

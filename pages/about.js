@@ -14,7 +14,7 @@ const About = () => {
         <BlockLink
           px={4}
           py={3}
-          href="https://cloudflare.design/color/"
+          href="https://color.cloudflare.design/"
           title="Color by Cloudflare"
           display="flex"
           alignItems="center"

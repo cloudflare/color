@@ -11,7 +11,7 @@ import { FigureLink } from "./components/MDXWrapper"
 
 > **Color is my day-long obsession, joy and torment -** Claude Monet
 
-![](/static/thinking/colorspace.png)
+![](/thinking/colorspace.png)
 
 Over the last two years we’ve tried to improve our usage of color at Cloudflare. There were a number of forcing functions that made this work a priority. As a small team of designers and engineers we had inherited a bunch of design work that was a mix of values built by multiple teams. As a result it was difficult and unnecessarily time consuming to add new colors when building new components.
 
@@ -22,36 +22,36 @@ Cloudflare had also undergone a rebrand around 2016 and while our marketing site
 <Flex maxWidth='64em' mx='auto'>
 <Div width={1/2}>
 
-![Cloudflare.com in 2016](/static/thinking/cf-2016.png)
+![Cloudflare.com in 2016](/thinking/cf-2016.png)
 
 </Div>
 <Div width={1/2}>
 
-![Cloudflare.com in 2019](/static/thinking/cf-2019.png)
+![Cloudflare.com in 2019](/thinking/cf-2019.png)
 
 </Div>
 </Flex>
 
 Our product palette wasn’t well balanced by itself. Many colors had been chosen one or two at a time. You can see how we chose blueberry, ice, and water at a different point in time than marine and thunder.
 
-![The color section of our theme file was partially ordered chronologically](/static/thinking/cf-color-palette.png)
+![The color section of our theme file was partially ordered chronologically](/thinking/cf-color-palette.png)
 
 Lacking visual cohesion within our own product, we definitely weren’t providing a cohesive visual experience between our product and our site for our customers. The transition from the nice blues, purples, with a nice accent color to our green CTAs wasn’t the streamlined experience we wanted to afford our users.
 
 <Flex alignItems='flex-start' flexWrap="wrap" mx='auto' maxWidth='42em' fontSize={[3,4,4]}>
 <Div width={1/2} px={1}>
 
-![Cloudflare.com 2017](/static/thinking/cf-2017.png)
+![Cloudflare.com 2017](/thinking/cf-2017.png)
 
 </Div>
 <Div width={1/2} px={1}>
 
-![Sign in page 2017](/static/thinking/cf-login-2017.png)
+![Sign in page 2017](/thinking/cf-login-2017.png)
 
 </Div>
 </Flex>
 
-![Our app dashboard in 2017](/static/thinking/cf-dash-2017.png)
+![Our app dashboard in 2017](/thinking/cf-dash-2017.png)
 
 ## Reworking our Palette
 
@@ -59,11 +59,11 @@ Our first step was to audit what we already had. Cloudflare has been around long
 
 All in all we have dozens of front-end codebases that each represent one more chance to introduce design entropy to our system. So we were curious to answer the question - what colors were we currently using? Were there consistent patterns we could document for further reuse? Could we build a living style guide that didn’t cover just one site, but all of them?
 
-![Screenshots of pages from cloudflare.com contrasted with screenshots from our product](/static/thinking/cf-screenshots.png)
+![Screenshots of pages from cloudflare.com contrasted with screenshots from our product](/thinking/cf-screenshots.png)
 
 Our curiosity got the best of us and we went about exploring ways we could visualize our design language across all of our sites.
 
-![Above - our product palette. Below - our marketing palette aligned by hue](/static/thinking/color-sort.png)
+![Above - our product palette. Below - our marketing palette aligned by hue](/thinking/color-sort.png)
 
 **A time machine for color**
 
@@ -71,11 +71,11 @@ As we first started to identify the scale of our color problems, we tried to thi
 
 Below is a visualization of palettes from 9 different websites changing over a period of 6 years. Above the palettes is a component that spits out common colors, across all of these sites. The only two common colors across all properties (appearing for only a brief flash) were #fff and transparent. Over time we haven’t been very consistent with ourselves.
 
-![](/static/thinking/palette-over-time.gif)
+![](/thinking/palette-over-time.gif)
 
 If we drill in to look at our marketing site compared to our dashboard app - it looks like the video below. We see a bit more overlap at first and then a significant divergence at the 16 second mark when our product palette grew significantly. At the 22 second mark you can see the marketing palette completely change as a result of the rebrand while our product palette stays the same. As time goes on you can see us becoming more and more inconsistent across the two code bases.
 
-<Video src="/static/thinking/comparison-over-time.mp4" />
+<Video src="/thinking/comparison-over-time.mp4" />
 
 As a product team we had some catching up to do improve our usage of color and to align ourselves with the company brand. The good news was, there was no where to go but up.
 
@@ -89,19 +89,19 @@ Hindsight is always 20/20. We didn’t start out on day one trying to generate s
 
 Our logo is made up of two oranges. Both of these seemed like prime candidates to generate a palette from.
 
-![](/static/thinking/logo.png)
+![](/thinking/logo.png)
 
 We played around with a number of algorithms that took a single color and created a palette. From the initial color we generated an array scales for each hue. Initial attempts found us applying the exact same curves for luminosity to each hue, but as visual perception of hues is so different, this resulted in wildly different contrasts at each step of the scale.
 
 Below are a few of our initial attempts at palette generation. [Jeeyoung Jung](https://uxplanet.org/@Jeeyoungjung) did a brilliantly fabulous writeup around this last year. - https://uxplanet.org/designing-systematic-colors-b5d2605b15c
 
-![Visualizing the peaks of color intensity](/static/thinking/peaks-of-color.png)
+![Visualizing the peaks of color intensity](/thinking/peaks-of-color.png)
 
 We can see the intensity of the colors change across hue in peaks, with yellow and green being the most dominant. One of the downsides of this, is when you are rapidly iterating through theming options, the inconsistent relationships between steps across hues can make it time consuming to keep visual harmony in your interface.
 
 The video below is another way to visualize this phenomenon. The dividing line in the color picker indicates which part of the palette will be accessible with black and white. Notice how drastically the line changes around green and yellow. And then look back at the charts above.
 
-<Video src="/static/thinking/colors.mp4" />
+<Video src="/thinking/colors.mp4" />
 
 Demo of https://kevingutowski.github.io/color.html
 
@@ -110,14 +110,12 @@ After fiddling with a few different generative algorithms (we made a lot of ugly
 <Flex alignItems='flex-start' flexWrap="wrap" alignItems="center" mx='auto' maxWidth='42em' fontSize={[3,4,4]}>
 <Div width={1/2} px={1} >
 
-<Video src="/static/thinking/palette-generator.mp4" />
+<Video src="/thinking/palette-generator.mp4" />
 
 </Div>
 <Div width={1/2} px={1}>
 
-<Img
-  src={`${process.env.assetPrefix}/static/thinking/generative-palette.png`}
-/>
+<Img src={`${process.env.assetPrefix}/thinking/generative-palette.png`} />
 
 </Div>
 </Flex>
@@ -125,34 +123,34 @@ After fiddling with a few different generative algorithms (we made a lot of ugly
 <Flex alignItems='flex-start' flexWrap="wrap" mx='auto' maxWidth='42em' fontSize={[3,4,4]}>
 <Div width={1/2} px={1}>
 
-![](/static/thinking/cf-palette.png)
+![](/thinking/cf-palette.png)
 
 </Div>
 <Div width={1/2} px={1}>
 
-![Palette generator concept](/static/thinking/palette-generator-concept.png)
+![Palette generator concept](/thinking/palette-generator-concept.png)
 
 </Div>
 </Flex>
 
-![Heavily muted palette](/static/thinking/muted-palette.png)
+![Heavily muted palette](/thinking/muted-palette.png)
 
-![](/static/thinking/palette-view-concept.png)
+![](/thinking/palette-view-concept.png)
 
 Generating different color palettes makes you confront a basic question. How do you tell if a palette is good? Are some palettes better than others? In an effort to answer this question we constructed various feedback loops to help us evaluate palettes as quickly as possible. We tried a few methods to stress test a palette. At first we attempted to grab the “nearest color” for a bunch of our common UI colors. This wasn't always helpful as sometimes you actually want the step above or below the closest existing color. But it was helpful to visualize for a few reasons.
 
-![Generated palette above a set of components previewing the old and new palette for comparison](/static/thinking/old-vs-new.png)
+![Generated palette above a set of components previewing the old and new palette for comparison](/thinking/old-vs-new.png)
 
 Sometime during our exploration in this space, [we stumbled across this tweet thread](https://twitter.com/paniq/status/1036299654378467329) about building a palette for pixel art. There are a lot of places web and product designers can draw inspiration from game designers. Here are some screenshots of @paniq developing a 16 color palette.
 
 <FigureLink
-  src="/static/thinking/palettes-for-pixel-art.jpeg"
+  src="/thinking/palettes-for-pixel-art.jpeg"
   caption="Two color palettes visualized to create 3d objects"
   href="https://twitter.com/paniq/status/1036299654378467329"
 />
 
 <FigureLink
-  src="/static/thinking/pixel-art-palette-concept.jpeg"
+  src="/thinking/pixel-art-palette-concept.jpeg"
   caption="A color palette applied in a few different contexts"
   href="https://twitter.com/paniq/status/1037406840999567360"
 />
@@ -160,7 +158,7 @@ Sometime during our exploration in this space, [we stumbled across this tweet th
 Here we see a similar concept where a number of different palettes are applied to the same component. This view shows us two things, the different ways a single palette can be applied to a sphere, and also the different aesthetics across color palettes.
 
 <FigureLink
-  src="/static/thinking/multiple-palettes-applied.png"
+  src="/thinking/multiple-palettes-applied.png"
   caption="Different color palettes previewed against a common component"
   href="https://twitter.com/JstFredrik/status/1145753143852064768"
 />
@@ -171,18 +169,18 @@ Consider the use case of designing UI while the palette or usage of color hasn't
 
 How do we visualize the various ways a palette will look when applied to an interface? Here are examples of how palettes are shown on a palette list for pixel artists.
 
-![](/static/thinking/random-palette.png)
+![](/thinking/random-palette.png)
 
 <Flex alignItems='flex-start' flexWrap="wrap" mx='auto' maxWidth='64em' fontSize={[3,4,4]}>
 <Div width={1/3} px={1}>
 
-![](/static/thinking/palette-used-in-scene.png)
+![](/thinking/palette-used-in-scene.png)
 
 </Div>
 <Div width={1/3} px={1}>
 
 <FigureLink
-  src="/static/thinking/example-palette-for-pixel-art.png"
+  src="/thinking/example-palette-for-pixel-art.png"
   caption="https://lospec.com/palette-list/sweetie-16"
   href="https://lospec.com/palette-list/sweetie-16"
 />
@@ -191,13 +189,13 @@ How do we visualize the various ways a palette will look when applied to an inte
 
 <Div width={1/3} px={1}>
 
-![](/static/thinking/pixel-art-palette.png)
+![](/thinking/pixel-art-palette.png)
 
 </Div>
 </Flex>
 
 <FigureLink
-  src="/static/thinking/random-palette-1.png"
+  src="/thinking/random-palette-1.png"
   caption="https://lospec.com/palette-list/vines-flexible-linear-ramps"
   href="https://lospec.com/palette-list/vines-flexible-linear-ramps"
 />
@@ -206,11 +204,11 @@ One method of visualization is to define a common set of primitive ui elements a
 
 Alternatively we might want to see a composed interface with the closest colors from the palette applied. Consider a set of buttons that includes red, green, blue, and gray button styles. Seeing all of these together can help us visualize the relative nature of these buttons side by side. Given a baseline palette for common UI, we could swap to a new palette and replace each color with the "closest" color. This isn't always a full-proof solution as there are many edge cases to cover. e.g. what happens when replacing a palette of 134 colors with a palette of 24 colors? Even still, this could allow us to quickly take a stab at automating how existing interfaces would change their appearance given a change to the underlying system. Whether locally or against a live site, this mode of working would allow for designers to view a color in multiple contets to truly asses its quality.
 
-<Video src="/static/thinking/cloudflare-demo.mp4" />
+<Video src="/thinking/cloudflare-demo.mp4" />
 
 After moving on from the idea of generating a palette from a single color, we attempted to use our logo colors as well as our primary brand colors to drive the construction of modular scales. Our goal was to create a palette that would improve contrast for accessibility, stay true to our visual brand, work predictably for developers, work for data visualizations, and provide the ability to design visually balanced and attractive interfaces. No sweat.
 
-![Brand colors showing Hue and Saturation level](/static/thinking/hue-and-sat-palette.png)
+![Brand colors showing Hue and Saturation level](/thinking/hue-and-sat-palette.png)
 
 While we knew going in we might not use every step in every hue, we wanted full coverage across the spectrum so that each hue had a consistent optical difference between each step. We also had no idea which steps across which hues we were going to need just yet. As they would just be variables in a theme file it didn’t add any significant code footprint to expose the full generated palette either.
 
@@ -220,19 +218,19 @@ In the future if when we did need to augment the available colors, we could edit
 
 The first interface we built for this work was to output all of the scales vertically, with their contrast scores with both white and black on the right hand side. To aid scannability we bolded the values that were above the 4.5 threshold. As we edited the curves, we could see how the contrast ratios were affected at each step. Below you can see an early starting point before the scales were balanced. Red has 6 accessible combos with white, while yellow only has 1. We initially explored having the gray scale be larger than the others.
 
-![Early iteration of palette preview during development](/static/thinking/early-palette-preview.png)
+![Early iteration of palette preview during development](/thinking/early-palette-preview.png)
 
 As both screen luminosity and ambient light can affect perception of color we developed on two monitors, one set to maximum and one set to minimum brightness levels. We also replicated the color scales with a grayscale filter immediately below to help illustrate visual contrast between steps AND across hues. Bouncing back and forth between the grayscale and saturated version of the scale serves as a great baseline reference. We found that going beyond 10 steps made it difficult to keep enough contrast between each step to keep them distinguishable from one another.
 
 <Flex alignItems='flex-start' flexWrap="wrap" mx='auto' maxWidth='64em' fontSize={[3,4,4]}>
 <Div width={1/2} px={1}>
 
-![Monitors set to different luminosity](/static/thinking/lum-vs-lum.jpeg)
+![Monitors set to different luminosity](/thinking/lum-vs-lum.jpeg)
 
 </Div>
 <Div width={1/2} px={1}>
 
-![Close up of visual difference](/static/thinking/lum-vs-lum-upclose.jpeg)
+![Close up of visual difference](/thinking/lum-vs-lum-upclose.jpeg)
 
 </Div>
 </Flex>
@@ -241,19 +239,19 @@ Taking a page from our game design friends - as we were balancing the scales and
 
 Our slightly random collection of grays had been a particular pain point as they appeared muddy in a number of places within our interface. For our new palette we used the slightest hint of blue to keep our grays consistent and just a bit off from being purely neutral.
 
-![Optically balanced scales](/static/thinking/balanced-palette.png)
+![Optically balanced scales](/thinking/balanced-palette.png)
 
 With a palette consisting of 90 colors, the amount of combinations and permutations that can be applied to data visualizations is vast and can result in a wide variety of aesthetic directions. The same palette applied to both line and bar charts with different data sets can look substantially different, enough that they might not be distinguishable as being the exact same palette. Working with some of our engineering counterparts, we built a pipeline that would put up the same components rendered against different data sets, to simulate the various shapes and sizes the graph elements would appear in. This allowed us to rapidly test the appearance of different palettes. This workflow gave us amazing insights into how a palette would look in our interface. No matter how many hours we spent staring at a palette, we couldn't get an accurate sense of how the colors would look when composed within an interface.
 
 <Flex alignItems='flex-start' flexWrap="wrap" mx='auto' maxWidth='42em' fontSize={[3,4,4]}>
 <Div width={1/2} px={1}>
 
-![Full theme minus green](/static/thinking/theme-minus-green.png)
+![Full theme minus green](/thinking/theme-minus-green.png)
 
 </Div>
 <Div width={1/2} px={1}>
 
-![Blues and Oranges](/static/thinking/theme-blues-oranges.png)
+![Blues and Oranges](/thinking/theme-blues-oranges.png)
 
 </Div>
 </Flex>
@@ -261,12 +259,12 @@ With a palette consisting of 90 colors, the amount of combinations and permutati
 <Flex alignItems='flex-start' flexWrap="wrap" mx='auto' maxWidth='42em' fontSize={[3,4,4]}>
 <Div width={1/2} px={1}>
 
-![Grayscale example](/static/thinking/theme-grayscale.png)
+![Grayscale example](/thinking/theme-grayscale.png)
 
 </Div>
 <Div width={1/2} px={1}>
 
-![Monochromatic Indigo](/static/thinking/theme-indigo.png)
+![Monochromatic Indigo](/thinking/theme-indigo.png)
 
 </Div>
 </Flex>
@@ -274,12 +272,12 @@ With a palette consisting of 90 colors, the amount of combinations and permutati
 <Flex alignItems='flex-start' flexWrap="wrap" mx='auto' maxWidth='42em' fontSize={[3,4,4]}>
 <Div width={1/2} px={1}>
 
-![](/static/thinking/chart-blue.png)
+![](/thinking/chart-blue.png)
 
 </Div>
 <Div width={1/2} px={1}>
 
-![](/static/thinking/chart-blue-1.png)
+![](/thinking/chart-blue-1.png)
 
 </Div>
 </Flex>
@@ -287,25 +285,25 @@ With a palette consisting of 90 colors, the amount of combinations and permutati
 <Flex alignItems='flex-start' flexWrap="wrap" mx='auto' maxWidth='42em' fontSize={[3,4,4]}>
 <Div width={1/2} px={1}>
 
-![Analytics charts with blues and purples](/static/thinking/charts-with-blue-purple.png)
+![Analytics charts with blues and purples](/thinking/charts-with-blue-purple.png)
 
 </Div>
 <Div width={1/2} px={1}>
 
-![Analytics charts with blues and greens](/static/thinking/charts-blue-green.png)
+![Analytics charts with blues and greens](/thinking/charts-blue-green.png)
 
 </Div>
 </Flex>
 
-![Analytics charts with a blues and oranges. Telling the colors of the lines apart is a different visual experience than separating out the dots in sequential order as they appear in the legend.](/static/thinking/charts-blue-oranges.png)
+![Analytics charts with a blues and oranges. Telling the colors of the lines apart is a different visual experience than separating out the dots in sequential order as they appear in the legend.](/thinking/charts-blue-oranges.png)
 
 We experimented with a number of ideas on visualizing different sizes and shapes of colors and how they affected our perception of how much a color was changing element to element. In the first frame it is most difficult to tell the values at 2% and 6% apart given the size and shape of the elements.
 
-<Video src="/static/thinking/generative-charts.mp4" />
+<Video src="/thinking/generative-charts.mp4" />
 
 In an effort to make sure everything we are building will be visually accessible - we built a react component that will preview how a design would look if you were colorblind. The component applies svg filters to it to simulate alternate ways someone can perceive color.
 
-![Analytics component previewed against 8 different types of color blindness](/static/thinking/charts-previewed.png)
+![Analytics component previewed against 8 different types of color blindness](/thinking/charts-previewed.png)
 
 While this is previewing an analytics component, really any component or page can be previewed with this method. We’ve also released a Figma plugin that simulates this visualization for a component as well.
 
@@ -353,15 +351,15 @@ export default ColorBlindFilter
 
 After quite a few iterations, we had come up with a color palette. Each scale was optically aligned with our brand colors. The 5th step in each scale is the closest to the original brand colors but is slightly adjusted so it’s accessible with both white and black.
 
-![Optically balanced scale](/static/thinking/contrast-score.png)
+![Optically balanced scale](/thinking/contrast-score.png)
 
-![Palette preview as both fully saturated and desaturated](/static/thinking/palette-desaturated.png)
+![Palette preview as both fully saturated and desaturated](/thinking/palette-desaturated.png)
 
 [Lyft’s writeup **“Re-approaching color”**](https://design.lyft.com/re-approaching-color-9e604ba22c88and) and [Jeeyoung Jung’s “](https://uxplanet.org/designing-systematic-colors-b5d2605b15c)[**Designing Systematic Colors**](https://uxplanet.org/designing-systematic-colors-b5d2605b15c)[”](https://uxplanet.org/designing-systematic-colors-b5d2605b15c) are some of the best write-ups on how to work with color at scale you can find.
 
 ## Color migrations
 
-![A visual representation of how the legacy palette colors would translate to the new scales.](/static/thinking/palette-migration.png)
+![A visual representation of how the legacy palette colors would translate to the new scales.](/thinking/palette-migration.png)
 
 Getting a team of people to agree on a new color palette is a journey in and of itself. By the time you get everyone to consensus it’s tempting to just collapse into a heap and never think about colors ever again. Unfortunately the work doesn’t stop at this point. Now that we’ve picked our palette, it’s time to get it implemented so this bike shed is painted once and for all.
 
@@ -371,15 +369,15 @@ We found it was more common than expected that engineers and designers wanted to
 
 There are times when migrating colors, the closest color isn't actually what you want. Given the scenario where your brand color has changed from blue to purple, you might want to be porting all blues to the closest purple within the palette, not the closest blues which might still exist in your palette. To help visualize migrations as well as get suggestions on how to consolidate values within the old scale, we of course built a little tool. Here we can define those translations and import a color palette from a URL import. As we still have. a number of web properties to update to our palette, this simple tool has continued to prove useful.
 
-<Video src="/static/thinking/fetch-palette.mp4" />
+<Video src="/thinking/fetch-palette.mp4" />
 
 We wanted to be as gentle as possible in transitioning to the new palette in usage. While the developers found string names for colors brittle and unpredictable, it was still a more familiar system for some than this new one. We first just added in our new palette to the existing theme for usage moving forward. Then we started to port colors for existing components and pages.
 
 For our colleagues, we wrote out desired translations and offered warnings in the console that a color was deprecated, with a reference to the new theme value to use.
 
-![Example of console warning when using deprecated color](/static/thinking/invalid-colors.png)
+![Example of console warning when using deprecated color](/thinking/invalid-colors.png)
 
-![Example of how to check for usage of deprecated values](/static/thinking/invalid-colors-code.png)
+![Example of how to check for usage of deprecated values](/thinking/invalid-colors-code.png)
 
 While we had a few bugs along the way, the team was supportive and helped us fix bugs almost as quickly as we could find them.
 
@@ -388,12 +386,12 @@ We’re still in the process of updating our web properties with our new palette
 <Flex alignItems='flex-end' flexWrap="wrap" mx='auto' maxWidth='64em' fontSize={[3,4,4]}>
 <Div width={1/2} px={1}>
 
-![cloudflarestatus.com in 2017](/static/thinking/cloudflare-status-2017.png)
+![cloudflarestatus.com in 2017](/thinking/cloudflare-status-2017.png)
 
 </Div>
 <Div width={1/2} px={1}>
 
-![cloudflarestatus.com in 2019 with an accessible green](/static/thinking/cloudflare-status-2019.png)
+![cloudflarestatus.com in 2019 with an accessible green](/thinking/cloudflare-status-2019.png)
 
 </Div>
 </Flex>
@@ -404,17 +402,17 @@ A lot of the changes have been subtle - most notably the green we use in the das
   
 <Div width={1/2} px={1}>
 
-![Notifications 2017 - Black text](/static/thinking/cf-notifications-2017.png)
+![Notifications 2017 - Black text](/thinking/cf-notifications-2017.png)
 
 </Div>
 <Div width={1/2} px={1}>
 
-![Notifications 2018 - Updated palette. Text is set to 1st step in corresponding scale of background color.](/static/thinking/cf-notifications-2018.png)
+![Notifications 2018 - Updated palette. Text is set to 1st step in corresponding scale of background color.](/thinking/cf-notifications-2018.png)
 
 </Div>
 </Flex>
 
-![Example page within our Dashboard in 2017 vs 2019](/static/thinking/2017-2019.png)
+![Example page within our Dashboard in 2017 vs 2019](/thinking/2017-2019.png)
 
 While we aren’t perfect yet, we’re making progress towards more visual cohesion across our marketing materials and products.
 
@@ -423,34 +421,34 @@ While we aren’t perfect yet, we’re making progress towards more visual cohes
 <Flex alignItems='flex-start' flexWrap="wrap" mx='auto' maxWidth='42em' fontSize={[3,4,4]}>
 <Div width={1/2} px={1}>
 
-![Cloudflare.com 2017](/static/thinking/cf-2017.png)
+![Cloudflare.com 2017](/thinking/cf-2017.png)
 
 </Div>
 <Div width={1/2} px={1}>
 
-![Sign in page 2017](/static/thinking/cf-login-2017.png)
+![Sign in page 2017](/thinking/cf-login-2017.png)
 
 </Div>
 </Flex>
 
-![Our app dashboard in 2017](/static/thinking/cf-dash-2017.png)
+![Our app dashboard in 2017](/thinking/cf-dash-2017.png)
 
 **2019**
 
 <Flex alignItems='flex-start' flexWrap="wrap" mx='auto' maxWidth='42em' fontSize={[3,4,4]}>
 <Div width={1/2} px={1}>
 
-![Cloudflare homepage](/static/thinking/cf-home-2019.png)
+![Cloudflare homepage](/thinking/cf-home-2019.png)
 
 </Div>
 <Div width={1/2} px={1}>
 
-![Updated account dashboard](/static/thinking/cf-accounts-2019.png)
+![Updated account dashboard](/thinking/cf-accounts-2019.png)
 
 </Div>
 </Flex>
 
-![Updated site dashboard](/static/thinking/cf-dash-2019.png)
+![Updated site dashboard](/thinking/cf-dash-2019.png)
 
 ## Next steps
 
