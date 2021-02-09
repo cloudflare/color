@@ -2,14 +2,11 @@ const unwrapImages = require("remark-unwrap-images")
 const path = require("path")
 const fs = require("fs-extra")
 const webpack = require("webpack")
-const pkg = require("./package.json")
 const withMDX = require("@next/mdx")({
   options: {
     remarkPlugins: [unwrapImages],
   },
 })
-
-const isProd = process.env.NODE_ENV === "production"
 
 const fetchFiles = (filePath) => {
   const files = fs.readdirSync(filePath)

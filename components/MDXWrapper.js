@@ -5,17 +5,17 @@ import Div from "../elements/Div"
 import Pre from "../elements/Pre"
 import Blockquote from "../elements/Blockquote"
 
-const CustomH1 = props => (
+const CustomH1 = (props) => (
   <Div mx="auto" fontSize={[3, 4, 4]} maxWidth="34em">
     <H1 fontSize={[5, 6, 8]} {...props} />
   </Div>
 )
-const CustomH2 = props => (
+const CustomH2 = (props) => (
   <Div mx="auto" fontSize={[3, 4, 4]} css={{ maxWidth: "34em" }}>
     <H2 fontSize={[4, 5, 6]} {...props} />
   </Div>
 )
-const CustomLi = props => (
+const CustomLi = (props) => (
   <Li
     mb={2}
     mx="auto"
@@ -24,11 +24,11 @@ const CustomLi = props => (
     {...props}
   />
 )
-const CustomP = props => (
+const CustomP = (props) => (
   <P maxWidth="34em" fontSize={[3, 4, 4]} mx="auto" {...props} />
 )
-const Wrapper = props => <Div px={[2, 4]} py={[2, 4]} {...props} />
-const CustomImg = props => (
+const Wrapper = (props) => <Div px={[2, 4]} py={[2, 4]} {...props} />
+const CustomImg = (props) => (
   <Figure
     m={0}
     my={[3, 5]}
@@ -40,7 +40,7 @@ const CustomImg = props => (
       css={{ display: "block" }}
       mx="auto"
       loading="lazy"
-      src={`${process.env.assetPrefix}${props.src}`}
+      src={props.src}
       alt={props.alt}
     />
     <Figcaption textAlign="center" fontSize={2} pt={2} color="gray.2">
@@ -61,7 +61,7 @@ export const FigureLink = ({ href, src, caption }) => (
       css={{ display: "block" }}
       mx="auto"
       loading="lazy"
-      src={`${process.env.assetPrefix}${src}`}
+      src={src}
       alt={caption}
     />
     <Figcaption textAlign="center" fontSize={2} pt={2} color="gray.2">
@@ -70,19 +70,19 @@ export const FigureLink = ({ href, src, caption }) => (
   </Figure>
 )
 
-const CustomPre = props => (
+const CustomPre = (props) => (
   <Pre
     {...props}
     css={{
       maxWidth: "34em",
       marginLeft: "auto",
       marginRight: "auto",
-      overflowX: "scroll"
+      overflowX: "scroll",
     }}
   />
 )
 
-const CustomBlockquote = props => <Blockquote mx={0} {...props} />
+const CustomBlockquote = (props) => <Blockquote mx={0} {...props} />
 
 const MDXComponents = {
   h1: CustomH1,
@@ -93,7 +93,7 @@ const MDXComponents = {
   p: CustomP,
   wrapper: Wrapper,
   pre: CustomPre,
-  blockquote: CustomBlockquote
+  blockquote: CustomBlockquote,
 }
 
 export default ({ children }) => (

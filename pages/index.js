@@ -29,7 +29,7 @@ const resetPinned = {
   color: false,
   bg: false,
   borderColor: false,
-  parentBg: false
+  parentBg: false,
 }
 
 const debouncedUpdateCombos = debounce(
@@ -45,7 +45,7 @@ const MainUI = ({
   setPalette,
   availableCombos,
   setAvailableCombos,
-  onShowCombinations
+  onShowCombinations,
 }) => {
   const [paletteModalIsOpen, togglePaletteModal] = useState(false)
   const [likes, updateLikes] = useState([])
@@ -62,7 +62,7 @@ const MainUI = ({
   const [palxColor, setPalxColor] = useState("#07c")
   const [currentPickerColor, setPickerColor] = useState({
     color: null,
-    index: null
+    index: null,
   })
   const [currentComboProp, setCurrentComboProp] = useState(null)
   const [activeTab, setActiveTab] = useState("url")
@@ -80,11 +80,11 @@ const MainUI = ({
         availableCombos
       )
       set(newCombo)
-    }
+    },
   })
 
   useEffect(() => {
-    getIdb("likes").then(likes => {
+    getIdb("likes").then((likes) => {
       likes && updateLikes(likes)
     })
 
@@ -118,7 +118,7 @@ const MainUI = ({
     await setIdb("likes", deDuped)
   }
 
-  const handleRemoveLike = async index => {
+  const handleRemoveLike = async (index) => {
     const newLikes = likes.filter((_, i) => index !== i)
     updateLikes(newLikes)
     await setIdb("likes", newLikes)
@@ -150,17 +150,17 @@ const MainUI = ({
     }
   }
 
-  const handleViewLike = index => {
+  const handleViewLike = (index) => {
     isRunning && stop()
     set(likes[index])
   }
 
-  const handleRemoveColor = color => {
-    const alteredPalette = palette.filter(c => c !== color)
+  const handleRemoveColor = (color) => {
+    const alteredPalette = palette.filter((c) => c !== color)
     setPalette(alteredPalette)
     setPickerColor({
       color: null,
-      index: null
+      index: null,
     })
     const availableCombos = getAllCombos(alteredPalette, contrastRatio)
     setAvailableCombos(availableCombos)
@@ -186,9 +186,9 @@ const MainUI = ({
     }
   }
 
-  const handleColorBlindFilter = e => setColorFilter(e.target.value)
+  const handleColorBlindFilter = (e) => setColorFilter(e.target.value)
 
-  const handleSiteFetch = async palette => {
+  const handleSiteFetch = async (palette) => {
     setPalette(palette)
     setPinnedColors(resetPinned)
     const availableCombos = getAllCombos(palette, contrastRatio)
@@ -218,22 +218,22 @@ const MainUI = ({
     setPaletteImage("")
   }
 
-  const handlePinColor = key => () => {
-    setPinnedColors(prevState => ({ ...prevState, [key]: !prevState[key] }))
+  const handlePinColor = (key) => () => {
+    setPinnedColors((prevState) => ({ ...prevState, [key]: !prevState[key] }))
   }
 
-  const handleImageUpload = async e => {
+  const handleImageUpload = async (e) => {
     setImageLoading(true)
     const imageFile = e.target.files[0]
     setPaletteImage({
       url: URL.createObjectURL(imageFile),
       name: null,
-      username: null
+      username: null,
     })
 
     const res = await fetch("https://image-palette.now.sh", {
       method: "POST",
-      body: imageFile
+      body: imageFile,
     })
     const palette = await res.json()
 
@@ -252,8 +252,9 @@ const MainUI = ({
     set(newCombo)
   }
 
-  const handleBorderWidthChange = e => setBorderWidth(parseInt(e.target.value))
-  const handleBoxPaddingChange = e => setBoxPadding(parseInt(e.target.value))
+  const handleBorderWidthChange = (e) =>
+    setBorderWidth(parseInt(e.target.value))
+  const handleBoxPaddingChange = (e) => setBoxPadding(parseInt(e.target.value))
 
   const handleFetchFromUnsplash = async () => {
     setImageLoading(true)
@@ -274,7 +275,7 @@ const MainUI = ({
     setPaletteImage({ url, name, username })
   }
 
-  const handlePalxColor = e => {
+  const handlePalxColor = (e) => {
     setPalxColor(e.target.value)
   }
 
@@ -302,7 +303,7 @@ const MainUI = ({
   }
 
   const handlePaletteColorClick = (color, index) => {
-    const comboColorProp = findKey(currentCombination, c => c === color)
+    const comboColorProp = findKey(currentCombination, (c) => c === color)
     if (comboColorProp) {
       stop()
       setCurrentComboProp(comboColorProp)
@@ -310,7 +311,7 @@ const MainUI = ({
     setPickerColor({ color, index })
   }
 
-  const handleSetEditColor = color => {
+  const handleSetEditColor = (color) => {
     isRunning && stop()
 
     setPickerColor({ color, index: currentPickerColor.index })
@@ -326,19 +327,19 @@ const MainUI = ({
     debouncedUpdateCombos(updatedPalette, contrastRatio, setAvailableCombos)
   }
 
-  const handleContrastRatioChange = e => {
+  const handleContrastRatioChange = (e) => {
     const newContrastRatio = toNumber(e.target.value)
     setContrastRatio(newContrastRatio)
     const availableCombos = getAllCombos(palette, newContrastRatio)
     setAvailableCombos(availableCombos)
   }
 
-  const handleActiveTab = value => () => setActiveTab(value)
+  const handleActiveTab = (value) => () => setActiveTab(value)
 
   const handleColorClick = (color, key) => {
     isRunning && stop()
     setCurrentComboProp(key)
-    const paletteIndex = palette.findIndex(p => p === color)
+    const paletteIndex = palette.findIndex((p) => p === color)
     setPickerColor({ color, index: paletteIndex })
   }
 
@@ -352,14 +353,14 @@ const MainUI = ({
       ? currentCombination.bg
       : currentCombination.color
 
-  const handleColorBoxAdd = newColors => {
+  const handleColorBoxAdd = (newColors) => {
     const newPalette = [...palette, ...newColors]
     setPalette(newPalette)
     const availableCombos = getAllCombos(newPalette, contrastRatio)
     setAvailableCombos(availableCombos)
   }
 
-  const handleColorBoxReplace = newPalette => {
+  const handleColorBoxReplace = (newPalette) => {
     setPalette(newPalette)
     const availableCombos = getAllCombos(newPalette, contrastRatio)
     setAvailableCombos(availableCombos)
@@ -369,7 +370,7 @@ const MainUI = ({
     try {
       const newPalette = JSON.parse(importValue)
 
-      newPalette.map(c => {
+      newPalette.map((c) => {
         if (!isHex(c)) {
           throw Error("Invalid Hex code provided")
         }
@@ -382,12 +383,12 @@ const MainUI = ({
     }
   }
 
-  const handleDragStart = color => {
+  const handleDragStart = (color) => {
     isRunning && stop()
     setDragColor(color)
   }
 
-  const handleColorDrop = property => {
+  const handleColorDrop = (property) => {
     const newCombo = { ...currentCombination, [property]: dragColor }
     set(newCombo)
   }
@@ -404,7 +405,7 @@ const MainUI = ({
         filter:
           colorFilter === "none"
             ? "none"
-            : `url(${process.env.assetPrefix}/static/filters.svg#${colorFilter})`
+            : `url(/static/filters.svg#${colorFilter})`,
       }}
     >
       <Div width={[1]}>
@@ -533,7 +534,7 @@ const MainUI = ({
                     justifyContent: "center",
                     alignItems: "center",
                     cursor: "pointer",
-                    whiteSpace: "nowrap"
+                    whiteSpace: "nowrap",
                   }}
                   onClick={handleFetchFromUnsplash}
                 >
@@ -664,9 +665,9 @@ const MainUI = ({
                   value={importValue}
                   css={{
                     resize: "vertical",
-                    minHeight: "128px"
+                    minHeight: "128px",
                   }}
-                  onChange={e => setImportValue(e.target.value)}
+                  onChange={(e) => setImportValue(e.target.value)}
                 />
                 <Div textAlign="center" mt={2}>
                   <ButtonOutline
@@ -779,7 +780,7 @@ const MainUI = ({
               onOutsideClick={() => {
                 setPickerColor({
                   color: null,
-                  index: null
+                  index: null,
                 })
                 setCurrentComboProp(null)
               }}
