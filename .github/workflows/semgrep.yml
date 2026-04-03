@@ -10,4 +10,4 @@ jobs:
       image: semgrep/semgrep@sha256:500acf49f5e5785aa89af609b983f0427ac8cd08f7e34146277df6cffb002759 # v1.157.0
     steps:
       - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8  # v5.0.0
-      - run: semgrep scan --config=a
+      - run: semgrep scan --config=auto
