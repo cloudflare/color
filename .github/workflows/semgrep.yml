@@ -2,13 +2,16 @@ on:
   pull_request: {}
   schedule:
     - cron: '0 0 * * 6'
-name: Semgrep CE scan test
+concurrency:
+  group: semgrep-${{ github.event_name }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+permissions:
+  contents: read
 jobs:
   semgrep:
     name: semgrep-oss
-    runs-on: ubuntu-latest
-    container:
-      image: semgrep/semgrep
+    runs-on: ubuntu-slim
     steps:
       - uses: actions/checkout@v5
+      - run: pip install semgrep==1.157.0
       - run: semgrep scan --config=auto
