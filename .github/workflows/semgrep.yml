@@ -11,7 +11,10 @@ jobs:
   semgrep:
     name: semgrep-oss
     runs-on: ubuntu-slim
+    container:
+      image: semgrep/semgrep
     steps:
-      - uses: actions/checkout@v5
-      - run: pip install semgrep==1.157.0
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
       - run: semgrep scan --config=auto
